@@ -53,7 +53,8 @@ _Response (400 - Bad Request)_
   "message": "email must be filled",
   "message": "please insert email format",
   "message": "password must be filled",
-  "message": "password minimum 6 characters"
+  "message": "password minimum 6 characters",
+  "message": "email already exists"
 }
 ```
 _Response (500 - Internal Server Error)_
