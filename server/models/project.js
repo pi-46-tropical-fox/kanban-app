@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Project.belongsTo(models.Organization)
       Project.belongsTo(models.User)
       Project.belongsTo(models.Task)
+      Project.hasMany(models.Category)
     }
   };
   Project.init({

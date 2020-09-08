@@ -12,10 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Category.hasMany(models.Task)
+      Category.belongsTo(models.Project)
     }
   };
   Category.init({
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    ProjectId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Category',

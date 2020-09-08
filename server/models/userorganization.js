@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserOrganization.init({
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    OrganizationsId: DataTypes.INTEGER,
+    UserId : DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'UserOrganization',
-    OrganizationsId: DataTypes.INTEGER,
-    UserId : DataTypes.INTEGER
   });
   return UserOrganization;
 };
