@@ -1,2 +1,2 @@
-# kanban-app
+# kanban
 Membuat kanban web app
