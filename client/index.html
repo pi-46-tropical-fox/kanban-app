@@ -24,6 +24,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">View Kanban Board</a>
                 <a class="dropdown-item" href="#">Add Task</a>
+                <a class="dropdown-item" href="#">Add Category</a>
               </div>
         </div>
         
@@ -35,7 +36,7 @@
             <ul>
                 <li><a href=""><img src="./assets/user-plus-1.svg" alt=""> Register </a></li>
                 <li><a href=""><img src="./assets/log-in-1.svg" alt=""> Log In </a></li>
-                <li><a href=""><img src="./assets/log-out-1.svg" alt=""> Log Out </a></li>
+                <!-- <li><a href=""><img src="./assets/log-out-1.svg" alt=""> Log Out </a></li> -->
             </ul>
 
         </div>
@@ -47,17 +48,18 @@
     <p>Easily managing your project.</p>
 
     </div>  
+
     <!-- Login page -->
 
     <div id="loginPage">
-        <div class="container">
+        <div class="container" id="loginPage-Container">
             <div class="row">
                 <div class="col-7" id="loginPage_left">
                     <img src="./assets/online-organizer.svg" alt="">
                 </div>
                 <div class="col-4" id="loginPage_right">
                     <h5 id="loginForm"> Login </h5>
-                    
+
                     <form>
                         <br><br>
                         <label for="email">Email Address</label><br>
@@ -80,7 +82,160 @@
         </div>
     </div>
 
+    <!-- navbar -->
+    <nav id="nav-bar">
+        
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="./assets/align-justify-1.svg" alt="">
+                Menu
+            </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">View Kanban Board</a>
+                <a class="dropdown-item" href="#">Add Task</a>
+                <a class="dropdown-item" href="#">Add Category</a>
+              </div>
+        </div>
+        
+        <div class="home">
+            <a href=""><h5>Kanban Board App</h5></a>
+        </div>
+        
+        <div class="nav-user">
+            <ul>
+                <!-- <li><a href=""><img src="./assets/user-plus-1.svg" alt=""> Register </a></li>
+                <li><a href=""><img src="./assets/log-in-1.svg" alt=""> Log In </a></li> -->
+                <li><a href=""><img src="./assets/log-out-1.svg" alt=""> Log Out </a></li>
+            </ul>
+
+        </div>
+    </nav>
+
     <!-- Kanban Board -->
+
+    <div class="container" id="containerKanban">
+        <div id="backlog-board">
+            <div class="container">
+                <div class="row">
+                    <div class='col'>
+                        <h5>Backlog</h5>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #c23616;">Title : Debugging on mainframe server</div>
+                            <div class="card-body">
+                              <p class="card-text"><small> Description : Take debugging test between line 234-270</small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #c23616;">Title :</div>
+                            <div class="card-body">
+                              <p class="card-text"><small>Description : </small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="todo-board">
+            <div class="container">
+                <div class="row">
+                    <div class='col'>
+                        <h5>To Do</h5>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #00a8ff;">Title : Data Analysis on Customer Database</div>
+                            <div class="card-body">
+                              <p class="card-text"><small> Description : Analysis on Customer Behaviour during Pandemic</small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #00a8ff;">Title :</div>
+                            <div class="card-body">
+                              <p class="card-text"><small>Description : </small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="doing-board">
+            <div class="container">
+                <div class="row">
+                    <div class='col'>
+                        <h5>Doing</h5>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #e1b12c;">Title : Presentation of New Feature in front Of Head Director</div>
+                            <div class="card-body">
+                              <p class="card-text"><small> Description : Presentation on Head Meeting room</small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #e1b12c;">Title :</div>
+                            <div class="card-body">
+                              <p class="card-text"><small>Description : </small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="done-board">
+            <div class="container">
+                <div class="row">
+                    <div class='col'>
+                        <h5>Done</h5>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #009432;">Title : Report on Customer Needs</div>
+                            <div class="card-body">
+                              <p class="card-text"><small> Description : Report on Customer Needs before Pandemic</small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                        <div class="card border-dark mb-3 " style="max-width: 18rem;">
+                            <div class="card-header text-white" style="background-color: #009432;">Title :</div>
+                            <div class="card-body">
+                              <p class="card-text"><small>Description : </small></p>
+                              <a href="#" class="card-link"><img src="./assets/edit.svg" alt="">Edit</a>
+                              <a href="#" class="card-link"><img src="./assets/trash-2.svg" alt="">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+   
+
+    
 
 
 
