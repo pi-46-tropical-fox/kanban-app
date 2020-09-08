@@ -1,0 +1,72 @@
+* {
+    padding: 0;
+    margin: 0;
+    
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background:  #485460;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.dropdown-menu {
+    background: #485460
+}
+
+.home a {
+    color: white;
+}
+
+.nav-user ul {
+    list-style: none;
+}
+
+.nav-user li {
+    display: inline;
+}
+
+.nav-user a {
+    color: white;
+}
+
+#title-word {
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 25px;
+    height: 500px;    
+    border: 2px solid black;
+}
+
+#loginPage_left {
+    display: flex;
+    height: 250px;
+    width: 300px;
+    margin-top: 50px;
+    justify-content: center;
+    
+}
+
+#loginPage_right {
+    display: flex;
+    height: 400px;
+    width: 250px;
+    margin-top: 50px;
+    justify-content: center;
+    border: black 2px solid;
+    border-radius: 25px;
+}
+
+h5 {
+    margin-top: 15px;
+    text-align: center;
+}
+
