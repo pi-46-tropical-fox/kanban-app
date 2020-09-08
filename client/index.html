@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Kanban App</title>
+</head>
+<body>
+    <nav>
+        <div id="title">
+            <h1><b>Kanban App</b></h1>
+        </div>
+        <div class="navbar">
+            <a href="#" id="signin">Sign In</a>
+            <a href="#" id="signup">Sign Up</a>
+            <a href="#" id="signout">Sign Out</a>
+        </div>
+    </nav>
+    <div id="addtask">
+        <button type="button" class="btn btn-dark" id="button-add">Add Task</button>
+        <!-- <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button> -->
+    </div>
+    <main>
+        <div class="col-sm" id="backlog">
+            <div class="category-title">
+                <h3>Backlog</h3>
+            </div>
+            <div class="category-task">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Todo >></button></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Todo >></button></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm" id="product">
+            <div class="category-title">
+                <h3>Todo</h3>
+            </div>
+            <div class="category-task">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Backlog</button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Doing >></button></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Backlog</button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Doing >></button></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm" id="development">
+            <div class="category-title">
+                <h3>Doing</h3>
+            </div>
+            <div class="category-task">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Todo</button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Done >></button></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Todo</button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Done >></button></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <span class="action">
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Todo</button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Done >></button></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm" id="done">
+            <div class="category-title">
+                <h3>Done</h3>
+            </div>
+            <div class="category-task">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="form_login">
+        <br>
+        <div id="alertLogin" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Invalid Username or Password!</strong>
+        </div>
+        <form id="dataLogin">
+            <div class="">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="emailLogin" placeholder="Email">
+                </div>
+            </div>
+            <br>
+            <div class="">
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" id="passwordLogin" placeholder="Password">
+                </div>
+            </div></br>
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary">LOGIN</button>
+            </div>
+        </form>
+        <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px;">
+            Or Login With Google:
+        </div>
+        <div class="col-sm-12">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+        <div class="col-sm-12" style="margin-top: 10px;" id="registerclick">
+            <h5>Don't have an account? <a href="#">Sign Up</a></h5>
+        </div>
+    </div>
+    <div id="form_registration">
+        <form id="dataRegister">
+            <div class="">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="inputFirstName3" placeholder="First Name">
+                </div>
+            </div>
+            <br>
+            <div class="">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="inputLastName3" placeholder="Last Name">
+                </div>
+            </div>
+            <br>
+            <div class="">
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                </div>
+            </div>
+            <br>
+            <div class="">
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                </div>
+            </div></br>
+            <div class="">
+                <div id="regbutton">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
