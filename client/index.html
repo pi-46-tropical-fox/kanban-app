@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2eed7bf050.js" crossorigin="anonymous"></script>
+
     <title>Kanban App</title>
 </head>
 <body>
@@ -22,6 +24,7 @@
         <button type="button" class="btn btn-dark" id="button-add">Add Task</button>
         <!-- <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button> -->
     </div>
+    
     <main>
         <div class="col-sm" id="backlog">
             <div class="category-title">
@@ -31,22 +34,24 @@
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Todo >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Move to Todo"><i class="fas fa-check"></i></button></a>
                         </span>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Todo >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Move to Todo"><i class="fas fa-check"></i></button></a>
                         </span>
                     </div>
                 </div>
@@ -61,24 +66,26 @@
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Backlog</button></a>
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Doing >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Back to Backlog" style="margin-right: -20px;"><i class="fas fa-chevron-circle-left"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Move to Doing"><i class="fas fa-check"></i></button></a>
                         </span>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Backlog</button></a>
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Doing >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Back to Backlog" style="margin-right: -20px;"><i class="fas fa-chevron-circle-left"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Move to Doing"><i class="fas fa-check"></i></button></a>
                         </span>
                     </div>
                 </div>
@@ -93,36 +100,39 @@
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Todo</button></a>
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Done >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Back to Todo" style="margin-right: -20px;"><i class="fas fa-chevron-circle-left"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success"><i class="fas fa-check" data-toggle="tooltip" data-placement="bottom" title="Move to Done"></i></button></a>
                         </span>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Todo</button></a>
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Done >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Back to Todo" style="margin-right: -20px;"><i class="fas fa-chevron-circle-left"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Move to Done"><i class="fas fa-check"></i></button></a>
                         </span>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                         <span class="action">
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success" style="margin-right: -20px;"><< Todo</button></a>
-                            <a href="#" class="card-link"><button type="button" class="btn btn-success">Done >></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Back to Todo" style="margin-right: -20px;"><i class="fas fa-chevron-circle-left"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit" style="margin-right: -20px;"><i class="fas fa-edit"></i></button></a>
+                            <a href="#" class="card-link"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Move to Done"><i class="fas fa-check"></i></button></a>
                         </span>
                     </div>
                 </div>
@@ -137,38 +147,47 @@
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                     </div>
                 </div>
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
                       <h5 class="card-title">Task title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Task subtitle</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="card-link"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Task title</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">By: <span>Name</span></h6>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="card-link"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button></a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    
     <div id="form_login">
         <br>
         <div id="alertLogin" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -204,13 +223,7 @@
         <form id="dataRegister">
             <div class="">
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" id="inputFirstName3" placeholder="First Name">
-                </div>
-            </div>
-            <br>
-            <div class="">
-                <div class="col-sm-12">
-                    <input type="text" class="form-control" id="inputLastName3" placeholder="Last Name">
+                    <input type="text" class="form-control" id="inputLastName3" placeholder="Name">
                 </div>
             </div>
             <br>
@@ -226,7 +239,7 @@
                 </div>
             </div></br>
             <div class="">
-                <div id="regbutton">
+                <div class="col-sm-12">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
                 </div>
             </div>

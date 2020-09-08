@@ -29,6 +29,11 @@ main{
     justify-content: space-between;
     align-items: flex-start;
 }
+.col-sm{
+    -webkit-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+}
 
 #backlog{
     background-color: #d1ccc0;
@@ -63,7 +68,9 @@ main{
     margin-right: -15px;
 }
 .category-task{
+    max-height: 720px;
     padding-bottom: 10px;
+    overflow: scroll;
 }
 .card{
     margin-bottom: 5px;
