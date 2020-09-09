@@ -1,7 +1,8 @@
 const router = require('express').Router()
 // const UserController = require('../controllers/UserController.js')
-const Task = require('../controllers/TaskController.js')
+const KanbanController = require('../controllers/KanbanController.js')
 
-router.use('/kanban', Task.getTasks)
+router.get('/kanban', KanbanController.getProjects)
+router.get('/kanban/:id', KanbanController.getCategories)
 
 module.exports = router

@@ -12,8 +12,8 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('Projects', [{
-    UserId: 9,
-    TaskId : null,
+    note: null,
+    UserId: 1,
     OrganizationId : 1,
     createdAt: new Date(),
     updatedAt: new Date()

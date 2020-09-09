@@ -1,8 +1,8 @@
 const router = require('express').Router()
-const taskRouter = require('./task.js')
+const kanbanRouter = require('./task.js')
 const userRouter = require('./user.js')
 const {authentication} = require('../middlewares/auth.js')
-const Task = require('../controllers/TaskController.js')
+const KanbanController = require('../controllers/KanbanController.js')
 
 // router.get('/', (req, res) => {
 //   res.send('Hello World!')
@@ -10,7 +10,7 @@ const Task = require('../controllers/TaskController.js')
 
 router.use('/', userRouter)
 router.use(authentication)
-router.use('/', taskRouter)
-router.use('/', Task.getTasks)
+router.use('/', kanbanRouter)
+router.get('/', KanbanController.getProjects)
 
 module.exports = router

@@ -8,19 +8,19 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.addColumn("UserOrganizations", "UserId", {
+    return queryInterface.addColumn("Tasks", "CategoryId", {
       type : Sequelize.INTEGER,
       references : {
-        model : "Users",
+        model : "Categories",
         key : 'id'
       },
       onUpdate : 'CASCADE',
       onDelete : 'CASCADE'
     }).then(()=>{
-      queryInterface.addColumn("UserOrganizations", "OrganizationsId", {
+      queryInterface.addColumn("Tasks", "UserId", {
         type : Sequelize.INTEGER,
         references : {
-          model : "Organizations",
+          model : "Users",
           key : 'id'
         },
         onUpdate : 'CASCADE',
@@ -39,9 +39,12 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    return queryInterface.removeColumn('UserOrganizations', 'UserId')
+    return queryInterface.removeColumn('Tasks', 'CategoryId')
     .then(()=>{
-      return queryInterface.removeColumn('UserOrganizations', 'OrganizationsId')
+      return queryInterface.removeColumn('Tasks', 'UserId')
     })
   }
 };
+
+//ubah ke one to many
+//user to task

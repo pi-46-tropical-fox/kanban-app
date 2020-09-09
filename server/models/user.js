@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsToMany(models.Organization,{through:models.UserOrganization})
       User.hasMany(models.UserOrganization)
-      User.belongsToMany(models.Task,{through:models.Project})
       User.hasMany(models.Project)
+      User.hasMany(models.Task)
     }
   };
   User.init({
@@ -32,3 +32,6 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
+
+//ubah ke one to many
+//user to task

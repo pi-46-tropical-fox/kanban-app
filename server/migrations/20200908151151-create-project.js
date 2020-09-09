@@ -25,3 +25,6 @@ module.exports = {
     await queryInterface.dropTable('Projects');
   }
 };
+
+//ubah ke one to many
+//user to task

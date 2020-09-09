@@ -13,14 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Project.belongsTo(models.Organization)
       Project.belongsTo(models.User)
-      Project.belongsTo(models.Task)
       Project.hasMany(models.Category)
     }
   };
   Project.init({
     note: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
-    TaskId : DataTypes.INTEGER,
     OrganizationId : DataTypes.INTEGER,
   }, {
     sequelize,

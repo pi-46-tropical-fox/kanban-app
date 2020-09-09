@@ -17,16 +17,6 @@ module.exports = {
       onUpdate : 'CASCADE',
       onDelete : 'CASCADE'
     }).then(()=>{
-      queryInterface.addColumn("Projects", "TaskId", {
-        type : Sequelize.INTEGER,
-        references : {
-          model : "Tasks",
-          key : 'id'
-        },
-        onUpdate : 'CASCADE',
-        onDelete : 'CASCADE'
-      })
-    }).then(()=>{
       queryInterface.addColumn("Projects", "OrganizationId", {
         type : Sequelize.INTEGER,
         references : {
@@ -50,11 +40,12 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
     return queryInterface.removeColumn('Projects', 'UserId')
-    .then(()=>{
-      return queryInterface.removeColumn('Projects', 'TaskId')
       .then(()=>{
         return queryInterface.removeColumn('Projects', 'OrganizationId')
       })
-    })
   }
 };
+
+
+//ubah ke one to many
+//user to task

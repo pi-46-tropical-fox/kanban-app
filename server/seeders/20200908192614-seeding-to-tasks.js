@@ -16,7 +16,8 @@ module.exports = {
     description: "Semangat",
     date_post: null,
     due_date: null,
-    CategoriesId : 17,
+    CategoryId : 1,
+    UserId : 1,
     createdAt: new Date(),
     updatedAt: new Date()
   }], {});
