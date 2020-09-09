@@ -169,11 +169,11 @@ let app = new Vue({
             if(this.taskTitle.trim() === ''){
                 this.alerthtml = `<p style="background-color: #ff4756ce;">Cannot insert an empty task</p>`
             }else{
-                let id 
+                let id = 1
                 if(this.tasks.length === 0){
                     id = 1
                 }else{
-                    id = this.tasks.length + 1
+                    id = this.tasks[this.tasks.length - 1].id + 1
                 }
                 let obj = {
                     id,
