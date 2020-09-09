@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="./assets/fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      <div class="container">
+        <div class="login-page">
+            <div class="image-container"></div>
+            <div class="form-container">
+                <div class="heading">
+                    <h1>Login into your account</h1>
+                </div>
+                <div class="form-box">
+                    <form>
+                        <div class="form-input">
+                            <span><i class="fa fa-envelope"></i></span>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div style="text-align: left;">
+                            <button type="submit" class="btn">Login</button>
+                        </div>
+                        <div style="color: #fff">Don't have an account?
+                            <a href="" class="register-link">Register here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="register-page">
+            <div class="image-container"></div>
+            <div class="form-container">
+                <div class="heading">
+                    <h1>Create your account</h1>
+                </div>
+                <div class="form-box">
+                    <form>
+                        <div class="form-input">
+                            <span><i class="fa fa-envelope"></i></span>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div style="text-align: left;">
+                            <button type="submit" class="btn">Register</button>
+                        </div>
+                        <div style="color: #fff">Have an account?
+                            <a href="" class="register-link">Login here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <main>
+        <div class="header">
+            <nav>
+                <div>
+                    <i class="fas fa-home"></i>
+                </div>
+                <div id="logo">
+                    <a href="">My Kanban</a>
+                    <i class="fas fa-thumbtack"></i>
+                </div>
+                <div>
+                    <span id="nav-logout">
+                        <a><i class="fas fa-user"></i> Logout</a>
+                    </span>
+                </div>
+            </nav>
+        </div>
+        <div class="board">
+            <div class="list-wraper">
+                <div class="list-content">
+                    <div class="list-header">
+                        <h1>To Do</h1>
+                    </div>
+                    <div class="list-tasks">
+                        <div class="list-task">
+                            <div class="list-task-details">
+                                <i class="fas fa-edit"></i>
+                                <div class="list-task-title">                                    
+                                    <h3>Create Layout</h3>                                                              
+                                </div>
+                                <div class="badges">
+                                    <!-- <i class="fas fa-comment"> <span>1</span></i> -->
+                                    <!-- <i class="fas fa-info-circle"></i>  -->
+                                    <i class="fas fa-trash-alt"></i>
+                                    <div class="dropdown">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <div class="dropdown-content">
+                                          <a href="#">Move to Doing</a>
+                                          <a href="#">Move to Done</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div id="add-task">
+                            <div class="list-task">
+                                <textarea name="title" id="title" cols="21" rows="2" placeholder="Enter a title of this task . ."></textarea>                                
+                            </div>
+                            <div class="btn-container">
+                                <button id="btn-save" style="width: 40%;">Save</button>
+                                <button id="btn-cancel" style="width: 40%;">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-footer-task">                        
+                        <h3><i class="fas fa-plus"></i> Add another task</h3>                        
+                    </div>
+                </div>
+            </div>
+            <div class="list-wraper">
+                <div class="list-content">
+                    <div class="list-header">
+                        <h1>Doing</h1>
+                    </div>
+                    <div class="list-footer-task">
+                        <h3><i class="fas fa-plus"></i> Add another task</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="list-wraper">
+                <div class="list-content">
+                    <div class="list-header">
+                        <h1>Done</h1>
+                    </div>
+                    <div class="list-footer-task">
+                        <h3><i class="fas fa-plus"></i> Add another task</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh3AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
+  </body>
+</html>

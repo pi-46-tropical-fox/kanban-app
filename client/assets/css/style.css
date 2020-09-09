@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&family=Quicksand:wght@400;600&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+body {    
+    background-color: #7ed6df;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-page, .register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    width: 80%;
+}
+.heading {
+    color: white;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+.image-container{
+    background: url('../img/kanban-cartoon.png') center no-repeat;
+    background-size: contain;
+    height: 80vh;
+    width: 50%;
+    background-color: white;
+}
+.form-container{
+    background-color: #22a6b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 80vh;
+}
+.form-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    text-align: center;
+}
+.form-box h4{
+    font-weight: bold;
+    color: #fff;
+}
+.form-box .form-input{
+    position: relative;
+}
+.form-box .form-input input{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border:none;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    padding-left: 45px;
+    font-weight: bold;
+}
+.form-box .form-input span{
+    position: absolute;
+    top: 8px;
+    padding-left: 20px;
+    color: #777;
+}
+.form-box .form-input input::placeholder{
+    padding-left: 0px;
+}
+.form-box .form-input input:focus,
+.form-box .form-input input:valid{
+    border-bottom: 2px solid #48403d;
+}
+.register-link, .login-link{
+    color: #fff;
+    font-weight: bold;
+}
+.forget-link:hover, .register-link:hover, .login-link:hover{
+    color: #292525;
+}
+.form-box button[type="submit"]{
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    border-right: 5px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: 0.5s;
+}
+
+.form-box button[type="submit"]:hover{
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    background-color: #22a6b3;
+    color: white;
+    border: 2px solid white;
+}
+
+.form-box .btn-social{
+    color: #fff;
+    border: 0px;
+    display: inline-block;
+    margin: 0px;
+    margin-right: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+h2, h5 {
+    font-weight: bold;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #22a6b3;
+    color: white;
+    padding: 10px;
+}
+.header nav div {
+    font-weight: bold;
+}
+.fa-home {
+    background-color: #74adb3bc;
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#logo, #logo a {
+    font-family: 'Londrina Solid', cursive;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+#logo a {
+    color: white;
+}
+#nav-logout a {
+    font-size: 20px;
+    font-weight: bold;
+}
+#nav-logout {
+    border-radius: 5px;
+    background-color: white;
+    color: #535c68;
+    padding: 10px;
+    transition: 0.5s;
+}
+#nav-logout:hover {
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    background-color: #22a6b3;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.board{
+    padding: 10px;
+    display: flex;
+}
+.list-wraper {
+    margin-right: 10px;   
+}
+.list-content {
+    background-color: #f5f6fa;
+    width: 300px;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    /* min-height: 85vh; */
+}
+.list-tasks {
+    display: flex;
+    flex-direction: column;
+    /* overflow: scroll; */
+}
+.list-header, .list-task, .list-footer-task {
+    padding: 10px;
+}
+.list-header {
+    text-align: center;
+}
+.list-task, .list-footer-task {
+    color: #535c68;
+}
+.list-footer-task {
+    transition: 0.5s;
+}
+.list-footer-task:hover {
+    background-color: #57606f1e;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+}
+.list-task {
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.list-task i {
+    font-size: 13px;
+}
+.fa-edit{
+    float: right;
+}
+.list-task-title {
+    height: 50px;
+}
+.badges i {
+    margin-right: 10px;
+}
+.badges i:hover, .list-task i:hover {
+    color: black;
+}
+textarea#title {
+    border-style: none; 
+    border-color: Transparent; 
+    resize: none;
+    overflow: auto;
+    font-size: 18px;
+    font-weight: bold;
+    color: #535c68;
+
+}
+textarea#title:focus {
+    outline:0px none transparent;    
+}
+.btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+#btn-save, #btn-cancel {
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 5px;
+    height: 30px;
+    border-style: none; 
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#btn-save:hover, #btn-cancel:hover {
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+}
+#btn-save {
+    background-color: #2ed573;
+}
+#btn-cancel {
+    background-color: #ff4757;
+}
+i {
+    cursor: pointer;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    transition: 0.5s;
+}
+  
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+
