@@ -12,149 +12,172 @@
     <title>MyKanban App</title>
   </head>
   <body>
-      <div class="container">
-        <div class="login-page">
-            <div class="image-container"></div>
-            <div class="form-container">
-                <div class="heading">
-                    <h1>Login into your account</h1>
-                </div>
-                <div class="form-box">
-                    <form>
-                        <div class="form-input">
-                            <span><i class="fa fa-envelope"></i></span>
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-input">
-                            <span><i class="fa fa-lock"></i></span>
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <div style="text-align: left;">
-                            <button type="submit" class="btn">Login</button>
-                        </div>
-                        <div style="color: #fff">Don't have an account?
-                            <a href="" class="register-link">Register here</a>
-                        </div>
-                    </form>
-                </div>
+      <div id="app">
+        <div id="login-page" v-if="currentPage === 'login'">
+            <div class="container">
+              <div class="image-container"></div>
+              <div class="form-container">
+                  <div class="heading">
+                      <div class="msg" v-html="alerthtml"></div>
+                      <h1>Login into your account</h1>
+                  </div>
+                  <div class="form-box">
+                      <form @submit.prevent="login">
+                          <div class="form-input">
+                              <span><i class="fa fa-envelope"></i></span>
+                              <input type="email" placeholder="Email Address" v-model="email" >
+                          </div>
+                          <div class="form-input">
+                              <span><i class="fa fa-lock"></i></span>
+                              <input type="password" placeholder="Password" v-model="password" >
+                          </div>
+                          <div style="text-align: left;">
+                              <button type="submit" class="btn">Login</button>
+                          </div>
+                          <div style="color: #fff">Don't have an account?
+                              <a href="" @click.prevent="showRegisterForm" class="register-link">Register here</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
             </div>
         </div>
-      </div>
-      <div class="container">
-        <div class="register-page">
-            <div class="image-container"></div>
-            <div class="form-container">
-                <div class="heading">
-                    <h1>Create your account</h1>
-                </div>
-                <div class="form-box">
-                    <form>
-                        <div class="form-input">
-                            <span><i class="fa fa-envelope"></i></span>
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-input">
-                            <span><i class="fa fa-lock"></i></span>
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <div style="text-align: left;">
-                            <button type="submit" class="btn">Register</button>
-                        </div>
-                        <div style="color: #fff">Have an account?
-                            <a href="" class="register-link">Login here</a>
-                        </div>
-                    </form>
-                </div>
+        <div id="register-page" v-else-if="currentPage === 'register'">
+            <div class="container">
+              <div class="image-container"></div>
+              <div class="form-container">
+                  <div class="heading">
+                      <div class="msg" v-html="alerthtml"></div>
+                      <h1>Create your account</h1>
+                  </div>
+                  <div class="form-box">
+                      <form @submit.prevent="register">
+                          <div class="form-input">
+                              <span><i class="fa fa-envelope"></i></span>
+                              <input type="email" placeholder="Email Address" v-model="email">
+                          </div>
+                          <div class="form-input">
+                              <span><i class="fa fa-lock"></i></span>
+                              <input type="password" placeholder="Password" v-model="password">
+                          </div>
+                          <div style="text-align: left;">
+                              <button type="submit" class="btn">Register</button>
+                          </div>
+                          <div style="color: #fff">Have an account?
+                              <a href="" @click.prevent="showLoginForm" class="register-link">Login here</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
             </div>
         </div>
-      </div>
-
-      <main>
-        <div class="header">
-            <nav>
-                <div>
-                    <i class="fas fa-home"></i>
-                </div>
-                <div id="logo">
-                    <a href="">My Kanban</a>
-                    <i class="fas fa-thumbtack"></i>
-                </div>
-                <div>
-                    <span id="nav-logout">
-                        <a><i class="fas fa-user"></i> Logout</a>
-                    </span>
-                </div>
-            </nav>
-        </div>
-        <div class="board">
-            <div class="list-wraper">
-                <div class="list-content">
-                    <div class="list-header">
-                        <h1>To Do</h1>
+        <main v-else-if="currentPage === 'main'">
+            <div class="header">
+                <nav>
+                    <div>
+                        <i class="fas fa-home"></i>
                     </div>
-                    <div class="list-tasks">
-                        <div class="list-task">
-                            <div class="list-task-details">
-                                <i class="fas fa-edit"></i>
-                                <div class="list-task-title">                                    
-                                    <h3>Create Layout</h3>                                                              
-                                </div>
-                                <div class="badges">
-                                    <!-- <i class="fas fa-comment"> <span>1</span></i> -->
-                                    <!-- <i class="fas fa-info-circle"></i>  -->
-                                    <i class="fas fa-trash-alt"></i>
-                                    <div class="dropdown">
-                                        <i class="fas fa-arrows-alt"></i>
-                                        <div class="dropdown-content">
-                                          <a href="#">Move to Doing</a>
-                                          <a href="#">Move to Done</a>
+                    <div id="logo">
+                        <a href="">My Kanban</a>
+                        <i class="fas fa-thumbtack"></i>
+                    </div>
+                    <div>
+                        <span id="nav-logout">
+                            <a @click.prevent="showLoginForm"><i class="fas fa-user"></i> Logout</a>
+                        </span>
+                    </div>
+                </nav>
+            </div>
+            <div class="msg" v-html="alerthtml"></div>
+            <div class="board">                
+                <div class="list-wraper" v-for="category in categories">
+                    <div class="list-content">
+                        <div class="list-header">
+                            <h1>{{category.name}}</h1>
+                        </div>
+                        <div class="list-tasks">
+                            <div class="list-task" v-for="task in tasks" v-if="category.id === task.CategoryId">
+                                <div class="list-task-details" >
+                                    <i @click.prevent="openModalEdit(task.id)" class="fas fa-edit"></i>
+                                    <div class="list-task-title">                                    
+                                        <h3>{{task.title}}<h3> 
+                                        <!-- <h4>{{task.description}}</h4> -->
+                                        <p v-for="user in users" v-if="user.id === task.UserId">By : {{user.email}}</p>
+                                        <!-- <p>Created at : {{task.createdAt}}</p> -->
+                                    </div>
+                                    <div class="badges">
+                                        <!-- <i class="fas fa-comment"> <span>1</span></i> -->
+                                        <i @click.prevent="openModalDetail(task)" class="fas fa-info-circle"></i> 
+                                        <i @click.prevent="deleteTask(task.id)" class="fas fa-trash-alt"></i>
+                                        <div class="dropdown">
+                                            <i class="fas fa-arrows-alt"></i>
+                                            <div class="dropdown-content">
+                                              <a href="#" v-for="item in categories" v-if="item.name !== category.name" @click.prevent="moveCategory(task.id, item.id)">Move to {{item.name}}</a>
+                                            </div>
                                         </div>
                                     </div>
+                                </div> 
+                                <div class="modal" :style="{display : modalEdit}">
+                                    <div class="modal-content">
+                                        <span @click.prevent="closeModal" class="close">&times;</span>
+                                        <form @submit.prevent="editTask()" class="modal-form">
+                                            <h1 style="text-align: center;">Edit Task</h1>
+                                            <label for="title"><h2>Title :</h2></label>
+                                            <input type="text" v-model="modalTaskTitle" >
+                                            <label for="description"><h2>Task description :</h2></label>
+                                            <textarea cols="21" rows="5" v-model="modalTaskDescription"></textarea>
+                                            <div class="btn-container">
+                                                <button type="submit" class="btn-save" style="width:20%;">Edit</button>
+                                                <button @click.prevent="closeModal" class="btn-cancel" style="width: 20%;">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> 
+                                <div class="modal" :style="{display : modalDetail}">
+                                    <div class="modal-content">
+                                        <span @click.prevent="closeModal" class="close">&times;</span>
+                                        <form class="modal-form modal-detail">
+                                            <h1 style="text-align: center;">Detail Task</h1>
+                                            <label for="title"><h2>Title :</h2></label>
+                                            <input type="text" v-model="modalTaskTitle" disabled>
+                                            <label for="description"><h2>Task description :</h2></label>
+                                            <textarea cols="21" rows="2" v-model="modalTaskDescription" disabled></textarea>
+                                            <label for="title"><h2>Assigned by :</h2></label>
+                                            <input type="text" v-model="modalTaskUserName" disabled>
+                                            <label for="title"><h2>Created at :</h2></label>
+                                            <input type="text" v-model="modalTaskCreatedAt" disabled>
+                                            <div class="btn-container">
+                                                <button @click.prevent="closeModal" class="btn-back" style="width: 20%;">Back</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> 
+                            </div> 
+                            <div id="add-task" v-if="+editForm === category.id">
+                                <div class="list-task">
+                                    <textarea name="title" id="title" cols="21" rows="2" placeholder="Enter a title of this task . ." v-model="taskTitle"></textarea>                                
+                                </div>
+                                <div class="btn-container">
+                                    <button @click.prevent="insertTask(category.id)" class="btn-save" style="width: 40%;">Save</button>
+                                    <button @click.prevent="closeEditForm" class="btn-cancel" style="width: 40%;">Cancel</button>
                                 </div>
                             </div>
-                        </div> 
-                        <div id="add-task">
-                            <div class="list-task">
-                                <textarea name="title" id="title" cols="21" rows="2" placeholder="Enter a title of this task . ."></textarea>                                
-                            </div>
-                            <div class="btn-container">
-                                <button id="btn-save" style="width: 40%;">Save</button>
-                                <button id="btn-cancel" style="width: 40%;">Cancel</button>
+                            <div class="list-footer-task" @click.prevent="showEditForm(category.id)" v-else>                        
+                                <h3><i class="fas fa-plus"></i> Add another task</h3>                        
                             </div>
                         </div>
-                    </div>
-                    <div class="list-footer-task">                        
-                        <h3><i class="fas fa-plus"></i> Add another task</h3>                        
-                    </div>
-                </div>
-            </div>
-            <div class="list-wraper">
-                <div class="list-content">
-                    <div class="list-header">
-                        <h1>Doing</h1>
-                    </div>
-                    <div class="list-footer-task">
-                        <h3><i class="fas fa-plus"></i> Add another task</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="list-wraper">
-                <div class="list-content">
-                    <div class="list-header">
-                        <h1>Done</h1>
-                    </div>
-                    <div class="list-footer-task">
-                        <h3><i class="fas fa-plus"></i> Add another task</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </main>
 
+                    </div>
+                </div>
+            </div>
+          </main>
+      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh3AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./assets/js/vue.js"></script>
   </body>
 </html>

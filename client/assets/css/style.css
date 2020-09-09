@@ -12,22 +12,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-.login-page, .register-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
     -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
     -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
     width: 80%;
+    margin: 10vh auto;
 }
+
 .heading {
     color: white;
     margin-bottom: 30px;
     letter-spacing: 3px;
     font-weight: bold;
+    text-align: center;
+}
+.msg {
+    color: white;
+    letter-spacing: 3px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
 }
 .image-container{
     background: url('../img/kanban-cartoon.png') center no-repeat;
@@ -181,7 +185,7 @@ nav {
     display: flex;
 }
 .list-wraper {
-    margin-right: 10px;   
+    margin-right: 10px;
 }
 .list-content {
     background-color: #f5f6fa;
@@ -190,12 +194,10 @@ nav {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    /* min-height: 85vh; */
 }
 .list-tasks {
     display: flex;
     flex-direction: column;
-    /* overflow: scroll; */
 }
 .list-header, .list-task, .list-footer-task {
     padding: 10px;
@@ -206,8 +208,8 @@ nav {
 .list-task, .list-footer-task {
     color: #535c68;
 }
-.list-footer-task {
-    transition: 0.5s;
+#add-task {
+    transition: 0.3s;
 }
 .list-footer-task:hover {
     background-color: #57606f1e;
@@ -230,7 +232,14 @@ nav {
     float: right;
 }
 .list-task-title {
-    height: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.list-task-title h3 {
+    margin-bottom: 15px;
+}
+.list-task-title p {
+    font-size: small;
 }
 .badges i {
     margin-right: 10px;
@@ -256,7 +265,7 @@ textarea#title:focus {
     justify-content: flex-start;
     margin-bottom: 10px;
 }
-#btn-save, #btn-cancel {
+.btn-save, .btn-cancel, .btn-back {
     font-weight: bold;
     font-size: 15px;
     margin-right: 5px;
@@ -267,16 +276,19 @@ textarea#title:focus {
     cursor: pointer;
     transition: 0.5s;
 }
-#btn-save:hover, #btn-cancel:hover {
+.btn-save:hover, .btn-cancel:hover, .btn-back:hover {
     box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
     -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
     -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
 }
-#btn-save {
+.btn-save {
     background-color: #2ed573;
 }
-#btn-cancel {
+.btn-cancel {
     background-color: #ff4757;
+}
+.btn-back {
+    background-color: #0984e3;
 }
 i {
     cursor: pointer;
@@ -285,7 +297,21 @@ i {
     position: relative;
     display: inline-block;
 }
-  
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+.nav-dropdown-content {
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+.nav-dropdown-content a {
+    display: block;
+}
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
 .dropdown-content {
     display: none;
     position: absolute;
@@ -311,5 +337,60 @@ i {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0, 0, 0, 0.082);
+}
   
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+ }
+  
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-form input,  .modal-form textarea {
+    width: 100%;
+    resize: none;
+    overflow: auto;
+    font-size: 18px;
+    font-weight: bold;
+    color: #535c68;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #535c68;
+}
+.modal-form h2 {
+    color: black
+}
+.modal-detail input,  .modal-detail textarea  {
+    background-color: white;
+    border-style: none;
+}
+
 
