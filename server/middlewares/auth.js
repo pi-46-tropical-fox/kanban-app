@@ -32,7 +32,7 @@ const authorization = async (req,res,next) => {
     try {
         const task = await Task.findByPk(id)
 
-        if(task && task.UserId === req.userData.id) { // dicocokin userId todo dg userId pada token
+        if(task && task.UserId === req.userData.id) { 
             next()
         } else {
             return res.status(403).json({message: "forbidden access"})

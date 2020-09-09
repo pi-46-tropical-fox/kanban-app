@@ -21,13 +21,14 @@ class TaskController {
     }
 
     static async showAll(req,res,next) {
-        const id = req.userData.id
+        // const id = req.userData.id
         try {
-            let show = await Task.findAll({
-                where: {
-                    UserId: id
-                }
-            })
+            // let show = await Task.findAll({
+            //     where: {
+            //         UserId: id
+            //     }
+            // })
+            let show = await Task.findAll()
             res.status(200).json(show)
         } catch (err) {
             

@@ -16,10 +16,9 @@ route.use(authentication)
 route.post('/tasks', TaskController.createTask) // create
 route.get('/tasks', TaskController.showAll) // get all
 // authorization
-route.use(authorization)
-route.get('/tasks/:id', TaskController.showId) // get by id
-route.put('/tasks/:id', TaskController.updateTask) // update
-route.delete('/tasks/:id', TaskController.deleteTask) // delete
+route.get('/tasks/:id', authorization,TaskController.showId) // get by id
+route.put('/tasks/:id', authorization, TaskController.updateTask) // update
+route.delete('/tasks/:id', authorization, TaskController.deleteTask) // delete
 
 
 module.exports = route
