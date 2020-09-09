@@ -315,4 +315,4 @@ _Response (500 - Server Error)_
 User bisa create dan findAll tasks jika memberikan accesstoken. acces token tersebut sudah terverivikasi(Authentication)
 
 ---
-User hanya bisa melihat (findOne), menghapus dan menghapus tasks-nya sendiri (Authorization)
+User hanya bisa melihat (findOne), menghapus dan mengedit tasks-nya sendiri (Authorization)
