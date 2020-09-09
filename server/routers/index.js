@@ -14,6 +14,7 @@ route.post('/login', UserController.login)
 route.use(authentication)
 route.get('/task', TaskController.show)
 route.post('/task', TaskController.add)
+route.get('/task/:id', authorization, TaskController.showById)
 route.put('/task/:id', authorization, TaskController.update)
 route.delete('/task/:id', authorization, TaskController.delete)
 

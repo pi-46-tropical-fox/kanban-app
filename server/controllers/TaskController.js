@@ -1,10 +1,28 @@
-const {Task} = require("../models");
-const UserController = require("./UserController");
+const {Task,User} = require("../models");
 
 class TaskController {
     static show (req,res,next){
         // res.send(req.userData)
-        Task.findAll()
+        Task.findAll({
+            include:[User],
+            order: [['id','ASC']]
+        })
+        .then(task=>{
+            return res.status(200).json(task)
+        })
+        .catch(err=>{
+            console.log(err)
+            return res.status(500).json({message: 'internal server error'})
+        })
+    }
+    static showById (req,res,next){
+        // res.send(req.userData)
+        Task.findAll({
+            include:[User],
+            where:{
+                id: req.params.id
+            }
+        })
         .then(task=>{
             return res.status(200).json(task)
         })

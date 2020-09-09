@@ -26,13 +26,14 @@ class UserController {
         })
     }
     static login(req,res,next){
+        console.log(req.body)
         User.findOne({where:{email:req.body.email}})
         .then(user=>{
             if(user){
                 let valid = checkPassword(req.body.password, user.password)
                 if(valid){
                     let access_token = generateToken(user)
-                    return res.status(200).json({access_token})
+                    return res.status(200).json({id:user.id,name:user.name,access_token})
                 }else{
                     return res.status(400).json({message: 'invalid email or password'})
                 }
