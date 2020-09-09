@@ -62,25 +62,6 @@ class UserController {
     }
 
     static editUser (req, res, next) {
-        // let params = {
-        //     email : req.body.email,
-        //     password : req.body.password,
-        //     organization : req.body.organization
-        // }
-
-        // User.update (params, {
-        //     where : {id : req.params.id}
-        // })
-
-        // .then (data => {
-        //     if (!data) {
-        //         return res.status (404).json ({message : "Data is Not Found"})
-            
-        //     } else {
-        //         return res.status (200).json ({message : "Data has been Updated"})
-        //     }
-        // })
-
         let {email, password, organization} = req.body
 
         User.update (req.body, {
