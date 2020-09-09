@@ -9,7 +9,6 @@ Kanban Board App is an application to manage your assets. This app has :
 ```
     POST /tasks
     GET /tasks
-    GET /tasks/:id
     PUT /tasks/:id
     DELETE /tasks/:id
 
@@ -90,40 +89,6 @@ _Response (500 - Internal Server Error)_
 ```
 {
   "message": "Internal Server Error"
-}
-```
-
-### GET /tasks/:id
-
-> Get asset with specific id
-
-_Request Header_
-```
-{
-  "Content-Type": "application/json"
-}
-```
-
-_Request Body_
-```
-{
-    "id": "<select id from table >"
-}
-```
-_Response (200 - Ok)_
-```
-{
-  "id": "<selected id from table >",
-  "title": "<asset's title according to id from table >",
-  "description": "<asset's description according to id from table >"
-  "category" : "<asset's category according to id from table> "
-}
-```
-
-_Response (404 - Not Found)_
-```
-{
-  "message": "Data Not Found"
 }
 ```
 
