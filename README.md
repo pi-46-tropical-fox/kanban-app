@@ -41,7 +41,7 @@ _Response (201 - Created)_
 ```json
 
 {
-    "email": "<posted email>"a
+    "email": "<posted email>"
 }
 ```
 
