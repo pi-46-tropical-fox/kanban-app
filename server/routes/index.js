@@ -9,9 +9,15 @@ router.post('/login', UserController.login)
 
 router.use(authentication)
 // Organization
-router.get('/organization', authorization, OrganizationController.showOrganization)
-router.post('/organization', authorization, OrganizationController.addOrganization)
+router.get('/organization', OrganizationController.showOrganization)
+router.post('/organization', OrganizationController.addOrganization)
 
+// Task
+// router.get('/:organizationId/task', TaskController.showTasks)
+// router.post('/:organizationId/task', TaskController.addTask)
+// router.get('/:organizationId/task/:taskId', TaskController.getTaskById)
+// router.put('/:organizationId/task/:taskId', TaskController.updateTask)
+// router.delete('/:organizationId/task/:taskId', TaskController.deleteTask)
 router.get('/:organizationId/task', authorization, TaskController.showTasks)
 router.post('/:organizationId/task', authorization, TaskController.addTask)
 router.get('/:organizationId/task/:taskId', authorization, TaskController.getTaskById)

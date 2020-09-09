@@ -1,5 +1,5 @@
 const { verifyToken } = require('../helpers/jwt')
-const { User, Task, Organization } = require('../models')
+const { User, Task, UserOrganizationTask } = require('../models')
 
 const authentication = async function(req, res, next) {
     const { access_token } = req.headers
@@ -20,30 +20,19 @@ const authentication = async function(req, res, next) {
 }
 const authorization = async function(req, res, next) {
     try {
-        if (!req.params.organizationId) {
-            const organization = await Organization.findOne({where: {UserId: req.userData.id}})
-            if (organization) {
-                next()
-            } else {
-                return res.status(403).json({message: 'User Not Authorization'})
-            }
+        const conjunction = await UserOrganizationTask.findOne({where: {OrganizationId: req.params.organizationId, UserId: req.userData.id}})
+        if (!conjunction) {
+            return res.status(403).json({message: 'User Not Authorization'})
         }
-        else {
-            // const { organizationId } = req.params
-            // const { id } = req.userData.id
-            // console.log(req.userData)
-            // console.log(organization)
-            const organization = await Organization.findOne({where: {id: req.params.organizationId}})
-            const task = await Task.findOne({where: {organizationId: organization.id}})
-            if ((task && task.organizationId == organization.id) && (organization.UserId == req.userData.id)) {
-                next()
-            } else {
-                return res.status(403).json({message: 'User Not Authorization'})
-            }
+        const task = await Task.findOne({where: {id: conjunction.TaskId}})
+        if (task) {
+            next()
+        } else {
+            return res.status(403).json({message: 'User Not Authorization'})
         }
     }
     catch(err) {
-        console.log(err)
+        console.log(err, '<<<< error Authorization')
         return res.status(403).json({message: 'Forbidden Access'})
     }
 }
