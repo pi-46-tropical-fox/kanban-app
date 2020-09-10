@@ -9,6 +9,10 @@
     :categories='categories'
     :tasks='tasks'
     > </HomePage>
+    <AddForm
+    @addTask='addTask'
+    ></AddForm>
+
   </div>
 </template>
 
@@ -16,6 +20,7 @@
 import axios from "./config/axios";
 import LoginPage from "./components/loginPage";
 import HomePage from "./components/homePage";
+import AddForm from './components/addForm'
 
 export default {
   name: "App",
@@ -50,6 +55,7 @@ export default {
   components: {
     LoginPage,
     HomePage,
+    AddForm
   },
   methods: {
     changePage(page) {
@@ -90,6 +96,24 @@ export default {
       })
       .catch(console.log)
     },
+    addTask(payload) {
+      const {title,category} = payload
+      
+      axios
+      .post('/tasks', {
+        title,
+        category
+      }, 
+      {
+        headers: {
+          access_token:localStorage.access_token
+        }
+      })
+      .then(({data}) => {
+        this.fetchTasks()
+      })
+      .catch(console.log)
+    }
   },
   created() {
     this.checkAuth()
