@@ -12,6 +12,7 @@ Kanban App is an application to help you to organize your task. This app has :
 - POST /login
 - POST /task
 - GET /task
+- GET /task/:id
 - PUT /task/:id
 - DELETE /task/:id
 ```
@@ -186,6 +187,51 @@ _Response (200)_
     "updatedAt": "2020-03-20T07:15:12.149Z",
   },
 ]
+```
+_Response (403 - Forbidden Access)_
+```json
+{
+  "message": "user not authenticate"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```json
+{
+  "message": "internal server error"
+}
+```
+
+---
+
+### GET /task/:id
+
+> Show one task selected by id
+
+_Request Header_
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJmYXVkemFuIiwiaWF0IjoxNTk4OTU1OTk2fQ.-bZ3Gi4AXPQMtrHfbxJ605On57u4gRXfU0ok88aIW94"
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200)_
+```json
+
+{
+  "id": 1,
+  "title": "<task's title>",
+  "description": "<task's description>",
+  "category": "<task's category>",
+  "createdAt": "2020-03-20T07:15:12.149Z",
+  "updatedAt": "2020-03-20T07:15:12.149Z",
+}
+
 ```
 _Response (403 - Forbidden Access)_
 ```json
