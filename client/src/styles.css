@@ -39,49 +39,11 @@
 
 /* MAIN PAGE */
 
-#main-page {
-    display: flex;
-}
-
-#main-page div {
-    margin: 0 1vw;
-    background-color: darkslategray;
-    border-radius: 5px;
-}
-
 .card {
-    height: 60vw;
-    display: flex;
+    height: 50vw;
 }
-
-.card-footer a {
-    color: aliceblue;
-    height: 10%;
-    justify-items: flex-end;
-}
-
-
-/* .card.one {
-    border: solid 2px #c22216;
-}
-
-.card.two {
-    border: solid 2px #EF702A;
-}
-
-.card.three {
-    border: solid 2px #ede61d;
-}
-
-.card.four {
-    border: solid 2px #2e820b;
-} */
 
 .list-group {
     height: 80%;
     overflow: scroll;
-}
-
-#backlog-list {
-    background-color: wheat;
 }

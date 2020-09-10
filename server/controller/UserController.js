@@ -24,7 +24,8 @@ class UserController {
     }
 
     static login(req, res) {
-        const { email, password } = req.body
+        const { email, password } = req.body;
+        console.log(req.body, '<<< ini dari controller')
         User.findOne({
                 where: { email }
             })
@@ -35,12 +36,15 @@ class UserController {
                         const access_token = generateToken(user);
                         res.status(200).json({ access_token })
                     } else {
-                        res.statu(400).json({ message: 'Email/Password is invalid.' })
+                        console.log('masuk sini gak verifies')
+                        res.status(400).json({ message: 'Email/Password is invalid.' })
                     }
                 } else {
-                    res.statu(400).json({ message: 'Email/Password is invalid.' })
+                    console.log('masuk sini ga ada user')
+                    res.status(400).json({ message: 'Email/Password is invalid.' })
                 }
             }).catch(err => {
+                console.log(err)
                 res.status(500).json({ messae: 'Internal Server Error' })
             })
     }

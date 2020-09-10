@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'User',
         hooks: {
             beforeCreate(user, options) {
-                user.password = hash(user.password);
+                let hashed = hash(user.password);
+                user.password = hashed;
                 if (!user.organization) {
                     user.organization = 'Hacktiv8'
                 }
