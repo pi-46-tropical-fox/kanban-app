@@ -1,7 +1,5 @@
 <template>
     <div>
-        <h1>Ini dashboard yang dipake</h1>
-
         <Kanban 
             @changePage="changePage">
             </Kanban>

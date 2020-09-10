@@ -1,7 +1,5 @@
 <template>
 	<div>
-    <h1>{{ currentPage }}</h1>
-
 		<LoginPage 
 			v-if="currentPage == 'loginPage'"
 			@changePage="changePage">

@@ -52,6 +52,17 @@ class KanbanController {
         }
     }
     
+    static async getTask(req,res,next) {
+        try {
+            console.log(req.params);
+            const taskUser = await Task.findOne({
+                where: {id: req.params.id}})
+            return res.status(200).json(taskUser)
+        } catch(err) {
+            return next(err)
+        }
+    }
+
     static async updateTask(req,res,next) {
         try {
             //butuh oper task id ke data (body)

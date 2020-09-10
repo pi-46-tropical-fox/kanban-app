@@ -47,6 +47,8 @@ export default {
                 console.log('login success');					
                 this.$emit('changePage', 'dashBoardPage')
                 localStorage.setItem('access_token',data.access_token)
+                localStorage.setItem('username', data.username)
+                localStorage.setItem('UserId', data.id)
               })
               .catch(err=> {
                 console.log(err);

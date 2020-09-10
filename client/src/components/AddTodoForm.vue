@@ -10,7 +10,7 @@
                   </div>
                 </div>
                 <div class="col-4">
-                    <button type="submit" class="btn btn-info btn-block mb-2">Submit</button>
+                    <!-- <button type="submit" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-block mb-2">Submit</button> -->
                 </div>
             </div>
         </form>
