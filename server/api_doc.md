@@ -10,6 +10,7 @@ Kanban App is an application to help you to organize your task. This app has :
 ```
 - POST /register
 - POST /login
+- POST /googleLogin
 - POST /task
 - GET /task
 - GET /task/:id
@@ -68,6 +69,43 @@ _Response (500 - Internal Server Error)_
 ### POST /login
 
 > Login user
+
+_Request Header_
+```
+not needed
+```
+
+_Request Body_
+```json
+{
+  "email": "<email to get insert into>",
+  "password": "<password to get insert into>"
+}
+```
+
+_Response (200)_
+```json
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJmYXVkemFuIiwiaWF0IjoxNTk4OTU1OTk2fQ.-bZ3Gi4AXPQMtrHfbxJ605On57u4gRXfU0ok88aIW94"
+}
+```
+
+_Response (400 - Bad Request)_
+```json
+{
+  "message": "invalid email or password"
+}
+```
+_Response (500 - Internal Server Error)_
+```json
+{
+  "message": "internal server error"
+}
+```
+
+### POST /googleLogin
+
+> Login user by google account
 
 _Request Header_
 ```
@@ -187,6 +225,7 @@ _Response (200)_
     "updatedAt": "2020-03-20T07:15:12.149Z",
   },
 ]
+
 ```
 _Response (403 - Forbidden Access)_
 ```json

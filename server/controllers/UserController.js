@@ -46,6 +46,9 @@ class UserController {
             return res.status(500).json({message: 'internal server error'})
         })
     }
+    static googleLogin(req,res,next){
+        
+    }
 }
 
 module.exports = UserController

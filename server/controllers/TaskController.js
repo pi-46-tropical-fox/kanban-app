@@ -46,7 +46,7 @@ class TaskController {
         })
         .catch(err=>{
             console.log(err)
-            return res.status(500).json({message: 'internal server error'})
+            return res.status(500).json(err)
         })
     }
     static update(req,res,next){
@@ -64,7 +64,7 @@ class TaskController {
         })
         .catch(err=>{
             console.log(err)
-            return res.status(500).json({message: 'internal server error'})
+            return res.status(500).json(err)
         })
     }
     static delete(req,res,next){
