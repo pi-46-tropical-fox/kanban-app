@@ -11,22 +11,6 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      CategoryId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        reference: {
-          model: 'Category',
-          key: 'id'
-        }
-      },
-      UserId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        reference: {
-          model: 'User',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

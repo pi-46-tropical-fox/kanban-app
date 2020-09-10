@@ -6,20 +6,21 @@
 ````
 - POST /register
 - POST /login
-- POST /tasks
+- POST /googleLogin
+- POST /tasks/:CategoryId
 - GET /tasks
 - GET /tasks/:id
 - PUT /tasks/:id
 - DELETE /tasks/:id
+- POST /categories
 ````
 
 ## RESTful endpoints
 
-## POST /register
+### POST /register
 
 > Create new user to database
 _Request Header_
-
 ```
 not needed
 ```
@@ -27,18 +28,15 @@ not needed
 _Request Body_
 ```json
 {
-  "email": "<email to get insert into>",
-  "password": "<password to get insert into>",
+    "email": "<email to get insert into>",
+    "password": "<password to get insert into>",
 }
 ```
+
 _Response (201 - Created)_
 ```json
 {
-  "id": "<given_id_by__system>",
-  "email": "<posted email>",
-  "password": "<posted password>",
-  "createdAt": "2020-03-20T07:15:12.149Z",
-  "updatedAt": "2020-03-20T07:15:12.149Z",
+    "email": "<posted email>"
 }
 ```
 
@@ -58,7 +56,7 @@ _Response (500 - Internal Error Server)_
 
 ### POST /login
 
-> Login to todos
+> Login to kanban
 _Request Header_
 ```
 not needed
@@ -67,42 +65,78 @@ not needed
 _Request Body_
 ```json
 {
-  "email": "<email to get insert into>",
-  "password": "<password to get insert into>",
+    "email": "<email to get insert into>",
+    "password": "<password to get insert into>"
 }
 ```
 
 _Response (200)_
 ```json
 {
-    "access_token": "<access_token>"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtZXJjaGlrYTExQGdtYWlsLmNvbSIsImlhdCI6MTU5OTcyNDU5MX0.e57UHSGXy9T-zkYKtLpDMiEP8LQ1HoYoqRdU0qyAsQE"
 }
 ```
 
 _Response (400 - Bad Request)_
 ```json
 {
-  "message": "Invalid email or password"
+    "message": "Invalid email or password"
 }
 ```
 
-_Response (500 - Internal server error)_
+_Response (500 - Internal Server Error)_
 ```json
 {
-  "message": "Internal Server Error"
+    "message": "Internal Server Error"
 }
 ```
 
+### POST /googleLogin
+
+> Login to kanban app with your google account
+_Request Header_
+```
+not needed
+```
+
+_Request Body_
+```json
+{
+    "google_email": "<google email insert into>",
+    "password_goole_email": "google password insert into"
+}
+```
+
+_Response (200)_
+```json
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtZXJjaGlrYTExQGdtYWlsLmNvbSIsImlhdCI6MTU5OTcyNDU5MX0.e57UHSGXy9T-zkYKtLpDMiEP8LQ1HoYoqRdU0qyAsQE"
+}
+```
+
+_Response (400 - Bad Request)_
+```json
+{
+    "message": "Cannot authorize google account"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```json
+{
+    "message": "Internal Server Error"
+}
+```
 
 ### GET /tasks
-> Get all tasks
+
+> Show all the tasks lists
 _Request Header_
 ```json
 {
   "access_token": "<your access token>"
 }
 ```
-
 _Request Body_
 ```
 not needed
@@ -110,16 +144,32 @@ not needed
 
 _Response (200)_
 ```json
-[
-  {
-    "id": 1,
-    "title": "<tasks name>",
-    "UserId": "<tasks UserId>",
-    "CategoryId": "<tasks CategoryId>",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
-  },
-]
+{
+    "<category_name>": [
+        {
+            "id": 1,
+            "title": "<title_name>",
+            "UserId": 1,
+            "CategoryId": 1,
+            "createdAt": "2020-09-09T14:55:06.648Z",
+            "updatedAt": "2020-09-09T15:30:58.690Z",
+            "User": {
+                "id": 1,
+                "email": "<user_email>",
+                "password": "<user_password>",
+                "organization": "Hacktiv8",
+                "createdAt": "2020-09-09T05:52:45.218Z",
+                "updatedAt": "2020-09-09T05:52:45.218Z"
+            },
+            "Category": {
+                "id": 1,
+                "name": "<category_name>",
+                "createdAt": "2020-09-09T14:47:18.118Z",
+                "updatedAt": "2020-09-09T14:47:18.118Z"
+            }
+        }
+    ]
+}
 ```
 
 _Response (401 - Not Authenticated)_
@@ -136,8 +186,7 @@ _Response (500 - Internal server error)_
 }
 ```
 
-
-### POST /tasks
+### POST /tasks/:CategoryId
 > Create new tasks
 _Request Header_
 ```json
@@ -149,32 +198,25 @@ _Request Header_
 _Request Body_
 ```json
 {
-  "title": "<name to get insert into>",
-  "UserId": "<UserId to get insert into>",
+    "title": "<title to get insert into>"
 }
 ```
 
 _Response (201 - Created)_
 ```json
 {
-  "id": "<given id by system>",
-  "title": "<posted title>",
-  "UserId": "<posted UserId>",
-  "CategoryId": "<posted CategoryId>",
-  "createdAt": "2020-03-20T07:15:12.149Z",
-  "updatedAt": "2020-03-20T07:15:12.149Z",
-}
-```
-_Response (401 - Not Authenticated)_
-```json
-{
-  "message": "Doesnt recognize User!"
+    "id": 1,
+    "title": "<title name>",
+    "UserId": 1,
+    "CategoryId": 1,
+    "updatedAt": "2020-09-09T14:55:06.648Z",
+    "createdAt": "2020-09-09T14:55:06.648Z"
 }
 ```
 _Response (400 - Bad Request)_
 ```json
 {
-  "message": "Invalid fill the fields!"
+  "message": "Please fill the title!"
 }
 ```
 
@@ -192,19 +234,18 @@ _Request Body_
 not needed
 ```
 
-_Response(200)_
+_Response (200)_
 ```json
-[
-  {
+{
     "id": 1,
-    "title": "<tasks name>",
-    "UserId": "<tasks UserId>",
-    "CategoryId": "<tasks CategoryId>",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
-  },
-]
+    "title": "<title_name>",
+    "UserId": 1,
+    "CategoryId": 1,
+    "createdAt": "2020-09-09T14:55:06.648Z",
+    "updatedAt": "2020-09-09T15:30:58.690Z"
+}
 ```
+
 _Response (401 - Not Authenticated)_
 ```json
 {
@@ -219,7 +260,6 @@ _Response (404 - Not Found)_
 ```
 
 ### PUT /tasks/:id
-
 > Update tasks by ID
 _Request Header_
 ```json
@@ -231,17 +271,19 @@ _Request Header_
 _Request Body_
 ```json
 {
-  "title": "<name to get insert into>"
+    "title": "<title to get insert into>"
 }
 ```
 
 _Response (200)_
 ```json
 {
-  "id": "<selected id>",
-  "title": "<updated title>",
-  "createdAt": "2020-03-20T07:15:12.149Z",
-  "updatedAt": "2020-03-20T07:15:12.149Z",
+    "id": 1,
+    "title": "<updated title>",
+    "UserId": 1,
+    "CategoryId": 1,
+    "createdAt": "2020-09-09T14:55:06.648Z",
+    "updatedAt": "2020-09-09T15:30:58.690Z"
 }
 ```
 
@@ -249,7 +291,7 @@ _Response (200)_
 _Response (400 - Bad request)_
 ```json
 {
-  "message": "Invalid date input, Input your todo title please!, Please input your todo description"
+  "message": "Please fill the title!"
 }
 ```
 _Response (404 - Not Found)_
@@ -266,10 +308,46 @@ _Response (500 - Internal Server Error)_
 }
 ```
 
-
 ### DELETE /tasks/:id
 
-> Delete todo data by ID
+> Delete tasks data by ID
+_Request Header_
+```json
+{
+  "access_token": "<your access token>"
+}
+```
+
+_Response(200)_
+```json
+[
+  {
+    "id": "<selected id>",
+    "title": "<tasks title>",
+    "UserId": "<tasks UserId>",
+    "CategoryId": "<tasks CategoryId>",
+    "createdAt": "2020-03-20T07:15:12.149Z",
+    "updatedAt": "2020-03-20T07:15:12.149Z",
+  },
+]
+```
+> Error response:
+_Response (404 - Not Found)_
+```json
+{
+  "message": "Not Found"
+}
+```
+_Response (500 - Internal Server Error)_
+```json
+{
+  "message": "Internal Server Error"
+}
+```
+
+### POST /categories
+
+> Add new category
 _Request Header_
 ```json
 {
@@ -278,34 +356,25 @@ _Request Header_
 ```
 
 _Request Body_
-```
-not needed
-```
-
-_Response(200)_
-```json
-[
-  {
-    "id": "<selected id>",
-    "title": "<tasks name>",
-    "UserId": "<tasks UserId>",
-    "CategoryId": "<tasks CategoryId>",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
-  },
-]
-```
-
-> Error response:
-_Response (404 - Not Found)_
 ```json
 {
-  "message": "Not Found"
+    "name": "<category name>"
 }
 ```
-_Response (500 - Internal Server Error)_
+
+_Response (200)_
 ```json
 {
-  "message": "Internal Server Error"
+    "id": 1,
+    "name": "<category name insert into>",
+    "updatedAt": "2020-09-09T14:47:18.118Z",
+    "createdAt": "2020-09-09T14:47:18.118Z"
+}
+```
+
+_Response (400 - Bad Request)_
+```json
+{
+  "message": "Bad Request"
 }
 ```

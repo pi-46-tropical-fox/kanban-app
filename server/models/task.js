@@ -19,14 +19,14 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       validate: {
-        notEmpty: {
+        notEmpty:{
           args: true,
-          msg: `title can't be empty`
-        }      
+          msg : 'title cannot be empty'
+        }
       }
     },
-    CategoryId: DataTypes.INTEGER, 
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    CategoryId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Task',

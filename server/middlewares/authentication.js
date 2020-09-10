@@ -19,7 +19,7 @@ const authentication = async (req, res, next) => {
 
         if (user) {
             req.userData = decoded
-            console.log(req.userData)
+            //console.log(req.userData)
             next()
         } 
         else {

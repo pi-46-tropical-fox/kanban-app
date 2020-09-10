@@ -2,6 +2,7 @@ module.exports = function(err, req, res, next) {
     let statusCode = 500
     let errorCode = 'INTERNAL SERVER ERROR'
     let message = 'Internal Server Error'
+    console.log(err)
 
     if(err.name === 'SequelizeValidationError') {
         statusCode = 400
