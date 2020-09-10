@@ -1,11 +1,15 @@
 <template>
-  <div class="container"> 
+    <div class="container"> 
       <div class="row">
-        <form  @submit.prevent ="login">
+        <form  @submit.prevent ="register">
             <div class="form-group">
               <label for="username">Username</label>
               <input type="text" class="form-control" v-model="username">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" v-model="email"  aria-describedby="emailHelp">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -24,38 +28,37 @@
 <script>
 import axios from '../config/axios'
 export default {
-    name: 'LoginPage',
+    name: 'RegisterPage',
     data() {
         return {
             username: '',
+            email: '',
             password: ''
         }
     },
     methods: {
-        login() {
-          console.log('masuk');
+        register() {
             let payload = {
                 username : this.username,
+                email: this.email,
                 password : this.password
             }
-            axios({
-                url: '/login',
-                method: "POST",
-                data: payload
-              })
-              .then(({data})=> {
-                console.log('login success');					
-                this.$emit('changePage', 'dashBoardPage')
-                localStorage.setItem('access_token',data.access_token)
-              })
-              .catch(err=> {
-                console.log(err);
-              })
+			axios({
+			    url: '/register',
+				method: "POST",
+				data: payload
+			})
+			.then(({data})=> {
+				this.$emit('changePage', 'loginPage')
+			})
+			.catch(err=> {
+				console.log(err);
+			})            
             this.username = '',
+            this.email = '',
             this.password = ''
         }
     }
-
 }
 </script>
 

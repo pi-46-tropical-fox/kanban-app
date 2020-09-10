@@ -33,15 +33,18 @@ class KanbanController {
 
     static async postTask(req,res,next) {
         try {
+            console.log(req.body);
+            console.log('masuk');
              //butuh oper category id ke data (body)
             const addTask = {
                 title: req.body.title,
                 description: req.body.description,
                 date_post: new Date(),
                 due_date: req.body.due_date|| null,
-                UserId : req.userData.id,
+                UserId : req.body.UserId, //req.userData.id,
                 CategoryId : req.body.CategoryId || 1
             }
+            console.log(addTask);
             const result = await Task.create(addTask)
             return res.status(200).json(result)
         } catch(err) {
