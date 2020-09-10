@@ -1,4 +1,4 @@
-const { Task, User } = require('../models');
+const { Task, User, Category } = require('../models');
 
 class TaskController {
     static async list(req, res, next) {
@@ -6,7 +6,7 @@ class TaskController {
         try {
             const tasks = await Task.findAll({
                 where: { OrganizationId: id },
-                include: [User],
+                include: [User, Category],
                 order: [
                     ['createdAt', 'ASC'],
                 ],
@@ -33,10 +33,10 @@ class TaskController {
     }
 
     static async create(req, res, next) {
-        const { title, description, category, due_date } = req.body;
+        const { title, description, CategoryId, due_date } = req.body;
         const { id, OrganizationId } = req.userData;
         try {
-            const task = await Task.create({ title, description, category, due_date, UserId: id, OrganizationId });
+            const task = await Task.create({ title, description, CategoryId, due_date, UserId: id, OrganizationId });
 
             return res.status(201).json(task);
         } catch (error) {

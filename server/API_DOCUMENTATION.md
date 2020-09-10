@@ -3,6 +3,7 @@
 This Kanban App server has:
 
 - RESTful API endpoint for tasks (CRUD Operation)
+- RESTful API endpoint for categories (CRUD Operation)
 - RESTful API endpoint for organizations (CRU Operation)
 - JSON formatted request & response
 
@@ -421,7 +422,7 @@ _Request Body_
 	"title": "<task title>",
 	"description": "<task description>",
 	"due_date": "<task due_date>",
-	"category": "<task category>",
+	"CategoryId": "<task category id>",
 }
 ```
 
@@ -433,7 +434,7 @@ _Response (201 - Created)_
 	"title": "<task title>",
     "description": "<task description>",
 	"due_date": "<task due_date>",
-	"category": "<task category>"
+	"CategoryId": "<task category id>",
 }
 ```
 
@@ -452,10 +453,6 @@ _Response (400 - Bad request)_
 		},
 		{
 			"name": "is_null",
-			"message": "Category cannot null"
-		},
-		{
-			"name": "is_null",
 			"message": "Due date cannot null"
 		},
 		{
@@ -469,10 +466,6 @@ _Response (400 - Bad request)_
 		{
 			"name": "notEmpty",
 			"message": "Description cannot empty"
-		},
-		{
-			"name": "notEmpty",
-			"message": "Category cannot empty"
 		},
 		{
 			"name": "notEmpty",
@@ -547,7 +540,7 @@ _Response (200 - OK)_
 		"id": "<task id>",
 		"name": "<task name>",
 		"description": "<task description>",
-		"category": "<task category>",
+		"CategoryId": "<task category id>",
 		"due_date": "<task due date>",
 		"UserId": "<task user id>",
 		"createdAt": "<task created at>",
@@ -620,7 +613,7 @@ _Response (200 - OK)_
 	"id": "<task id>",
 	"name": "<task name>",
 	"description": "<task description>",
-	"category": "<task category>",
+	"CategoryId": "<task category id>",
 	"due_date": "<task due date>",
 	"UserId": "<task user id>",
 	"createdAt": "<task created at>",
@@ -698,7 +691,7 @@ _Request Body_
 {
 	"title": "<task title>",
 	"description": "<task description>",
-	"category": "<task category>",
+	"CategoryId": "<task category id>",
 	"due_date": "<task due date>"
 }
 ```
@@ -710,7 +703,7 @@ _Response (200 - OK)_
 	"id": "<task id>",
 	"name": "<task name>",
 	"description": "<task description>",
-	"category": "<task category>",
+	"CategoryId": "<task category id>",
 	"due_date": "<task due date>",
 	"UserId": "<task user id>",
 	"createdAt": "<task created at>",
@@ -768,10 +761,6 @@ _Response (400 - Bad request)_
 		},
 		{
 			"name": "is_null",
-			"message": "Description cannot null"
-		},
-		{
-			"name": "is_null",
 			"message": "Status cannot null"
 		},
 		{
@@ -785,10 +774,6 @@ _Response (400 - Bad request)_
 		{
 			"name": "notEmpty",
 			"message": "Title cannot empty"
-		},
-		{
-			"name": "notEmpty",
-			"message": "Description cannot empty"
 		},
 		{
 			"name": "notEmpty",
@@ -840,7 +825,7 @@ _Response (200 - OK)_
 	"id": "<task id>",
 	"name": "<task name>",
 	"description": "<task description>",
-	"category": "<task category>",
+	"CategoryId": "<task category id>",
 	"due_date": "<task due date>",
 	"UserId": "<task user id>",
 	"createdAt": "<task created at>",
@@ -1181,6 +1166,350 @@ _Response (401 - Unauthorized)_
 		{
 			"name": "notAuthorizedOtganization",
 			"message": "User not authorized accessing this Organization"
+		}
+	]
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notAuthenticated",
+			"message": "User not authenticated"
+		}
+	]
+}
+```
+
+_Response (500 - Internal server error)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "InternalServerError",
+			"message": "Internal server error"
+		}
+	]
+}
+```
+
+### POST /categories
+
+> Create a new category
+
+_Request Headers_
+
+```json
+{
+    "access_token": "<access token>"
+}
+```
+
+_Request Body_
+
+```json
+{
+	"name": "<category name>"
+}
+```
+
+_Response (201 - Created)_
+
+```json
+{
+	"id": "<category id>",
+	"name": "<category name>"
+}
+```
+
+_Response (400 - Bad request)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "is_null",
+			"message": "Name cannot null"
+		},
+		{
+			"name": "notEmpty",
+			"message": "Name cannot empty"
+		}
+	]
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notAuthenticated",
+			"message": "User not authenticated"
+		}
+	]
+}
+```
+
+_Response (500 - Internal server error)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "InternalServerError",
+			"message": "Internal server error"
+		}
+	]
+}
+```
+
+### GET /categories
+
+> Get all tasks
+
+_Request Headers_
+
+```json
+{
+    "access_token": "<access token>"
+}
+```
+
+_Request Body_
+
+```
+not needed
+```
+
+_Response (200 - OK)_
+
+```json
+[
+	{
+		"id": "<category id>",
+		"name": "<category name>",
+	}
+]
+```
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notAuthenticated",
+			"message": "User not authenticated"
+		}
+	]
+}
+```
+
+_Response (500 - Internal server error)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "InternalServerError",
+			"message": "Internal server error"
+		}
+	]
+}
+```
+
+### GET /categories/:id
+
+> Get task by id
+
+_Request Headers_
+
+```json
+{
+    "access_token": "<access token>"
+}
+```
+
+_Request Body_
+
+```
+not needed
+```
+
+_Response (200 - OK)_
+
+```json
+{
+	"id": "<category id>",
+	"name": "<category name>"
+}
+```
+
+_Response (404 - Not Found)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notFoundCategory",
+			"message": "Error category not found"
+		}
+	]
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notAuthenticated",
+			"message": "User not authenticated"
+		}
+	]
+}
+```
+
+_Response (500 - Internal server error)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "InternalServerError",
+			"message": "Internal server error"
+		}
+	]
+}
+```
+
+### PUT /categories/:id
+
+> Update a task
+
+_Request Headers_
+
+```json
+{
+    "access_token": "<access token>"
+}
+```
+
+_Request Body_
+
+```json
+{
+	"name": "<category name>"
+}
+```
+
+_Response (200 - OK)_
+
+```json
+{
+	"id": "<category id>",
+	"name": "<category name>"
+}
+```
+
+_Response (404 - Not Found)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notFoundCategory",
+			"message": "Error category not found"
+		}
+	]
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notAuthenticated",
+			"message": "User not authenticated"
+		}
+	]
+}
+```
+
+_Response (400 - Bad request)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "is_null",
+			"message": "Name cannot null"
+		},
+		{
+			"name": "notEmpty",
+			"message": "Name cannot empty"
+		}
+	]
+}
+```
+
+_Response (500 - Internal server error)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "InternalServerError",
+			"message": "Internal server error"
+		}
+	]
+}
+```
+
+### DELETE /categories/:id
+
+> Delete a task
+
+_Request Headers_
+
+```json
+{
+    "access_token": "<access token>"
+}
+```
+
+_Request Body_
+
+```
+not needed
+```
+
+_Response (200 - OK)_
+
+```json
+{
+	"id": "<category id>",
+	"name": "<category name>"
+}
+```
+
+_Response (404 - Not Found)_
+
+```json
+{
+	"errors": [
+		{
+			"name": "notFoundCategory",
+			"message": "Error category not found"
 		}
 	]
 }

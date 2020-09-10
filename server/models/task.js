@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Task.belongsTo(models.User);
       Task.belongsTo(models.Organization);
+      Task.belongsTo(models.Category);
     }
   };
   Task.init({
@@ -46,20 +47,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: 'Category cannot empty',
-        },
-        notNull: {
-          args: true,
-          msg: 'Category cannot null',
-        }
-      }
-    },
     due_date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -80,7 +67,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     OrganizationId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    CategoryId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Task',
