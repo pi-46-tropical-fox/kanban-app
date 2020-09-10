@@ -1,12 +1,19 @@
 <template>
   <div>
-    <LoginPage v-if="pageName === 'login'" v-on:loginApp="login"> </LoginPage>
-    <HomePage v-if="pageName === 'home'"> </HomePage>
+    <LoginPage 
+    v-if="pageName === 'login'" 
+    @loginApp="login"
+    > </LoginPage>
+    <HomePage 
+    v-if="pageName === 'home'"
+    :categories='categories'
+    :tasks='tasks'
+    > </HomePage>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "./config/axios";
 import LoginPage from "./components/loginPage";
 import HomePage from "./components/homePage";
 
@@ -15,6 +22,29 @@ export default {
   data() {
     return {
       pageName: "login",
+      categories: [
+        {
+        title:'Backlog',
+        color: 'bg-danger',
+        category: 'backlog'
+        },
+        {
+        title:'Todo',
+        color: 'bg-warning',
+        category: 'todo'
+        },
+        {
+        title:'Doing',
+        color: 'bg-success',
+        category: 'doing'
+        },
+        {
+        title:'Done',
+        color: 'bg-info',
+        category: 'done'
+        },
+      ],
+      tasks: [],
     };
   },
   components: {
@@ -26,12 +56,10 @@ export default {
       this.pageName = page;
     },
     login(paylod) {
-      //  console.log(paylod,'>>>>>ini payload')
-      //  console.log(this.pageName)
-      //  console.log('login masuk dari login page......,,')
+      
       const { email, password } = paylod;
       axios
-        .post("http://localhost:3000/login", {
+        .post("/login", {
           email,
           password,
         })
@@ -42,6 +70,29 @@ export default {
         })
         .catch(console.log);
     },
+    checkAuth() {
+      if(localStorage.access_token) {
+        this.changePage('home')
+        this.fetchTasks()
+      } else {
+        this.changePage('login')
+      }
+    },
+    fetchTasks() {
+      axios
+      .get('/tasks', {
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+      .then(({data}) => {
+        this.tasks = data
+      })
+      .catch(console.log)
+    },
+  },
+  created() {
+    this.checkAuth()
   },
 };
 </script>
