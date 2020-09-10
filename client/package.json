@@ -5,16 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx parcel src/index.html src/components_template/*.html"
+    "dev": "npx parcel index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bulma": "^0.9.0"
+    "bulma": "^0.9.0",
+    "vue": "^2.6.12",
+    "vue-hot-reload-api": "^2.3.4"
   },
   "devDependencies": {
+    "@vue/component-compiler-utils": "^3.2.0",
     "parcel-bundler": "^1.12.4",
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "vue-template-compiler": "^2.6.12"
   }
 }
