@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    align-content: center;
+}
+
+.backlog{
+    background-color: aquamarine;
+}
+
+.todo{
+    background-color: blue
+}
+
+.doing{
+    background-color: darkblue;
+}
+
+.done{
+    background-color: cornflowerblue;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    height: 100vh ;
+    /* background-color: black; */
+}
+
+h1{
+    font-size: 50px;
+    /* position: relative; */
+    color: rgb(90, 90, 90);
+}
+
+.item{
+    font-size: 25px;
+    padding: 0px;
+    margin-left: 40px;
+    margin-right: 80px;
+}
+
+.card-body{
+    tab-size: 25px;
+}
