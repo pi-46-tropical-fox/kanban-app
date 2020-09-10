@@ -20,7 +20,8 @@
                 
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                     <hr class="my-4">
-                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+                    <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button> -->
+                    <button v-google-signin-button="clientId" class="btn btn-lg btn-google btn-block text-uppercase"> Continue with Google</button>
                 </form>
             </div>
             </div>
@@ -37,7 +38,8 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            clientId: '1060904979716-u2oc8jq86mdh8dmpi8sn234jb0lk9jqk.apps.googleusercontent.com'
         }
     },
     methods: {
@@ -59,6 +61,30 @@ export default {
                 .catch(err => {
                     console.log({err})
                 })
+        },
+        OnGoogleAuthSuccess (idToken) {
+            console.log(idToken)
+            // Receive the idToken and make your magic with the backend
+            axios({
+                method: "POST",
+                url: 'http://localhost:3000/googleLogin',
+                headers: {
+                    google_access_token: idToken
+                }
+            })
+                .then(({data}) => {
+                    console.log(data)
+                    localStorage.setItem('access_token', data.access_token)
+                    this.$emit('emitToPage', 'Dashboard')
+                    this.$emit('emitIsLogin')
+                })
+                .catch(({err}) => {
+                    console.log(err)
+                })
+
+        },
+        OnGoogleAuthFail (error) {
+            console.log(error)
         }
     }
 }

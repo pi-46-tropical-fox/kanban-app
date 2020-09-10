@@ -83,7 +83,7 @@ class UserController{
                     email: email_google,
                     password: 'passgoogle',
                     organization: "Hacktiv8",
-                    pictureUrl: './assets/img/dummyDp.png'
+                    pictureUrl: 'https://www.w3schools.com/w3images/avatar6.png'
                 }
 
                 return User.create(objUser)
@@ -95,7 +95,7 @@ class UserController{
             const access_token = generateToken(user)
             const { id, name, organization} = user
             
-            return res.status(200).json({ access_token, id, name, organization })
+            return res.status(200).json({ access_token })
         })
         .catch(err => {
             console.log(err)
