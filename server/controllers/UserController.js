@@ -27,6 +27,7 @@ class TaskController {
     static async login(req,res,next) {
         try {
             const {username,password} = req.body
+            console.log('masuk ga',username,password);
 
             const user = await User.findOne({where: {username}})
             console.log(user,'ini user');

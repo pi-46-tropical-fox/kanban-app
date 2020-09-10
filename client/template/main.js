@@ -10,10 +10,22 @@ new Vue({
 			filter: ''  
     },
     methods: {
-			login() {
-				console.log('masuk');
-				localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQG1haWwuY29tIiwiaWF0IjoxNTk5NjY5NDMzfQ.BaPUwYAjIxV7JhgrZMHrx_EY4v21uUdAVTSKSouIM5I')
-				fetchCategories()
+			login(payload) {
+				axios({
+					url: 'http://localhost:3000/login',
+					method: 'POST',
+					data: payload
+				})
+				.then(({data}) => {
+					console.log('masuk');
+					console.log(data);
+
+					// fetchCategories()
+				})
+				.catch((error) => {
+
+					console.log(error);
+				})
 			},
 			fetchCategories() {	
 				axios
