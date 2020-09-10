@@ -18,6 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Username cannot be empty'
+        }
+      }
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,

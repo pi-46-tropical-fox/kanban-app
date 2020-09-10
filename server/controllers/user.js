@@ -5,14 +5,15 @@ const { isValid } = require('../helpers/bcrypt')
 class UserController {
     static async register (req, res, next) {
         try {
-            const {email, password, orgId} = req.body
+            const {username, email, password, orgId} = req.body
             const user = await User.create({
-                email, password, orgId
+                username, email, password, orgId
             })
             
             res.status(201).json({
                 id: user.id,
-                email: user.email
+                email: user.email,
+                username: user.username
             })
         } catch (err) {
             return next(err)
@@ -35,6 +36,7 @@ class UserController {
             const access_token = tokenGenerator(user)
             res.status(200).json({
                 id: user.id,
+                username: user.username,
                 email: user.email,
                 access_token
             })

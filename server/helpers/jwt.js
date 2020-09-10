@@ -5,6 +5,7 @@ const tokenGenerator = (user) => {
     const access_token = jwt.sign({
         id: user.id,
         email: user.email,
+        username: user.username,
         orgId: user.orgId
     }, secret);
 

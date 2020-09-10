@@ -43,8 +43,10 @@ class TaskController {
                 task: {
                     id: task.id,
                     title: task.title,
-                },
-                company: org.company
+                    status: task.status,
+                    assignee: req.userData.username,
+                    company: org.company
+                }
             })
         } catch (err) {
             next(err)
@@ -53,7 +55,8 @@ class TaskController {
 
     static async move (req, res, next) {
         try {
-            const {id, movement} = req.params
+            const {id} = req.params
+            const {movement} = req.body
             const categories = ['backlog', 'todo', 'doing', 'done']
     
             const task = await Task.findOne({
@@ -115,9 +118,9 @@ class TaskController {
         
             return res.status(200).json({
                 task: {
-                    id: movedTask.id,
-                    title: movedTask.title,
-                    status: movedTask.status
+                    id: edited.id,
+                    title: edited.title,
+                    status: edited.status
                 }
             })
         } catch (err) {

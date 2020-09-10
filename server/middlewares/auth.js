@@ -7,7 +7,7 @@ const authenticate = async (req, res, next) => {
         const user = verifyToken(access_token)
         const found = await User.findOne({
             where: {
-                email: user.email
+                id: user.id
             }
         })
     

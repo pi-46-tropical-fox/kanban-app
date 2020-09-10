@@ -10,8 +10,8 @@ route.use(authenticate)
 route.get('/tasks', TaskController.getTasks)
 route.post('/tasks', TaskController.new)
 
-route.use('/tasks/:id*', authorize)
-route.put('/tasks/:id/:movement', TaskController.move)
+route.use('/tasks/:id', authorize)
+route.put('/tasks/:id', TaskController.move)
 route.patch('/tasks/:id', TaskController.edit)
 route.delete('/tasks/:id', TaskController.delete)
 
