@@ -1,0 +1,83 @@
+{
+    "tasks": [
+            {
+                "id": 2,
+                "title": "Todo",
+                "ProjectId": 1,
+                "createdAt": "2020-09-09T07:11:14.778Z",
+                "updatedAt": "2020-09-09T07:11:14.778Z",
+                "Tasks": [
+                    {
+                        "id": 2,
+                        "title": "naik gajah",
+                        "description": "duduk",
+                        "date_post": "2020-09-09T09:43:59.105Z",
+                        "due_date": null,
+                        "UserId": 1,
+                        "CategoryId": 2,
+                        "createdAt": "2020-09-09T09:34:22.934Z",
+                        "updatedAt": "2020-09-09T09:43:59.110Z"
+                    },
+                    {
+                        "id": 7,
+                        "title": "Terbang gajah",
+                        "description": "duduk duduk duduk duuk dudukdududk",
+                        "date_post": "2020-09-09T09:43:59.105Z",
+                        "due_date": null,
+                        "UserId": 1,
+                        "CategoryId": 2,
+                        "createdAt": "2020-09-09T09:34:22.934Z",
+                        "updatedAt": "2020-09-09T09:43:59.110Z"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "title": "Doing",
+                "ProjectId": 1,
+                "createdAt": "2020-09-09T07:11:14.778Z",
+                "updatedAt": "2020-09-09T07:11:14.778Z",
+                "Tasks": [
+                    {
+                        "id": 3,
+                        "title": "bajing lumpat",
+                        "description": "pesawat tempur",
+                        "date_post": "2020-09-09T09:45:52.639Z",
+                        "due_date": null,
+                        "UserId": 1,
+                        "CategoryId": 3,
+                        "createdAt": "2020-09-09T09:45:52.640Z",
+                        "updatedAt": "2020-09-09T09:45:52.640Z"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "title": "Done",
+                "ProjectId": 1,
+                "createdAt": "2020-09-09T07:11:14.778Z",
+                "updatedAt": "2020-09-09T07:11:14.778Z",
+                "Tasks": [
+                    {
+                        "id": 4,
+                        "title": "smirnoff",
+                        "description": "rasa rasa",
+                        "date_post": "2020-09-09T09:48:00.800Z",
+                        "due_date": null,
+                        "UserId": 1,
+                        "CategoryId": 4,
+                        "createdAt": "2020-09-09T09:48:00.800Z",
+                        "updatedAt": "2020-09-09T09:48:00.800Z"
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "title": "Backlog",
+                "ProjectId": 1,
+                "createdAt": "2020-09-09T07:11:14.778Z",
+                "updatedAt": "2020-09-09T07:11:14.778Z",
+                "Tasks": []
+            }
+        ]
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>MaKanban</title>
+</head>
+<body class="bg-white">
+    <!-- Image and text -->
+<nav class="navbar navbar-light bg-secondary">
+    <a class="navbar-brand text-white" href="#">
+      <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      MaKanban
+    </a>
+    <span class="navbar-text text-white">
+        Navbar text with an inline element
+      </span>
+  </nav>
+
+  <div id="app">
+    {{ message }}
+
+
+  <div class="container"  v-if="currentPage == 'login'">
+      <div class="row">
+        <form @submit.prevent ="login">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" v-model="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" v-model="password" id="exampleInputPassword1">
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+  </div>
+
+ <!-------------------------------- CARD ----------------------------------------->
+  <div class="container text-center" style="margin-top:30px;" v-else>
+    <form action="">
+        <div class="form-group">
+            <label for="">Search</label>
+            <input type="text" class="form-control" v-model="filter">
+        </div>
+        <!-- {{resultFilter}} -->
+    </form>
+    <div class="row">
+        <div class="col-sm" v-for="category in categoryFiltered" :key=category.id >
+            <div class="shadow rounded">
+                <div class="card text-white rounded bg-danger mb-3">
+                    <div class="card-header">{{category.title}}</div>
+                    <div class="card-body overflow-auto"style="max-height: 400px;">
+                        <div v-for="task in category.Tasks" :key=task.id>
+                            <h5 class="card-title">{{task.title}}</h5>
+                            <p class="card-text ">{{task.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <button @click.prevent="deleteItem(i) ">delete</button> -->
+        
+    </div>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./main.js "></script>
+<!-- <script >
+var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    },
+    methods:{
+
+    },
+    beforeCreate() {
+        console.log('masuk ke beforeCreate');
+
+    },
+    created() {
+        console.log('masuk ke created');
+
+    },
+    beforeMount() {
+        console.log('masuk ke beforeMount');
+
+    },
+    mounted() {
+        console.log('masuk ke mounted');
+
+    },
+    beforeUpdate() {
+        console.log('masuk ke updated');
+
+    },
+    updated() {
+        console.log('masuk ke sini');
+
+    },
+    beforeDestroy() {
+        console.log('masuk ke beforeDestroy');
+
+    },
+    destroy() {
+        console.log('masuk ke destroy');
+
+    }
+  })
+  </script> -->
+</body>
+</html>
