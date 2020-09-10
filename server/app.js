@@ -4,16 +4,18 @@ const port = 3000
 const routes = require('./routes')
 const errorHandler = require('./middlewares/errHandler')
 require('dotenv').config()
+const cors = require('cors')
 
 
 //BODY PARSER
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
+//Cors
+app.use(cors())
 
 //Using Router
 app.use(routes)
-
 
 //Error Handler Middleware
 app.use(errorHandler)

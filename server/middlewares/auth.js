@@ -17,15 +17,31 @@ const authentication = async (req, res, next) => {
                     req.userData = userData
                     next()
                 }else {
-                    return res.status(401).json({message: "User not authenticated!"})
+                    throw {message: 'User not authenticated!', statusCode: 401}
                 }
             })
     } catch(err) {
-        return res.status(401).json({message: "User not authenticated!"})
+        return next(err)
     }
+}
+
+const authorization = async (req, res, next) => {
+    const { id } = req.params
+
+    try {
+        const task = await Task.findByPk(id)
+
+        if(task && task.UserId === req.userData.id) {
+            next()
+        }else {
+            throw {message: 'User not authenticated!', statusCode: 401}
+        }
+    } catch (err) {
+        console.log(err)
+        return next(err)
+    }    
 }
 
 
 
-
-module.exports = { authentication }
+module.exports = { authentication, authorization }

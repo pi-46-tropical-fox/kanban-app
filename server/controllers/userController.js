@@ -10,7 +10,7 @@ class UserController{
             email: req.body.email,
             password: req.body.password,
             organization: "Hacktiv8",
-            pictureUrl: req.body.pictureUrl ||'./assets/img/dummyDp.png'
+            pictureUrl: req.body.pictureUrl ||'https://www.w3schools.com/w3images/avatar6.png'
         }
 
         User.create(userObj)

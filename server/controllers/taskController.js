@@ -1,4 +1,4 @@
-const { Task } = require('../models')
+const { Task, User } = require('../models')
 const e = require('express')
 
 class TaskController{
@@ -8,7 +8,7 @@ class TaskController{
             task: req.body.task,
             description: req.body.description,
             //To be updated using userData
-            UserId: 3
+            UserId: req.userData.id
         }
 
         Task.create(taskObj)
@@ -23,7 +23,12 @@ class TaskController{
     }
 
     static getTask(req, res, next) {
-        Task.findAll()
+        Task.findAll({
+            order: [
+                ['id', 'ASC']
+            ],
+            include: [User]
+        })
             .then(data => {
                 return res.status(200).json(data)
             })

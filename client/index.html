@@ -2,13 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" /> -->
         <title>My Kanban!</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
@@ -20,371 +19,380 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="./css//style2nd.css" rel="stylesheet" />
-        
     </head>
 
 
     <body id="page-top" >
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Kanban App</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ml-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Login</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Register</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Add Task</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Sign Out</a></li>
-                    </ul>
+        <div id="app">
+
+            <!-- Navigation-->
+            <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+                <div class="container">
+                    <a class="navbar-brand js-scroll-trigger" href="#page-top">Kanban App</a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                        <i class="fas fa-bars ml-1"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav text-uppercase ml-auto">
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Login</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Register</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Add Task</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Sign Out</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav> -->
 
-        <!-- Masthead-->
-        <header class="masthead">
+            <!-- Masthead-->
+            <!-- <header class="masthead"> -->
 
-            <!-- Welcome Page -->
-            <div class="container">
-                <div class="masthead-subheading">Welcome To Our Kanban App!</div>
-                <div class="masthead-heading text-uppercase">It's Developed for You</div>
-            </div>
+                <!-- Welcome Page -->
+                <!-- <div class="container">
+                    <div class="masthead-subheading">Welcome To Our Kanban App!</div>
+                    <div class="masthead-heading text-uppercase">It's Developed for You</div>
+                </div> -->
 
-            <!-- Kanban Template -->
-            <div id="kanbanTemplate" class="container-fluid pt-3">
-                <h3 class="masthead-subheading font-weight-light text-white text-center">Kanban Board</h3>
-                <div class="small  text-light text-center">Drag and drop between swim lanes</div>
-                <div class="row flex-row flex-sm-nowrap py-3">
+                <!-- Kanban Template -->
+                <!-- <div id="kanbanTemplate" class="container-fluid pt-3">
+                    <h3 class="masthead-subheading font-weight-light text-white text-center">Kanban Board</h3>
+                    <div class="small  text-light text-center">Drag and drop between swim lanes</div>
+                    <div class="row flex-row flex-sm-nowrap py-3">
 
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h6 class="card-title text-uppercase text-truncate py-2">BACKLOG</h6>
-                                <div class="items border border-light">
-                                    <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-154</a>
+                        <div class="col-sm-6 col-md-4 col-xl-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title text-uppercase text-truncate py-2">BACKLOG</h6>
+                                    <div class="items border border-light">
+                                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-154</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is a description of a item on the board.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is a description of a item on the board.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
-                                    </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
-                                    <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-156</a>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-156</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is a description of a item on the board.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is a description of a item on the board.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
-                                    </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
-                                    <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-157</a>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                        <div class="card draggable shadow-sm" id="cd3" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-157</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is an item on the board. There is some descriptive text that explains the item here.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is an item on the board. There is some descriptive text that explains the item here.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                     </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h6 class="card-title text-uppercase text-truncate py-2">TO DO</h6>
-                                <div class="items border border-light">
-                                    <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-152</a>
+                        <div class="col-sm-6 col-md-4 col-xl-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title text-uppercase text-truncate py-2">TO DO</h6>
+                                    <div class="items border border-light">
+                                        <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-152</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is a task that is being worked on.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is a task that is being worked on.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
-                                    </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
-                                    <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-153</a>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                        <div class="card draggable shadow-sm" id="cd2" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-153</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    Another task here that is in progress.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                Another task here that is in progress.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                     </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h6 class="card-title text-uppercase text-truncate py-2">DOING</h6>
-                                <div class="items border border-light">
-                                    <div class="card draggable shadow-sm" id="cd9" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-158</a>
+                        <div class="col-sm-6 col-md-4 col-xl-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title text-uppercase text-truncate py-2">DOING</h6>
+                                    <div class="items border border-light">
+                                        <div class="card draggable shadow-sm" id="cd9" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-158</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is a description of a item on the board.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is a description of a item on the board.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                     </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h6 class="card-title text-uppercase text-truncate py-2">DONE</h6>
-                                <div class="items border border-light">
-                                    <div class="card draggable shadow-sm" id="cd11" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-144</a>
+                        <div class="col-sm-6 col-md-4 col-xl-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title text-uppercase text-truncate py-2">DONE</h6>
+                                    <div class="items border border-light">
+                                        <div class="card draggable shadow-sm" id="cd11" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-144</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is a description of an item.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is a description of an item.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
-                                    </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
-                                    <div class="card draggable shadow-sm" id="cd12" draggable="true" ondragstart="drag(event)">
-                                        <div class="card-body p-2">
-                                            <div class="card-title">
-                                                <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
-                                                <a href="" class="lead font-weight-light text-dark">TSK-146</a>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                        <div class="card draggable shadow-sm" id="cd12" draggable="true" ondragstart="drag(event)">
+                                            <div class="card-body p-2">
+                                                <div class="card-title">
+                                                    <img src="./assets//img//team//1.jpg" class="rounded-circle float-right card-img2">
+                                                    <a href="" class="lead font-weight-light text-dark">TSK-146</a>
+                                                </div>
+                                                <p class="text-darkGrey">
+                                                    This is a description of a task item.
+                                                </p>
+                                                <button class="btn btn-primary btn-sm">Update</button>
+                                                <button class="btn btn-2ndprimary btn-sm">Delete</button>
+                                                <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                             </div>
-                                            <p class="text-darkGrey">
-                                                This is a description of a task item.
-                                            </p>
-                                            <button class="btn btn-primary btn-sm">Update</button>
-                                            <button class="btn btn-2ndprimary btn-sm">Delete</button>
-                                            <span class="float-right text-darkGrey font-weight-light" style="font-size: small;">PIC Name</span>
                                         </div>
+                                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                     </div>
-                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </div>
-
-
-            <!-- LOGIN -->
-            <!-- <div class="container">
-                <div class="row">
-                  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                      <div class="card-body">
-                        <h5 class="card-title text-center text-dark">Sign In</h5>
-                        <form class="form-signin">
-                          <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                            <label for="inputEmail">Email address</label>
-                          </div>
-            
-                          <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                            <label for="inputPassword">Password</label>
-                          </div><br>
-            
-                          <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                          <hr class="my-4">
-                          <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div> -->
-
-            <!-- REGISTER -->
-            <!-- <div class="container">
-                <div class="row">
-                  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                      <div class="card-body">
-                        <h5 class="card-title text-center text-dark">Sign Up</h5>
-                        <form class="form-signup">
-
-                        <div class="form-label-group">
-                            <input type="text" id="registerName" class="form-control" placeholder="Name" required autofocus>
-                            <label for="registerName">Name</label>
-                          </div>
-
-                          <div class="form-label-group">
-                            <input type="email" id="registerEmail" class="form-control" placeholder="Email address" required autofocus>
-                            <label for="registerEmail">Email address</label>
-                          </div>
-            
-                          <div class="form-label-group">
-                            <input type="password" id="registerPassword" class="form-control" placeholder="Password" required>
-                            <label for="registerPassword">Password</label>
-                          </div>
-
-                          <div class="form-label-group">
-                            <input type="text" id="registerImageUrl" class="form-control" placeholder="Image Url">
-                            <label for="registerImageUrl">Image Url (Not Mandatory)</label>
-                          </div><br>
-            
-                          <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div> -->
-
-
-            <!-- ADD TASK -->
-            <!-- <div class="container">
-                <div class="row">
-                  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                      <div class="card-body">
-                        <h5 class="card-title text-center text-dark">Add Task</h5>
-                        <form class="form-addTask">
-
-                          <div class="form-label-group">
-                            <input type="text" id="addTaskName" class="form-control" placeholder="Task Name" required autofocus>
-                            <label for="addTaskName">Task Name</label>
-                          </div>
-
-                          <div class="form-label-group">
-                            <input type="text" id="addDescription" class="form-control" placeholder="Description" required autofocus>
-                            <label for="addDescription">Description</label>
-                          </div><br>
-
-                          <span class="text-darkGrey">Default options: Backlog / Todo / Doing / Done</span>
-                          <div class="form-label-group">
-                            <input type="text" id="addCategory" class="form-control" placeholder="Category" required>
-                            <label for="addCategory">Category</label>
-                          </div><br>
-            
-                          <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Add Task</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div> -->
-
-            <!-- Update TASK -->
-            <!-- <div class="container">
-                <div class="row">
-                  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                      <div class="card-body">
-                        <h5 class="card-title text-center text-dark">Update Task</h5>
-                        <form class="form-updateTask">
-
-                          <div class="form-label-group">
-                            <input type="text" id="updateTaskName" class="form-control" placeholder="Task Name" required autofocus>
-                            <label for="updateTaskName">Task Name</label>
-                          </div>
-
-                          <div class="form-label-group">
-                            <input type="text" id="updateDescription" class="form-control" placeholder="Description" required autofocus>
-                            <label for="updateDescription">Description</label>
-                          </div><br>
-
-                          <span class="text-darkGrey">Default options: Backlog / Todo / Doing / Done</span>
-                          <div class="form-label-group">
-                            <input type="text" id="updateCategory" class="form-control" placeholder="Category" required>
-                            <label for="updateCategory">Category</label>
-                          </div><br>
-            
-                          <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update Task</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div> -->
-
-        </header>
-
-        <!-- Google Button
-        <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-        
-        <!-- Footer-->
-        <footer class="footer py-4" style=" background-color: #434343;">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left text-light">Developer © Arviandito Caessara 2020</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/ditocaessara?lang=en"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="https://github.com/ArvianditoCaessara"><i class="fab fa-github"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="https://id.linkedin.com/in/achmad-arviandito-caessara"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-            </div>
-        </footer>
+ -->
+
+                <!-- LOGIN -->
+                <!-- <div class="container">
+                    <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-dark">Sign In</h5>
+                            <form class="form-signin">
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="inputEmail">Email address</label>
+                            </div>
+                
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <label for="inputPassword">Password</label>
+                            </div><br>
+                
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div> -->
+
+                <!-- REGISTER -->
+                <!-- <div class="container">
+                    <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-dark">Sign Up</h5>
+                            <form class="form-signup">
+
+                            <div class="form-label-group">
+                                <input type="text" id="registerName" class="form-control" placeholder="Name" required autofocus>
+                                <label for="registerName">Name</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="registerEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="registerEmail">Email address</label>
+                            </div>
+                
+                            <div class="form-label-group">
+                                <input type="password" id="registerPassword" class="form-control" placeholder="Password" required>
+                                <label for="registerPassword">Password</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="registerImageUrl" class="form-control" placeholder="Image Url">
+                                <label for="registerImageUrl">Image Url (Not Mandatory)</label>
+                            </div><br>
+                
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div> -->
 
 
+                <!-- ADD TASK -->
+                <!-- <div class="container">
+                    <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-dark">Add Task</h5>
+                            <form class="form-addTask">
+
+                            <div class="form-label-group">
+                                <input type="text" id="addTaskName" class="form-control" placeholder="Task Name" required autofocus>
+                                <label for="addTaskName">Task Name</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="addDescription" class="form-control" placeholder="Description" required autofocus>
+                                <label for="addDescription">Description</label>
+                            </div><br>
+
+                            <span class="text-darkGrey">Default options: Backlog / Todo / Doing / Done</span>
+                            <div class="form-label-group">
+                                <input type="text" id="addCategory" class="form-control" placeholder="Category" required>
+                                <label for="addCategory">Category</label>
+                            </div><br>
+                
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Add Task</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div> -->
+
+                <!-- Update TASK -->
+                <!-- <div class="container">
+                    <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-dark">Update Task</h5>
+                            <form class="form-updateTask">
+
+                            <div class="form-label-group">
+                                <input type="text" id="updateTaskName" class="form-control" placeholder="Task Name" required autofocus>
+                                <label for="updateTaskName">Task Name</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="updateDescription" class="form-control" placeholder="Description" required autofocus>
+                                <label for="updateDescription">Description</label>
+                            </div><br>
+
+                            <span class="text-darkGrey">Default options: Backlog / Todo / Doing / Done</span>
+                            <div class="form-label-group">
+                                <input type="text" id="updateCategory" class="form-control" placeholder="Category" required>
+                                <label for="updateCategory">Category</label>
+                            </div><br>
+                
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update Task</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </header> -->
+
+            <!-- Google Button
+            <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+            
+            <!-- Footer-->
+            <!-- <footer class="footer py-4" style=" background-color: #434343;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 text-lg-left text-light">Developer © Arviandito Caessara 2020</div>
+                        <div class="col-lg-4 my-3 my-lg-0">
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/ditocaessara?lang=en"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://github.com/ArvianditoCaessara"><i class="fab fa-github"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://id.linkedin.com/in/achmad-arviandito-caessara"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer> -->
+
+        </div>
         
         
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
+
         <!-- Google OAuth -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+
+        <!-- VUE development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <!-- Axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <!-- Main.js path -->
+        <script src="./js//main.js"></script>
+
     </body>
 </html>
