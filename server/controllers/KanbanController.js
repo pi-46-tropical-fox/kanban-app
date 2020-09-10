@@ -16,7 +16,6 @@ class KanbanController {
 
     static async getCategories(req,res,next) {
         try {
-
             const categoriesUser = await Category.findAll({
                 where: {ProjectId : req.params.id},
                 include: Task
@@ -26,7 +25,6 @@ class KanbanController {
             //     taskUser.push(category.Tasks)
             // });
             // console.log(taskUser);
-
             return res.status(200).json(categoriesUser)
         } catch(err) {
             return next(err)

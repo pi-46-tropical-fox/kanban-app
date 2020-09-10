@@ -1,8 +1,7 @@
 <template>
   <div class="container"> 
-    <!-- v-if="currentPage == 'login'" -->
       <div class="row">
-        <form @submit.prevent ="login">
+        <form  @submit.prevent ="login">
             <div class="form-group">
               <label for="username">Username</label>
               <input type="text" class="form-control" v-model="username" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -29,17 +28,17 @@ export default {
     data() {
         return {
             username: '',
-            password: '',
+            password: ''
         }
     },
     methods: {
         login() {
-            // let payload = {
-            //     username = this.username,
-            //     password = this.password
-            // }
+            let payload = {
+                username : this.username,
+                password : this.password
+            }
 
-            // this.$emit('loginSubmit',payload)
+            this.$emit('loginSubmit',payload)
         }
     }
 

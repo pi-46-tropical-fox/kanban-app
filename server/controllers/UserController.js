@@ -35,7 +35,6 @@ class TaskController {
                 throw {statusCode: 400, msg: "invalid username or password"}
             }
             const isValid = await compareBcrypt(password, user.password)
-
             if(isValid) {
                 const access_token = generateToken(user)
 

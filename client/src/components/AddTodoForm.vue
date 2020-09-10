@@ -1,10 +1,12 @@
 <template>
     <div>
-        <form action="">
+        <form @submit.prevent="submitTodo">
             <div class="row">
                 <div class="col-8">
                   <div class="form-group mb-2">
-                    <input type="text" class="form-control" id="todo" placeholder="Your Todo">
+                    <input type="text" class="form-control" 
+                    id="todo" placeholder="Your Todo"
+                    v-model="newTodo"> 
                   </div>
                 </div>
                 <div class="col-4">
@@ -17,7 +19,22 @@
 
 <script>
 export default {
-    name: 'AddTodoForm'
+    name: 'AddTodoForm',
+    	data() {
+        return {
+          newTodo: '',
+        }
+			},
+			methods: {
+				submitTodo() {
+					let payload = {
+						title: this.newTodo,
+						textClass: 'text-danger'
+					}
+					this.$emit('submitTodo', payload)
+					this.newTodo = ''
+				}
+			}
 }
 </script>
 
