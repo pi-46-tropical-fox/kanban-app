@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const { validatePassword } = require('../helpers/password')
+const { validatePassword, hashPassword } = require('../helpers/password')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     organization: DataTypes.STRING
   }, {
+    hooks:{
+      async beforeCreate(data){
+        data.password = await hashPassword(data.password)
+      }
+    },
     sequelize,
     modelName: 'User',
   });

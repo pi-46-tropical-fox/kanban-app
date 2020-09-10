@@ -3,3 +3,15 @@
 |Name|Description|Default value
 |-|-|-|
 |`PORT`|Port untuk server|`3000`|
+
+
+## API Documentation
+
+### Endpoints
+```
+POST /user/login
+POST /user/register
+
+GET /tasks
+
+```
