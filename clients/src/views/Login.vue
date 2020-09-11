@@ -87,7 +87,7 @@ export default {
 
         },
         showRegister(){
-            
+            this.$emit("changePage", "RegisterPage")
         }
     },
     components: {

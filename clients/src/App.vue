@@ -6,6 +6,12 @@
         @changePage="changePage"
       ></LoginPage>
 
+      <!-- Register Page -->
+      <Register 
+        v-else-if="currentPage === 'RegisterPage'"
+        @changePage="changePage"
+      ></Register>
+
       <!-- Dashboard -->
       <DashboardPage 
       v-else-if="currentPage === 'DashboardPage'"
@@ -17,6 +23,7 @@
 <script>
 import LoginPage from './views/Login'
 import DashboardPage from './views/Dashboard'
+import Register from './views/Register'
 import axios from './config/axios'
 export default {
   data() {
@@ -26,7 +33,8 @@ export default {
   },
   components: {
       LoginPage,
-      DashboardPage
+      DashboardPage,
+      Register
   },
   methods: {
     changePage(page){

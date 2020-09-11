@@ -45,7 +45,7 @@ export default {
                 }
             })
             .then(({data}) => {
-                
+                this.$emit("changePage", LoginPage)
             })
             .catch(err => {
                 console.log(err)
