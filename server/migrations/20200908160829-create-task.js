@@ -18,6 +18,10 @@ module.exports = {
       due_date: {
         type: Sequelize.DATE
       },
+      BoardId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       TaskId: { // if it's a subtask, put TaskId here.
         type: Sequelize.INTEGER
       },

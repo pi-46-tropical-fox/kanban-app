@@ -8,6 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      // Required user inputs
       name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -18,12 +19,14 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
         allowNull: false
       },
+      // End: Required user inputs
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
