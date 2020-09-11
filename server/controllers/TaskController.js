@@ -33,8 +33,9 @@ class TaskController {
             const task = await Task.findOne({where: {id: taskId, OrganizationId: organizationId}})
             if (!task) {
                     return res.status(400).json({message: 'Task Not Found'})
+            } else {
+                return res.status(200).json(task)
             }
-            return res.status(200).json(task)
         }
         catch(err) {
             console.log(err, '<<<<< error Get Task By Id')
@@ -52,8 +53,9 @@ class TaskController {
             const task = await Task.update({title, CategoryId}, {where: {id: taskId}})
             if (!task) {
                 return res.status(400).json({message: 'Task Not Found'})
-        }
-            return res.status(200).json(task)
+            } else {
+                return res.status(200).json(task)
+            }
         }
         catch(err) {
             console.log(err, '<<<< error Update task')
@@ -68,7 +70,11 @@ class TaskController {
             //     return res.status(400).json({message: 'Task Not Found'})
             // }
             const task = await Task.destroy({where: {id: taskId}})
-            return res.status(200).json(task)
+            if (!task) {
+                return res.status(400).json({message: 'Task Not Found'})
+            } else {
+                return res.status(200).json(task)
+            }
         }
         catch(err) {
             console.log(err, '<<<<< error delete task')

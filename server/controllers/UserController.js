@@ -26,6 +26,7 @@ class UserController {
                 return res.status(400).json({message: "Invalid Password"})
             }
             const access_token = generateToken({email, id: user.id})
+            console.log(access_token);
             return res.status(200).json({access_token})
         }
         catch(err) {

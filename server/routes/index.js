@@ -10,6 +10,7 @@ router.post('/login', UserController.login)
 router.use(authentication)
 // Organization
 router.get('/organization', OrganizationController.showOrganization)
+router.post('/organization/:organizationId', OrganizationController.joinOrganization)
 router.post('/organization', OrganizationController.addOrganization)
 
 // Task
