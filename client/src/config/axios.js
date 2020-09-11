@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "https://kanban-fox46.herokuapp.com/",
 });
 
 // Add a response interceptor
