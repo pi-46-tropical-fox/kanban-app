@@ -1,0 +1,5 @@
+- props => kirim data dari parent ke child
+- emit => kirim event/data dari child ke parent
+- kirim data dari parent ke child, contoh syntax => <ListTodo :todosData="todos"> </ListTodo>
+- class bootstrap kalo sama semua bisa didefinisiin di child, kalo beda2 di parent, disimpan di key textClass:
+ 
