@@ -4,10 +4,10 @@ Membuat kanban web app
 ## RESTful endpoints
 List of available endpoint:
 
-  - `POST /dashboard`
-  - `GET /dashboard`
-  - `PUT /dashboard/:id`
-  - `DELETE /dashboard/:id`
+  - `POST /tasks`
+  - `GET /tasks`
+  - `PUT /tasks/:id`
+  - `DELETE /tasks/:id`
   - `POST /register`
   - `POST /login`
 

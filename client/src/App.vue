@@ -19,7 +19,8 @@ export default {
     data(){
         return {
             page:'loginPage',
-            baseUrl: 'http://localhost:3000',
+            baseUrl:"https://thawing-bastion-24284.herokuapp.com/"
+            //baseUrl: 'http://localhost:3000',
             tasks:[]
         }
     },
