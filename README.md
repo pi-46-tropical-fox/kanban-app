@@ -140,6 +140,7 @@ Request Header
 ```
 {
     < organization's id >
+    access_token
 }
 ```
 
@@ -196,3 +197,162 @@ Response 500 - Interval Server Error(Failed)
 }
 ``` 
 
+# POST /board/:orgId
+> Post Board
+Request Header
+```
+{
+    < organization's id >
+    access_token
+}
+```
+
+Request Body
+```
+{
+    name : "Example Name"
+}
+```
+
+Response 201 - Created (Success)
+```
+{
+    "id": 2,
+    "name": "Board",
+    "OrganizationId": 1,
+    "updatedAt": "2020-09-11T16:52:50.071Z",
+    "createdAt": "2020-09-11T16:52:50.071Z"
+}
+```
+
+Response 400 - Bad Request(Failed)
+```
+errors : {
+    "message": "Invalid requests"
+}
+```
+
+Response 500 - Interval Server Error(Failed)
+```
+"errors": {
+    "Interval Server Error"
+}    
+``` 
+
+# GET /category/:boardId
+> Get All Category Belong To Certain Board
+Request Header
+```
+{
+    < board's id >
+    access_token
+}
+```
+
+Request Body
+```
+    Not Needed
+```
+
+Response 200 - (Success)
+```
+{
+    "id": 2,
+    "name": "Board",
+    "createdAt": "2020-09-11T16:52:50.071Z",
+    "updatedAt": "2020-09-11T16:52:50.071Z",
+    "OrganizationId": 1,
+    "Categories": []
+}
+```
+
+Response 500 - Interval Server Error(Failed)
+```
+"errors": {
+    "Interval Server Error"
+}
+``` 
+
+# POST /category/:boardId
+> Post Category
+Request Header
+```
+{
+    < board's id >
+    access_token
+}
+```
+
+Request Body
+```
+{
+    name : "Example Name"
+}
+```
+
+Response 201 - Created (Success)
+```
+{
+    "id": 2,
+    "name": "Board",
+    "createdAt": "2020-09-11T16:52:50.071Z",
+    "updatedAt": "2020-09-11T16:52:50.071Z",
+    "OrganizationId": 1,
+    "Categories": []
+}
+```
+
+Response 400 - Bad Request(Failed)
+```
+errors : {
+    "message": "Invalid requests"
+}
+```
+
+Response 500 - Interval Server Error(Failed)
+```
+"errors": {
+    "Interval Server Error"
+}    
+``` 
+
+# GET /organization
+> Get All Organization
+Request Header
+```
+{
+    access_token
+}
+```
+
+Request Body
+```
+    Not Needed
+```
+
+Response 200 - (Success)
+```
+[
+    {
+        "id": 1,
+        "name": "Hacktiv8",
+        "description": "KAKAKAKA",
+        "createdAt": "2020-09-11T14:20:57.389Z",
+        "updatedAt": "2020-09-11T14:20:57.389Z"
+    },
+    {
+        "id": 2,
+        "name": "Purwadhika",
+        "description": "KAKAKAKA",
+        "createdAt": "2020-09-11T14:20:57.389Z",
+        "updatedAt": "2020-09-11T14:20:57.389Z"
+    }
+]
+```
+
+Response 500 - Interval Server Error(Failed)
+```
+"errors": {
+    "Interval Server Error"
+}
+``` 
