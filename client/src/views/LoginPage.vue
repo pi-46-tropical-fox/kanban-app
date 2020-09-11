@@ -19,6 +19,8 @@
                     </div>
                     <div style="text-align: left;">
                         <button type="submit" class="btn">Login</button>
+                        <p>or login with :</p>
+                        <div @click.prevent="onSignIn" style="text-align: center;" class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                     <div style="color: #fff">Don't have an account?
                         <a href="" @click.prevent="showRegisterForm" class="register-link">Register here</a>
@@ -56,6 +58,10 @@ export default {
         },
         showRegisterForm(){
             this.$emit('showRegisterForm')
+            this.clearField()
+        },
+        onSignIn(googleUser){
+            this.$emit('onSignIn',googleUser)
             this.clearField()
         }
     }

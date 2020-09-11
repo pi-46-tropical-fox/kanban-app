@@ -89,9 +89,12 @@ body {
 .form-box .form-input input:valid{
     border-bottom: 2px solid #48403d;
 }
-.register-link, .login-link{
+.register-link, .login-link, .form-box p{
     color: #fff;
     font-weight: bold;
+}
+.form-box p , .g-signin2{
+    margin-bottom: 10px;
 }
 .forget-link:hover, .register-link:hover, .login-link:hover{
     color: #292525;
@@ -106,7 +109,7 @@ body {
     color: #000;
     font-weight: bold;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     transition: 0.5s;
 }
 
