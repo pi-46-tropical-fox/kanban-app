@@ -7,6 +7,8 @@ routes.post('/register', UserController.register);
 
 routes.post('/login', UserController.login);
 
+routes.post('/googleSign', UserController.googleLogin);
+
 routes.put('/users/:id', authentication, authorizationUserByUserId, UserController.update);
 
 routes.get('/users/:id', authentication, authorizationUserByUserId, UserController.byId);

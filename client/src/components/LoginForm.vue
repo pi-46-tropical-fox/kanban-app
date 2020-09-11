@@ -22,26 +22,38 @@
 			</div>
 
 			<button type="submit" class="button btn-sign is-medium is-fullwidth">Sign In</button>
-			<button class="button btn-google is-medium is-fullwidth mt-2">
+			<GoogleLogin class="button btn-google is-medium is-fullwidth mt-2" :params="params" :onSuccess="onSuccess" :onFailure="onFailure">
 				<span class="icon">
 					<i class="icon-google"></i>
 				</span>
 				<span class="name">Sign In with google</span>
-				<span class="name-signed-in"></span>
-			</button>
+			</GoogleLogin>
 			<p class="has-text-centered">Don't have an account? <a @click="switchForm">Sign Up</a></p>
 		</div>
 	</form>
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
 export default {
 	name: 'LoginForm',
+
+	components: {
+		GoogleLogin,
+	},
 
 	data() {
 		return {
 			email: '',
 			password: '',
+			params: {
+				client_id: '260472035546-m8mvsdrq923g47heklpagab4pj6foig8.apps.googleusercontent.com',
+			},
+			renderParams: {
+				width: 250,
+				height: 50,
+				longtitle: true,
+			},
 		};
 	},
 
@@ -57,6 +69,14 @@ export default {
 			};
 
 			this.$emit('loginForm', payload);
+		},
+
+		onSuccess(googleUser) {
+			this.$emit('googleSign', googleUser.wc.id_token);
+		},
+
+		onFailure() {
+			this.$emit('switchForm', 'register');
 		},
 	},
 };

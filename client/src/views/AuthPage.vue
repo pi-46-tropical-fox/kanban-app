@@ -10,9 +10,9 @@
 				<div class="column form-side">
 					<div class="form-auth">
 						<h1 class="title">Kanban App</h1>
-						<RegisterForm @registerForm="register" @switchForm="switchForm" v-if="currentForm === 'RegisterForm'"></RegisterForm>
+						<RegisterForm @googleSign="googleSign" @registerForm="register" @switchForm="switchForm" v-if="currentForm === 'RegisterForm'"></RegisterForm>
 
-						<LoginForm @loginForm="login" @switchForm="switchForm" v-if="currentForm === 'LoginForm'"></LoginForm>
+						<LoginForm @googleSign="googleSign" @loginForm="login" @switchForm="switchForm" v-if="currentForm === 'LoginForm'"></LoginForm>
 					</div>
 				</div>
 			</div>
@@ -77,6 +77,29 @@ export default {
 					this.$emit('checkAuth');
 				})
 				.catch(err => {
+					Swal.fire({
+						icon: 'error',
+						titleText: 'Validation error',
+						html: err.response.data.errors.map(err => err.message).join('<br />'),
+					});
+				});
+		},
+
+		googleSign(google_access_token) {
+			axios({
+				url: '/googleSign',
+				method: 'POST',
+				headers: {
+					google_access_token,
+				},
+			})
+				.then(({ data }) => {
+					localStorage.setItem('access_token', data.access_token);
+					localStorage.setItem('user_id', data.id);
+					this.$emit('checkAuth');
+				})
+				.catch(err => {
+					console.log(err);
 					Swal.fire({
 						icon: 'error',
 						titleText: 'Validation error',

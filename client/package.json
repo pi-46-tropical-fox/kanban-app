@@ -15,6 +15,7 @@
     "bulma": "^0.9.0",
     "sweetalert2": "^10.0.2",
     "vue": "^2.6.12",
+    "vue-google-login": "^2.0.5",
     "vue-hot-reload-api": "^2.3.4",
     "vuedraggable": "^2.24.1"
   },

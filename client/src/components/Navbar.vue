@@ -25,6 +25,7 @@
 						<a href="#" class="button is-danger" @click="logoutButton">
 							<span>Logout</span>
 						</a>
+						<!-- <GoogleLogin class="button is-danger" @click="logoutButton" :params="params" :logoutButton="true">Logout</GoogleLogin> -->
 					</div>
 				</div>
 			</div>
@@ -33,14 +34,22 @@
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
 export default {
 	name: 'Navbar',
 
 	props: ['userData'],
 
+	components: {
+		GoogleLogin,
+	},
+
 	data() {
 		return {
 			username: '',
+			params: {
+				client_id: '260472035546-m8mvsdrq923g47heklpagab4pj6foig8.apps.googleusercontent.com',
+			},
 		};
 	},
 
