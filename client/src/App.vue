@@ -74,7 +74,7 @@ export default {
         })
         .catch(console.log);
     },
-    register(payload) {
+    register(paylod) {
       const { email, password } = paylod;
       axios
         .post("/register", {
@@ -82,7 +82,7 @@ export default {
           password,
         })
         .then(({ data }) => {
-          // console.log(data)          
+          console.log(data)          
           this.changePage("login");
         })
         .catch(console.log);
