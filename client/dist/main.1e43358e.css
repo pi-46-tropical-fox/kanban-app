@@ -1,6 +1,3 @@
-*[data-v-a48808] {
-    background-color: #74b9ff;
-}
 #cardLogin[data-v-dd6db8] {
     display: flex;
     margin-top: 50px;
@@ -10,4 +7,13 @@
     display: flex;
     margin-top: 50px;
     justify-content: center;
+}
+#cardStatus {
+    overflow-y: scroll;
+}
+#card-text[data-v-efdf55] {
+    font-size: 14px;
+}
+#container[data-v-efdf55] {
+    overflow-x:auto
 }

@@ -11362,7 +11362,244 @@ render._withStripped = true
       
       }
     })();
-},{"../config/axios.js":"src/config/axios.js","../components/Login-1":"src/components/Login-1.vue","../components/Register-1":"src/components/Register-1.vue","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/Dashboard.vue":[function(require,module,exports) {
+},{"../config/axios.js":"src/config/axios.js","../components/Login-1":"src/components/Login-1.vue","../components/Register-1":"src/components/Register-1.vue","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/CardTask.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "CardTask",
+  props: ['task']
+};
+exports.default = _default;
+        var $074bd6 = exports.default || module.exports;
+      
+      if (typeof $074bd6 === 'function') {
+        $074bd6 = $074bd6.options;
+      }
+    
+        /* template */
+        Object.assign($074bd6, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card mb-4 rounded bg-light" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("p", { staticClass: "card-text", attrs: { id: "card-text" } }, [
+              _vm._v("Task : " + _vm._s(_vm.task.title))
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+        _c("img", {
+          attrs: { src: "/move.3b723965.svg", alt: "" }
+        }),
+        _vm._v("Move")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+      _c("img", {
+        attrs: { src: "/edit.4c7be04f.svg", alt: "" }
+      }),
+      _vm._v("Edit")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "card-link", attrs: { href: "#" } }, [
+      _c("img", {
+        attrs: { src: "/trash-2.87f9fd72.svg", alt: "" }
+      }),
+      _vm._v("Delete")
+    ])
+  }
+]
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$074bd6', $074bd6);
+          } else {
+            api.reload('$074bd6', $074bd6);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"D:\\Data\\Hacktiv8\\Phase-02\\02.W2\\D2\\01. Kanban Board App\\kanban-app\\client\\assets\\move.svg":[["move.3b723965.svg","assets/move.svg"],"assets/move.svg"],"D:\\Data\\Hacktiv8\\Phase-02\\02.W2\\D2\\01. Kanban Board App\\kanban-app\\client\\assets\\edit.svg":[["edit.4c7be04f.svg","assets/edit.svg"],"assets/edit.svg"],"D:\\Data\\Hacktiv8\\Phase-02\\02.W2\\D2\\01. Kanban Board App\\kanban-app\\client\\assets\\trash-2.svg":[["trash-2.87f9fd72.svg","assets/trash-2.svg"],"assets/trash-2.svg"],"_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/CardStatus.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _CardTask = _interopRequireDefault(require("../components/CardTask"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "CardStatus",
+  components: {
+    CardTask: _CardTask.default
+  },
+  props: ['status', 'tasksData']
+};
+exports.default = _default;
+        var $9f7983 = exports.default || module.exports;
+      
+      if (typeof $9f7983 === 'function') {
+        $9f7983 = $9f7983.options;
+      }
+    
+        /* template */
+        Object.assign($9f7983, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "col-3", attrs: { id: "cardStatus" } }, [
+      _c("div", { staticClass: "shadow bg-info  text-white rounded" }, [
+        _vm._v("\n            " + _vm._s(_vm.status.status) + "\n        ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "shadow p-2" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.tasksData, function(task) {
+            return _c("CardTask", { key: task.id, attrs: { task: task } })
+          }),
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$9f7983', $9f7983);
+          } else {
+            api.reload('$9f7983', $9f7983);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"../components/CardTask":"src/components/CardTask.vue","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/Dashboard.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11372,8 +11609,30 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("../config/axios.js"));
 
+var _CardTask = _interopRequireDefault(require("../components/CardTask"));
+
+var _CardStatus = _interopRequireDefault(require("../components/CardStatus"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11392,8 +11651,11 @@ var _default = {
       currentPage: 'dashboardPage'
     };
   },
-  props: ['tasksData'],
-  components: {},
+  props: ['tasksData', 'statusesData'],
+  components: {
+    CardTask: _CardTask.default,
+    CardStatus: _CardStatus.default
+  },
   methods: {
     fetchTasks: function fetchTasks() {
       var _this = this;
@@ -11427,7 +11689,7 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { attrs: { id: "container" } }, [
     _vm.currentPage === "dashboardPage"
       ? _c("h1", { staticClass: "text-center mt-5 " }, [
           _vm._v(_vm._s(_vm.message))
@@ -11437,7 +11699,18 @@ exports.default = _default;
     _vm.currentPage === "dashboardPage"
       ? _c("p", { staticClass: "text-center " }, [_vm._v(_vm._s(_vm.message2))])
       : _vm._e(),
-    _vm._v("\r\n    " + _vm._s(_vm.tasksData) + "\r\n")
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.statusesData, function(status, i) {
+        return _c("CardStatus", {
+          key: i,
+          attrs: { status: status, tasksData: _vm.tasksData }
+        })
+      }),
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -11473,7 +11746,7 @@ render._withStripped = true
       
       }
     })();
-},{"../config/axios.js":"src/config/axios.js","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"../config/axios.js":"src/config/axios.js","../components/CardTask":"src/components/CardTask.vue","../components/CardStatus":"src/components/CardStatus.vue","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11506,6 +11779,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'App',
   data: function data() {
@@ -11514,7 +11788,20 @@ var _default = {
       message2: 'Manage your project easily',
       // currentPage: 'loginPage',
       currentPage: 'registerPage',
-      tasks: []
+      tasks: [],
+      statuses: [{
+        status: "BackLog",
+        backgroundColor: 'bg-primary'
+      }, {
+        status: "To Do",
+        backgroundColor: 'bg-primary'
+      }, {
+        status: "Doing",
+        backgroundColor: 'bg-primary'
+      }, {
+        status: "Done",
+        backgroundColor: 'bg-primary'
+      }]
     };
   },
   components: {
@@ -11581,7 +11868,9 @@ exports.default = _default;
       _vm.currentPage === "loginPage" ? _c("AuthPage") : _vm._e(),
       _vm._v(" "),
       _vm.currentPage === "dashboardPage"
-        ? _c("DashboardPage", { attrs: { tasksData: _vm.tasks } })
+        ? _c("DashboardPage", {
+            attrs: { tasksData: _vm.tasks, statusesData: _vm.statuses }
+          })
         : _vm._e()
     ],
     1
@@ -11594,7 +11883,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-a48808",
+            _scopeId: null,
             functional: undefined
           };
         })());
@@ -11662,7 +11951,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57133" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

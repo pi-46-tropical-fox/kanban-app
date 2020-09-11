@@ -9,6 +9,7 @@
         <DashboardPage
             v-if="currentPage === 'dashboardPage'"
             v-bind:tasksData="tasks"
+            v-bind:statusesData="statuses"
         >
         </DashboardPage>
     </div>
@@ -27,7 +28,26 @@ export default {
             message2: 'Manage your project easily',
             // currentPage: 'loginPage',
             currentPage: 'registerPage',
-            tasks: []
+            tasks: [],
+            statuses: [
+                {
+                    status: "BackLog",
+                    backgroundColor: 'bg-primary'
+                },
+                {
+                    status: "To Do",
+                    backgroundColor: 'bg-primary'
+                },
+                {
+                    status: "Doing",
+                    backgroundColor: 'bg-primary'
+                },
+                {
+                    status: "Done",
+                    backgroundColor: 'bg-primary'
+                },
+
+            ]
         };
     },
     components: {
@@ -72,9 +92,6 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-    background-color: #74b9ff;
-}
+<style>
 
 </style>
