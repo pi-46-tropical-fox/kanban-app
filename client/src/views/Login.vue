@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="mt-5 shadow p-2 text-muted">Kanban App</h3>
+    <h3 class="mt-5 p-2 text-muted">Kanban App</h3>
     <!-- login -->
     <div class="container mt-5" id="form-login">
       <div class="row">
@@ -33,6 +33,10 @@
         </div>
       </div>
     </div>
+    <!-- Footer -->
+    <footer>
+      <p class="mt-5 mb-3 text-muted text-center">Created by Full-Stuck Developer &copy; 2020</p>
+    </footer>
   </div>
 </template>
 
@@ -57,9 +61,10 @@ export default {
     register() {
       this.$emit("registerClick");
     },
-    OnGoogleAuthSuccess (idToken) {
-      console.log(idToken, "google_access_token");
-      // Receive the idToken and make your magic with the backend
+    OnGoogleAuthSuccess (google_access_token) {
+      console.log(google_access_token, "google_access_token");
+      // Receive the google_access_token and make your magic with the backend
+      this.$emit("googleLogin", google_access_token);
     },
     OnGoogleAuthFail (error) {
       console.log(error, "google sign in error");

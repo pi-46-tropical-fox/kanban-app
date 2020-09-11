@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="mt-5 shadow p-2 text-muted">Kanban App</h3>
+    <h3 class="mt-5 p-2 text-muted">Kanban App</h3>
     <!-- register -->
     <div class="container mt-5" id="form-register">
       <div class="row">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-5 ml-auto">
-                    <input type="submit" class="form-control btn btn-dark" />
+                    <input type="submit" class="form-control btn btn-secondary" />
                   </div>
                 </div>
               </form>
@@ -36,6 +36,10 @@
         </div>
       </div>
     </div>
+    <!-- Footer -->
+    <footer>
+      <p class="mt-5 mb-3 text-muted text-center">Created by Full-Stuck Developer &copy; 2020</p>
+    </footer>
   </div>
 </template>
 

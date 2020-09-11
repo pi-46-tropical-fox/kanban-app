@@ -9,13 +9,14 @@
         :key="task.id"
         :task="task"
         :categoriesData="categoriesData"
+        :isEdit="isEdit"
         @deleteClick="deleteClick"
         @editClick="editClick"
         >
       </TaskCard>
       <div class="form-group row">
         <div class="col-md-5 ml-auto">
-          <a @click.prevent="toggleFormAdd" href="#" class="btn btn-secondary">+/-</a>
+          <a @click.prevent="toggleFormAdd" href="#" class="btn btn-secondary">+ Add</a>
         </div>
       </div>
       <form @submit.prevent="addTask" v-if="isAdd">
@@ -38,7 +39,7 @@
 import TaskCard from "./taskCard"
 export default {
   name: "CategoryCard",
-  props: ["category", "tasksData", "categoriesData"],
+  props: ["category", "tasksData", "categoriesData", "isEdit"],
   data() {
     return {
       isAdd: false,

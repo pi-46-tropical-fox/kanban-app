@@ -9,6 +9,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
+            <p class="text-muted">{{ active_user }}</p>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link text-muted" href="#" @click="logout">Logout</a>
           </li>
         </ul>
@@ -21,6 +24,7 @@
         :category="category"
         :tasksData="tasksData"
         :key="category.id"
+        :isEdit="isEdit"
         :categoriesData="categoriesData"
         @addTaskSubmit="addTaskSubmit"
         @deleteClick="deleteClick"
@@ -40,7 +44,7 @@
 import CategoryCard from "../components/categoryCard";
 export default {
   name: "Dashboard",
-  props: ["tasksData", "categoriesData"],
+  props: ["tasksData", "categoriesData", "active_user", "isEdit"],
   components: {
     CategoryCard
   },

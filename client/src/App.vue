@@ -4,6 +4,7 @@
       v-if="currentPage === 'loginPage'"
       @loginSubmit="login"
       @registerClick="renderRegister"
+      @googleLogin="googleLogin"
       >
     </LoginPage>
     <RegisterPage
@@ -16,6 +17,8 @@
       v-else-if="currentPage === 'dashboardPage'"
       :tasksData="tasks" 
       :categoriesData="categories"
+      :active_user="active_user"
+      :isEdit="isEdit"
       @backToLogin="checkAuth"
       @addTaskSubmit="addTask"
       @deleteClick="deleteClick"
@@ -38,7 +41,9 @@ export default {
       message: "Hello world",
       currentPage: "loginPage",
       tasks: [],
-      categories: []
+      categories: [],
+      active_user: "",
+      isEdit: false
     };
   },
   components: {
@@ -51,6 +56,7 @@ export default {
       if (localStorage.access_token) {
         this.currentPage = "dashboardPage";
         this.fetchCategories();
+        this.active_user = localStorage.email_user;
       } else {
         this.currentPage = "loginPage"
       }
@@ -64,8 +70,10 @@ export default {
         data: payload
       })
         .then(({data}) => {
-          this.currentPage = "dashboardPage"
           localStorage.setItem("access_token", data.access_token);
+          localStorage.setItem("email_user", data.email);
+          this.active_user = localStorage.email_user;
+          this.currentPage = "dashboardPage"
           console.log(data);
           this.fetchCategories();
         })
@@ -106,7 +114,6 @@ export default {
         .catch((err) => {
           console.log(err);
           swal(err.response.data.errors[0], "Error", "error");
-
         });
     },
     renderRegister() {
@@ -119,9 +126,10 @@ export default {
         method: "POST",
         data: payload
       })
-        .then((data) => {
+        .then(({ data }) => {
           this.currentPage = "dashboardPage"
           localStorage.setItem("access_token", data.access_token);
+          localStorage.setItem("email_user", data.email);
           console.log(data);
         })
         .catch((err) => {
@@ -140,8 +148,8 @@ export default {
         },
         data: payload
       })
-        .then((data) => {
-          swal("Good job!", "You clicked the button!", "success");
+        .then(({ data }) => {
+          swal("Add Success", "A new task has been aded successfully!", "success");
           this.fetchCategories();
           this.fetchTasks();
           console.log(data);
@@ -155,7 +163,7 @@ export default {
     deleteClick(deleteId) {
       swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this tasks!",
+        text: "Once deleted, you will not be able to recover this task!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -169,7 +177,7 @@ export default {
               access_token: localStorage.access_token
             }
           })
-            .then((data) => {
+            .then(({ data }) => {
               this.fetchCategories();
               this.fetchTasks();
             })
@@ -181,8 +189,6 @@ export default {
           swal("Your task has been deleted!", {
             icon: "success",
           });
-        } else {
-          swal("Your task is safe!");
         }
       });
     },
@@ -195,15 +201,34 @@ export default {
         },
         data: payload
       })
-        .then((data) => {
+        .then(({ data }) => {
+          swal("Edit Success", "A task has been edited successfully!", "success");
           this.fetchCategories();
           this.fetchTasks();
+          this.isEdit = false;
         })
         .catch((err) => {
           console.log(err);
           swal(err.response.data.errors[0], "Error", "error");
 
         });
+    },
+    googleLogin(google_access_token) {
+      axios({
+        url: `/googleLogin`,
+        method: "POST",
+        headers: { google_access_token }
+      })
+        .then(({ data }) => {
+          this.currentPage = "dashboardPage"
+          localStorage.setItem("access_token", data.access_token);
+          localStorage.setItem("email_user", data.email);
+          console.log(data);
+          this.fetchCategories();
+        })
+        .catch((err) => {
+          console.log(err, "<<<< error google login");
+        })
     }
   },
   created() {
