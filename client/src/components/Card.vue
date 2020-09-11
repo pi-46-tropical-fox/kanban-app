@@ -1,17 +1,7 @@
 <template>
   <div>
-    <h6 style="font-weight: bold;">{{ org.title }}</h6>
-    <draggable :move="onMove" :list="org.Tasks" group="task" :category="org.id">
-      <div v-for="task in org.Tasks" :key="task.id" :id="task.id">
-        <a href="#" v-b-modal.modal-5 v-on:click="getTaskDetail(task.id)">
-          <div
-            class="shadow-sm rounded"
-            style="background-color: #fff;font-size: 12px;margin-top: 1em;"
-          >
-            <p style="padding:5px;color:black;">{{ task.title }}</p>
-          </div>
-        </a>
-      </div>
+    <draggable :move="onMove" :list="org.Tasks" group="task" :category="org.id" style="width:15em;">    
+        <CardItem v-for="task in org.Tasks" :key="task.id" :id="task.id" :task="task" @getTaskDetail="getTaskDetail"></CardItem>
     </draggable>
     <div v-if="activeId != org.id" style="font-size: 12px;margin-top: 1em;">
       <a href="#" style="padding:5px;" v-on:click="showAddTaskForm(org.id)">
@@ -46,6 +36,7 @@
 <script>
 import axios from "axios";
 import draggable from "vuedraggable";
+import CardItem from "../components/CardItem"
 
 export default {
   name: "Card",
@@ -58,20 +49,22 @@ export default {
     };
   },
   components: {
-      draggable
+      draggable,
+      CardItem
   },
   props: [ 'org', 'categoryData', 'getCategory'],
   methods: {
     getTaskDetail(id) {
       axios({
         method: "get",
-        url: `http://localhost:3000/task/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
       })
         .then((res) => {
             this.$emit("detailData", res.data)
+            console.log(res.data, 'ini dari')
         })
         .catch((err) => {
           console.log(err);
@@ -81,7 +74,7 @@ export default {
     postTask(id) {
       axios({
         method: "post",
-        url: `http://localhost:3000/task/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -109,7 +102,7 @@ export default {
 
       axios({
         method: "put",
-        url: `http://localhost:3000/task/${this.currentPost}`,
+        url: `https://ardy-kanban.herokuapp.com/task/${this.currentPost}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },

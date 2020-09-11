@@ -22,7 +22,7 @@ export default {
     getCategory(id) {
       axios({
         method: "get",
-        url: `http://localhost:3000/category/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/category/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },

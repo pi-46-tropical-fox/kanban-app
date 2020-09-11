@@ -40,7 +40,6 @@ class Controller {
 
     static async updateTaskPos(req, res) {
         try {
-            console.log(req.body)
             const { CurrentCategory } = req.body
             const id = req.params.id
 
@@ -49,6 +48,19 @@ class Controller {
             res.status(200).json(update)
         } catch(err) {
             console.log(err)
+            res.status(500).json("Interval Server Error")
+        }
+    }
+
+    static async updateTask(req, res) {
+        try {
+            const { title, description} = req.body
+            const id = req.params.id
+
+            const update = await Task.update({ title, description }, {where : { id }})
+
+            res.status(200).json(update)
+        } catch(err) {
             res.status(500).json("Interval Server Error")
         }
     }

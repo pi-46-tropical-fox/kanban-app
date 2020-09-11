@@ -30,7 +30,7 @@ export default {
   methods: {
     getBoard(id) {
       axios
-        .get(`http://localhost:3000/board/${id}`, {
+        .get(`https://ardy-kanban.herokuapp.com/board/${id}`, {
           headers: {
             access_token: localStorage.getItem("access_token"),
           },
@@ -46,12 +46,13 @@ export default {
     getCategory(id) {
       axios({
         method: "get",
-        url: `http://localhost:3000/category/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/category/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
       })
         .then((res) => {
+          console.log(res.data)
           this.categoryData = res.data;
           this.$props.changePage("category");
           this.$emit("getKanban", this.categoryData);

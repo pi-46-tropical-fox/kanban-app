@@ -72,7 +72,7 @@ export default {
   methods: {
     getOrganization() {
       axios
-        .get("http://localhost:3000/organization/my", {
+        .get("https://ardy-kanban.herokuapp.com/organization/my", {
           headers: {
             access_token: localStorage.getItem("access_token"),
           },
@@ -88,7 +88,7 @@ export default {
     postOrganization() {
       axios({
         method: "post",
-        url: "http://localhost:3000/organization",
+        url: "https://ardy-kanban.herokuapp.com/organization",
         data: {
           name: this.name,
           description: this.description,

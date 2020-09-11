@@ -1,6 +1,7 @@
-const { User } = require('../models')
+const { User, Membership } = require('../models')
 const { verifyHash } = require('../helpers/hashPassword')
 const { generateToken } = require('../helpers/token')
+const { OAuth2Client } = require('google-auth-library');
 
 class Controller {
     static async login(req, res) {
@@ -17,7 +18,7 @@ class Controller {
 
                     res.status(200).json({access_token : token})
                 } else {
-                    res.status(401).json(`Email / Password Salah`)
+                    res.status(401).json({ msg :  'Email / Password Salah'})
                 }
             } else {
                 res.status(401).json(`Email / Password Salah`)
@@ -32,17 +33,58 @@ class Controller {
         try {
             const { email, name, password } = req.body
 
-            await User.create({ email, name, password })
+            const user = await User.create({ email, name, password })
+            await Membership.create({UserId : user.id, OrganizationId : 1, role: 'member'})
 
             res.status(201).json({ email, name })
         } catch (err) {
-            console.log(err);
             res.status(500).json('Interval Server Error')
         }
     }
 
-    static async googleSignIn(req, res) {
-        
+    static async googleLogin(req, res, next) {
+        try {
+            const client = new OAuth2Client(process.env.CLIENT_ID);
+            const { id_token } = req.headers
+            
+            const ticket = await client.verifyIdToken({
+                idToken: id_token,
+                audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+                // Or, if multiple clients access the backend:
+                //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+            });
+
+            const payload = ticket.getPayload();
+            
+            const userFind = await User.findOne({where : {email : payload.email}})
+
+            if(userFind) {
+                const cred = {
+                    name : userFind.name,
+                    email : userFind.email,
+                    id : userFind.id
+                }
+
+                const token = generateToken(cred)
+
+                res.status(200).json({access_token : token})
+            } else {
+                const userCred = {
+                    name: payload.name,
+                    email : payload.email,
+                    password : process.env.GOOGLE_PASS_CRED
+                }
+
+                const user = await User.create(userCred)
+                await Membership.create({UserId : user.id, OrganizationId : 1, role: 'member'})
+                // diulang supaya klo user google blm ada bisa langsung masuk tanpa reload
+                const token = generateToken({email : user.email, id : user.id, name : user.name})
+
+                res.status(200).json({access_token : token})
+            }
+        } catch(err) {
+            next(err)
+        }
     }
 }
 

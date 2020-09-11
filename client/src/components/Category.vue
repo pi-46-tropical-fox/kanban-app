@@ -1,27 +1,21 @@
 <template>
   <div>
-    <div style="display: flex;overflow-x: scroll;height: 90vh;">
-      <div v-for="org in categoryData.Categories" :key="org.id">
-        <div
-          class="shadow-sm p-3 mb-5 rounded"
-          style="margin: 1em;background-color: #ebecf0;width: 15em !important;padding: 1em;"
-        >
-          <Card
-            @detailData="detailData"
-            :org="org"
-            :categoryData="categoryData"
-            :getCategory="getCategory"
-          ></Card>
-        </div>
-      </div>
+    <div style="display: flex;overflow-x: scroll">
+      <CategoryItem
+        v-for="org in categoryData.Categories"
+        :key="org.id"
+        :org="org"
+        :getCategory="getCategory"
+        :categoryData="categoryData"
+        @detailData="detailData"
+      ></CategoryItem>
 
-      <!-- Ini Panjang Karena Form -->
       <div
         class="shadow-sm"
-        style="margin: 1em;background-color: #ebecf0;padding: 1em;height:4em;"
+        style="margin:1em 3em 4em 3em;background-color: #ebecf0;padding: 1em;height:4em;"
       >
         <h6
-          style="font-weight: bold;font-size: 15px;width:10em"
+          style="font-weight: bold;font-size: 15px;width:10em;"
           v-if="!catForm"
           v-on:click="showAddCatForm"
         >
@@ -59,19 +53,25 @@
               <label>Title</label>
               <input
                 type="text"
-                :value="dataDetail.title"
-                placeholder="Enter The Title"
+                v-model="title"
+                :placeholder="dataDetail.title"
               />
             </div>
             <div>
               <label>Description</label>
               <input
                 type="text"
-                :value="dataDetail.description"
-                placeholder="Enter The Description"
+                v-model="description"
+                :placeholder="dataDetail.description"
               />
             </div>
-            <button type="submit" class="btn btn-success">Edit</button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              v-on:click="editTask(dataDetail.id)"
+            >
+              Edit
+            </button>
             <button
               type="submit"
               class="btn btn-danger"
@@ -91,6 +91,7 @@ import Vue from "vue";
 import axios from "axios";
 import draggable from "vuedraggable";
 import Card from "../components/Card";
+import CategoryItem from "../components/CategoryItem";
 
 export default {
   name: "Kanban",
@@ -101,11 +102,13 @@ export default {
       dataDetail: "",
       currentPost: "",
       currentCategory: "",
+      description: ""
     };
   },
   components: {
     draggable,
     Card,
+    CategoryItem,
   },
   props: ["categoryData", "getCategory"],
   methods: {
@@ -114,13 +117,14 @@ export default {
     },
 
     detailData(value) {
+      console.log(value, "detaildata");
       this.dataDetail = value;
     },
 
     postCategory(id) {
       axios({
         method: "post",
-        url: `http://localhost:3000/category/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/category/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -140,7 +144,7 @@ export default {
     deleteTask(id) {
       axios({
         method: "delete",
-        url: `http://localhost:3000/task/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -148,6 +152,29 @@ export default {
         .then((res) => {
           this.$refs["my-modal"].hide();
           this.getCategory(this.$props.categoryData.id);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    editTask(id) {
+      axios({
+        method: "put",
+        url: `https://ardy-kanban.herokuapp.com/task/all/${id}`,
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+        data: {
+          title : this.title,
+          description: this.description
+        },
+      })
+        .then((res) => {
+          this.$refs["my-modal"].hide();
+          this.getCategory(this.$props.categoryData.id);
+          this.title = ""
+          this.description = ""
         })
         .catch((err) => {
           console.log(err);

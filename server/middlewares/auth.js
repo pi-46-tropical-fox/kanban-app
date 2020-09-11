@@ -1,5 +1,5 @@
 const { decodeToken } = require('../helpers/token')
-const { User } = require('../models')
+const { User, Task } = require('../models')
 
 const authentication = async (req, res, next) => {
     try {
@@ -20,6 +20,25 @@ const authentication = async (req, res, next) => {
     }
 }
 
+const authorization = async (req, res, next) => {
+    try {
+        const found = await Task.findByPk(req.params.id)
+
+        if(found === null) {
+            res.status(404).json('404 Not Found')
+        } else {
+            if(found.UserId == req.userData.id) {
+                next()
+            } else {
+                res.status(403).json('Forbidden Access')
+            }
+        } 
+    } catch (err) {
+        res.status(500).json('Interval Server Error')
+    }
+}
+
 module.exports = {
-    authentication
+    authentication,
+    authorization
 }

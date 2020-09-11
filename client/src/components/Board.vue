@@ -82,7 +82,7 @@ export default {
     createBoard(id) {
       axios({
         method: "post",
-        url: `http://localhost:3000/board/${id}`,
+        url: `https://ardy-kanban.herokuapp.com/board/${id}`,
         data: {
           name: this.name,
         },

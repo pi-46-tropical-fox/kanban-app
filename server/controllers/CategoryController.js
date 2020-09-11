@@ -1,4 +1,4 @@
-const { Category, Task, Board } = require('../models');
+const { Category, Task, Board, User } = require('../models');
 
 class Controller {
     static async showAll(req, res) {
@@ -9,8 +9,11 @@ class Controller {
                 },
                 include : [{
                     model: Category,
-                    order: [ 'createdAt', 'ASC' ],
-                    include : [ Task ]
+                    include : [{
+                        model : Task,
+                        order : ['createdAt', 'DESC'],
+                        include : [ User ]
+                    }]
                 }],
             })
 
