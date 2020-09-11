@@ -16,13 +16,13 @@
 			<div class="navbar-end">
 				<div class="navbar-item">
 					<div class="buttons">
-						<a href="#" class="button is-light">
+						<a class="button is-light">
 							<span class="icon">
 								<i class="fas fa-user"></i>
 							</span>
 							<span v-if="userData">{{ userData.username }}</span>
 						</a>
-						<a href="#" class="button is-danger" @click="logoutButton">
+						<a class="button is-danger" @click="logoutButton">
 							<span>Logout</span>
 						</a>
 						<!-- <GoogleLogin class="button is-danger" @click="logoutButton" :params="params" :logoutButton="true">Logout</GoogleLogin> -->

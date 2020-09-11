@@ -99,7 +99,6 @@ export default {
 					this.$emit('checkAuth');
 				})
 				.catch(err => {
-					console.log(err);
 					Swal.fire({
 						icon: 'error',
 						titleText: 'Validation error',

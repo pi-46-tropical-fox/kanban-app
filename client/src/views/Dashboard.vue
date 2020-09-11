@@ -41,154 +41,21 @@
 			</nav>
 
 			<div class="card-wrapper columns">
-				<!-- <div class="column is-narrow">
-					<div class="card box">
-						<h2 class="title is-4">Backlog</h2>
-						<div class="card-item box">
-							<article class="media">
-								<div class="media-content">
-									<div class="content">
-										<h3 class="title is-5">Item</h3>
-										<p class="subtitle is-6">Description</p>
-										<p class="subtitle is-6">bryan.daniswara@gmail.com</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<nav class="level is-mobile">
-										<div class="level-left">
-											<a class="level-item">
-												<span class="icon is-small"><i class="fas fa-edit"></i></span>
-											</a>
-											<a class="level-item">
-												<span class="icon is-small has-text-danger"><i class="fas fa-trash"></i></span>
-											</a>
-										</div>
-									</nav>
-								</div>
-							</article>
-						</div>
-						<div class="card-item box">
-							<a class="button is-fullwidth">
-								<span class="icon is-small">
-									<i class="fas fa-plus"></i>
-								</span>
-								<p class="subtitle is-6">Add item</p>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="column is-narrow">
-					<div class="card box">
-						<h2 class="title is-4">Todo</h2>
-						<div class="card-item box">
-							<article class="media">
-								<div class="media-content">
-									<div class="content">
-										<h3 class="title is-5">Item</h3>
-										<p class="subtitle is-6">Description</p>
-										<p class="subtitle is-6">bryan.daniswara@gmail.com</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<nav class="level is-mobile">
-										<div class="level-left">
-											<a class="level-item">
-												<span class="icon is-small"><i class="fas fa-edit"></i></span>
-											</a>
-											<a class="level-item">
-												<span class="icon is-small has-text-danger"><i class="fas fa-trash"></i></span>
-											</a>
-										</div>
-									</nav>
-								</div>
-							</article>
-						</div>
-						<div class="card-item box">
-							<a class="button is-fullwidth">
-								<span class="icon is-small">
-									<i class="fas fa-plus"></i>
-								</span>
-								<p class="subtitle is-6">Add item</p>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="column is-narrow">
-					<div class="card box">
-						<h2 class="title is-4">Doing</h2>
-						<div class="card-item box">
-							<article class="media">
-								<div class="media-content">
-									<div class="content">
-										<h3 class="title is-5">Item</h3>
-										<p class="subtitle is-6">Description</p>
-										<p class="subtitle is-6">bryan.daniswara@gmail.com</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<nav class="level is-mobile">
-										<div class="level-left">
-											<a class="level-item">
-												<span class="icon is-small"><i class="fas fa-edit"></i></span>
-											</a>
-											<a class="level-item">
-												<span class="icon is-small has-text-danger"><i class="fas fa-trash"></i></span>
-											</a>
-										</div>
-									</nav>
-								</div>
-							</article>
-						</div>
-						<div class="card-item box">
-							<a class="button is-fullwidth">
-								<span class="icon is-small">
-									<i class="fas fa-plus"></i>
-								</span>
-								<p class="subtitle is-6">Add item</p>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="column is-narrow">
-					<div class="card box">
-						<h2 class="title is-4">Done</h2>
-						<div class="card-item box">
-							<article class="media">
-								<div class="media-content">
-									<div class="content">
-										<h3 class="title is-5">Item</h3>
-										<p class="subtitle is-6">Description</p>
-										<p class="subtitle is-6">bryan.daniswara@gmail.com</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<nav class="level is-mobile">
-										<div class="level-left">
-											<a class="level-item">
-												<span class="icon is-small"><i class="fas fa-edit"></i></span>
-											</a>
-											<a class="level-item">
-												<span class="icon is-small has-text-danger"><i class="fas fa-trash"></i></span>
-											</a>
-										</div>
-									</nav>
-								</div>
-							</article>
-						</div>
-						<div class="card-item box">
-							<a class="button is-fullwidth">
-								<span class="icon is-small">
-									<i class="fas fa-plus"></i>
-								</span>
-								<p class="subtitle is-6">Add item</p>
-							</a>
-						</div>
-					</div>
-				</div> -->
-				<CategoryCard v-for="category in categories" :key="category.id" :categories="categories" :category="category" :userData="userData"></CategoryCard>
+				<CategoryCard v-for="category in categories" :key="category.id" :categories="categories" :category="category" :userData="userData" :tasks="tasks" @fetchTask="fetchTask"></CategoryCard>
 				<div class="column is-narrow">
 					<div class="box">
-						<a class="button is-fullwidth">
+						<form v-if="showAddCategoryForm" @submit.prevent="addCategory">
+							<input type="text" v-model="addCategoryName" class="input" placeholder="Category name.." />
+							<div class="field is-grouped is-grouped-centered">
+								<div class="control">
+									<button type="submit" class="button is-primary">Submit</button>
+								</div>
+								<div class="control">
+									<button class="button is-danger is-light" @click="destroyAddCategory">Cancel</button>
+								</div>
+							</div>
+						</form>
+						<a class="button is-fullwidth" @click="addCategoryForm">
 							<span class="icon is-small">
 								<i class="fas fa-plus"></i>
 							</span>
@@ -204,6 +71,7 @@
 <script>
 import axios from '../config/axios';
 import CategoryCard from '../components/CategoryCard';
+import Swal from 'sweetalert2';
 export default {
 	name: 'Dashboard',
 
@@ -217,6 +85,9 @@ export default {
 		return {
 			isActive: false,
 			categories: [],
+			tasks: [],
+			showAddCategoryForm: false,
+			addCategoryName: '',
 		};
 	},
 
@@ -239,21 +110,73 @@ export default {
 			})
 				.then(({ data }) => {
 					this.categories = data;
-					// console.log([...new Set(data.Category.name)]);
-					// console.log(data.map(el => el.Category));
-					// this.categories = data.map(el => el.Category).filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
-					// this.tasks = data;
 				})
 				.catch(err => {
-					console.log(err);
+					Swal.fire({
+						icon: 'error',
+						titleText: 'Error',
+						html: err.response.data.errors.map(err => err.message).join('<br />'),
+					});
 				});
+		},
+
+		fetchTask() {
+			axios({
+				url: '/tasks',
+				method: 'GET',
+				headers: {
+					access_token: localStorage.getItem('access_token'),
+				},
+			})
+				.then(({ data }) => {
+					this.tasks = data;
+				})
+				.catch(err => {
+					Swal.fire({
+						icon: 'error',
+						titleText: 'Error',
+						html: err.response.data.errors.map(err => err.message).join('<br />'),
+					});
+				});
+		},
+
+		addCategoryForm() {
+			this.showAddCategoryForm = true;
+		},
+
+		addCategory() {
+			axios({
+				url: '/categories',
+				method: 'POST',
+				headers: {
+					access_token: localStorage.getItem('access_token'),
+				},
+				data: {
+					name: this.addCategoryName,
+				},
+			})
+				.then(({ result }) => {
+					this.fetchCategory();
+					this.destroyAddCategory();
+				})
+				.catch(err => {
+					Swal.fire({
+						icon: 'error',
+						titleText: 'Validation error',
+						html: err.response.data.errors.map(err => err.message).join('<br />'),
+					});
+				});
+		},
+
+		destroyAddCategory() {
+			this.showAddCategoryForm = false;
+			this.addCategoryName = '';
 		},
 	},
 
-	// 260472035546-m8mvsdrq923g47heklpagab4pj6foig8.apps.googleusercontent.com
-
 	created() {
 		this.fetchCategory();
+		this.fetchTask();
 	},
 };
 </script>

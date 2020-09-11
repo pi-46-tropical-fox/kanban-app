@@ -1,9 +1,17 @@
 <template>
 	<div class="column is-narrow">
-		<draggable class="card box" :list="tasks" :group="tasks" :move="onMove">
-			<h2 class="title is-4">{{ category.name }}</h2>
-			<TaskItem v-for="task in tasks" :key="task.id" :task="task" @editButton="updateTaskForm" @deleteButton="deleteTask" :categories="categories" @MoveToCategory="MoveToCategory"></TaskItem>
-
+		<div class="card box">
+			<!-- <div class="category-header"> -->
+				<h2 class="title is-4">{{ category.name }}</h2>
+				<!-- <a class="button" href="#addTask">
+					<span class="icon is-small">
+						<i class="fas fa-plus"></i>
+					</span>
+				</a>
+			</div> -->
+			<!-- <draggable :group="tasks" :move="onMove"> -->
+			<TaskItem v-for="task in filteredTask" :key="task.id" :task="task" @editButton="updateTaskForm" @deleteButton="deleteTask" :categories="categories" @MoveToCategory="MoveToCategory"></TaskItem>
+			<!-- </draggable> -->
 			<div v-if="showAddTaskForm" class="card-item box">
 				<form @submit.prevent="addTask">
 					<header class="card-header">
@@ -24,6 +32,7 @@
 					<div class="control">
 						<button class="button is-danger is-light" @click="destroyAddTask">Cancel</button>
 					</div>
+					</div>
 				</form>
 			</div>
 			<div class="card-item box">
@@ -34,7 +43,7 @@
 					<p class="subtitle is-6">Add item</p>
 				</a>
 			</div>
-		</draggable>
+		</div>
 		<div class="modal" :class="{ 'is-active': showUpdateTaskForm }">
   			<div class="modal-background" @click="destroyUpdateForm"></div>
 			<div class="modal-content">
@@ -81,7 +90,6 @@ export default {
 
 	data() {
 		return {
-			tasks: [],
 			showAddTaskForm: false,
 			showUpdateTaskForm: false,
 			title: '',
@@ -95,25 +103,9 @@ export default {
 		};
 	},
 
-	props: ['category', 'userData', 'categories'],
+	props: ['category', 'userData', 'categories', 'tasks'],
 
 	methods: {
-		fetchTask() {
-			axios({
-				url: '/tasks',
-				method: 'GET',
-				headers: {
-					access_token: localStorage.getItem('access_token'),
-				},
-			})
-				.then(({ data }) => {
-					this.tasks = data.filter(task => task.Category.id === this.category.id);
-				})
-				.catch(err => {
-					console.log(err);
-				});
-		},
-
 		addTaskForm() {
 			this.showAddTaskForm = true;
 		},
@@ -163,11 +155,15 @@ export default {
 				}
 			})
 				.then(({ result }) => {
-					this.fetchTask();
+					this.$emit('fetchTask');
 					this.destroyAddTask();
 				})
 				.catch(err => {
-					console.log(err);
+					Swal.fire({
+						icon: 'error',
+						titleText: 'Validation error',
+						html: err.response.data.errors.map(err => err.message).join('<br />'),
+					});
 				});
 		},
 
@@ -206,10 +202,14 @@ export default {
 				}
 			})
 			.then(({data}) => {
-				this.fetchTask();
+				this.$emit('fetchTask');
 				this.destroyUpdateForm();
 			}).catch((err) => {
-				console.log(err.response.data.errors);
+				Swal.fire({
+						icon: 'error',
+						titleText: 'Validation error',
+						html: err.response.data.errors.map(err => err.message).join('<br />'),
+					});
 			});
 		},
 
@@ -222,7 +222,7 @@ export default {
 				}
 			})
 			.then(({data}) => {
-				this.fetchTask();
+				this.$emit('fetchTask');
 			}).catch((err) => {
 				Swal.fire({
 					icon: 'error',
@@ -243,9 +243,13 @@ export default {
 				}
 			})
 			.then(({data}) => {
-				//
+				this.$emit('fetchTask');
 			}).catch((err) => {
-				console.log(err.response.data.errors);
+				Swal.fire({
+					icon: 'error',
+					titleText: 'Validation error',
+					html: err.response.data.errors.map(err => err.message).join('<br />'),
+				});
 			});
 		},
 
@@ -254,8 +258,10 @@ export default {
 		}
 	},
 
-	created() {
-		this.fetchTask();
+	computed: {
+		filteredTask() {
+			return this.tasks.filter(task => task.Category.id === this.category.id);
+		},
 	}
 };
 </script>
