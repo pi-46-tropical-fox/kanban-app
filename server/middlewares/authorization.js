@@ -6,7 +6,7 @@ const authorization = (req, res, next) => {
     Task.findByPk (id)
 
     .then (data => {
-        if (data && data.UserId === req.UserData.id) {
+        if (data && data.organization === req.UserData.organization) {
             next ()
         
         } else {

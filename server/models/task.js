@@ -16,10 +16,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Task.init({
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    UserId: DataTypes.INTEGER,
+    CategoryId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Task',
+    hooks : {
+      beforeCreate (task, options) {
+        task.CategoryId = 2
+      }
+    }
   });
   return Task;
 };

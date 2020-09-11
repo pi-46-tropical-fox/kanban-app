@@ -1,0 +1,10 @@
+#cardLogin {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+#cardRegister {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
