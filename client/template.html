@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Kanban App</title>
+</head>
+<body>
+    <div id="app">
+    <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Kanban App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Board</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li> -->
+                </ul>
+            </div>
+        </nav>
+
+        <!-- home -->
+        <section id="section-home">
+            <div class="container-fluid">
+                <div class="row flex-row flex-sm-nowrap py-3">
+                    
+                    <!-- main column 1 -->
+                    <div class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-uppercase text-truncate py-2">To Do</h6>
+                                <div class="items border border-light">
+                                    <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                                        <div class="card-body p-2">
+                                            <div class="card-title">
+                                                <img src="//placehold.it/30" class="rounded-circle float-right">
+                                                <a href="" class="lead font-weight-light">TSK-154</a>
+                                            </div>
+                                            <p>
+                                                This is a description of a item on the board.
+                                            </p>
+                                            <button class="btn btn-primary btn-sm">View</button>
+                                        </div>
+                                    </div>
+                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- main column 2 -->
+                    <div class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-uppercase text-truncate py-2">In-progess</h6>
+                                <div class="items border border-light">
+                                    <div class="card draggable shadow-sm" id="cd1" draggable="true" ondragstart="drag(event)">
+                                        <div class="card-body p-2">
+                                            <div class="card-title">
+                                                <img src="//placehold.it/30" class="rounded-circle float-right">
+                                                <a href="" class="lead font-weight-light">TSK-152</a>
+                                            </div>
+                                            <p>
+                                                This is a task that is being worked on.
+                                            </p>
+                                            <button class="btn btn-primary btn-sm">View</button>
+                                        </div>
+                                    </div>
+                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- main column 3 -->
+                    <div class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title text-uppercase text-truncate py-2">Review</h6>
+                                <div class="items border border-light">
+                                    <div class="card draggable shadow-sm" id="cd9" draggable="true" ondragstart="drag(event)">
+                                        <div class="card-body p-2">
+                                            <div class="card-title">
+                                                <img src="//placehold.it/30" class="rounded-circle float-right">
+                                                <a href="" class="lead font-weight-light">TSK-158</a>
+                                            </div>
+                                            <p>
+                                                This is a description of a item on the board.
+                                            </p>
+                                            <button class="btn btn-primary btn-sm">View</button>
+                                        </div>
+                                    </div>
+                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- main column 4 -->
+                    <div class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title text-uppercase text-truncate py-2">Complete</h6>
+                                <div class="items border border-light">
+                                    <div class="card draggable shadow-sm" id="cd11" draggable="true" ondragstart="drag(event)">
+                                        <div class="card-body p-2">
+                                            <div class="card-title">
+                                                <img src="//placehold.it/30" class="rounded-circle float-right">
+                                                <a href="" class="lead font-weight-light">TSK-144</a>
+                                            </div>
+                                            <p>
+                                                This is a description of an item.
+                                            </p>
+                                            <button class="btn btn-primary btn-sm">View</button>
+                                        </div>
+                                    </div>
+                                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- register -->
+        <section id="section-register">
+            <div class="container">
+                <div class="mx-auto">
+                    <form id="form-register" style="max-width: 60%;" class="mx-auto">
+                        <h1 class="display-1">Register</h1>
+                        <div class="form-group">
+                            <label for="register-email">Email address</label>
+                            <input type="email" class="form-control" id="register-email" v-model="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" class="form-control" id="register-password" v-model="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- login -->
+        <section id="section-login">
+            <div class="container">
+                <form id="form-login" style="max-width: 60%;" class="mx-auto">
+                    <h1 class="display-1">Login</h1>
+                    <div class="form-group">
+                        <label for="login-email">Email address</label>
+                        <input type="email" class="form-control" id="login-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" class="form-control" id="login-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </section>       
+
+        <!-- add -->
+        <section id="section-add">
+            <div class="container">
+                <form id="form-add" style="max-width: 60%;" class="mx-auto">
+                    <h1 class="display-1">Add</h1>
+                    <div class="form-group">
+                        <label for="task-title">Title</label>
+                        <input type="text" class="form-control" id="task-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-category">Category</label>
+                        <select class="custom-select" id="task-category">
+                            <option selected>-- Select Option --</option>
+                            <option value="backlog">Backlog</option>
+                            <option value="todo">To-Do</option>
+                            <option value="doing">Doing</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+
+    <!-- edit -->
+    <!-- <section id="section-edit">
+    </section> -->
+
+    <script>
+        var register = new Vue({
+            el: '#section-register',
+            data: {
+                message: 'Hello Vue!',
+                email: '',
+                password: ''
+            }
+        })
+    </script>
+
+</body>
+</html>
