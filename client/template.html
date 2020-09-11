@@ -1,0 +1,154 @@
+ <!-- Login page -->
+ <section id="login-page">
+    <div class="login-page-left">
+        <img src="./assets/logo.png" alt="login page">
+    </div>
+    <div class="login-page-right">
+        <h1>Sign In</h1>
+        <form>
+            <label>Email</label>
+            <input type="email" id="login-email" required>
+            <label>Password</label>
+            <input type="password" id="login-password" required>
+            <button class="login-btn" type="submit">Login</button><br>
+            <p>Don't have an id? <a href="#">Sign up here</a></p>
+        </form>
+    </div>
+</section>
+
+<!-- Register page -->
+<section id="register-page">
+    <div class="register-page-left">
+        <img src="./assets/logo.png" alt="register page">
+    </div>
+    <div class="register-page-right">
+        <h1>Sign Up</h1>
+        <form>
+            <label>Full Name</label>
+            <input type="name" id="register-fullname" required>
+            <label>Role</label>
+            <input type="role" id="register-role" required>
+            <label>Email</label>
+            <input type="email" id="register-email" required>
+            <label>Password</label>
+            <input type="password" id="register-password" required>
+            <button class="register-btn" type="submit">Register</button><br>
+            <p>Already have an id? <a href="#">Sign in here</a></p>
+        </form>
+    </div>
+</section>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+    <img src="./assets/logo-2.png" class="mh-10" style="width: 50px; height: 50px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" id="navbar-add">
+                <a class="nav-link font-weight-bolder ml-3" href="#" style="color: #ffb142">Add <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active" id="navbar-logout">
+                <a class="nav-link font-weight-bolder" href="#" style="color: #ffb142">Logout <span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Kanban List -->
+<div class="container border border-dark rounded-lg mt-5" id="list-todo">
+    <h3>My Todo List</h3>
+    <div class="row justify-content-md-center">
+        <div class="col-3" v-for="(category, index) in categories">
+            <h5>{{ category }}</h5>
+            <div class="card mt-3 ml-2 mr-2 mb-3 bg-light" id="backlog-cards">
+
+                <div id="accordion1" class="mb-2 mt-2 ml-1 mr-1 shadow-sm">
+                    <div class="card">
+                        <div class="card-header" id="heading2">
+                            <h6 class="card-title">Card title</h6>
+                            <p class="card-subtitle mb-2 text-muted">Card subtitle</p>
+                            <hr>
+                            <p class="card-text text-wrap">sjfnsdkjfndskjf vkdsjv sdkjnfdsjfn sdkjv dkv sdk vdkh
+                                k
+                            </p>
+                            <div class="mb-0">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse1"
+                                        aria-expanded="true" aria-controls="collapse1">
+                                        Actions
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="collapse1" class="collapse bg-light" aria-labelledby="heading1"
+                                data-parent="#accordion2">
+                                <div class="card-body">
+                                    <button type="button"
+                                        class="btn btn-secondary btn-sm btn-block">Edit</button>
+                                    <button type="button"
+                                        class="btn btn-secondary btn-sm btn-block">Delete</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">Move to
+                                        Feature</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="accordion2" class="mb-2 mt-2 ml-1 mr-1 shadow-sm">
+                    <div class="card">
+                        <div class="card-header" id="heading2">
+                            <h6 class="card-title">Card title</h6>
+                            <p class="card-subtitle mb-2 text-muted">Card subtitle</p>
+                            <hr>
+                            <p class="card-text text-wrap">sjfnsdkjfndskjf vkdsjv sdkjnfdsjfn sdkjv dkv sdk vdkh
+                                k
+                            </p>
+                            <div class="mb-0">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse2"
+                                        aria-expanded="true" aria-controls="collapse2">
+                                        Actions
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="collapse2" class="collapse bg-light" aria-labelledby="heading2"
+                                data-parent="#accordion2">
+                                <div class="card-body">
+                                    <button type="button"
+                                        class="btn btn-secondary btn-sm btn-block">Edit</button>
+                                    <button type="button"
+                                        class="btn btn-secondary btn-sm btn-block">Delete</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block">Move to
+                                        Feature</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-3" id="outstanding-todo">
+            <h3>Feature</h3>
+            <div class="card mt-3 ml-2 mr-2 text-white bg-info mb-3" id="outstanding-todos">
+            </div>
+        </div>
+        <div class="col-3" id="completed-todo">
+            <h3>Production</h3>
+            <div class="card mt-3 ml-2 mr-2 text-white bg-info mb-3" id="completed-todos">
+            </div>
+        </div>
+        <div class="col-3" id="outstanding-todo">
+            <h3>Deployment</h3>
+            <div class="card mt-3 ml-2 mr-2 text-white bg-info mb-3" id="outstanding-todos">
+            </div>
+        </div>
+    </div>
+</div>
