@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Projects extends Model {
+  class Project extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,22 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Project.belongsTo(models.Organization)
-      Project.hasMany(models.List)
     }
   };
-  Projects.init({
+  Project.init({
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    uid: {
+    uid: { // just a random, 10-character strings
       type: DataTypes.STRING,
       allowNull: false,
     },
     type: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isIn: {
+          args: [['Public', 'Private']],
+          msg: "Unknown data value"
+        }
+      }
     },
     slug: {
       type: DataTypes.STRING,
@@ -39,9 +43,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     hooks: {
-      afterCreate()
+      beforeValidate(instance, options){
+        let uid = generateRandomStrings(5, true, false)
+        
+        while(this.findOne({ where: { uid } })){
+          uid = generateRandomStrings(5, true, false)
+        }
+
+        instance.uid = uid
+      },
     },
-    modelName: 'Projects',
+    modelName: 'Project',
   });
-  return Projects;
+  return Project;
 };
