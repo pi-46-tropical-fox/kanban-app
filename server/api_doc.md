@@ -32,9 +32,9 @@ not needed
 _Request Body_
 ```json
 {
-  "name": "<name to get insert into>",
-  "email": "<email to get insert into>",
-  "password": "<password to get insert into>",
+  "name": "Faudzan",
+  "email": "test@mail.com",
+  "password": "password",
   "organization": ""
 }
 ```
