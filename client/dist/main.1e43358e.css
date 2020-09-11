@@ -1,0 +1,138 @@
+.sub-title[data-v-a02043] {
+  font-family: 'Nunito', sans-serif;
+}
+.col[data-v-a02043] {
+  font-family: 'Nunito', sans-serif;
+}
+a[data-v-a02043] {
+  font-family: 'Nunito', sans-serif;
+}
+.sub-title {
+  font-family: 'Nunito', sans-serif;
+}
+
+.col {
+  font-family: 'Nunito', sans-serif;
+}
+
+a {
+  font-family: 'Nunito', sans-serif;
+}
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+p {
+  font-family: 'Nunito', sans-serif;
+}
+
+.sidebar-container{
+  height: 100vh;
+  width: 15%;
+  background-color: #ffffff;
+  position: fixed;
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: 0px 5px 5px #e0dada;
+  font-family: 'Karla', sans-serif;
+}
+
+.logo-container{
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.sidebar-menu{
+  padding-left: 0;
+  margin-top: 80px;
+}
+
+.sidebar-menu a{
+  font-weight: lighter;
+  margin: 40px 0px;
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  color: #1e2223;
+}
+
+.sidebar-menu a:hover{
+  font-weight: lighter;
+  margin: 40px 0px;
+  display: block;
+  font-size: 20px;
+  text-shadow: 0px 0px 4px #303778;
+  color: #303778;
+}
+
+.sidebar-footer {
+  position: fixed;
+  left: 6%;
+  bottom: 0;
+}
+
+.main-container{
+  background-image: url('https://i.imgur.com/sIRVPzA.jpg');
+  height: 100vh;
+  margin-left: 15%; 
+}
+
+.board {
+  padding: 10px 0 0 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.category {
+  width: 25%;
+  margin: 0 15px 0 15px;
+  /* border: 1px solid #303778; */
+  /* overflow: scroll; */
+}
+
+.card-board-header {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.header-icon {
+  padding-right: 20px;
+}
+
+.card-body {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem;
+  box-shadow: 0px 5px 5px #e9ebf0;
+  border-radius: 10px;
+  
+}
+.subtitle[data-v-36b8a7] {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+a[data-v-36b8a7] {
+  color: #000;
+}
+.col.card-body[data-v-36b8a7] {
+  font-size: 12px;
+}
+.card-board-header {
+  text-transform: capitalize;
+}
+
+.waves-effect.waves-light.btn-large.indigo {
+  border-radius: 7px;
+}
+
+.add-task {
+  padding: 1rem;
+}
+
+.text-area-task {
+  background-color: #fff;
+}
