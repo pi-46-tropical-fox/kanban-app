@@ -3,7 +3,8 @@ const {
   Model
 } = require('sequelize');
 
-const { validatePassword, hashPassword } = require('../helpers/password')
+const { validatePassword, validateEmail } = require('../helpers/validation')
+const { hashPassword } = require('../helpers/password')
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -18,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    email: DataTypes.STRING,
+    email: {
+      type : DataTypes.STRING,
+      validate: {
+				validateEmail,
+			},
+    },
     name: DataTypes.STRING,
     password: {
       type : DataTypes.STRING,

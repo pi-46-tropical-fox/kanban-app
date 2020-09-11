@@ -29,7 +29,17 @@ class TaskController{
     }
 
     static async updateTask(req, res){
+        const { id } = req.params
 
+        const { category } = req.body
+
+        await Task.update({ TaskCategoryId : category.id }, {
+            where : {
+                id
+            }
+        })
+
+        res.status(200).json({message : 'Task successfully updated'})
     }
 
     static async deleteTask(req, res){

@@ -25,6 +25,7 @@
     "sweetalert2": "^10.0.2",
     "vue": "^2.6.12",
     "vue-functional-data-merge": "^3.1.0",
+    "vue-google-login": "^2.0.5",
     "vue-google-oauth2": "^1.5.5",
     "vue-hot-reload-api": "^2.3.4"
   }

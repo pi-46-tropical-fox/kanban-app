@@ -5,8 +5,8 @@
             <div>{{category.name}}</div>
             <button v-on:click="addTask" class="btn btn-primary">Add</button>
         </div>
-        <div class="container">
-            <CardTask @deleteTask="deleteTask" v-for="task in computedTasks" :key="task.id" :task="task"></CardTask>
+        <div class="container overflow-auto" style="height: 25em;">
+            <CardTask @moveTask="moveTask" @deleteTask="deleteTask" v-for="task in computedTasks" :key="task.id" :task="task" :categories="categories"></CardTask>
             <p v-if="computedTasks.length == 0">No tasks here...</p>
         </div>
     </div>
@@ -19,8 +19,11 @@ import _ from 'lodash'
 
 export default {
     name : 'KanbanColumn',
-    props : ['category', 'tasks'],
+    props : ['category', 'tasks', 'categories'],
     methods : {
+        moveTask(data){
+            this.$emit('moveTask', data)
+        },
         addTask(){
             this.$emit('addTask', this.category)
         },

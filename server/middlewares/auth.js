@@ -7,7 +7,7 @@ async function authentication(req, res, next){
         const { access_token } = req.headers
 
         if(!access_token){
-            throw { message : 'Not Authenticated', code : 403 }
+            throw { message : 'Not Authenticated', statusCode : 403 }
         }
     
         const jwtPayload = verifyToken(access_token)
@@ -23,7 +23,7 @@ async function authentication(req, res, next){
         if(user){
             req.userId = id
         } else {
-            throw { message : 'Not Authenticated', code : 403}
+            throw { message : 'Not Authenticated', statusCode : 403}
         }
         
         next()
@@ -43,8 +43,6 @@ async function authorization(req, res, next){
         }
         
         throw { message : 'Unauthorized', statusCode : 401 }
-        
-
     } catch(e){
         next(e)
     }

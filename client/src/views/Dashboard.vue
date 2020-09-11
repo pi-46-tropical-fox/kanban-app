@@ -2,7 +2,7 @@
     <div>
         <AddTaskModal v-if="modal=='addTask'" :category="selectedCategory" @newTask="newTask"></AddTaskModal>
         <div class="row">
-            <KanbanColumn @deleteTask="deleteTask" @addTask="triggerAddTaskModal" v-for="category in categories" :key="category.id" :category="category" :tasks="tasks">
+            <KanbanColumn @moveTask="moveTask" @deleteTask="deleteTask" @addTask="triggerAddTaskModal" v-for="category in categories" :key="category.id" :category="category" :categories="categories" :tasks="tasks">
         </div>
     </div>
 </template>
@@ -27,6 +27,13 @@ export default {
         newTask(data){
             let access_token = localStorage.getItem('access_token')
             axios.post('/tasks', data, { headers : { access_token }}).then(res => {
+                this.fetchTasks()
+            })
+        },
+        moveTask(data){
+            let access_token = localStorage.getItem('access_token')
+
+            axios.put(`/tasks/${data.task.id}`, data, { headers : { access_token }}).then(res => {
                 this.fetchTasks()
             })
         },

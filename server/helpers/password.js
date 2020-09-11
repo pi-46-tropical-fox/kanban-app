@@ -9,9 +9,4 @@ async function verifyPassword(hash, password){
     return bcrypt.compare(password, hash)
 }
 
-function validatePassword(password){
-    console.log(password, 'from validatepass')
-    // throw new Error('Jangan jangan')
-}
-
-module.exports = { hashPassword, verifyPassword, validatePassword }
+module.exports = { hashPassword, verifyPassword }

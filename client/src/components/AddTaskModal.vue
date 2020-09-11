@@ -10,7 +10,7 @@
       <div class="modal-body">
             <div class="form-group">
                 <label>Title</label>
-                <input class="form-control" type="text" v-model="title">
+                <input required class="form-control" type="text" v-model="title">
             </div>
       </div>
       <div class="modal-footer">
