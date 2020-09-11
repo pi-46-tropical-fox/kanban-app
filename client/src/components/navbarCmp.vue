@@ -35,9 +35,8 @@
 
 <script>
 export default {
-    name: 'DashboardPage',
-    component:{
-
+    name: 'Navbar',
+    components:{
     },
     methods:{
         logout(){

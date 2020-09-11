@@ -1,9 +1,18 @@
 <template>
   <div class="container">
-    <Accountpage v-if="currentPage === 'Loginpage'" @isLogin='isLogin' @getTask="getTask">
+    <Accountpage
+      v-if="currentPage === 'Loginpage'"
+      @isLogin="isLogin"
+      @getTask="getTask"
+    >
     </Accountpage>
-    <Dashboard v-else-if ="currentPage === 'Dashboardpage'" @logOut='logOut'>
-      
+    <Dashboard
+      v-else-if="currentPage === 'Dashboardpage'"
+      :taskData="tasks"
+      @logOut="logOut"
+      @refetch="getTask"
+      :catData = "category"
+    >
     </Dashboard>
   </div>
 </template>
@@ -21,43 +30,58 @@ export default {
   data() {
     return {
       currentPage: "Loginpage",
-      tasks : [],
+      tasks: [],
+      category: []
     };
   },
-  created(){
-    if(localStorage.getItem('access_token')){
-      this.currentPage = "Dashboardpage"
-      this.getTask()
-    }else{
-      this.currentPage = "Loginpage"
+  created() {
+    if (localStorage.getItem("access_token")) {
+      this.currentPage = "Dashboardpage";
+      this.getTask();
+    } else {
+      this.currentPage = "Loginpage";
     }
   },
   methods: {
-    isLogin(payload){
-      this.currentPage = payload
+    isLogin(payload) {
+      this.currentPage = payload;
+      this.getTask();
     },
-    getTask(){
-      console.log('berhasil get data');
-      
+    getTask() {
+      console.log("berhasil get data");
+
       axios
-        .get('/task',{
-          headers:{
-            access_token : localStorage.getItem('access_token')
-          }
+        .get("/task", {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
         })
-        .then(({data}) =>{
-          this.tasks = data
-          console.log(data)
+        .then(({ data }) => {
+          this.tasks = data;
+          console.log(data);
         })
-        .catch(err =>{
-          console.log(err)
-        })
-        
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    logOut(payload){
-      this.currentPage = payload
-      this.tasks = []
-    }
+    getCat() {
+      axios.get("/category", {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then(({data})=>{
+          this.category = data
+          console.log(data)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    },
+    logOut(payload) {
+      this.currentPage = payload;
+      this.tasks = [];
+    },
   },
 };
 </script>

@@ -64,7 +64,25 @@ class Controlller{
         let id = {where:{id: req.params.id}}
         console.log(req.params.taskId)
         const params = {
-            title : req.body.title
+            title : req.body.title,
+            description : req.body.description
+        }
+        Task.update(params,id)
+        .then(data =>{
+            return res.status(201).json(data)
+        })
+        .catch(err =>{
+            return next(err)
+        })
+    }
+
+    static moveTask(req,res,next){
+        let id = {where:{id: req.params.id}}
+        console.log(req.params.taskId)
+        const params = {
+            title : req.body.title,
+            description : req.body.description,
+            CategoryId : req.body.CategoryId
         }
         Task.update(params,id)
         .then(data =>{

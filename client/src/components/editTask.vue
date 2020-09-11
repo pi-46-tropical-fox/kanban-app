@@ -1,18 +1,12 @@
 <template>
-  <!-- Using modifiers
-    <b-button v-b-modal.my-modal>Show Modal</b-button> -->
-  <!-- Using value -->
-  <!-- <b-button v-b-modal="'my-modal'">Add</b-button> -->
-  <!-- The modal -->
-  <!-- <b-modal id="my-modal">Hello From My Modal!</b-modal> -->
-  <div>
+<div>
     <!-- <b-button v-b-modal.modal-1>Launch demo modal</b-button> -->
-    <b-modal hide-footer id="modal-1">
-    <b-form @submit.prevent="addTask">
+    <b-modal hide-footer id="modal-2">
+    <b-form @submit.prevent="editTask">
       <b-form-group id="input-group-1" label="Task:" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="addTitle"
+          v-model="editTitle"
           type="text"
           required
           placeholder="Enter Task"
@@ -21,17 +15,17 @@
       <b-form-group id="input-group-2" label="Description:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="addDescription"
+          v-model="editDescription"
           type="text"
           required
           placeholder="Enter Description for describe the task"
         ></b-form-input>
       </b-form-group>
-      <b-button type="submit">Add</b-button>
+      <b-button type="submit">Edit</b-button>
     </b-form>
     <!-- <form action="" >
 
-             <b-form-input v-model="addTask" placeholder="task"></b-form-input>
+             <b-form-input v-model="editTask" placeholder="task"></b-form-input>
         </form> -->
     <!-- <div class="mt-2">Value: {{ text }}</div> -->
   </div>
@@ -40,22 +34,22 @@
 <script>
 // import axios from '../axios/axiosInstance'
 export default {
-  name: "addTask",
+  name: "editTask",
   data() {
     return {
-      addTitle: "",
-      addDescription: "",
+      editTitle: "",
+      editDescription: "",
     };
   },
   methods: {
-    addTask() {
+    editTask() {
       let payload = {
-        title: this.addTitle,
-        description: this.addDescription,
+        title: this.editTitle,
+        description: this.editDescription,
       };
-      this.$emit("addTask", payload);
-    //   this.title = "";
-    //   this.description = "";
+      this.$emit("editTask", payload);
+      this.title = "";
+      this.description = "";
     },
   },
 };

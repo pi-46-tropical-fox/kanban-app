@@ -24,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     hooks:{
       beforeCreate : ((user,option) =>{
         user.password = createHash(user.password)
-      })
+        user.organization = 'Hacktiv8'
+      }),
+      
     },
     modelName: 'User',
   });
