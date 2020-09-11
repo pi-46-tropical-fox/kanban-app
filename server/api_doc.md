@@ -84,8 +84,8 @@ _Response (400 - Bad Request)_
         description: 'Setup vue di client',
         CategoryId: 4,
         UserId: 1,
-        createdAt: new Date(),
-        updatedAt: new Date()
+      "createdAt": "2020-08-31T07:15:12.149Z",
+      "updatedAt": "2020-08-31T07:15:12.149Z",
     }
 ]
 
@@ -108,6 +108,7 @@ no needed
 _Response (200 - Ok)_
 ```
     {
+        id: 1
         title: 'Layout kanban',
         description: 'Bikin layout kanban dengan css flex dan grid',
         CategoryId: 4,
@@ -124,47 +125,10 @@ _Response (400 - Bad Request)_
 }
 ```
 
-### GET /todos/:id
-
-> Get todo by id
-
-_Request Header_
-```
-{
-  "access_token": "<your access token>"
-}
-```
-
-_Request Body_
-```
-not needed
-```
-
-_Response (200)_
-```
-{
-  "id": 1,
-  "title": "Daily Challenge",
-  "description": "Mengerjakan challenge harian",
-  "due_date": "2020-08-31",
-  "status": "incomplete",
-  "createdAt": "2020-08-31T07:15:12.149Z",
-  "updatedAt": "2020-08-31T07:15:12.149Z",
-}
-
-```
-
-_Response (400 - Bad Request)_
-```
-{
-  "message": "Invalid request"
-}
-```
-
 ---
-### PUT /tasks/:id
+### PUT /tasks/:taskId
 
-> Update todo by id
+> Update task by id
 
 _Request Header_
 ```
@@ -197,9 +161,41 @@ _Response (400 - Bad Request)_
 }
 ```
 ---
+### PUT /tasks/:taskId/:categoryId
+
+> Move tosk category
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+}
+```
+
+_Request Body_
+```
+no needed
+```
+
+_Response (200)_
+```
+{
+  "id": 1,
+  "CategotyId": <new category id>>
+}
+
+```
+
+_Response (400 - Bad Request)_
+```
+{
+  "message": "Invalid request"
+}
+```
+---
 ### DELETE /tasks/:taskId
 
-> Delete todo by id
+> Delete task by id
 
 _Request Header_
 ```
