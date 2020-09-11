@@ -26,6 +26,14 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn("Tasks", "CategoryId")
+    await queryInterface.removeColumn("Tasks", "CategoryId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "Categories",
+        key: "id"
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE"
+    })
   }
 };
