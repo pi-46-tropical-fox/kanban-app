@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from '../config/api'
 export default {
     name: 'EditTaskPage',
     props: [ 'taskId' ],
@@ -50,7 +51,7 @@ export default {
         getData() {
             axios({
                 method: 'GET',
-                url: `http://localhost:3000/tasks/${this.taskId}`,
+                url: `/tasks/${this.taskId}`,
                 headers: {
                     access_token: localStorage.access_token
                 }
@@ -68,7 +69,7 @@ export default {
         submitEditTask() {
             axios({
                 method: 'PUT',
-                url: `http://localhost:3000/tasks/${this.taskId}`,
+                url: `/tasks/${this.taskId}`,
                 data: {
                     task: this.task,
                     description: this.description,

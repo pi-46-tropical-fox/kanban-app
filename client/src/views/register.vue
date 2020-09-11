@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import axios from '../config/api'
 export default {
     name: 'RegisterPage',
     data() {
@@ -56,7 +56,7 @@ export default {
             console.log(this.name, this.password, this.email, this.pictureUrl)
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/register',
+                url: '/register',
                 data: {
                     name: this.name,
                     email: this.email,

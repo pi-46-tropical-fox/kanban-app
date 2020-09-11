@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../config/api'
 export default {
     name: 'LoginPage',
     data() {
@@ -45,7 +45,7 @@ export default {
         submitLogin() {
             axios({
                 method: 'POST',
-                url: 'http://localhost:3000/login',
+                url: '/login',
                 data: {
                     email: this.email,
                     password: this.password
@@ -59,7 +59,6 @@ export default {
                 })
                 .catch((err) => {
                     console.log({err})
-                    this.$emit('emitErrorHandler', {err})
                 })
         },
         OnGoogleAuthSuccess (idToken) {
@@ -67,7 +66,7 @@ export default {
             // Receive the idToken and make your magic with the backend
             axios({
                 method: "POST",
-                url: 'http://localhost:3000/googleLogin',
+                url: '/googleLogin',
                 headers: {
                     google_access_token: idToken
                 }
@@ -79,7 +78,8 @@ export default {
                     this.$emit('emitIsLogin')
                 })
                 .catch(({err}) => {
-                    this.$emit('emitErrorHandler', err)
+                    console.log(err)
+                    // this.$emit('emitErrorHandler', err)
                 })
 
         },

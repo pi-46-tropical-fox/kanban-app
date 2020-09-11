@@ -4,7 +4,7 @@
     <header class="masthead"> 
       <!-- <Error :error='error' v-if="error"></Error> -->
       <WelcomePage v-if="currentPage == 'Welcome'"></WelcomePage>
-      <LoginPage v-else-if="currentPage == 'Login'" @emitToPage="toPage" @emitIsLogin="login" @emitErrorHandler="errorHandler"></LoginPage>
+      <LoginPage v-else-if="currentPage == 'Login'" @emitToPage="toPage" @emitIsLogin="login"></LoginPage>
       <RegisterPage v-else-if="currentPage == 'Register'" @emitToPage="toPage"></RegisterPage>
       <AddTaskPage v-else-if="currentPage == 'AddTask'" @emitToPage="toPage"></AddTaskPage>
       <EditTaskPage v-else-if="currentPage == 'EditTask'" :taskId="taskId" @emitToPage="toPage"></EditTaskPage>
@@ -65,10 +65,6 @@ export default {
     updateTask(id) {
       this.taskId = id
       this.currentPage = 'EditTask'
-    },
-    errorHandler(err) {
-      console.log(err, '<<<< di app')
-      this.error = err
     }
   },
   created() {

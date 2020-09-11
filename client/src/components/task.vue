@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from '../config/api'
 export default {
     name: 'Task',
     props: [ 'task' ],
@@ -27,7 +28,7 @@ export default {
             console.log(id)
             axios({
                 method: 'DELETE',
-                url: `http://localhost:3000/tasks/${id}`,
+                url: `/tasks/${id}`,
                 headers: {
                     access_token: localStorage.access_token
                 }

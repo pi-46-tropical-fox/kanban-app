@@ -14,6 +14,7 @@
 <script>
 import Task from './task'
 import draggable from 'vuedraggable'
+import axios from '../config/api'
 
 export default {
     name: "Category",
@@ -40,7 +41,7 @@ export default {
         updateCategory() {
             axios({
                 method: 'PUT',
-                url: `http://localhost:3000/tasks/${this.currentId}`,
+                url: `/tasks/${this.currentId}`,
                 data: {
                     category: this.currentCategory,
                     task: this.task,
@@ -58,9 +59,9 @@ export default {
                 })
         },
         onMove(evt) {
-            console.log(evt.draggedContext.element.id, '<<< onMove')
-            console.log(evt.relatedContext.component.$attrs.category, '<<<<<< Category nih')
-            console.log(evt)
+            // console.log(evt.draggedContext.element.id, '<<< onMove')
+            // console.log(evt.relatedContext.component.$attrs.category, '<<<<<< Category nih')
+            // console.log(evt)
             this.currentId = evt.draggedContext.element.id
             this.currentTask = evt.draggedContext.element.task
             this.currentDescription = evt.draggedContext.element.description

@@ -2,6 +2,8 @@
 Kanban adalah Single Page Application (SPA) yang bertujuan untuk mendapatkan gambaran tentang segala sesuatu yang perlu untuk dilakukan. Aplikasi ini memungkinkan Anda untuk memantau kemajuan dan mengedit task serta memantau progress atau status penyelesaiannya.
 
 Aplikasi ini memiliki konfigurasi dan fitur sebagai berikut : 
+* Aplikasi ini dapat diakses pada url https://kanban-app-d4e62.web.app/
+* Aplikasi ini dideploy menggunakan "heroku" untuk server dan "firebase" untuk client.
 * RESTful endpoint dengan operasi CRUD.
 * Format respon berupa JSON.
 * Fitur Google OAuth untuk user login melalui akun gmail.
@@ -147,10 +149,7 @@ none
 _Response (200 - Ok)_
 ```json
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey",
-    "id": 10,
-    "name": "Viona Moudiani",
-    "organization": "Hacktiv8"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey"
 }
 ```
 

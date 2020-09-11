@@ -14,7 +14,7 @@
 
 <script>
 import Category from '../components/category'
-import axios from 'axios'
+import axios from '../config/api'
 
 export default {
     name: 'DashboardPage',
@@ -34,7 +34,7 @@ export default {
       fetchData() {
         axios({
           method: 'GET',
-          url: 'http://localhost:3000/tasks',
+          url: '/tasks',
           headers: {
             access_token: localStorage.access_token
           }

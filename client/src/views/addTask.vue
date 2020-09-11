@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from '../config/api'
 export default {
     name: 'AddTaskPage',
     data() {
@@ -50,7 +51,7 @@ export default {
             console.log('mashook')
             axios({
                 method: 'POST',
-                url: `http://localhost:3000/tasks`,
+                url: `/tasks`,
                 headers: {
                     access_token: localStorage.access_token
                 },
