@@ -4,7 +4,7 @@ const {authentication} = require('../middleware/auth')
 const taskRouter = require('./task')
 const categoryRouter = require('./category')
 
-router.get('/', (req, res)=>{
+router.get('/', (req, res) => {
     res.send('home')
 })
 router.post('/register', UserController.register)
