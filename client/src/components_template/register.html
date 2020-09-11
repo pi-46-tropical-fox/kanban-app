@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../scss/style.scss">
+</head>
+
+<body>
+    <section id="auth-page" class="section">
+        <div class="container is-fluid">
+            <div class="columns is-desktop">
+                <div class="column">
+                    <figure class="image">
+                        <img src="../assets/undraw_Scrum_board_re_wk7v.svg">
+                    </figure>
+                </div>
+                <div class="column form-side">
+                    <div class="form-auth">
+                        <h1 class="title">Kanban App</h1>
+                        <form id="form-signup">
+                            <div class="container form-container">
+                                <div class="field">
+                                    <label for="username-signup" class="label">Username</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input" name="username" type="text" id="username-signup" required />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="email-signup" class="label">Email</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input" name="email" type="email" id="email-signup" required />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="password-signup" class="label">Password</label>
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input" name="password" type="password" id="password-signup" required />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="button btn-sign is-medium is-fullwidth">Sign Up</button>
+                                <button class="button btn-google is-medium is-fullwidth mt-2">
+                                    <span class="icon">
+                                        <i class="icon-google"></i>
+                                    </span>
+                                    <span class="name">Sign In with google</span>
+                                    <span class="name-signed-in"></span>
+                                </button>
+                                <p class="has-text-centered">Already have an account? <a id="signin-from-signup">Sign In</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</body>
+
+</html>
