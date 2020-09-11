@@ -40,7 +40,6 @@
                       Sign Up
                   </button>
               </div>
-             <button @click.prevent="" v-google-signin-button="clientId"> <img src="../assets/btn-Google.png" alt=""></button>
                 <br> <br>
               <a @click.prevent="changePage('loginPage')" id="redirect" class="mt-5 bg-transparent hover:bg-blue-200 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-200 hover:border-transparent rounded" >Already have an account? Click here.</a>
           </form>
@@ -53,7 +52,6 @@
 
 <script>
 import axios from 'axios'
-import GoogleSignInButton from 'vue-google-signin-button-directive'
 export default {
     name:'RegisterPage',
     data(){
@@ -97,27 +95,6 @@ export default {
         changePage(page){
             this.$emit('changePage',page)
         },
-        OnGoogleAuthSuccess (idToken) {
-            // Receive the idToken and make your magic with the backend
-
-            axios({
-                method:'POST',
-                url: this.baseUrl+'/loginGoogle',
-                headers:{
-                    google_token: idToken
-                }
-            })
-            .then(res=>{
-                localStorage.setItem('access_token',res.data.token)
-                this.changePage('dashboard')
-            })
-            .catch(err=>{
-                this.message = err.response
-            })
-        },
-        OnGoogleAuthFail (error) {
-            console.log(error)
-        }
     }
 }
 </script>

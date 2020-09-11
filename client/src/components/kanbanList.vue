@@ -4,7 +4,7 @@
       <div class="container-row" id="editTask" @click="openEditor">
         <div v-html="editLogo">
         </div>
-        <p class="text-xs text-gray-500	">edit</p>
+        <p class="text-xs text-yellow-500	">edit</p>
       </div>
 
       <div class="container-row" id="deleteTask" @click="deleteTask">
@@ -15,10 +15,10 @@
     <div class="font-bold text-base mb-2">
       <p> {{ task.title }} </p>
     </div>
-    <p class="text-gray-600 text-xs">By : {{task.User.name}}</p>
+
     <p class="text-gray-600 text-xs">{{new Date(task.createdAt).toDateString()}}</p>
 
-    <form @submit.prevent="editTask" v-if="updateTask" class="bg-pink-100 flex-1 text-gray-700 text-center bg-gray-400 px-4 py-2">
+    <form @submit.prevent="editTask" v-if="updateTask" class="bg-yellow-300 flex-1 text-gray-700 text-center bg-gray-400 px-4 py-2">
       <textarea id="card-edit" v-model="valForUpdateTask" placeholder="Enter task" class="overflow-auto bg-pink-100">
       </textarea>
       <div>

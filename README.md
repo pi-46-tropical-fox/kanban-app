@@ -76,14 +76,14 @@ _Response (200 - OK)_
   {
     "id": 1,
     "title": "makan",
-    "description": "makan ayam",
+    "description": "makan kepala orang",
     "category": "backlog",
     "UsersId": 1
   },
   {
     "id": 2,
     "title": "minum",
-    "description": "minum air",
+    "description": "minum jahe",
     "category": "done",
     "UsersId": 2
   },

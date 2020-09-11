@@ -28,18 +28,19 @@
                             id="password" v-model="password" type="password" placeholder="*****">
                         <p class="text-red-500 text-xs italic">Please choose a password.</p>
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div>
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit">
+                            class="bg-blue-500 hover:bg-red-700 text-black font-bold py-2 px-4"
+                            type="submit" >
                             Sign In
                         </button>
                     </div>
+                    <button @click.prevent="" v-google-signin-button="clientId"> <img src="../assets/btn-Google.png" alt=""></button>
                     <div class="pt-4 mb-5 mt-5">
-                       <a href="#" @click.prevent="changePage('registerPage')" class="bg-transparent hover:bg-blue-200 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Register or Login using Google Here</a>
+                       <a href="#" @click.prevent="changePage('registerPage')" class=" hover:bg-blue-200 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-200 hover:border-transparent rounded">Register Here</a>
                     </div>
                 </form>
-                <p class="text-center text-gray-500 text-xs">
+                <p class="text-center text-black-500 text-xs">
                     &copy;2020 . All rights reserved.
                 </p>
             </div>
@@ -51,7 +52,7 @@
 <script>
 
 import axios from 'axios'
-// import google from './google.vue'
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 import swal from 'sweetalert'
 export default {
     name:'LoginPage',
@@ -79,7 +80,7 @@ export default {
                 this.changePage('dashboard')
             })
             .catch(err=>{
-                swal('Tet Tot', 'Wrong password or email!', 'error')
+                swal('Wrong password or email !')
             })
 
         },
@@ -87,13 +88,34 @@ export default {
             this.$emit('changePage', page)
         },
 
-    }
+    },
+    OnGoogleAuthSuccess (idToken) {
+            // Receive the idToken and make your magic with the backend
+
+            axios({
+                method:'POST',
+                url: this.baseUrl+'/loginGoogle',
+                headers:{
+                    google_token: idToken
+                }
+            })
+            .then(res=>{
+                localStorage.setItem('access_token',res.data.token)
+                this.changePage('dashboard')
+            })
+            .catch(err=>{
+                this.message = err.response
+            })
+        },
+        OnGoogleAuthFail (error) {
+            console.log(error)
+        }
 }
 </script>
 
 <style scoped>
 .loginBox {
-    background: linear-gradient(252deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: linear-gradient(252deg, rgb(21, 143, 173) 0%, rgb(77, 223, 41) 100%);
     box-shadow: -1px 3px 15px 0px rgba(0,0,0,1);
     border-radius:25px;
     width:500px;

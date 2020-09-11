@@ -1,5 +1,5 @@
 .loginBox[data-v-59e1a7] {
-    background: linear-gradient(252deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: linear-gradient(252deg, rgb(21, 143, 173) 0%, rgb(77, 223, 41) 100%);
     box-shadow: -1px 3px 15px 0px rgba(0,0,0,1);
     border-radius:25px;
     width:500px;
@@ -9,7 +9,7 @@
     text-align: center;
 }
 .border-radius-task{
-    border-radius: 25px;
+    border-radius: 10px;
 }
 #editTask[data-v-405788]{
   fill:darkslateblue;

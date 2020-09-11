@@ -7,8 +7,8 @@ class TaskController{
             const { title, category } = req.body
             const newTask = await Task.create({
                 title,
-                category,
-                UserId:req.userLogin.id
+                category
+               // UserId:req.userLogin.id
             })
             if(newTask){
                 res.status(201).json({'New Task' : newTask})
@@ -25,9 +25,6 @@ class TaskController{
             const tasks = await Task.findAll({
                 include:{
                     model: User,
-                    attributes:{
-                        exclude:['password']
-                    }
                 }
             })
             if(tasks){
