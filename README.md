@@ -1,6 +1,8 @@
 # kanban-app
 Membuat kanban web app
 
+Firebase URL: https://kanban-sam-3af39.web.app
+<!-- Heroku URL: -->
 
 
 # API Documentation
