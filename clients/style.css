@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    margin-bottom: 15px;
+}
+
+.category{
+    height: 87vh;
+    margin: 5px;
+}
+
+.category-body{
+    padding: 7px;
+    max-height: 560px;
+    height: auto;
+    overflow-y: auto;
+}
+
+.title-category{
+    text-align: center;
+    color: white;
+}
+
+#login-form{
+    width: 100vw;
+    height: 100vh;
+}
