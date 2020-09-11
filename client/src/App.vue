@@ -5,6 +5,7 @@
     <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks"></HomePage>
     <AddForm v-if="pageName === 'addTask'" @addTask="addTask"></AddForm>
     <EditTask></EditTask>
+    <Register v-if="pageName === 'login'" @register="register"></Register>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import HomePage from "./components/homePage";
 import AddForm from "./components/addForm";
 import Navbar from './components/navbar'
 import EditTask from './components/editForm'
+import Register from './components/register'
 export default {
   name: "App",
   data() {
@@ -50,7 +52,8 @@ export default {
     HomePage,
     AddForm,
     Navbar,
-    EditTask
+    EditTask,
+    Register
   },
   methods: {
     changePage(page) {
@@ -68,6 +71,19 @@ export default {
           localStorage.setItem("access_token", data.access_token);
           this.changePage("home");
           this.fetchTasks()
+        })
+        .catch(console.log);
+    },
+    register(payload) {
+      const { email, password } = paylod;
+      axios
+        .post("/register", {
+          email,
+          password,
+        })
+        .then(({ data }) => {
+          // console.log(data)          
+          this.changePage("login");
         })
         .catch(console.log);
     },
