@@ -23,21 +23,9 @@ class Controlller{
     }
 
     static showTask(req,res,next){
-        Task.findAll({include: [User, Category]})
+        Category.findAll({include:{model:Task,include:{model:User , where:{organization:req.userData.organization}}}})
         .then(data =>{
-            const newData = data.filter(datum => datum.User.organization === req.userData.organization)
-            return newData
-        })
-        .then(data =>{
-            const categoryName = {}
-            data.forEach(datum =>{
-                if(!categoryName[datum.Category.name]){
-                    categoryName[datum.Category.name] = [datum]
-                }else{
-                    categoryName[datum.Category.name].push([datum])
-                }
-            })
-            return res.status(201).json(categoryName)
+           return res.status(201).json(data)
         })
         .catch(err =>{
             return next(err)
@@ -47,6 +35,7 @@ class Controlller{
     static addTask(req,res,next){
         let params ={
             title : req.body.title,
+            description: req.body.description,
             UserId : req.userData.id,
             CategoryId : req.params.CategoryId
         }

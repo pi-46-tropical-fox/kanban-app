@@ -3,9 +3,9 @@
     margin: 0;
 }
 
-nav{
+/* nav{
     align-content: center;
-}
+} */
 
 .backlog{
     background-color: aquamarine;
@@ -46,4 +46,83 @@ h1{
 
 .card-body{
     tab-size: 25px;
+}
+
+
+* {
+    font-family: 'Alata', sans-serif;
+  }
+#login-page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  overflow: hidden;
+}
+
+.login-page-left {
+  width: 60%;
+  background-color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url(https://media.giphy.com/media/3og0IL6LDkIqFRNB9m/giphy.gif);
+}
+
+.logo {
+  position: absolute;
+  top: 150px;
+
+}
+
+.login-page-left img {
+  width: 60%;
+  z-index: 999;
+}
+
+.login-page-right {
+  width: 40%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.login-page-right h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Alata', sans-serif;
+}
+
+
+.login-page-right form {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  z-index: 99;
+  border-radius: 10px;
+}
+
+.login-page-right input {
+  margin: 1rem 0;
+  height: 30px;
+}
+
+.login-btn {
+  background: #5800D1;
+  border: 1px solid #31207E;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  font-family: 'Alata', sans-serif;
+}
+
+#navbar {
+  background: #31207E;;
 }
