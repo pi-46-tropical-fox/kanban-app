@@ -3,8 +3,10 @@
         <!---->
         <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
             <div class="card-header"  style="text-align: center;">
+                <b-button v-b-modal.modal-9 @click="taskId">Back</b-button>
                 <b-button v-b-modal.modal-2 @click="taskId">Edit</b-button>
                 <b-button v-b-modal.modal-1 @click="deleteId">Delete</b-button>
+                <b-button v-b-modal.modal-10 @click="taskId">Forward</b-button>
             </div>
                 <div class="card-body" style="text-align: center;">
                     <h5 class="card-title">{{task.title}}</h5>
@@ -17,7 +19,7 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import Axios from '../config/axios'
 export default {
     name:'task',
     props:[
@@ -27,10 +29,11 @@ export default {
         taskId(){
             console.log(this.task.id," <<<<task ID")
             this.$emit("paramsId",this.task)
-        },
+        }
+        ,
         deleteId(){
             Axios({
-                url:`http://localhost:3000/tasks/${this.task.id}`,
+                url:`/tasks/${this.task.id}`,
                 method:'DELETE',
                 headers:{
                     access_token:localStorage.getItem('access_token')

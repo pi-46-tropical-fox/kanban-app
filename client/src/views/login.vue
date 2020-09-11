@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import Axios from '../config/axios'
 export default {
   name: "login",
   data() {
@@ -95,7 +95,7 @@ export default {
     },
     register(){
       Axios({
-        url: "http://localhost:3000/register",
+        url: "/register",
         method: "POST",
         data:{
           email:this.email,

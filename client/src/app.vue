@@ -1,10 +1,10 @@
 <template>
   <login v-if="currentPage === 'loginPage'" :currentPage="currentPage" @loginSubmit="login" @fetchTask="fetchTask"></login>
-  <home v-else :categories="categories" @fetchTask="fetchTask"></home>
+  <home v-else :categories="categories" @fetchTask="fetchTask" @logout="logout"></home>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "./config/axios";
 import login from "./views/login";
 import home from "./views/home";
 export default {
@@ -34,13 +34,14 @@ export default {
     login(payload) {
 
       axios({
-        url: "http://localhost:3000/login",
+        url: "/login",
         method: "POST",
         data: payload,
       })
         .then(({ data }) => {
           this.currentPage = "home-page";
           localStorage.setItem("access_token", data.acces_token);
+          this.fetchTask()
         })
         .catch((err) => {
           console.log(err);
@@ -49,7 +50,7 @@ export default {
 
     fetchTask() {
       axios({
-        url: "http://localhost:3000/tasks",
+        url: "/tasks",
         method: "GET",
         headers: {
           access_token: localStorage.getItem("access_token"),
@@ -63,6 +64,10 @@ export default {
           console.log(err);
         });
     },
+    logout(){
+      localStorage.removeItem('access_token')
+      this.currentPage = 'loginPage'
+    }
     
   },
   created() {

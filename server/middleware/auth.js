@@ -5,27 +5,31 @@ const authentication = (req,res,next)=>{
     const {access_token} = req.headers
     const user = verify(access_token)
     req.user = user
-    console.log(user,"<<<< dari authentication")
     User.findOne({where:{email:user.email}})
     .then(data=>{
         if (data)next()
+        else{
+            throw ({message:`user not authenticate`,statusCode:401})
+        }
     })
     .catch(err=>{
-        return res.status(401).json({message:`user not authenticate`})
+        next(err)
     })
 }
 
 const authorization = (req,res,next)=>{
-    Task.findOne({where:{UserId:req.user.id}})
+    Task.findByPk(req.params.id)
     .then(data=>{
         if (data && data.UserId === req.user.id){
+            console.log('berhasil author')
             next()
+
         }else{
-            return res.status(403).json({message:`forbidden access`})
+            throw({message:`forbidden access`,statusCode:403})
         }
     })
     .catch(err=>{
-        return res.status(403).json({message:`forbidden access`})
+        next(err)
     })
 }
 

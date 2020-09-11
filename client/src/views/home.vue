@@ -25,7 +25,7 @@
             <a class="nav-link active" href="#"
               >Home<span class="sr-only">(current)</span></a
             >
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="#" @click="logout">Logout</a>
           </div>
         </div>
       </nav>
@@ -43,21 +43,27 @@
     </div>
     <addTask @add="add"></addTask>
     <editTask :task="task" @edit="edit"></editTask>
-  </div>
+    <editforward :task="task" @editforward="forward"></editforward>
+    <editback :task="task" @editBack="back"></editback>
+  </div> 
 </template>
 
 <script>
 import taskBody from "../components/taskBody";
 import addTask from '../components/addTask'
 import editTask from '../components/editform'
-import Axios from 'axios';
+import editback from '../components/editBack'
+import editforward from '../components/editForward'
+import Axios from '../config/axios';
 export default {
   name: "home",
   props: ["categories"],
   components: {
     taskBody,
     addTask,
-    editTask
+    editTask,
+    editback,
+    editforward
   },
   data() {
     return {
@@ -73,7 +79,7 @@ export default {
 
       add(payload){
           Axios({
-              url:`http://localhost:3000/tasks/${this.id}`,
+              url:`/tasks/${this.id}`,
               method:'POST',
               data:{
                 title:payload
@@ -84,7 +90,7 @@ export default {
           })
           .then(data=>{
             this.$bvModal.hide("modal-3")
-            this.$emit('fetch')
+            this.fetchTask()
           })
           .catch(err=>{
             console.log(err)
@@ -100,7 +106,7 @@ export default {
       edit(task){
         console.log(task)
         Axios({
-          url:`http://localhost:3000/tasks/${this.taskId}`,
+          url:`/tasks/${this.taskId}`,
           method:'PUT',
           data:{title : task},
           headers:{
@@ -109,7 +115,7 @@ export default {
         })
         .then(data=>{
           this.$bvModal.hide("modal-2")
-            this.$emit('fetch')
+            this.fetchTask()
         })
         .catch(err=>{
           console.log(err)
@@ -117,6 +123,59 @@ export default {
       },
       fetchTask(){
         this.$emit('fetchTask')
+      },
+      logout(){
+        this.$emit('logout')
+      },
+      back(task){
+        if (task.CategoryId === 1){
+          this.$bvModal.hide("modal-9")
+        }else{
+          Axios({
+          url:`/tasks/${task.id}`,
+          method:'PATCH',
+          data:{
+            CategoryId:task.CategoryId - 1
+          },
+          headers:{
+            access_token:localStorage.getItem('access_token')
+          }
+        })
+        .then(data=>{
+          console.log(data)
+          this.fetchTask()
+          this.$bvModal.hide("modal-9")
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+        }
+        
+      },
+      forward(task){
+        if (task.CategoryId === 4){
+          this.$bvModal.hide("modal-10")
+        }else{
+          Axios({
+          url:`/tasks/${task.id}`,
+          method:'PATCH',
+          data:{
+            CategoryId:task.CategoryId + 1
+          },
+          headers:{
+            access_token:localStorage.getItem('access_token')
+          }
+        })
+        .then(data=>{
+          console.log(data)
+          this.fetchTask()
+          this.$bvModal.hide("modal-10")
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+        }
+        
       }
   },
 };

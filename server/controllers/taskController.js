@@ -1,34 +1,17 @@
 const {Task,User,Category} =require('../models')
 
 class Controller {
-    static list(req,res){
+    static list(req,res,next){
         console.log(req.user,"<<< GET Tasks")
         Category.findAll({include: { model : Task, include : { model : User , where:{organization:req.user.organization}}}})
         .then(data=>{
-            // const newData = data.filter(i=>i.User.organization === req.user.organization)
-            // console.log(newData)
-            // return newData
             res.status(200).json(data)
         })
-        // .then(data=>{
-        //     const catName = {}
-        //     data.forEach(i=>{
-        //         if (!catName[i.Category.name]){
-        //             catName[i.Category.name] = [i]
-        //         }else{
-        //             catName[i.Category.name].push(i)
-        //         }
-        //     })
-        //     console.log(catName)
-        //     return res.status(200).json(catName)
-           
-        // })
         .catch(err=>{
-            console.log(err)
-            return res.status(400).json(err)
+            next(err)
         })
     }
-    static add(req,res){
+    static add(req,res,next){
         let data = {
             title:req.body.title,
             UserId:req.user.id,
@@ -40,35 +23,32 @@ class Controller {
             res.status(201).json(data)
         })
         .catch(err=>{
-            console.log(err)
+            next(err)
         })
     }
-    static byId(req,res){
+    static byId(req,res,next){
         Task.findOne({where:{id:req.user.id}})
         .then(data=>{
             return res.status(200).json(data)
         })
         .catch(err=>{
-            return res.status(400).json(err)
+            next(err)
         })
     }
-    static edit(req,res){
-        console.log(req.body)
+    static edit(req,res,next){
         let params = {
             title:req.body.title,
         }
         let id = {where:{id:req.params.id}}
         Task.update(params,id)
         .then(data=>{
-            console.log('a')
             return res.status(200).json(data)
         })
         .catch(err=>{
-            console.log(err)
-            return res.status(400).json(err)
+            next(err)
         })
     }
-    static delete (req,res){
+    static delete (req,res,next){
         Task.destroy({where:{id:req.params.id}})
         .then(data=>{
             console.log('success')
@@ -76,7 +56,21 @@ class Controller {
         })
         .catch(err=>{
             console.log(err)
-            return res.status(400).json(err)
+            next(err)
+        })
+    }
+    static editOne(req,res,next){
+        console.log('aa')
+        let params= {
+            CategoryId:req.body.CategoryId
+        }
+        Task.update(params,{where:{id:req.params.id}})
+        .then(data=>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            console.log(err)
+            next(err)
         })
     }
 }

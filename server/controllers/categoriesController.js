@@ -1,13 +1,13 @@
 const {Category} = require('../models')
 
 class Controller {
-    static listCat (req,res){
+    static listCat (req,res,next){
         Category.findAll()
         .then(data=>{
             return res.status(200),json(data)
         })
         .catch(err=>{
-            return res.status(400).json(err)
+            next(err)
         })
     }
     
@@ -21,7 +21,7 @@ class Controller {
             return res.status(201).json(data)
         })
         .catch(err=>{
-            return res.status(400).json(err)
+            next(err)
         })
     }
 

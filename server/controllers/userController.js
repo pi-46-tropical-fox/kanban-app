@@ -1,9 +1,10 @@
 const {User} = require('../models')
 const {generate , verify} = require('../helpers/jwt')
 const compare = require('../helpers/compare')
+const {OAuth2Client} = require('google-auth-library');
 
 class Controller {
-    static register(req,res){
+    static register(req,res,next){
         let params = {
             email:req.body.email,
             password:req.body.password
@@ -13,10 +14,10 @@ class Controller {
             return res.status(201).json({id:data.id,email:data.email})
         })
         .catch(err=>{
-            return res.status(400).json(err)
+            next(err)
         })
     }
-    static login (req,res){
+    static login (req,res,next){
         let params = {
             email:req.body.email,
             password:req.body.password
@@ -31,13 +32,56 @@ class Controller {
                     return res.status(200).json({acces_token})
                 }
             }else{
-                return res.status(400).json({message:`wrong email / password`})
+                throw ({message:`wrong email / password`,statusCode:400})
             }
 
         })
         .catch(err=>{
-            return res.status(400).json({message:`wrong email / password`})
+            next(err)
         })
+    }
+    static googleLogin(req,res,next){
+        const client = new OAuth2Client(process.env.CLIENT_ID);
+        const { google_access_token } = req.headers
+        let emailGoogle = ''
+        let googleUser = ''
+        client.verifyIdToken({
+            idToken: google_access_token,
+            audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+            // Or, if multiple clients access the backend:
+            //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+        })
+        .then(ticket=>{
+            return ticket.getPayload()
+        })
+        .then(payload=>{
+            console.log(payload)
+            emailGoogle = payload.email
+            googleUser = payload.username
+            return User.findOne({where:{email:payload.email}})
+        })
+        .then(user=>{
+            if(!user){
+                let params = {
+                    email:emailGoogle,
+                    username:googleUser,
+                    password:'random'
+                }
+                return User.create(params)
+            } else{
+                return user
+            }
+        })
+        .then(user=>{
+            const payload = {email:user.email,id:user.id}
+            const token = generateToken(payload)
+
+            return res.status(200).json({access_token:token})
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+     
     }
 }
 
