@@ -116,6 +116,9 @@ main{
     left: 0;
     right: 0;
     top: 25%;
+    -webkit-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
 }
 #closeAdd{
     float: right;
@@ -145,6 +148,10 @@ main{
     left: 0;
     right: 0;
     top: 25%;
+    -webkit-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    transition: 1s;
 }
 #editTask h3 {
     background-color: #2c2c54;

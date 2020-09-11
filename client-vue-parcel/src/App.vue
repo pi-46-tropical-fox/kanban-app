@@ -1,6 +1,9 @@
 <template>
   <div>
+    <!-- navbar -->
     <Navbar :page="page" @signout="signout" @signin="signin" @signup="signup"></Navbar>
+    <!-- navbar -->
+    <!-- home -->
     <AddTaskButton
       @addTask="addtask"
       v-if="page === 'home' || page === 'addtask' || page === 'edittask'"
@@ -15,9 +18,17 @@
       :tasks="tasks"
       v-if="page === 'home' || page === 'addtask' || page === 'edittask'"
     ></Home>
-    <Login @signup="signup" @loginSubmit="login" v-if="page === 'login'"></Login>
+    <!-- home -->
+    <!-- login -->
+    <Login @googleLogin="googleLogin" @signup="signup" @loginSubmit="login" v-if="page === 'login'"></Login>
+    <!-- login -->
+    <!-- register -->
     <Register @registSubmit="register" v-if="page === 'register'"></Register>
+    <!-- register -->
+    <!-- form add task -->
     <AddForm @addTaskSubmit="addTask" @close="close" v-if="page === 'addtask'"></AddForm>
+    <!-- form add task -->
+    <!-- form edit task -->
     <EditForm
       @editSubmit="editTask"
       @close="close"
@@ -27,6 +38,7 @@
       :categoryEdits="categoryEdit"
       :idEdits="idEdit"
     ></EditForm>
+    <!-- form edit task -->
   </div>
 </template>
 
@@ -96,20 +108,20 @@ export default {
         url: "http://localhost:3000/login",
         data: payload,
       })
-        .then(({ data }) => {
-          console.log(data);
-          localStorage.setItem("access_token", data.access_token);
-          localStorage.setItem("name", data.name);
-          swal({
-            title: `Welcome ${data.name}`,
-            icon: "success",
-          });
-          this.afterlogin();
-        })
-        .catch(({ response }) => {
-          console.log(response.data.message);
-          swal("Ooooppss", response.data.message);
+      .then(({ data }) => {
+        console.log(data);
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("name", data.name);
+        swal({
+          title: `Welcome ${data.name}`,
+          icon: "success",
         });
+        this.afterlogin();
+      })
+      .catch(({ response }) => {
+        console.log(response.data.message);
+        swal("Ooooppss", response.data.message);
+      });
     },
     signout() {
       swal({
@@ -394,6 +406,31 @@ export default {
             "Close first, then edit again."
           );
         });
+    },
+    googleLogin(payload){
+      console.log(payload, ' <<<<< ini dari app vue')
+      let google_access_token = payload
+      axios({
+        method: "POST",
+        url: 'http://localhost:3000/googleLogin',
+        headers: {
+          google_access_token
+        }
+      })
+      .then(({ data }) => {
+        console.log(data);
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("name", data.name);
+        swal({
+          title: `Welcome ${data.name}`,
+          icon: "success",
+        });
+        this.afterlogin();
+      })
+      .catch(({ response }) => {
+        console.log(response.data.message);
+        swal("Ooooppss", response.data.message);
+      });
     },
   },
 };
