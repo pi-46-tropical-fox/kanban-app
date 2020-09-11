@@ -4,6 +4,12 @@ const { TaskController } = require('../controllers/task')
 const { OtherController } = require('../controllers/others')
 const { authenticate, authorize } = require('../middlewares/auth')
 
+route.get('/', (req, res) => {
+    res.json({
+        message: 'Welcome to this app'
+    })
+})
+
 route.post('/register', UserController.register)
 route.post('/login', UserController.login)
 
