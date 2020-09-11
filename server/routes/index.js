@@ -25,6 +25,8 @@ router.delete(
   TaskController.delete
 );
 
+router.patch('/tasks/:id', authentication, authorization, TaskController.move)
+
 //ENDPOINTS CATEGORY
 router.post("/categories", authentication, CategoryController.addCategory);
 

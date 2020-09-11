@@ -68,7 +68,7 @@ class UserController {
         }
       })
       .then((user) => {
-        const payload = { email: user.email, id: user.id };
+        const payload = { email: user.email, id: user.id , organization: user.organization};
 
         const access_token = generateToken(payload);
         console.log(access_token);
