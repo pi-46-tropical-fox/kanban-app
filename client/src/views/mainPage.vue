@@ -12,6 +12,7 @@
                     :category="category"
                     :todos="todos"
                     :key="category.id"
+                    @deleteTask='deleteTask'
                 ></cardGroup>
             </div>
         </div>  
@@ -54,6 +55,9 @@ export default {
                 console.log(err)
             })
             
+        },
+        deleteTask() {
+            this.$emit('deleteTask')
         }
         
 

@@ -11681,18 +11681,20 @@ var _default = {
   props: ['todo'],
   methods: {
     deleteTask: function deleteTask(id) {
+      var _this = this;
+
       console.log(id);
       (0, _axios.default)({
-        url: "/delete/".concat(id),
+        url: "/todos/delete/".concat(id),
         method: "DELETE",
-        data: {
+        headers: {
           'access_token': localStorage.getItem('access_token')
         }
       }).then(function (_ref) {
         var response = _ref.response;
-      }).catch(function (err) {
-        console.log(err);
-      });
+
+        _this.$emit('deleteTask');
+      }).catch(function (err) {});
     },
     editTask: function editTask(id) {
       this.$emit('editTask', id);
@@ -11828,6 +11830,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'CardGroup',
   props: ['category', 'todos'],
@@ -11841,6 +11844,11 @@ var _default = {
       return this.todos.filter(function (el) {
         return el.CategoryId === _this.category.id;
       });
+    }
+  },
+  methods: {
+    deleteTask: function deleteTask() {
+      this.$emit('deleteTask');
     }
   }
 };
@@ -11867,7 +11875,11 @@ exports.default = _default;
         "div",
         { staticClass: "card-body" },
         _vm._l(_vm.filteredTodos, function(todo) {
-          return _c("Card", { key: todo.id, attrs: { todo: todo } })
+          return _c("Card", {
+            key: todo.id,
+            attrs: { todo: todo },
+            on: { deleteTask: _vm.deleteTask }
+          })
         }),
         1
       )
@@ -11946,6 +11958,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'mainPage',
   props: ['categories', 'todos'],
@@ -11976,6 +11989,9 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    deleteTask: function deleteTask() {
+      this.$emit('deleteTask');
     }
   }
 };
@@ -12022,7 +12038,8 @@ exports.default = _default;
             _vm._l(_vm.categories, function(category) {
               return _c("cardGroup", {
                 key: category.id,
-                attrs: { category: category, todos: _vm.todos }
+                attrs: { category: category, todos: _vm.todos },
+                on: { deleteTask: _vm.deleteTask }
               })
             }),
             1
@@ -12384,6 +12401,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'app',
   data: function data() {
@@ -12496,7 +12514,11 @@ exports.default = _default;
         : _vm.currentPage === "mainPage"
         ? _c("mainPage", {
             attrs: { categories: _vm.categories, todos: _vm.todos },
-            on: { logout: _vm.theSignin, todo: _vm.login }
+            on: {
+              logout: _vm.theSignin,
+              todo: _vm.login,
+              deleteTask: _vm.login
+            }
           })
         : _vm._e()
     ],
@@ -63365,7 +63387,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43355" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37281" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

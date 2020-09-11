@@ -9,6 +9,7 @@
                     v-for="todo in filteredTodos"
                     :key="todo.id"
                     :todo="todo"
+                    @deleteTask='deleteTask'
                 ></Card>
             </div>
         </div>
@@ -28,6 +29,11 @@ export default {
     computed : {
         filteredTodos() {
             return this.todos.filter(el => el.CategoryId === this.category.id )
+        }
+    },
+    methods: {
+        deleteTask () {
+            this.$emit('deleteTask')
         }
     }
 }

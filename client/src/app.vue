@@ -18,6 +18,7 @@
         :todos='todos'
         @logout="theSignin"
         @todo='login'
+        @deleteTask='login'
       ></mainPage>
   </div>
 </template>

@@ -33,15 +33,15 @@ export default {
             console.log(id)
             
             axios({
-                url: `/delete/${id}`,
+                url: `/todos/delete/${id}`,
                 method: "DELETE",
-                data: { 'access_token': localStorage.getItem('access_token')}
+                headers: { 'access_token': localStorage.getItem('access_token')} 
             })
             .then(({response})=> {
-
+                this.$emit('deleteTask')
             })
             .catch ( (err) => {
-                console.log(err)
+                
             })
         },
 
