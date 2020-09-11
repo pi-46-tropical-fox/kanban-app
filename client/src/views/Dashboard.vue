@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container-fluid">
         <AddTaskModal v-if="modal=='addTask'" :category="selectedCategory" @newTask="newTask"></AddTaskModal>
         <div class="row">
             <KanbanColumn @moveTask="moveTask" @deleteTask="deleteTask" @addTask="triggerAddTaskModal" v-for="category in categories" :key="category.id" :category="category" :categories="categories" :tasks="tasks">
@@ -28,6 +28,7 @@ export default {
             let access_token = localStorage.getItem('access_token')
             axios.post('/tasks', data, { headers : { access_token }}).then(res => {
                 this.fetchTasks()
+                this.modal = ''
             })
         },
         moveTask(data){

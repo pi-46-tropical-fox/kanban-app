@@ -2,6 +2,8 @@
     <div class="card  my-2">
         <div class="card-body">
             <p>{{task.title}}</p>
+            <input required class="form-control" v-if="update" type="text" v-model="task.title">
+            <button v-if="update" class="btn btn-info" v-on:click="moveTask">Save</button>
         </div>
         <div class="card-footer">
             <p>{{new Date(task.createdAt)}}</p>
@@ -9,7 +11,7 @@
             <p>{{task.User.name}}</p>
             <div v-if="isSelf">
                 <button class="btn btn-danger" v-on:click="deleteTask">Delete</button>
-                <button class="btn btn-info">Update</button>
+                <button class="btn btn-info" v-on:click="updateTask">Update</button>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
                         Move to
@@ -30,6 +32,10 @@ export default {
     methods:{
         moveTask(category){
             this.$emit('moveTask', { task : this.task, category })
+            this.update = false
+        },
+        updateTask(){
+            this.update = true
         },
         deleteTask(){
             this.$emit('deleteTask', this.task)
@@ -37,7 +43,7 @@ export default {
     },
     data () {
         return{
-
+            update : false
         }
     },
     computed: {

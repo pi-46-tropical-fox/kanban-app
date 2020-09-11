@@ -1,7 +1,7 @@
 <template>
     <div>
         <Navbar :page="page" @logout="logout"></Navbar>
-        <div class="mx-auto container mt-8">
+        <div class="mx-auto mt-8">
             <Auth v-if="page == 'auth'" @submitLogin='login' @submitRegister='register' @submitGoogleLogin='googleLogin'></Auth>
             <Dashboard v-else-if="page == 'dashboard'"></Dashboard>
         </div>

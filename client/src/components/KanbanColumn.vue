@@ -1,7 +1,7 @@
 <template>
-    <div class="col-sm">
+    <div class="col-3">
     <div class="card">
-        <div class="p-4 flex justify-between ">
+        <div class="flex justify-between">
             <div>{{category.name}}</div>
             <button v-on:click="addTask" class="btn btn-primary">Add</button>
         </div>

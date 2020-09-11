@@ -31,9 +31,11 @@ class TaskController{
     static async updateTask(req, res){
         const { id } = req.params
 
-        const { category } = req.body
+        const { category, task } = req.body
 
-        await Task.update({ TaskCategoryId : category.id }, {
+        console.log(req.body)
+
+        await Task.update({ title : task.title, TaskCategoryId : category.id }, {
             where : {
                 id
             }
