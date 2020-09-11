@@ -35,19 +35,21 @@ components:{
     Task
 },
 methods:{
-    addTask(){
+     addTask(){
+         let task = this;
         const text =  alertify.prompt('What are you up to?').set('modal', true)
-                        .setting({
-                            'onok': function(){
-                                alertify.success('Sucessfully added task')
+        .setting({
+            'onok': function(){
+                alertify.success('Sucessfully added task')
+                        const payload = {
+                        description: text.settings.value
                             }
-                        })
-        const payload = {
-            description: text.settings.value
-        }
-        const category = this.category;
-        payload.category = category;
-        this.$parent.$parent.addTask(payload)
+                        const category = task.category;
+                        payload.category = category;
+                        task.$parent.$parent.addTask(payload)
+            }
+        })
+   
     }
 },
 props:['category', 'tasks'],
