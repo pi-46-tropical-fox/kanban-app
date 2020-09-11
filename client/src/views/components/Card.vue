@@ -20,8 +20,8 @@
                             <div :id="'collapse'+taskData.id" class="collapse bg-light" :aria-labelledby="'heading'+taskData.id"
                                 :data-parent="'#accordion'+taskData.id">
                                 <div class="card-body">
-                                    <button type="button"
-                                        class="btn btn-secondary btn-sm btn-block">Edit</button>
+                                    <button
+                                        class="btn btn-secondary btn-sm btn-block" @click="editTask">Edit</button>
                                     <button type="button"
                                         class="btn btn-secondary btn-sm btn-block">Delete</button>
                                     <button type="button" class="btn btn-secondary btn-sm btn-block">Move to
@@ -37,7 +37,12 @@
 <script>
 export default {
     name: 'Card',
-    props: ['taskData']
+    props: ['taskData'],
+    methods: {
+        editTask(taskData) {
+            this.$emit('editTask', taskData)
+        }
+    }
 }
 </script>
 

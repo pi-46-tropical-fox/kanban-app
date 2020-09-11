@@ -12,7 +12,7 @@
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active" id="navbar-logout">
-                <a class="nav-link font-weight-bolder" href="#" @click="toEditTaskPage" style="color: #ffb142">Logout <span
+                <a class="nav-link font-weight-bolder" href="#" @click="logoutFunction" style="color: #ffb142">Logout <span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>
@@ -32,8 +32,9 @@ export default {
             this.$emit('toAddTaskPage')
         },
 
-        toEditTaskPage() {
-            this.$emit('toEditTaskPage')
+        logoutFunction() {
+            localStorage.removeItem('access_token')
+            this.$emit('logoutFunction')
         }
     }
 }

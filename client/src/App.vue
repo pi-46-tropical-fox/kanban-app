@@ -3,7 +3,8 @@
     <LoginPage 
     v-if="currentPage == 'loginPage'"
     @loginSubmit="loginParent"
-    @toRegisterPage="changePage('registerPage')">
+    @toRegisterPage="changePage('registerPage')"
+    @googleSignIn="checkAuth">
     </LoginPage>
     <RegisterPage
     v-else-if="currentPage == 'registerPage'"
@@ -12,6 +13,7 @@
     <DashboardPage
     v-else-if="currentPage=='dashboardPage'"
     @fetchTask="checkAuth"
+    @logoutUser="checkAuth"
     :tasksData = tasks>
     </DashboardPage>
   </div>
@@ -93,6 +95,7 @@ export default {
                 data: payload
             })
             .then(({data}) => {
+                this.currentPage = 'loginPage'
                 console.log(data)
             })
             .catch(err => {

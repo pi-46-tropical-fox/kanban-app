@@ -4,7 +4,7 @@ const googleLoginController = require('../controllers/googleLoginController')
 
 route.post('/login', UserController.login)
 route.post('/register', UserController.register)
-route.post('/login', googleLoginController.verifyLogin)
+route.post('/google-login', googleLoginController.verifyLogin)
 
 
 

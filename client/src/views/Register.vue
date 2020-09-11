@@ -5,7 +5,7 @@
     </div>
     <div class="register-page-right">
         <h1>Sign Up</h1>
-        <form>
+        <form @submit.prevent="registerChild()">
             <label>Full Name</label>
             <input type="name"  v-model="fullName" id="register-fullname" required>
             <label>Role</label>
