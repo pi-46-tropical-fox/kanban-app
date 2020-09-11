@@ -7,7 +7,7 @@
                     <h5 class="card-title">{{task.title}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">By: <span>{{task.User.name}}</span></h6>
                     <hr>
-                    <p class="card-text">{{task.description}}.</p>
+                    <p class="card-text">{{task.description}}</p>
                     <br>
                     <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete" @click.prevent="deleteTask(task.id)"><i class="fas fa-trash-alt"></i></a>
                         <span class="action" v-if="task.category === 'backlog'">
