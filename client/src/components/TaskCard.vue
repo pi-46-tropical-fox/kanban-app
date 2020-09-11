@@ -1,11 +1,11 @@
 <template>
-    <div class="message-body">
-        <div class="box">
-            <article class="media">
-                <div class="media-content">
-                <div class="content">
-                    <p></p>
-                    <small>user@mail.com</small> <small>2020-09-09</small>
+    <div class="box">
+        <article class="media">
+            <div class="media-content">
+               <div class="content">
+                    <p>{{task.title}}</p>
+                    <small>{{task.UserId}}</small> <small>{{task.updatedAt}}</small><br>
+                    <a class="delete" v-on:click="deleteTask(task.id)"></a>
                 </div>
             </div>
         </article>
@@ -15,7 +15,12 @@
 <script>
 export default {
     name: 'Tasks',
-    props: ['task']
+    props: ['task', 'userEmail'],
+    methods: {
+        deleteTask(id) {
+            this.$emit('deleteTask', id)
+        }
+    }
 }
 </script>
 

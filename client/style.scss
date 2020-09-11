@@ -11,20 +11,32 @@
     .box-form {
         border-radius: 5px;
         background-color: #fff;
-        width: 320px;
+        width: 360px;
         padding: 28px 30px;
+        .organization-list{
+            .organization-item {
+                margin: 5px 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
     }
 }
 .container-kanban {
-    height: 100vh;
+    height: 80vh;
+    width: 100%;
     padding: 20px;
-    display: -webkit-box;
+    display: flex;
+    flex-direction: row;
     .category {
         margin: 0 10px;
-        width: 300px;
-        .message-body {
-            max-height: 75vh;
-            overflow: auto;
+        width: 25%;
+        .header {
+            padding: 10px;
+            color:white;
+            background-color: rgb(37, 37, 37);
         }
     }
 }

@@ -5,7 +5,7 @@
                 <div class="tabs">
                     <ul>
                       <li class="is-active"><a>Login</a></li>
-                      <li><a>Register</a></li>
+                      <li v-on:click="switchRegister"><a>Register</a></li>
                     </ul>
                   </div>
                 <div class="field">
@@ -21,6 +21,7 @@
                     </div>
                 </div>
                 <button class="button is-info" type="submit">Login</button>
+                <div class="g-signin2" :onsuccess="onSignIn" v-on:click="onSignIn"></div>
             </form>
         </div>
     </div>
@@ -35,6 +36,11 @@ export default {
             password: ''
         }
     },
+    // mounted() {
+    // gapi.signin2.render('google-signin-button', {
+    //   onsuccess: this.onSignIn
+    // })
+    // },
     methods: {
         login() {
             let payload = {
@@ -42,6 +48,13 @@ export default {
                 password : this.password
             }
             this.$emit('loginSubmit', payload)
+        },
+        onSignIn(user) {
+            console.log(user, '<<<<<<<< user')
+            this.$emit('googleLogin', user)
+        },
+        switchRegister() {
+            this.$emit('switchRegister')
         }
     }
 }

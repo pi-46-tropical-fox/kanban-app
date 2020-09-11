@@ -1,34 +1,35 @@
 <template>
 <div>
     <div class="container-kanban">
-        <article class="message is-dark category">
-            <!-- <Category></Category>
-            <Category></Category>
-            <Category></Category>
-            <Category></Category> -->
-             <!-- v-for="task in tasksData"
-             :taskCategory="task" 
-             :key='task.id'>  -->
-            
-            <!-- <TaskCard 
-            v-for="task in tasksData" 
-            :task="task" 
-            :key='task.id' >
-            </TaskCard> -->
-          </article>
+        <Category class="category"
+        v-for="(category, i) in categoryData"
+        :category="category"
+        :tasksData="tasksData"
+        :key="i"
+        @addTask="addTask"
+        @deleteTask="deleteTask"
+        @userEmail="userEmail"
+        >
+        </Category>
     </div> 
 </div>
 </template>
 
 <script>
 import Category from '../components/Category'
-import TaskCard from '../components/TaskCard'
 export default {
   name: 'Dashboard Task',
-  props: ['tasksData'],
+  props: ['tasksData', 'categoryData', 'userEmail'],
   components : {
-    Category,
-    TaskCard
+    Category
+  },
+  methods: {
+    addTask(data, id) {
+      this.$emit('addTask', data, id)
+    },
+    deleteTask(id) {
+      this.$emit('deleteTask', id)
+    }
   }
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
     <div>
       <div class="container-form">
-            <form class="box-form"  @submit.prevent="login">
+            <form class="box-form"  @submit.prevent="register">
                 <div class="tabs">
                     <ul>
-                      <li @click.prevent="currentPage='loginPage'"><a>Login</a></li>
+                      <li v-on:click="switchLogin"><a>Login</a></li>
                       <li class="is-active"><a>Register</a></li>
                     </ul>
                   </div>
@@ -42,6 +42,9 @@ export default {
                 password : this.password
             }
             this.$emit('registerSubmit', payload)
+        },
+        switchLogin() {
+            this.$emit('switchLogin')
         }
     }
 }

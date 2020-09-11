@@ -1,11 +1,12 @@
-const { Task, UserOrganization } = require('../models')
+const { User, Task, Category } = require('../models')
 
 class TaskController {
     static async showTasks(req, res) {
         try {
             // const conjunction = await UserOrganization.findAll({where: {OrganizationId: req.params.organizationId}})
+            const category = await Category.findAll()
             const tasks = await Task.findAll({where: {OrganizationId: req.params.organizationId}})
-            return res.status(200).json(tasks)
+            return res.status(200).json({tasks, category})
         }
         catch(err) {
             console.log(err, '<<<< error show task')
