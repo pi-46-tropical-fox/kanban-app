@@ -34,7 +34,7 @@ class UserController {
                     let verified = comparePass(password, user.password)
                     if (verified) {
                         const access_token = generateToken(user);
-                        res.status(200).json({ access_token })
+                        res.status(200).json({ access_token, email })
                     } else {
                         console.log('masuk sini gak verifies')
                         res.status(400).json({ message: 'Email/Password is invalid.' })

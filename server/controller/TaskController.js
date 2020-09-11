@@ -1,4 +1,4 @@
-const { Task } = require("../models");
+const { Task, User } = require("../models");
 
 class TaskController {
     static read(req, res) {
@@ -6,7 +6,8 @@ class TaskController {
         Task.findAll({
                 where: {
                     organization
-                }
+                },
+                include: User
             })
             .then(data => {
                 res.status(200).json({ tasks: data })
@@ -18,7 +19,6 @@ class TaskController {
 
     static create(req, res) {
         let params = {
-            title: req.body.title,
             description: req.body.description,
             UserId: req.userData.id,
             organization: req.userData.organization,
@@ -36,7 +36,6 @@ class TaskController {
 
         const { id } = req.params;
         let params = {
-            title: req.body.title,
             description: req.body.description
         };
         Task.update(params, { where: { id } })
@@ -51,7 +50,30 @@ class TaskController {
         const { id } = req.params;
         Task.destroy({ where: { id } })
             .then(data => {
-                res.status(201).json({ message: 'Data has been successfully deleted.' })
+                res.status(200).json({ message: 'Data has been successfully deleted.' })
+            }).catch(err => {
+                res.status(500).json({ message: 'Internal Server Error' })
+            })
+    }
+
+    static move(req, res) {
+        const { action } = req.body
+        let num;
+        if (action == 'forward') {
+            num = 1;
+        } else {
+            num = -1;
+        }
+        const categories = ['Backlog', 'Todo', 'Doing', 'Completed']
+        const { id } = req.params;
+        Task.findOne({ where: { id } })
+            .then(task => {
+                const param = {
+                    category: categories[categories.indexOf(`${task.category}`) + num]
+                }
+                return Task.update(param, { where: { id } })
+            }).then(data => {
+                res.status(200).json({ message: 'Successfully moved data' })
             }).catch(err => {
                 res.status(500).json({ message: 'Internal Server Error' })
             })

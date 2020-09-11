@@ -12,7 +12,8 @@ router.use(authentication);
 //CRUD - TASK
 router.get('/task', TaskController.read);
 router.post('/task', TaskController.create);
-router.put('/task/:id', authorization, TaskController.update);
+router.patch('/task/:id', authorization, TaskController.update);
+router.put('/task/:id', authorization, TaskController.move)
 router.delete('/task/:id', authorization, TaskController.delete);
 //======================================================================
 module.exports = router;

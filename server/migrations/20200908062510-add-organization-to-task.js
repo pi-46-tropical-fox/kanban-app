@@ -12,7 +12,7 @@ module.exports = {
     },
 
     down: async(queryInterface, Sequelize) => {
-        await queryInterface.removecolumn('Tasks', 'organization')
+        await queryInterface.removeColumn('Tasks', 'organization')
             /**
              * Add reverting commands here.
              *
