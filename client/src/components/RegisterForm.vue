@@ -17,6 +17,8 @@
                         <input type="text" class="form-control" v-model="organization" placeholder="Hacktiv8">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <br><br>
+                     <p>Already have an account? <a href="#" @click="login">Click here</a> to login.</p>
                 </form>
 
             </div>
@@ -41,10 +43,14 @@ methods: {
          organization: this.organization
      }
      //emit
-
+     this.$parent.$parent.register(payload);
      this.email ='';
      this.password = '';
      this.organization= '';
+ },
+ login(){
+     const current = 'login'
+     this.$parent.$parent.changeCurrent(current)
  }
 }
 }

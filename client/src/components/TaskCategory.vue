@@ -7,7 +7,7 @@
                     <h4 class="brand">{{category}}</h4>
                 </a>
                 <a href="#">
-                <i @click='addTask' class="fas fa-plus-circle"></i>
+                <i v-if="category !== 'Completed'" @click='addTask'  class="fas fa-plus-circle"></i>
                 </a>
             </nav>
         </div>

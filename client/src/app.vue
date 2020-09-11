@@ -52,6 +52,23 @@ methods:{
           console.log(err)
         })
     },
+    changeCurrent(currentPage){
+      this.current = currentPage
+    },
+    register(payload){
+      axios({
+          url:'/register',
+          method: 'POST',
+          data:payload
+        })
+        .then(response => {
+          this.current = 'login';
+          alertify.success('You are now registered! Please login to continue.')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
   fetchTasks(){
     axios({
       url:'/task',

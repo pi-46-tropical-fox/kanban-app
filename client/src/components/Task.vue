@@ -2,7 +2,7 @@
     <li class="list-group-item task">
         <!-- Move button -->
         <div class="arrow p-1">
-            <a v-on:click="moveBack"  href="#" v-show="task.category !== 'Backlog'">
+            <a v-on:click="moveBack"  href="#" v-if="task.category !== 'Backlog'">
                 <i class="fas fa-arrow-alt-circle-left"></i>
             </a>
             <a v-on:click="moveForward" href="#" v-if="task.category !== 'Completed'">
@@ -10,21 +10,23 @@
             </a>
         </div>
         <!-- Content -->
-        <div class="mx-auto p-3">
+        <div class="mx-auto p-2">
             <p v-if="!editToggle" class="card-text">{{task.description}}</p>
             <editForm v-else></editForm>
             <small class="card-username text-muted">Created by: <span>{{task.User.email}}</span>
-            <br>
-            from: <span>{{task.User.organization}}</span>
-            <br>
-            <small v-text="createdTime"></small>
-                <a v-on:click="deleteTask" href="#">
-                <span>Delete</span>
-            </a>
-            <a v-on:click="editTask" href="#">
-                <span>Edit</span>
-            </a>
+                <br>
+                from: <span>{{task.User.organization}}</span>
+                <br>
+                <small v-text="createdTime"></small>
             </small>
+            <div class="action">
+                <a  href="#">
+                    <i v-on:click="deleteTask"  class="fas fa-trash-alt"></i>
+                </a>
+                <a  href="#">
+                    <i v-on:click="editTask"  class="fas fa-user-edit"></i>
+                </a>
+            </div>
         </div>      
     </li>
 </template>
@@ -51,13 +53,19 @@ methods:{
     editTask(payload){
         const userEmail = localStorage.getItem('userEmail')
         if(userEmail === this.task.User.email){
-            this.editToggle = !this.editToggle
-            const {id} = this.task
-            this.$parent.$parent.$parent.editCurrentTask(payload, id)
-        } else {
+            let task = this;
+            const text =  alertify.prompt('Did you change your thoughts?').set({title: 'KANBAN'}, {modal: 'true'})
+            .setting({
+                'onok': function(){
+                    alertify.success('Sucessfully edited task')
+                    const payload = {description: text.settings.value}
+                    const {id} = task.task
+                    task.$parent.$parent.$parent.editCurrentTask(payload, id)
+                }
+                })
+        }else {
             alertify.error('User is not authorized')
         }
-
     },
     moveForward(){
         const userEmail = localStorage.getItem('userEmail')

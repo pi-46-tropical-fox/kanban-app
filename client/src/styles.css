@@ -12,6 +12,10 @@
 
 /* NAVBAR */
 
+.logout {
+    cursor: pointer;
+}
+
 
 /* LOGIN PAGE */
 
@@ -62,6 +66,11 @@
 }
 
 .arrow {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action {
     display: flex;
     justify-content: space-between;
 }
