@@ -78,16 +78,16 @@ class TaskController {
                 attributes: ['status']
             })
 
+            const statuses = await Status.findAll()
+
             let index = task.status
 
             switch (movement) {
                 case 'next':
                     index += 1
-                    if (index == 4) index = 3
                     break
                 case 'prev':
                     index -= 1
-                    if (index == -1) index = 0
                     break
             }
     
