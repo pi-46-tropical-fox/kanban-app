@@ -4,6 +4,7 @@ const { User } = require('../models')
 const authentication = async (req, res, next) => {
     try {
         const { access_token } = req.headers
+        console.log(req.headers);
         const decoded = decodeToken(access_token)
         const userFind = await User.findOne({where : {email : decoded.email}})
 

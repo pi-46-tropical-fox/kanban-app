@@ -17,13 +17,13 @@ class Controller {
 
                     res.status(200).json({access_token : token})
                 } else {
-                    res.send(401).json(`Email / Password Salah`)
+                    res.status(401).json(`Email / Password Salah`)
                 }
             } else {
-                res.send(401).json(`Email / Password Salah`)
+                res.status(401).json(`Email / Password Salah`)
             }
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             res.status(500).json(`Interval Server Error`)
         }
     }
@@ -39,6 +39,10 @@ class Controller {
             console.log(err);
             res.status(500).json('Interval Server Error')
         }
+    }
+
+    static async googleSignIn(req, res) {
+        
     }
 }
 

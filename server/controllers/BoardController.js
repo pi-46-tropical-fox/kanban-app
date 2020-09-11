@@ -26,6 +26,7 @@ class Controller {
 
             res.status(201).json(board)
         } catch (err) {
+            console.log(err);
             res.status(500).json('Interval Server Error')
         }
     }

@@ -1,13 +1,17 @@
-const { Category, Task } = require('../models')
+const { Category, Task, Board } = require('../models');
 
 class Controller {
     static async showAll(req, res) {
         try {
-            const data = await Category.findAll({
+            const data = await Board.findOne({
                 where : {
-                    BoardId : req.params.boardId
+                    id : req.params.boardId
                 },
-                include : [ Task ]
+                include : [{
+                    model: Category,
+                    order: [ 'createdAt', 'ASC' ],
+                    include : [ Task ]
+                }],
             })
 
             res.status(200).json(data)
