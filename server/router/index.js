@@ -4,9 +4,9 @@ const userRouter = require('./user.js')
 const {authentication} = require('../middlewares/auth.js')
 const KanbanController = require('../controllers/KanbanController.js')
 
-// router.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
+router.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 router.use('/', userRouter)
 // router.use(authentication)
