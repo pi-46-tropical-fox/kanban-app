@@ -32,6 +32,8 @@ body {
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 .image-container{
     background: url('../img/kanban-cartoon.png') center no-repeat;
@@ -207,9 +209,10 @@ nav {
 }
 .list-task, .list-footer-task {
     color: #535c68;
+    transition: 0.5s;
 }
 #add-task {
-    transition: 0.3s;
+    transition: 0.5s;
 }
 .list-footer-task:hover {
     background-color: #57606f1e;
@@ -237,6 +240,7 @@ nav {
 }
 .list-task-title h3 {
     margin-bottom: 15px;
+    color: #31363d;
 }
 .list-task-title p {
     font-size: small;
@@ -338,7 +342,7 @@ i {
     display: block;
 }
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 1;
     padding-top: 100px;

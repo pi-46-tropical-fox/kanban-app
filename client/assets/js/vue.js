@@ -80,6 +80,43 @@ let tasks = [
   ]
 let app = new Vue({
     el: '#app',
+    // data: {
+    //     currentPage: 'login',
+    //     tasks: [],
+    //     search: ''
+    // },
+    // methods: {
+    //     login(){
+    //         localStorage.setItem('access_token', '1234567890')
+    //         showAllTask()
+    //     },
+    //     showAllTask(){
+    //         axios
+    //         .get('http://localhost:3000/tasks')
+    //         .then(({ data }) => {
+    //             console.log(data);
+    //             this.tasks = data
+    //             this.currentPage = 'main'
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    //     }
+    // },
+    // created(){
+    //     if(localStorage.getItem('access_token')){
+    //         this.currentPage = 'main'
+    //         this.showAllTask()
+    //     }else{
+    //         this.currentPage = 'login'
+    //     }
+    // },
+    // computed: {
+    //     filteredTask(){
+    //         const newTask = this.tasks.filter(task => (task.title.toLowerCase()).includes(this.search.toLowerCase()))
+    //         return newTask
+    //     }
+    // }
     data: {
         currentPage: 'login',
         currentUser: '',
@@ -98,7 +135,8 @@ let app = new Vue({
         categories,
         tasks,
         modalEdit: 'none',
-        modalDetail: 'none'
+        modalDetail: 'none',
+        message: 'hallo'
     },
     methods: {
         showRegisterForm(){
@@ -125,6 +163,7 @@ let app = new Vue({
                 }
             }
             if(match){
+                localStorage.setItem('access_token', '1234567890')
                 this.email = ''
                 this.password = ''
                 this.alerthtml = `<p style="background-color: #2ed574b4;">You've logged in successfully!</p>`
@@ -160,6 +199,10 @@ let app = new Vue({
                     this.alerthtml = `<p style="background-color: #ff4756ce;">Email already exists</p>`
                 }
             }
+        },
+        logout(){
+            localStorage.clear()
+            this.showLoginForm()
         },
         showEditForm(CategoryId){
             this.alerthtml = ''
@@ -278,6 +321,14 @@ let app = new Vue({
                 } 
             }
             this.alerthtml = `<p style="background-color: #2ed574b4;">Task moved successfully!</p>`
+        }
+    },
+    created(){
+        if(localStorage.getItem('access_token')){
+            this.currentPage = 'main'
+            // this.showAllTask()
+        }else{
+            this.currentPage = 'login'
         }
     }
   })
