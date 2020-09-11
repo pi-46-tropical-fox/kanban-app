@@ -26,7 +26,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        isIn: {
+          args: [['Owner', 'Collaborator', 'Viewer']],
+          msg: "Unknown data value"
+        }
+      }
     }
   }, {
     sequelize,

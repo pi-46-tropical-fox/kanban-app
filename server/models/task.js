@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Task.belongsTo(models.List)
+      Task.belongsTo(models.Board)
       Task.hasMany(models.Comment)
       Task.hasMany(models.TaskTag)
       Task.hasMany(models.Assignee)
@@ -20,14 +20,23 @@ module.exports = (sequelize, DataTypes) => {
   Task.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "You can't have an empty name on your task!"
+        }
+      }
     },
     description: {
       type: DataTypes.STRING,
     },
-    TaskId: {
+    BoardId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    TaskId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,

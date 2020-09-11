@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
   Comment.init({
     comment: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     TaskId: {
       type: DataTypes.INTEGER,

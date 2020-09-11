@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
   Board.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
     ProjectId: {
       type: DataTypes.INTEGER,

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Organization.belongsToMany(models.User, { through: models.Role })
       Organization.hasMany(models.Project)
       Organization.hasMany(models.Role)
     }
@@ -18,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
   Organization.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "You should have a valid organization name!"
+        }
+      }
     },
     type: {
       type: DataTypes.STRING,

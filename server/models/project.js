@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { generateRandomStrings } = require('../helpers/randomizer');
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
     /**
@@ -10,13 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Project.hasMany(models.Board)
+      Project.belongsTo(models.Organization)
     }
   };
   Project.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "You can't have an empty name on your project!"
+        }
+      }
     },
     uid: { // just a random, 10-character strings
       type: DataTypes.STRING,
@@ -27,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isIn: {
-          args: [['Public', 'Private']],
+          args: [['public', 'private']],
           msg: "Unknown data value"
         }
       }
@@ -43,13 +50,23 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     hooks: {
-      beforeValidate(instance, options){
-        let uid = generateRandomStrings(5, true, false)
+      async beforeValidate(instance, options){
+        let uid = generateRandomStrings(5, true)
+        let slug = instance.name.toLowerCase().split(' ').join('-')
+        let project = null
         
-        while(this.findOne({ where: { uid } })){
-          uid = generateRandomStrings(5, true, false)
+
+        while(true){
+          project = await this.findOne({where: { uid }})
+
+          if(project){
+            uid = generateRandomStrings(5, true)
+          } else {
+            break
+          }
         }
 
+        instance.slug = slug
         instance.uid = uid
       },
     },
