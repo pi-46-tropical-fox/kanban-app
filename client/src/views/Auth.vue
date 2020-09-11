@@ -1,6 +1,8 @@
 <template>
-    <RegisterForm @submitRegister='submitRegister'>
-    <LoginForm @submitLogin='submitLogin'>
+    <div>
+        <RegisterForm @submitRegister='submitRegister'></RegisterForm>
+        <LoginForm @submitLogin='submitLogin'></LoginForm>
+    </div>
 </template>
 
 <script>

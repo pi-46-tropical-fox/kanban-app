@@ -15,14 +15,26 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      status: {
-        allowNull: false,
-        type: Sequelize.STRING
+      TaskCategoryId: {
+        allowNull : false,
+        type: Sequelize.INTEGER,
+        references: {
+          model : 'TaskCategories',
+          key : 'id'
+        }
       },
-      author : {
+      UserId : {
+        allowNull : false,
         type: Sequelize.INTEGER,
         references: {
           model : 'Users',
+          key : 'id'
+        }
+      },
+      category : {
+        type : Sequelize.INTEGER,
+        references: {
+          model : 'TaskCategories',
           key : 'id'
         }
       },

@@ -45,7 +45,6 @@ class UserController{
             //User not found
             res.status(400).json({})
         }
-
     }
 }
 

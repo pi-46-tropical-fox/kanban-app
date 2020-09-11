@@ -13,5 +13,10 @@ POST /user/login
 POST /user/register
 
 GET /tasks
+GET /tasks/categories
 
+POST /tasks
+
+PUT /tasks/:id
+DELETE /tasks/:id
 ```

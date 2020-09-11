@@ -1,5 +1,5 @@
 <template>
-    <form class="" @submit.prevent="register">
+    <form @submit.prevent="register">
         <h1>Register</h1>
         <div class="form-group">
             <label>Name</label>

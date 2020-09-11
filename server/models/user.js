@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks:{
       async beforeCreate(data){
+        data.organization = 'hacktiv8'
         data.password = await hashPassword(data.password)
       }
     },
