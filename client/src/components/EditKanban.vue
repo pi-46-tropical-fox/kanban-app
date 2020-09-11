@@ -36,7 +36,7 @@ export default {
             console.log(this.taskId, '<< task id di edit');
             axios({
                 method: 'GET',
-                url: `http://localhost:3000/tasks/${this.taskId}`,
+                url: `https://kanban-app-rizkygustianto.herokuapp.com/tasks/${this.taskId}`,
                 headers: {
                     access_token: localStorage.getItem('access_token')
                 }
@@ -53,7 +53,7 @@ export default {
         updateData() {
             axios({
                 method: 'PUT',
-                url: `http://localhost:3000/tasks/${this.taskId}`,
+                url: `https://kanban-app-rizkygustianto.herokuapp.com/tasks/${this.taskId}`,
                 headers: {
                     access_token: localStorage.getItem('access_token')
                 },

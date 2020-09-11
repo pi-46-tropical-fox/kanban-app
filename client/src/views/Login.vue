@@ -53,7 +53,7 @@ export default {
         login() {
             axios({
                 method: "POST",
-                url: "http://localhost:3000/login",
+                url: "https://kanban-app-rizkygustianto.herokuapp.com/login",
                 data: {
                     email: this.email,
                     password: this.password
@@ -77,7 +77,7 @@ export default {
             // console.log(googleUser.getBasicProfile());
             axios({
                 method: "POST",
-                url: "http://localhost:3000/googlelogin",
+                url: "https://kanban-app-rizkygustianto.herokuapp.com/googlelogin",
                 headers: {
                     google_access_token: googleUser.wc.id_token
                 }

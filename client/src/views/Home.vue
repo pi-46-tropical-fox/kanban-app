@@ -31,7 +31,7 @@ export default {
         getTasks() {
             axios({
                 method: "GET",
-                url: "http://localhost:3000/tasks",
+                url: "https://kanban-app-rizkygustianto.herokuapp.com/tasks",
                 headers: {
                     access_token: localStorage.getItem('access_token')
                 }

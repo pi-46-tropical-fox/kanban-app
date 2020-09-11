@@ -23,7 +23,7 @@ export default {
         deleteTask(id) {
             axios({
                 method: "DELETE",
-                url: `http://localhost:3000/tasks/${id}`
+                url: `https://kanban-app-rizkygustianto.herokuapp.com/tasks/${id}`
             })
             .then(({data}) => {
                 console.log('delete success');
@@ -33,16 +33,6 @@ export default {
             })
         },
         editTask(id) {
-            //  axios({
-            //     method: "GET",
-            //     url: `http://localhost:3000/tasks/${id}`
-            // })
-            // .then(({data}) => {
-            //     console.log('get by id');
-            //     // this.$emit('emitDeleteTask')
-            //     // console.log(data);
-            //     // this.tasks = data
-            // })
             this.$emit('editTask',id)
         }
     }
