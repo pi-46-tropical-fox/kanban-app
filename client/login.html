@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="960867991566-2n6def8cg57di3cfuj0rotole1dp1sp1.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>KANBAN</title>
+</head>
+<body>
+    <div class="container">
+        <!-- login page -->
+        
+        <div class="login">
+            <div class="buttonLogin">
+                <a href="" class="signin" >Sign In</a>
+                <a href="" class= "register" >Register</a>
+            </div>
+            <form class="loginForm" action="" method="post" id=loginSubmit>
+                <div class="registerTitle">
+                    <h2>Login Form</h2>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="email" placeholder="Email"/>
+                </div>
+                <div class="input-group">                        
+                    <input type="password" id="password" placeholder="Password"/>
+                </div>
+                <div class="input-group">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <div class="googleLogin">
+                <p>Sign in with your Google account</p>
+            </div>
+            <div class="g-signin2" data-onsuccess="onSignIn" ></div>
+
+        </div>
+        <br>
+        <!-- register page -->
+        
+        <div class="registration">
+            <div class="buttonRegister">
+                <a href="" class="btnsignin" >Sign In</a>
+                <a href="" class= "btnregister" >Register</a>
+            </div>
+            <form class="registerForm" action="" method="post" id=loginSubmit>
+                <div class="registerTitle">
+                    <h2>Register Form</h2>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="registerName" placeholder="Name"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="registerEmail" placeholder="Email"/>
+                </div>
+                <div class="input-group">                        
+                    <input type="password" id="registerPassword" placeholder="Password"/>
+                </div>
+                <div class="input-group">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+
+        <div class="add">
+            <form class="AddForm" action="" method="post" >
+                <div class="AddTitle">
+                    <h2>Add Task Form</h2>
+                </div>
+                <div class="input-group">
+                    <input type="text"  placeholder="Title"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Description"/>
+                </div>
+                <div class="input-group">
+                    <label for="">Due Date</label>                        
+                    <input type="date" />
+                </div>
+                <div class="input-group">
+                    <label for="">Category</label>
+                    <select name="" ></select>
+                </div>
+                <div class="input-group">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+
+
+        <div class="edit">
+            <form class="editForm" action="" method="post" >
+                <div class="AddTitle">
+                    <h2>Add Task Form</h2>
+                </div>
+                <div class="input-group">
+                    <input type="text"  />
+                </div>
+                <div class="input-group">
+                    <input type="text" />
+                </div>
+                <div class="input-group">
+                    <label for="">Due Date</label>                        
+                    <input type="date" />
+                </div>
+                <div class="input-group">
+                    <label for="">Category</label>
+                    <select name="" ></select>
+                </div>
+                <div class="input-group">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="main.js"></script>
+</body>
+</html>

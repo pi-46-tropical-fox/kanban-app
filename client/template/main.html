@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="960867991566-2n6def8cg57di3cfuj0rotole1dp1sp1.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>KANBAN</title>
+</head>
+<body>
+    <div class="container" id="todos">
+        <!-- main Page -->
+        <div class="mainPage">
+            
+            <nav>
+                <div class="logo">
+                    <h2>KANBAN</h2>
+                </div>
+                <div class="logInfo">                        
+                    <div v-text="name"> ></div>
+                    <div>
+                        <a href="" class= "logout" >Logout</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="main">
+                <div class="buttonAdd">
+                    <a href="" class="addTask" >Add Task</a>
+                </div>
+                <div class="category">
+                    
+                    <div class="Back-Log">
+                        <div class= "card-header">
+                            <h3>Back-Log</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Todo">
+                        <div class="card-header">
+                            <h3>Todo</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Doing">
+                        <div class="card-header">
+                            <h3>Doing</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Done">
+                        <div class="card-header">
+                            <h3>Done</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                            <div class="card-group">
+                                <div class="card-group-header">
+                                    <div class="title">
+                                        <h4>Title</h4>
+                                    </div>
+                                    <div class="action">
+                                        <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p>Description</p>
+                                </div>
+                                <div class="userInfo">
+                                    <span>by: username</span>
+                                    <span>Due Date: Date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>               
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const data = {
+            name : 'Abdullah'
+
+        }
+
+        new Vue ({
+            el : '#todos',
+            data : data
+        })
+
+    </script>
+    
+</body>
+</html>
