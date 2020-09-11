@@ -3,7 +3,9 @@
         <div class="card bg-light">
             <div class="card-body">
                 <h6 class="card-title text-uppercase text-truncate py-2">{{ctg}}</h6>
-                <Task v-for="(task,i) in filteredTask" :key="i" :task="task" @emitUpdate="updateTask" @refresh="refresh"></Task>          
+                <draggable :list="filteredTask" group="task" :move="onMove" :category="ctg" @end="updateCategory">
+                    <Task v-for="task in filteredTask" :key="task.id" :task="task" @emitUpdate="updateTask" @refresh="refresh" :id="task.id"></Task>  
+                </draggable>        
             </div>
         </div>
   </div>
@@ -11,12 +13,22 @@
 
 <script>
 import Task from './task'
+import draggable from 'vuedraggable'
 
 export default {
     name: "Category",
     props: [ 'ctg', 'allTask' ],
+    data() {
+        return {
+            currentId: null,
+            currentCategory: null,
+            currenetTask: null,
+            currentDescription: null
+        }
+    },
     components: {
-        Task
+        Task,
+        draggable
     },
     methods: {
         refresh() {
@@ -24,6 +36,35 @@ export default {
         },
         updateTask(id) {
             this.$emit('emitUpdateTask', id)
+        },
+        updateCategory() {
+            axios({
+                method: 'PUT',
+                url: `http://localhost:3000/tasks/${this.currentId}`,
+                data: {
+                    category: this.currentCategory,
+                    task: this.task,
+                    description: this.description
+                },
+                headers: {
+                    access_token: localStorage.access_token
+                }
+            })
+                .then(({data}) => {
+                    this.$emit('fetchData')
+                })
+                .catch(({err}) => {
+                    console.log(err)
+                })
+        },
+        onMove(evt) {
+            console.log(evt.draggedContext.element.id, '<<< onMove')
+            console.log(evt.relatedContext.component.$attrs.category, '<<<<<< Category nih')
+            console.log(evt)
+            this.currentId = evt.draggedContext.element.id
+            this.currentTask = evt.draggedContext.element.task
+            this.currentDescription = evt.draggedContext.element.description
+            this.currentCategory = evt.relatedContext.component.$attrs.category
         }
     },
     computed: {

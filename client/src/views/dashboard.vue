@@ -5,7 +5,7 @@
         <h3 class="masthead-subheading font-weight-light text-white text-center">Kanban Board</h3>
         <div class="small  text-light text-center">Drag and drop between swim lanes</div>
         <div class="row flex-row flex-sm-wrap py-3">
-            <Category  v-for="(ctg, i) in categories" :key="i" :ctg="ctg" :allTask="allTask" @refresh="refresh" @emitUpdateTask="updateTask"></Category>
+            <Category  v-for="(ctg, i) in categories" :key="i" :ctg="ctg" :allTask="allTask" @refresh="refresh" @emitUpdateTask="updateTask" @fetchData="fetchData"></Category>
         </div>
     </div>
 

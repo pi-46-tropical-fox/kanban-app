@@ -14,7 +14,8 @@
     "json-server": "^0.16.1",
     "vue": "^2.6.12",
     "vue-google-signin-button-directive": "^1.0.3",
-    "vue-hot-reload-api": "^2.3.4"
+    "vue-hot-reload-api": "^2.3.4",
+    "vuedraggable": "^2.24.1"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.2.0",
