@@ -1,11 +1,11 @@
-const { Task, UserOrganizationTask } = require('../models')
+const { Task, UserOrganization } = require('../models')
 
 class TaskController {
     static async showTasks(req, res) {
         try {
-            const conjunction = await UserOrganizationTask.findAll({where: {UserId: req.userData.id, OrganizationId: req.params.organizationId}})
-            const task = await Task.findAll()
-            return res.status(200).json({task, conjunction})
+            // const conjunction = await UserOrganization.findAll({where: {OrganizationId: req.params.organizationId}})
+            const tasks = await Task.findAll({where: {OrganizationId: req.params.organizationId}})
+            return res.status(200).json(tasks)
         }
         catch(err) {
             console.log(err, '<<<< error show task')
@@ -13,10 +13,10 @@ class TaskController {
         }
     }
     static async addTask(req, res) {
-        const { title, category } = req.body
+        const { title } = req.body
         try {
-            const task = await Task.create({title, category})
-            const conjunction = await UserOrganizationTask.create({OrganizationId: req.params.organizationId, UserId: req.userData.id, TaskId: task.id})
+            const task = await Task.create({title, CategoryId: req.body.CategoryId, UserId: req.userData.id, OrganizationId: req.params.organizationId})
+            // const conjunction = await UserOrganization.create({OrganizationId: req.params.organizationId, UserId: req.userData.id})
             return res.status(201).json(task)
         }
         catch(err) {
@@ -27,11 +27,13 @@ class TaskController {
     static async getTaskById(req, res) {
         const { taskId, organizationId } = req.params
         try {
-            const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
-            if (!conjunction ) {
-                return res.status(400).json({message: 'Task Not Found'})
+            // const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
+            // if (!conjunction ) {
+                // }
+            const task = await Task.findOne({where: {id: taskId, OrganizationId: organizationId}})
+            if (!task) {
+                    return res.status(400).json({message: 'Task Not Found'})
             }
-            const task = await Task.findOne({where: {id: req.params.taskId}})
             return res.status(200).json(task)
         }
         catch(err) {
@@ -40,14 +42,17 @@ class TaskController {
         }
     }
     static async updateTask(req, res) {
-       const { taskId, organizationId } = req.params
-       const { title, category } = req.body
+       const { taskId } = req.params
+       const { title, CategoryId } = req.body
         try {
-            const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
-            if (!conjunction) {
+            // const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
+            // if (!conjunction) {
+            //     return res.status(400).json({message: 'Task Not Found'})
+            // }
+            const task = await Task.update({title, CategoryId}, {where: {id: taskId}})
+            if (!task) {
                 return res.status(400).json({message: 'Task Not Found'})
-            }
-            const task = await Task.update({title, category}, {where: {id: taskId}})
+        }
             return res.status(200).json(task)
         }
         catch(err) {
@@ -56,12 +61,12 @@ class TaskController {
         }
     }
     static async deleteTask(req, res) {
-        const { taskId, organizationId } = req.params
+        const { taskId } = req.params
         try {
-            const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
-            if (!conjunction) {
-                return res.status(400).json({message: 'Task Not Found'})
-            }
+            // const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
+            // if (!conjunction) {
+            //     return res.status(400).json({message: 'Task Not Found'})
+            // }
             const task = await Task.destroy({where: {id: taskId}})
             return res.status(200).json(task)
         }

@@ -1,4 +1,4 @@
-const { Organization, UserOrgazationTask } = require('../models')
+const { Organization, UserOrganization } = require('../models')
 
 class OrganizationController {
     static async showOrganization(req, res) {
@@ -14,8 +14,8 @@ class OrganizationController {
     static async addOrganization(req, res) {
         try {
             const { name } = req.body
-            const { UserId } = req.userData.id
             const organization = await Organization.create({name})
+            const userOrganization = await UserOrganization.create({UserId: req.userData.id, OrganizationId: organization.id})
             return res.status(201).json(organization)
         }
         catch(err) {

@@ -22,14 +22,14 @@ const authorization = async function(req, res, next) {
     try {
         const conjunction = await UserOrganizationTask.findOne({where: {OrganizationId: req.params.organizationId, UserId: req.userData.id}})
         if (!conjunction) {
-            return res.status(403).json({message: 'User Not Authorization'})
-        }
-        const task = await Task.findOne({where: {id: conjunction.TaskId}})
-        if (task) {
-            next()
-        } else {
-            return res.status(403).json({message: 'User Not Authorization'})
-        }
+            return res.status(403).json({message: 'User Not Authorization<<'})
+        } else next()
+        // const task = await Task.findOne({where: {id: conjunction.TaskId}})
+        // if (task) {
+        //     next()
+        // } else {
+        //     return res.status(403).json({message: 'User Not Authorization'})
+        // }
     }
     catch(err) {
         console.log(err, '<<<< error Authorization')

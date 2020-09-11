@@ -1,36 +1,27 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('UserOrganizationTasks', {
+    await queryInterface.createTable('UserOrganizations', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      OrganizationId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Organizations',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
       UserId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key: 'id'
+          id: 'key'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      TaskId: {
+      OrganizationId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Tasks',
-          key: 'id'
+          model: 'Organizations',
+          id: 'key'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
@@ -46,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('UserOrganizationTasks');
+    await queryInterface.dropTable('UserOrganizations');
   }
 };
