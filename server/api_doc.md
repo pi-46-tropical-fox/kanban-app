@@ -1,13 +1,22 @@
-# Fancy Todo App Server
-Kanban adalah Single Page Application (SPA) yang bertujuan untuk... 
+# Kanban App Server
+Kanban adalah Single Page Application (SPA) yang bertujuan untuk mendapatkan gambaran tentang segala sesuatu yang perlu untuk dilakukan. Aplikasi ini memungkinkan Anda untuk memantau kemajuan dan mengedit task serta memantau progress atau status penyelesaiannya.
+
 Aplikasi ini memiliki konfigurasi dan fitur sebagai berikut : 
-* xxx
-* xxx
+* RESTful endpoint dengan operasi CRUD.
+* Format respon berupa JSON.
+* Fitur Google OAuth untuk user login melalui akun gmail.
+* Assosiasi "one-to-many" diamana satu User dapat memiliki banyak Task.
+* Task memiliki beberapa category diantarnya: BACKLOG, TODO, DOING, dan DONE. Setiap task akan ditampilkan berdasarkan categorynya masing-masing.
+* User dapat menambahkan category baru di luar empat karegori tersebut.
+* User dapat menambahkan task berdasarkan category yang dipilih.
+* Authorized user dapat mengedit dan menghapus task miliknya sendiri.
+* Terdapat fitur "drag & drop" untuk memindahkan task dari satu category ke category yang lain.
+
 
 Constraint Aplikasi:
-* ...
-* ...
-* ...
+* User harus registrasi dan login terlebih dahulu agar dapat mengakses aplikasi.
+* Hanya authorized user yang dapat mengedit dan menghapus task miliknya sendiri
+* Fitur "drag & drop" hanya bisa dilakukan oleh authorized user (pemilik task)
 
 &nbsp;
 
@@ -22,6 +31,10 @@ Constraint Aplikasi:
 * pg
 * sequelize
 * bootstrapcss
+* parcel
+* vue
+* vue-google-signin-button-directive
+* vuedraggable
 
 ## Endpoints
 * POST /register
@@ -101,10 +114,7 @@ _Request Body_
 _Response (200 - Ok)_
 ```json
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey",
-    "id": 1,
-    "name": "Amanda Caessara",
-    "organization": "Hacktiv8"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ey"
 }
 ```
 

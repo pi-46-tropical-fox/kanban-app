@@ -39,8 +39,8 @@ class UserController{
 
                 if(flag) {
                     const access_token = generateToken(data)
-                    const { id, name, organization } = data
-                    return res.status(200).json({access_token, id, name, organization})
+                    
+                    return res.status(200).json({ access_token })
                 }else {
                     throw {message: 'Invalid name or password', statusCode: 400}
                 }
@@ -93,7 +93,6 @@ class UserController{
         })
         .then(user => {
             const access_token = generateToken(user)
-            const { id, name, organization} = user
             
             return res.status(200).json({ access_token })
         })

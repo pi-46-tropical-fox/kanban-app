@@ -4,7 +4,7 @@
             <div class="card-body p-2">
                 <div class="card-title">
                     <img :src="task.User.pictureUrl" class="rounded-circle float-right card-img2">
-                    <a href="" class="lead font-weight-light text-dark">{{task.task}}</a>
+                    <span class="lead font-weight-light text-dark">{{task.task}}</span>
                 </div>
                 <p class="text-darkGrey">
                     {{task.description}}

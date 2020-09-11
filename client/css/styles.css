@@ -4919,9 +4919,12 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-warning {
-  color: #846d1c;
+  /* color: #d3d0c5;
   background-color: #fff6d7;
-  border-color: #fff2c7;
+  border-color: #fff2c7; */
+  color: #fefefe;
+  background-color: #d4525b;
+  border-color: transparent;
 }
 .alert-warning hr {
   border-top-color: #ffecae;

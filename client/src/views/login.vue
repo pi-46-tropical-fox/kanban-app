@@ -20,8 +20,7 @@
                 
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                     <hr class="my-4">
-                    <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button> -->
-                    <button v-google-signin-button="clientId" class="btn btn-lg btn-google btn-block text-uppercase"> Continue with Google</button>
+                    <button v-google-signin-button="clientId" class="btn btn-lg btn-google btn-block text-uppercase"><i class="fab fa-google mr-2"></i> Continue with Google</button>
                 </form>
             </div>
             </div>
@@ -58,8 +57,9 @@ export default {
                     this.$emit('emitToPage', 'Dashboard')
                     this.$emit('emitIsLogin')
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log({err})
+                    this.$emit('emitErrorHandler', {err})
                 })
         },
         OnGoogleAuthSuccess (idToken) {
@@ -79,7 +79,7 @@ export default {
                     this.$emit('emitIsLogin')
                 })
                 .catch(({err}) => {
-                    console.log(err)
+                    this.$emit('emitErrorHandler', err)
                 })
 
         },
@@ -91,5 +91,13 @@ export default {
 </script>
 
 <style>
-
+.google-signin-button {
+  color: white;
+  background-color: red;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px 20px 25px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 </style>

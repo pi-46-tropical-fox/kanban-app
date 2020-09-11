@@ -2,8 +2,9 @@
   <div>
     <NavBar :isLogin="isLogin"  @emitToPage="toPage"></NavBar>
     <header class="masthead"> 
+      <!-- <Error :error='error' v-if="error"></Error> -->
       <WelcomePage v-if="currentPage == 'Welcome'"></WelcomePage>
-      <LoginPage v-else-if="currentPage == 'Login'" @emitToPage="toPage" @emitIsLogin="login"></LoginPage>
+      <LoginPage v-else-if="currentPage == 'Login'" @emitToPage="toPage" @emitIsLogin="login" @emitErrorHandler="errorHandler"></LoginPage>
       <RegisterPage v-else-if="currentPage == 'Register'" @emitToPage="toPage"></RegisterPage>
       <AddTaskPage v-else-if="currentPage == 'AddTask'" @emitToPage="toPage"></AddTaskPage>
       <EditTaskPage v-else-if="currentPage == 'EditTask'" :taskId="taskId" @emitToPage="toPage"></EditTaskPage>
@@ -22,6 +23,7 @@ import RegisterPage from './views/register'
 import AddTaskPage from './views/addTask'
 import EditTaskPage from './views/editTask'
 import DashboardPage from './views/dashboard'
+import Error from './components/error'
 
 export default {
   name: "App",
@@ -29,7 +31,8 @@ export default {
     return {
       isLogin: false,
       currentPage: 'Welcome',
-      taskId : 0
+      taskId: 0,
+      error: null
     };
   },
   components: {
@@ -40,7 +43,8 @@ export default {
     RegisterPage,
     AddTaskPage,
     EditTaskPage,
-    DashboardPage
+    DashboardPage,
+    Error
   },
   methods: {
     login() {
@@ -61,6 +65,10 @@ export default {
     updateTask(id) {
       this.taskId = id
       this.currentPage = 'EditTask'
+    },
+    errorHandler(err) {
+      console.log(err, '<<<< di app')
+      this.error = err
     }
   },
   created() {
