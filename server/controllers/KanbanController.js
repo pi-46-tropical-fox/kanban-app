@@ -5,7 +5,6 @@ class KanbanController {
     static async getProjects(req,res,next) {
         try {
             const projectUser = await Project.findAll({
-                where: {UserId : req.userData.id},
                 include: Category
             })
             return res.status(200).json(projectUser)
@@ -20,12 +19,49 @@ class KanbanController {
                 where: {ProjectId : req.params.id},
                 include: Task
             })
-            // const taskUser = []
-            // categoriesUser.forEach(category => {
-            //     taskUser.push(category.Tasks)
-            // });
-            // console.log(taskUser);
             return res.status(200).json(categoriesUser)
+        } catch(err) {
+            return next(err)
+        }
+    }
+
+    static async postCategory(req,res,next) {
+        try {
+            const addCategory = {
+                title: req.body.title,
+                ProjectId: req.params.id,
+            }
+            const result = await Category.create(addCategory)
+
+            return res.status(200).json(result)
+        } catch(err) {
+            return next(err)
+        }
+    }
+
+    static async updateCategory(req,res,next) {
+        try {
+            const updateCategory = {
+                title: req.body.title,
+                ProjectId: req.params.id,
+            }
+            const result = await Category.update(updateCategory, {
+                where: {id: 13} // dari body
+            })
+
+            return res.status(200).json(updateCategory)
+        } catch(err) {
+            return next(err)
+        }
+    }
+
+    static async deleteCategory(req,res,next) {
+        try { 
+            const deletedCategory = await Category.destroy({
+                where: {id : 16},
+            })
+    
+            return res.status(200).json(deletedCategory)
         } catch(err) {
             return next(err)
         }
@@ -33,8 +69,6 @@ class KanbanController {
 
     static async postTask(req,res,next) {
         try {
-            console.log(req.body);
-            console.log('masuk');
              //butuh oper category id ke data (body)
             const addTask = {
                 title: req.body.title,
@@ -44,7 +78,6 @@ class KanbanController {
                 UserId : req.body.UserId, //req.userData.id,
                 CategoryId : req.body.CategoryId || 1
             }
-            console.log(addTask);
             const result = await Task.create(addTask)
             return res.status(200).json(result)
         } catch(err) {
@@ -54,7 +87,6 @@ class KanbanController {
     
     static async getTask(req,res,next) {
         try {
-            console.log(req.params);
             const taskUser = await Task.findOne({
                 where: {id: req.params.id}})
             return res.status(200).json(taskUser)
@@ -84,13 +116,10 @@ class KanbanController {
     }
     
     static async deleteTask(req,res,next) {
-        try {
-            
-            console.log('id dapet', req.params.id);
+        try { 
             const deletedTask = await Task.destroy({
                 where: {id : req.params.id},
             })
-    
             return res.status(200).json(deletedTask)
         } catch(err) {
             return next(err)

@@ -1,8 +1,11 @@
 <template>
-  <div @click="getTaskId(task.id)">
-		<h5 class="card-title">{{task.title}}</h5>
-		<p class="card-text ">{{task.description}}</p>
+    <div class="card text-dark shadow mb-2 "  @click="getTaskId(task.id)">
+  <h5 class="card-header">{{task.title}}</h5>
+  <div class="card-body">
+    <p class="card-text">{{task.description}}</p>
   </div>
+</div>
+
 </template>
 
 <script>
@@ -16,12 +19,8 @@ export default {
     },
     methods: {
         getTaskId(id) {
-			console.log('masuk get id', id);
             this.$emit('getTaskId', id)
             }
-            // this.title = '',
-            // this.description = '',
-            // this.due_date = ''
         }
 
 }

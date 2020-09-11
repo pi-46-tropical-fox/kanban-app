@@ -1,6 +1,8 @@
 import Vue from '../node_modules/vue';
 import App from './App.vue';
+import GoogleSignInButton from 'vue-google-signin-button-directive';
 
 new Vue({
+  GoogleSignInButton,
   render: h => h(App),
 }).$mount('#app');

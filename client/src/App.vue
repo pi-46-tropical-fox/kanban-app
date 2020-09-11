@@ -1,5 +1,14 @@
 <template>
 	<div>
+		<div class="btn-group btn-group-toggle" v-if="currentPage != 'dashBoardPage'" data-toggle="buttons">
+			<label class="btn btn-secondary active">
+				<input type="radio" @click="changePage('loginPage')" checked> Login
+			</label>
+			<label class="btn btn-secondary">
+				<input type="radio" @click="changePage('registerPage')" checked> Register
+			</label>
+		</div>
+
 		<LoginPage 
 			v-if="currentPage == 'loginPage'"
 			@changePage="changePage">
@@ -25,7 +34,7 @@
 </template>
 
 <script>
-import axios from './config/axios'
+// import axios from './config/axios'
 import DashBoardPage from './views/Dashboard'
 import LoginPage from './views/LoginPage'
 import RegisterPage from './views/RegisterPage'

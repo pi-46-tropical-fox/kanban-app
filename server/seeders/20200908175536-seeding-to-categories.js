@@ -13,22 +13,22 @@ module.exports = {
     */
    await queryInterface.bulkInsert('Categories', [{
     title: "Backlog",
-    ProjectId: 1,
+    ProjectId: 2,
     createdAt: new Date(),
     updatedAt: new Date(),
    },{
     title: "Todo",
-    ProjectId: 1,
+    ProjectId: 2,
     createdAt: new Date(),
     updatedAt: new Date(),
    },{
     title: "Doing",
-    ProjectId: 1,
+    ProjectId: 2,
     createdAt: new Date(),
     updatedAt: new Date(),
    },{
     title: "Done",
-    ProjectId: 1,
+    ProjectId: 2,
     createdAt: new Date(),
     updatedAt: new Date(),
    },

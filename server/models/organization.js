@@ -17,10 +17,23 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Organization.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Name is required!`,
+        },
+      },
+    },
   }, {
     sequelize,
     modelName: 'Organization',
+    hooks: {
+      beforeCreate(organization) {
+        organization.name = 'Hacktiv8'
+      }
+    }
   });
   return Organization;
 };

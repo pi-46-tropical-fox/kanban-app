@@ -51,9 +51,6 @@ export default {
 			.then(({data})=> {
 				this.$emit('changePage', 'loginPage')
 			})
-			.catch(err=> {
-				console.log(err);
-			})            
             this.username = '',
             this.email = '',
             this.password = ''

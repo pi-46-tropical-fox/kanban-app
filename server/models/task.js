@@ -16,10 +16,38 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Task.init({
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Title is required!`,
+        },
+      },
+    },
     description: DataTypes.STRING,
-    date_post: DataTypes.DATE,
-    due_date: DataTypes.DATE,
+    date_post: {
+      type: DataTypes.DATE,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Date post is required!`,
+        },
+      },
+    },
+    due_date: {
+      type: DataTypes.DATE,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Due Date is required!`,
+        },
+        isAfter: {
+          args: new Date().toISOString(),
+          msg: "Cannot set this due date!"
+        }
+      },
+    },
     UserId : DataTypes.INTEGER,
     CategoryId : DataTypes.INTEGER
   }, {

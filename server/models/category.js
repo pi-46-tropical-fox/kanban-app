@@ -16,7 +16,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Category.init({
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Title is required!`,
+        },
+      },
+    },
     ProjectId: DataTypes.INTEGER,
   }, {
     sequelize,

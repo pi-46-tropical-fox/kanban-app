@@ -2,6 +2,7 @@ const {User} = require('../models')
 
 const {compareBcrypt, hashingPassword} = require('../helpers/bcrypt.js')
 const {generateToken, verifyToken} = require('../helpers/jwt.js')
+const {OAuth2Client} = require('google-auth-library');
 
 class TaskController {
 
@@ -27,10 +28,10 @@ class TaskController {
     static async login(req,res,next) {
         try {
             const {username,password} = req.body
-            console.log('masuk ga',username,password);
+  
 
             const user = await User.findOne({where: {username}})
-            console.log(user,'ini user');
+
             if(!user) {
                 throw {statusCode: 400, msg: "invalid username or password"}
             }
@@ -49,14 +50,14 @@ class TaskController {
 
     static async googleLogin(req,res,next){
         try{
+
             const client = new OAuth2Client(process.env.CLIENT_GOOGLE);
+
             const  {google_id_token} = req.headers
             let email_by_google = ''
             const ticket = await client.verifyIdToken({
                 idToken: google_id_token,
-                audience: process.env.CLIENT_GOOGLE,  // Specify the CLIENT_ID of the app that accesses the backend
-                // Or, if multiple clients access the backend:
-                //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+                audience: process.env.CLIENT_GOOGLE, 
             })
             let payload = ticket.getPayload();
             email_by_google = payload.email
@@ -82,7 +83,7 @@ class TaskController {
                 }
             const access_token = generateToken(payloadGoogle)
 
-            return res.status(200).json({access_token,email_by_google,username})
+            return res.status(200).json({access_token,id:user.id,username})
             
         }catch(err) {
             return next(err)

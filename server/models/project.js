@@ -17,7 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Project.init({
-    note: DataTypes.STRING,
+    note: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `Note is required!`,
+        },
+      },
+    },
     UserId: DataTypes.INTEGER,
     OrganizationId : DataTypes.INTEGER,
   }, {

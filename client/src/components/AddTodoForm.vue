@@ -43,8 +43,6 @@ export default {
             CategoryId: 2,
             UserId: 1,
             }
-            console.log('masuk');
-            console.log(payload);  
           axios({
             url: '/kanban/1',
             method: "POST",
@@ -55,14 +53,7 @@ export default {
           })
           .then(({data})=> {
             this.categories = data
-            console.log('masuk form');
-
-            // console.log(payload);
           })
-          .catch(err=> {
-            console.log('ggagal');
-					  console.log(err);
-          })	
         this.$emit('createTask', 'created')
 				// this.newTodo = ''
       }

@@ -1,12 +1,12 @@
 <template>
 
-  <div class="col-sm" >
+  <div class="col-sm" style="min-width: 200px;">
     <div class="shadow rounded">
-      <div class="card text-white rounded bg-danger mb-3">
+      <div class="card text-white rounded bg-danger mb-3 " style=" height: 450px;">
         <div class="card-header" ><span>{{category.title}}</span>
 
 		</div>
-          	<div class="card-body overflow-auto" style="max-height: 400px;">
+          	<div class="card-body overflow-auto " style="max-height: 400px;">
               	<CardTasks
 					v-for="task in category.Tasks"
 					:task="task" 
@@ -42,11 +42,9 @@ export default {
 	},
 	methods: {
 		createTask(id) {
-			console.log('masuk',id);
 			this.$emit('createTask', id)
 		},
 		getTaskbyId(id) {
-			console.log('masuk dikit lagi',id);
 			this.$emit('getTaskForm', id)
 		},		
 	},
