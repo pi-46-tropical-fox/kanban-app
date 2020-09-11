@@ -4,17 +4,22 @@ class OrganizationController {
     static async showOrganization(req, res) {
         try {
             const conjunction = await UserOrganization.findAll({where: {UserId: req.userData.id}})
-            const organization = await Organization.findAll()
-            let arr = []
-            for (let i=0; i<conjunction.length;i++) {
-                for (let j=0; j<organization.length;j++) {
-                    if (conjunction[i].OrganizationId==organization[j].id) {
-                        arr.push(organization[j].name)
+            if (!conjunction) {
+                const organization = await Organization.findAll()
+                let arr = []
+                for (let i=0; i<conjunction.length;i++) {
+                    for (let j=0; j<organization.length;j++) {
+                        if (conjunction[i].OrganizationId==organization[j].id) {
+                            arr.push({id: organization[j].id, name: organization[j].name})
+                        }
                     }
                 }
+                console.log(arr);
+                return res.status(200).json(arr)
+            } else if (conjunction) {
+                const organization = await Organization.findAll()
+                return res.status(200).json(organization)
             }
-            console.log(arr);
-            return res.status(200).json(arr)
         }
         catch(err) {
             console.log(err, '<<<<< Error Di Show Organization')
