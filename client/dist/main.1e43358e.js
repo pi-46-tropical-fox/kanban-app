@@ -11433,8 +11433,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'addForm',
-  components: {
-    edit: edit
+  components: {// edit
   },
   data: function data() {
     return {
@@ -11713,68 +11712,59 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        { staticClass: "card-group" },
-        [
-          _c("div", { staticClass: "card-group-header" }, [
-            _c("div", { staticClass: "title" }, [
-              _c("h4", [_vm._v(_vm._s(_vm.todo.title))])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "action" }, [
-              _c("a", { attrs: { href: "" } }, [
-                _c("i", {
-                  staticClass: "fa fa-trash",
-                  attrs: { "aria-hidden": "true" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.deleteTask(_vm.todo.id)
-                    }
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "card-group" },
+      [
+        _c("div", { staticClass: "card-group-header" }, [
+          _c("div", { staticClass: "title" }, [
+            _c("h4", [_vm._v(_vm._s(_vm.todo.title))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "action" }, [
+            _c("a", { attrs: { href: "" } }, [
+              _c("i", {
+                staticClass: "fa fa-trash",
+                attrs: { "aria-hidden": "true" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.deleteTask(_vm.todo.id)
                   }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "description" }, [
-            _c("p", [_vm._v(_vm._s(_vm.todo.description))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "userInfo" }, [
-            _c("span", [_vm._v("by: " + _vm._s(_vm.todo.User.name))]),
-            _vm._v(" "),
-            _c("span", [_vm._v("Due Date: " + _vm._s(_vm.todo.due_date))])
-          ]),
-          _vm._v(" "),
-          _c(
-            "b-button",
-            {
-              directives: [
-                {
-                  name: "b-modal",
-                  rawName: "v-b-modal.modal-1",
-                  modifiers: { "modal-1": true }
                 }
-              ]
-            },
-            [_vm._v("Edit Task")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("edit", {
-        attrs: { categories: _vm.categories },
-        on: { addTodo: _vm.addTodo }
-      })
-    ],
-    1
-  )
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "description" }, [
+          _c("p", [_vm._v(_vm._s(_vm.todo.description))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "userInfo" }, [
+          _c("span", [_vm._v("by: " + _vm._s(_vm.todo.User.name))]),
+          _vm._v(" "),
+          _c("span", [_vm._v("Due Date: " + _vm._s(_vm.todo.due_date))])
+        ]),
+        _vm._v(" "),
+        _c(
+          "b-button",
+          {
+            directives: [
+              {
+                name: "b-modal",
+                rawName: "v-b-modal.modal-1",
+                modifiers: { "modal-1": true }
+              }
+            ]
+          },
+          [_vm._v("Edit Task")]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11979,8 +11969,7 @@ var _default = {
           'access_token': localStorage.getItem('access_token')
         }
       }).then(function (respose) {
-        console.log(response);
-
+        // console.log(response)
         _this.$bvModal.hide('modal');
 
         _this.$emit('todo');
@@ -63376,7 +63365,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40987" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43355" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

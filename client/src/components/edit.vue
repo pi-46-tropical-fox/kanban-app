@@ -68,7 +68,7 @@ import axios from '../config/axios'
 export default {
     name: 'addForm',
     components : {
-      edit
+      // edit
     },
     data() {
         return {

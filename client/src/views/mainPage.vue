@@ -45,7 +45,7 @@ export default {
                 headers: { 'access_token': localStorage.getItem('access_token')}
             })
             .then (respose => {
-                console.log(response)
+                // console.log(response)
                 this.$bvModal.hide('modal')
                 this.$emit('todo')
                 

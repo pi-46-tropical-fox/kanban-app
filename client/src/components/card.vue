@@ -18,7 +18,7 @@
             </div>
             <b-button v-b-modal.modal-1>Edit Task</b-button>
         </div>
-        <edit :categories="categories" @addTodo='addTodo'></edit>
+        <!-- <edit :categories="categories" @addTodo='addTodo'></edit> -->
     </div>
 </template>
 
