@@ -2,10 +2,10 @@
 <div>
     <div class="container-kanban">
         <article class="message is-dark category">
+            <!-- <Category></Category>
             <Category></Category>
             <Category></Category>
-            <Category></Category>
-            <Category></Category>
+            <Category></Category> -->
              <!-- v-for="task in tasksData"
              :taskCategory="task" 
              :key='task.id'>  -->

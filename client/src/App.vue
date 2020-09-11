@@ -4,8 +4,31 @@
     v-if="currentPage === 'loginPage'" 
     @loginSubmit="login">
     </LoginPage>
-    <RegisterPage v-if="currentPage === 'registerPage'" @registerSubmit="register"></RegisterPage>
-    <DashboardTask 
+
+    <RegisterPage 
+    v-if="currentPage === 'registerPage'" 
+    @registerSubmit="register">
+    </RegisterPage>
+
+    <Navbar 
+    @logoutButton="logout"
+    @dashboardOrganizationButton="getOrganization"
+    v-if="currentPage === 'dashboardTask' || currentPage === 'dashboardOrganizationPage' || currentPage === 'createOrganizationPage' || currentPage === 'joinOrganizationPage'
+    "></Navbar>
+
+    <DashboardOrganization
+    @createOrganizationButton="createOrganization"
+    @joinOrganizationButton="joinOrganization"
+    v-if="currentPage === 'dashboardOrganizationPage'">
+    </DashboardOrganization>
+
+    <CreateOrganization 
+    @dashboardOrganizationButton="getOrganization"
+    @joinOrganizationButton="joinOrganization" 
+    v-if="currentPage === 'createOrganizationPage'">
+    </CreateOrganization>
+
+    <DashboardTask
     v-if="currentPage === 'dashboardTask'"
     :tasksData="tasks"
     ></DashboardTask>
@@ -14,8 +37,11 @@
 
 <script>
 import axios from './config/axios'
+import Navbar from './views/Navbar.vue'
 import LoginPage from './views/Login.vue'
 import RegisterPage from './views/Register'
+import DashboardOrganization from './views/DasboardOrganization.vue'
+import CreateOrganization from './views/CreateOrganizationPage.vue'
 import DashboardTask from './views/DashboardTask'
 export default {
   name: 'App', 
@@ -41,8 +67,11 @@ export default {
     };
   },
   components: {
+      Navbar,
       LoginPage,
       RegisterPage,
+      DashboardOrganization,
+      CreateOrganization,
       DashboardTask
   },
   methods: {
@@ -68,6 +97,11 @@ export default {
         console.log(err)
       })
     },
+    logout() {
+      localStorage.clear()
+      localStorage.removeItem('access_token')
+      this.currentPage='loginPage'
+    },
     getTask() { 
       axios({
         url: `/1/task`,
@@ -83,6 +117,15 @@ export default {
       .catch(err => {
         console.log(err)
       })
+    },
+    getOrganization() {
+      this.currentPage = 'dashboardOrganizationPage'
+    },
+    joinOrganization() {
+      this.currentPage = 'joinOrganizationPage'
+    },
+    createOrganization() {
+      this.currentPage = 'createOrganizationPage'
     }
   },
   created() {
