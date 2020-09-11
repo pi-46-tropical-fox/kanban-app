@@ -10739,6 +10739,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   name: "LoginPage",
   data: function data() {
@@ -10919,7 +10921,11 @@ exports.default = _default;
                             onSuccess: _vm.onSuccess,
                             onFailure: _vm.onFailure
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _vm._m(1)
                       ],
                       1
                     )
@@ -10946,6 +10952,15 @@ var staticRenderFns = [
           alt: "gambar-kanban"
         }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _vm._v("Dont have account? "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Click Here")])
     ])
   }
 ]
@@ -11007,7 +11022,13 @@ exports.default = void 0;
 //
 //
 var _default = {
-  methods: {}
+  props: ["changePage"],
+  methods: {
+    logout: function logout() {
+      localStorage.clear();
+      this.$emit("changePage");
+    }
+  }
 };
 exports.default = _default;
         var $20751e = exports.default || module.exports;
@@ -11022,49 +11043,54 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("nav", { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" }, [
+      _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+        _vm._v("KANBAN")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "collapse navbar-collapse",
+          attrs: { id: "navbarText" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("span", { staticClass: "navbar-text" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.logout($event)
+                  }
+                }
+              },
+              [_vm._v("Logout")]
+            )
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "nav",
-        { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
-        [
-          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _vm._v("KANBAN")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbarText" }
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-                _c("li", { staticClass: "nav-item active" }, [
-                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                    _vm._v("Home "),
-                    _c("span", { staticClass: "sr-only" }, [
-                      _vm._v("(current)")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "navbar-text" }, [
-                _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                  _vm._v("Logout")
-                ])
-              ])
-            ]
-          )
-        ]
-      )
+    return _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+      _c("li", { staticClass: "nav-item active" }, [
+        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+          _vm._v("Home "),
+          _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
+        ])
+      ])
     ])
   }
 ]
@@ -18827,6 +18853,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   name: "DashboardPage",
   data: function data() {
@@ -18838,6 +18866,7 @@ var _default = {
       allCategoryName: []
     };
   },
+  props: ["changePage"],
   components: {
     Navbar: _Navbar.default,
     Category: _Category.default,
@@ -18891,7 +18920,7 @@ exports.default = _default;
   return _c(
     "div",
     [
-      _c("Navbar"),
+      _c("Navbar", { on: { changePage: _vm.changePage } }),
       _vm._v(" "),
       _c(
         "a",
@@ -18997,6 +19026,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -19039,7 +19069,7 @@ exports.default = _default;
       _vm.currentPage === "LoginPage"
         ? _c("LoginPage", { on: { changePage: _vm.changePage } })
         : _vm.currentPage === "DashboardPage"
-        ? _c("DashboardPage")
+        ? _c("DashboardPage", { on: { changePage: _vm.changePage } })
         : _vm._e()
     ],
     1
@@ -19120,7 +19150,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50324" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57171" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

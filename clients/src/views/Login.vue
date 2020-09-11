@@ -17,6 +17,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+                    <br>
+                    <span>Dont have account? <a href="#">Click Here</a></span>
                 </form>
                 </div>
             </div>

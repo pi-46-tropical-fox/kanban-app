@@ -9,6 +9,7 @@
       <!-- Dashboard -->
       <DashboardPage 
       v-else-if="currentPage === 'DashboardPage'"
+      @changePage="changePage"
       ></DashboardPage>
   </div>
 </template>

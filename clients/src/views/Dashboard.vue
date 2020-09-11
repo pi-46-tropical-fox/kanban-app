@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <Navbar
+      @changePage= "changePage"
+    ></Navbar>
     <a class="nav-link" href="#" @click.prevent="toggleAdd">Add Category +</a>
     <AddCategory
       v-if="isAdd"
@@ -37,6 +39,7 @@ export default {
         allCategoryName: []
       }
     },
+    props: ["changePage"],
     components: {
       Navbar,
       Category,

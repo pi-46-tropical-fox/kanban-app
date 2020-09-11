@@ -9,7 +9,7 @@
           </li>
         </ul>
         <span class="navbar-text">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="#" @click.prevent="logout">Logout</a>
         </span>
       </div>
     </nav>
@@ -18,8 +18,12 @@
 
 <script>
 export default {
+    props: ["changePage"],
     methods: {
-        
+        logout(){
+          localStorage.clear()
+          this.$emit("changePage")
+        }
     }
 }
 </script>
