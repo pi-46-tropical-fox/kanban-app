@@ -5,12 +5,6 @@ My Todos App is an application to manage your todos. This app has :
 * JSON formatted response
 
 &nbsp;
-router.get('/', TaskController.showAllTask)
-router.post('/:categoryId', TaskController.createNewTask)
-router.get('/:taskId', authorization, TaskController.findTaskById)
-router.put('/:taskId', authorization, TaskController.updateTask)
-router.put('/:taskId/:categoryId', authorization, TaskController.moveTaskCategory)
-router.delete('/:taskId', authorization, TaskController.deleteTask)
 
 ## Endpoints
 ``` 
@@ -70,24 +64,82 @@ _Response (400 - Bad Request)_
 ### GET /tasks
 
 > Get all tasks
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200)_
+```
 [
     {
-        title: 'Layout kanban',
-        description: 'Bikin layout kanban dengan css flex dan grid',
-        CategoryId: 4,
-        UserId: 1,
+      "id": 1
+      "title": 'Layout kanban',
+      "description": 'Bikin layout kanban dengan css flex dan grid',
+      "CategoryId": 4,
+      "UserId": 1,
       "createdAt": "2020-08-31T07:15:12.149Z",
       "updatedAt": "2020-08-31T07:15:12.149Z",
     },
     {
-        title: 'Vue di client',
-        description: 'Setup vue di client',
-        CategoryId: 4,
-        UserId: 1,
+      "id": 2
+      "title": 'Vue di client',
+      "description": 'Setup vue di client',
+      "CategoryId": 4,
+      "UserId": 1,
       "createdAt": "2020-08-31T07:15:12.149Z",
       "updatedAt": "2020-08-31T07:15:12.149Z",
     }
 ]
+```
+_Response (400 - Bad Request)_
+```
+{
+  "message": "Invalid request"
+}
+```
+---
+### POST /tasks/:categoryId
+Create new task
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+}
+```
+_Request Body_
+```
+{
+  "title": <task title>
+}
+```
+_Response (201)_
+```
+  {
+    "id": <given by ssytem>
+    "title": 'Backlog',
+    "descritpion": null,
+    "CategoryId": <automatically adjust by where board that you click>
+    "UserId": <automatically by user who login>
+    "createdAt": "2020-08-31T07:15:12.149Z",
+    "updatedAt": "2020-08-31T07:15:12.149Z",
+  },
+```
+_Response (400 - Bad Request)_
+```
+{
+  "message": "Invalid request"
+}
+```
 
 ### GET /tasks/:taskId
 
@@ -107,15 +159,15 @@ no needed
 
 _Response (200 - Ok)_
 ```
-    {
-        id: 1
-        title: 'Layout kanban',
-        description: 'Bikin layout kanban dengan css flex dan grid',
-        CategoryId: 4,
-        UserId: 1,
-      "createdAt": "2020-08-31T07:15:12.149Z",
-      "updatedAt": "2020-08-31T07:15:12.149Z",
-    }
+{
+   "id": 1
+   "title": 'Layout kanban',
+   "description": 'Bikin layout kanban dengan css flex dan grid',
+   "CategoryId": 4,
+   "UserId": 1,
+   "createdAt": "2020-08-31T07:15:12.149Z",
+   "updatedAt": "2020-08-31T07:15:12.149Z",
+}
 ```
 
 _Response (400 - Bad Request)_
@@ -163,7 +215,7 @@ _Response (400 - Bad Request)_
 ---
 ### PUT /tasks/:taskId/:categoryId
 
-> Move tosk category
+> Move task category
 
 _Request Header_
 ```
@@ -233,8 +285,6 @@ not needed
 _Request Body_
 ```
 {
-  "firstName": "<your first name>",
-  "lastName": "<your last name>",
   "email": "<your email>"
   "password": "<your password>",
 }

@@ -4,7 +4,6 @@
             v-if="currentPage === 'login'"
             @showRegisterForm="showRegisterForm"
             @login="login"
-            @onSignIn="onSignIn"
             :message="message">
         </LoginPage>
         <RegisterPage
@@ -105,34 +104,11 @@ export default {
               this.message = notif
           })
       },
-       onSignIn(googleUser) {
-                const google_access_token = googleUser.getAuthResponse().id_token;
-                axios({
-                    url: `/googleLogin`,
-                    method: 'POST',                    
-                    headers: {
-                        google_access_token
-                    }
-                })
-                .then(({data}) => {
-                    localStorage.setItem('access_token', data.access_token)
-                    this.message = `<p style="background-color: #2ed574b4;">Success get in with Google!</p>`
-                    this.currentPage = 'main' 
-                    this.showAllTaskCategory()
-                    this.showAllTask() 
-                })
-                .catch((error) => {
-                    let notif = ''
-                    for(const msg of error.response.data.errors ){
-                        notif += (`<p style="background-color: #ff4756ce;">${msg}</p>`)
-                    }
-                    this.message = notif
-                })
-            },
       logout(){
           localStorage.clear()
           this.currentPage = 'login'
           this.clearField()
+          this.message = `<p style="background-color: #2ed574b4;">You've logged out successfully!</p>`
       },
       showAllTaskCategory(){
           axios({
@@ -211,6 +187,7 @@ export default {
       }
   }
 };
+
 </script>
 
 <style>

@@ -10345,7 +10345,7 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var instance = _axios.default.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'https://my-kanban-apps-2.herokuapp.com'
 });
 
 var _default = instance;
@@ -10759,10 +10759,6 @@ var _default = {
     showRegisterForm: function showRegisterForm() {
       this.$emit('showRegisterForm');
       this.clearField();
-    },
-    onSignIn: function onSignIn(googleUser) {
-      this.$emit('onSignIn', googleUser);
-      this.clearField();
     }
   }
 };
@@ -10855,27 +10851,7 @@ exports.default = _default;
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticStyle: { "text-align": "left" } }, [
-                _c(
-                  "button",
-                  { staticClass: "btn", attrs: { type: "submit" } },
-                  [_vm._v("Login")]
-                ),
-                _vm._v(" "),
-                _c("p", [_vm._v("or login with :")]),
-                _vm._v(" "),
-                _c("div", {
-                  staticClass: "g-signin2",
-                  staticStyle: { "text-align": "center" },
-                  attrs: { "data-onsuccess": "onSignIn" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.onSignIn($event)
-                    }
-                  }
-                })
-              ]),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticStyle: { color: "#fff" } }, [
                 _vm._v("Don't have an account?\n                    "),
@@ -10913,6 +10889,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", [_c("i", { staticClass: "fa fa-lock" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "text-align": "left" } }, [
+      _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
+        _vm._v("Login")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -12923,25 +12909,24 @@ var _default = {
         _this2.message = notif;
       });
     },
-    onSignIn: function onSignIn(googleUser) {
+    logout: function logout() {
+      localStorage.clear();
+      this.currentPage = 'login';
+      this.clearField();
+      this.message = "<p style=\"background-color: #2ed574b4;\">You've logged out successfully!</p>";
+    },
+    showAllTaskCategory: function showAllTaskCategory() {
       var _this3 = this;
 
-      var google_access_token = googleUser.getAuthResponse().id_token;
       (0, _axios.default)({
-        url: "/googleLogin",
-        method: 'POST',
+        url: "/categories",
+        method: 'GET',
         headers: {
-          google_access_token: google_access_token
+          access_token: localStorage.getItem('access_token')
         }
       }).then(function (_ref3) {
         var data = _ref3.data;
-        localStorage.setItem('access_token', data.access_token);
-        _this3.message = "<p style=\"background-color: #2ed574b4;\">Success get in with Google!</p>";
-        _this3.currentPage = 'main';
-
-        _this3.showAllTaskCategory();
-
-        _this3.showAllTask();
+        _this3.categories = data;
       }).catch(function (error) {
         var notif = '';
 
@@ -12962,23 +12947,18 @@ var _default = {
         _this3.message = notif;
       });
     },
-    logout: function logout() {
-      localStorage.clear();
-      this.currentPage = 'login';
-      this.clearField();
-    },
-    showAllTaskCategory: function showAllTaskCategory() {
+    showAllTask: function showAllTask() {
       var _this4 = this;
 
       (0, _axios.default)({
-        url: "/categories",
+        url: "/tasks",
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
         }
       }).then(function (_ref4) {
         var data = _ref4.data;
-        _this4.categories = data;
+        _this4.tasks = data;
       }).catch(function (error) {
         var notif = '';
 
@@ -12997,38 +12977,6 @@ var _default = {
         }
 
         _this4.message = notif;
-      });
-    },
-    showAllTask: function showAllTask() {
-      var _this5 = this;
-
-      (0, _axios.default)({
-        url: "/tasks",
-        method: 'GET',
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        }
-      }).then(function (_ref5) {
-        var data = _ref5.data;
-        _this5.tasks = data;
-      }).catch(function (error) {
-        var notif = '';
-
-        var _iterator5 = _createForOfIteratorHelper(error.response.data.errors),
-            _step5;
-
-        try {
-          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-            var msg = _step5.value;
-            notif += "<p style=\"background-color: #ff4756ce;\">".concat(msg, "</p>");
-          }
-        } catch (err) {
-          _iterator5.e(err);
-        } finally {
-          _iterator5.f();
-        }
-
-        _this5.message = notif;
       });
     },
     fetchData: function fetchData() {
@@ -13089,11 +13037,7 @@ exports.default = _default;
       _vm.currentPage === "login"
         ? _c("LoginPage", {
             attrs: { message: _vm.message },
-            on: {
-              showRegisterForm: _vm.showRegisterForm,
-              login: _vm.login,
-              onSignIn: _vm.onSignIn
-            }
+            on: { showRegisterForm: _vm.showRegisterForm, login: _vm.login }
           })
         : _vm.currentPage === "register"
         ? _c("RegisterPage", {
@@ -13198,7 +13142,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42855" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42469" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
