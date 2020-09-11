@@ -1,157 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="807199705023-40ob77cl80k94mmk5ue30jg1tij8tedj.apps.googleusercontent.com">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Welcome to Kanban App! Made by Fariz Rachimawan</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Alata', sans-serif;
+    }
+#login-page {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    overflow: hidden;
+}
+
+.login-page-left {
+    width: 60%;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url(https://media.giphy.com/media/3og0IL6LDkIqFRNB9m/giphy.gif);
+}
+
+.logo {
+    position: absolute;
+    top: 150px;
+
+}
+
+.login-page-left img {
+    width: 60%;
+    z-index: 999;
+}
+
+.login-page-right {
+    width: 40%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login-page-right h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Alata', sans-serif;
+}
+
+
+.login-page-right form {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    z-index: 99;
+    border-radius: 10px;
+}
+
+.login-page-right input {
+    margin: 1rem 0;
+    height: 30px;
+}
+
+.login-btn {
+    background: #5800D1;
+    border: 1px solid #31207E;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 0;
+    font-family: 'Alata', sans-serif;
+}
+
+#navbar {
+    background: #31207E;;
+}
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  <br>
-  <br>
-        
-        <div class="container-fluid d-flex justify-content-between col-9">
-         <div class="col-3 ">
-           <div class="card-header">
-             <h4>Backlog</h4>
-           </div>
-           <div class="card-body">
-             <!---->
-             <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Dark card title</h5>
-                <p class="card-text">some</p>
-              </div>
-            </div>
-            <!---->
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Dark card title</h5>
-                <p class="card-text">Some</p>
-              </div>
-            </div>
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Dark card title</h5>
-                <p class="card-text">Some</p>
-              </div>
-            </div>
-           </div>
-         </div>
-  
-         <div class="col-3">
-          <div class="card-header">
-            <h4>Todo</h4>
-          </div>
-          <div class="card-body">
-            <!---->
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Dark card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-            <!---->
-          </div>
-        </div>
-  
-        <div class="col-3">
-          <div class="card-header">
-            <h4>Going</h4>
-          </div>
-          <div class="card-body">
-            <!---->
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Dark card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-            <!---->
-          </div>
-        </div>
-  
-        <div class="col-3">
-          <div class="card-header">
-            <h4>Done</h4>
-          </div>
-          <div class="card-body">
-            <!---->
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-              <div class="card-header">Header</div>
-              <div class="card-body">
-                <h5 class="card-title">Dark card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-            <!---->
-          </div>
-        </div>
-        
-  
-        </div>
-  
-      </div>
-      
-      <!-- LOGIN FORM -->
-      <section id="login-page">
-          <div class="login-page-left">
-            <img src="maxresdefault.jpg" alt="kanban-logo">
-          </div>
-          <div class="login-page-right">
-            <h1>KANBAN</h1>
-            <form id="submit-login">
-              <label>Email</label>
-              <input type="email"  id="email-login">
-              <label>Password</label>
-              <input type="password"  id="password-login">
-              
-              <span>Don't have an account?</span>
-              <a href="#" id="go-to-register">Register Now!</a>
-              Or
-              <span>You can login with your google account:</span>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-              <button class="login-btn" type="submit">Login</button>
-          </form>
-          </div>
-          
-        </div>
-      </section>
-      
-      <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <div id="app"></div>
+  <script src="./src/main.js"></script>
 </body>
 </html>

@@ -14,6 +14,13 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background-image: url(https://media.giphy.com/media/3og0IL6LDkIqFRNB9m/giphy.gif);
+}
+
+.logo {
+    position: absolute;
+    top: 150px;
+
 }
 
 .login-page-left img {
@@ -30,10 +37,21 @@
     justify-content: center;
 }
 
+label {
+    font-family: 'Alata', sans-serif;
+}
+
+span {
+    font-family: 'Alata', sans-serif;
+    text-align: center;
+}
+
 .login-page-right h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    font-family: 'Alata', sans-serif;
 }
+
 
 .login-page-right form {
     display: flex;
@@ -49,9 +67,16 @@
 }
 
 .login-btn {
-    background-color: red;
+    background: #5800D1;
+    border: 1px solid #31207E;
+    border-radius: 3px;
     color: white;
     border: none;
     cursor: pointer;
     padding: 10px 0;
+    font-family: 'Alata', sans-serif;
+}
+
+#navbar {
+    background: #31207E;;
 }
