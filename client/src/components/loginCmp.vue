@@ -29,11 +29,13 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <a href="#" @click.prevent="openRegister">Register</a>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../axios/axiosInstance";
+import dashboardPageVue from '../views/dashboardPage.vue';
 export default {
   name: "Login",
   data(){
@@ -44,14 +46,25 @@ export default {
   },
   methods: {
     submitLogin() {
-      let payload = {
+      let data ={
         email : this.email,
-        password : this.password,
-      };
-      console.log(payload,'ini payload');
-      
-      this.$emit("loginSubmit", payload);
+        password : this.password
+      }
+      axios
+        .post("/login", data)
+        .then(({ data }) => {
+          localStorage.setItem("access_token", data.access_token);
+          this.$emit('isLogin', 'Dashboardpage')
+          this.$emit('getTask')
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+    openRegister(){
+      console.log('masuk register')
+      this.$emit('openRegister','register')
+    }
   },
 };
 </script>

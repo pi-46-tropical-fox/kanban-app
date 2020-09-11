@@ -1,45 +1,63 @@
 <template>
-<div class="container">
-  <Loginpage 
-  v-if="currentPage ==='Loginpage'" @loginSubmit = 'Login'>
-  </Loginpage>
-</div>
-
+  <div class="container">
+    <Accountpage v-if="currentPage === 'Loginpage'" @isLogin='isLogin' @getTask="getTask">
+    </Accountpage>
+    <Dashboard v-else-if ="currentPage === 'Dashboardpage'" @logOut='logOut'>
+      
+    </Dashboard>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
-import Loginpage from "./components/loginCmp";
+import axios from "./axios/axiosInstance";
+import Accountpage from "./views/accountPage";
+import Dashboard from "./views/dashboardPage";
 export default {
-  name: "accountForm",
+  name: "App",
   components: {
-    Loginpage,
+    Accountpage,
+    Dashboard,
   },
   data() {
     return {
-      currentPage : "Loginpage",
+      currentPage: "Loginpage",
+      tasks : [],
     };
   },
-  
+  created(){
+    if(localStorage.getItem('access_token')){
+      this.currentPage = "Dashboardpage"
+      this.getTask()
+    }else{
+      this.currentPage = "Loginpage"
+    }
+  },
   methods: {
-    Login(payload) {
-      this.$emit('login', payload)
-      console.log(this.currentPage)
-      console.log(payload);
-      axios({
-        url: "http://localhost:4000/login",
-        method: "POST",
-        data: payload
-      })
-      .then(({data}) =>{
-          console.log(data)
-          localStorage.setItem("access_token", data.access_token)
-          this.currentPage =  "Homepage"
-      })
-      .catch(err =>{
-          console.log(err)
-      })
+    isLogin(payload){
+      this.currentPage = payload
     },
+    getTask(){
+      console.log('berhasil get data');
+      
+      axios
+        .get('/task',{
+          headers:{
+            access_token : localStorage.getItem('access_token')
+          }
+        })
+        .then(({data}) =>{
+          this.tasks = data
+          console.log(data)
+        })
+        .catch(err =>{
+          console.log(err)
+        })
+        
+    },
+    logOut(payload){
+      this.currentPage = payload
+      this.tasks = []
+    }
   },
 };
 </script>
