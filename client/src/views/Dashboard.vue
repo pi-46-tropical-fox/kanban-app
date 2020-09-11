@@ -15,6 +15,8 @@
     </div>
     <AddTask @tasksSubmit="tasksSubmit"></AddTask>
     <EditTask @tasksEdit="tasksEdit" :task="task"></EditTask>
+    <EditBack :tasksData="tasksData" @Back="Back"></EditBack>
+    <EditForward :tasksData="tasksData" @Forward="Forward"></EditForward>
   </div>
 </template>
 
@@ -24,6 +26,8 @@ import Navbar from "../components/Navbar";
 import AddTask from "../components/AddTask";
 import axios from "../config/axios";
 import EditTask from "../components/EditTask"
+import EditBack from "../components/EditBack"
+import EditForward from "../components/EditForward"
 export default {
   name: "Dashboard",
   props: ["tasksData"],
@@ -31,7 +35,9 @@ export default {
     CardBody,
     Navbar,
     AddTask,
-    EditTask
+    EditTask,
+    EditBack,
+    EditForward
   },
   data() {
     return {
@@ -79,7 +85,37 @@ export default {
       this.$emit('fetchTasks')
     },
     signOut() {
-      localStorage.clear()
+      this.$emit('signOut')
+    },
+    Back(tasksData) {
+      axios({
+        method: 'PATCH',
+        url: `/tasks/${tasksData.id}`,
+        data: {
+          CategoryId: tasksData.CategoryId-1
+        },
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+      .then(data => {
+        this.$bvModal('modal-6')
+      })
+    },
+    Forward(tasksData) {
+      axios({
+        method: 'PATCH',
+        url: `/tasks/${tasksData.id}`,
+        data: {
+          CategoryId: tasksData.CategoryId + 1
+        },
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+      .then(data => {
+        this.$bvModal('modal-9')
+      })
     }
   },
 };

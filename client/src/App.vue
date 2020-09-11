@@ -3,12 +3,14 @@
         <LoginPage
          v-if="currentPage === 'loginPage'"
          :currentPage="currentPage"
+         @googleLogin='google'
          @loginSubmit="login">
          </LoginPage>
         <DashboardPage
             v-else-if="currentPage === 'dashboardPage'"
             :tasksData="tasks"
             @fetchTasks="fetchTasks"
+            @signOut="signOut"
 
         >
         </DashboardPage>
@@ -76,6 +78,15 @@ export default {
               console.log(err);
           })
       },
+      signOut() {
+          localStorage.removeItem('access_token')
+          this.currentPage = 'loginPage'
+      },
+      google(data) {
+          localStorage.setItem('access_token', data.access_token)
+          this.currentPage = "dashboardPage"
+          this.fetchTasks()
+      }
       
   },
   created () {

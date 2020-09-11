@@ -22,8 +22,7 @@
           <a href="#" id="go-to-register" @click="register">Register Now!</a></span
         >
         <span>or</span>
-        <span>You can login with your google account:</span><br />
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
       </div>
     </section>
   </div>
@@ -62,8 +61,10 @@ export default {
     return {
       email: "",
       password: "",
+      clientId: '807199705023-40ob77cl80k94mmk5ue30jg1tij8tedj.apps.googleusercontent.com'
     };
-  },props:['currentPage'],
+  },
+  props:['currentPage'],
   methods: {
     login() {
       let payload = {
@@ -72,6 +73,23 @@ export default {
       };
 
       this.$emit("loginSubmit", payload);
+    },
+     OnGoogleAuthSuccess (idToken) {
+      console.log(idToken, 'token <<<<<<')
+      axios({
+        method: "POST",
+        url: "/googleLogin",
+        headers: {
+          google_access_token: idToken
+        }
+      })
+      .then(({data}) => {
+        this.$emit('googleLogin', data)
+      })
+    
+    },
+    OnGoogleAuthFail (error) {
+      console.log(error, 'error <<<<<<')
     },
     loginForm(){
       this.currentPage ='loginPage'
@@ -101,4 +119,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.google-signin-button {
+  color: white;
+  background-color: red;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px 20px 25px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+</style>
