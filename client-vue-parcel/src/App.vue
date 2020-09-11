@@ -50,7 +50,7 @@ import Login from "./views/loginPage";
 import Register from "./views/registerPage";
 import AddForm from "./views/addTaskPage";
 import EditForm from "./views/editTaskPage";
-import axios from "axios";
+import axios from "./config/api";
 import swal from "sweetalert";
 export default {
   components: {
@@ -83,7 +83,7 @@ export default {
     afterlogin() {
       axios({
         method: "GET",
-        url: "http://localhost:3000/task",
+        url: "/task",
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -105,7 +105,7 @@ export default {
       console.log(payload, "dari app vue");
       axios({
         method: "POST",
-        url: "http://localhost:3000/login",
+        url: "/login",
         data: payload,
       })
       .then(({ data }) => {
@@ -140,7 +140,7 @@ export default {
     register(payload) {
       axios({
         method: "POST",
-        url: "http://localhost:3000/register",
+        url: "/register",
         data: payload,
       })
         .then(({ data }) => {
@@ -162,7 +162,7 @@ export default {
       console.log("masuk add function");
       axios({
         method: "POST",
-        url: "http://localhost:3000/task",
+        url: "/task",
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -190,7 +190,7 @@ export default {
         if (willDelete) {
           axios({
             method: "DELETE",
-            url: `http://localhost:3000/task/${id}`,
+            url: `/task/${id}`,
             headers: {
               access_token: localStorage.getItem("access_token"),
             },
@@ -215,7 +215,7 @@ export default {
       // console.log(id)
       axios({
         method: "GET",
-        url: `http://localhost:3000/task/${id}`,
+        url: `/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -228,7 +228,7 @@ export default {
 
           return axios({
             method: "PUT",
-            url: `http://localhost:3000/task/${id}`,
+            url: `/task/${id}`,
             headers: {
               access_token: localStorage.getItem("access_token"),
             },
@@ -252,7 +252,7 @@ export default {
       // console.log(id)
       axios({
         method: "GET",
-        url: `http://localhost:3000/task/${id}`,
+        url: `/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -265,7 +265,7 @@ export default {
 
           return axios({
             method: "PUT",
-            url: `http://localhost:3000/task/${id}`,
+            url: `/task/${id}`,
             headers: {
               access_token: localStorage.getItem("access_token"),
             },
@@ -289,7 +289,7 @@ export default {
       // console.log(id)
       axios({
         method: "GET",
-        url: `http://localhost:3000/task/${id}`,
+        url: `/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -302,7 +302,7 @@ export default {
 
           return axios({
             method: "PUT",
-            url: `http://localhost:3000/task/${id}`,
+            url: `/task/${id}`,
             headers: {
               access_token: localStorage.getItem("access_token"),
             },
@@ -326,7 +326,7 @@ export default {
       // console.log(id)
       axios({
         method: "GET",
-        url: `http://localhost:3000/task/${id}`,
+        url: `/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -339,7 +339,7 @@ export default {
 
           return axios({
             method: "PUT",
-            url: `http://localhost:3000/task/${id}`,
+            url: `/task/${id}`,
             headers: {
               access_token: localStorage.getItem("access_token"),
             },
@@ -363,7 +363,7 @@ export default {
       // console.log(id)
       axios({
         method: "GET",
-        url: `http://localhost:3000/task/${id}`,
+        url: `/task/${id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -385,7 +385,7 @@ export default {
       console.log("masuk edit function", payload.id);
       axios({
         method: "PUT",
-        url: `http://localhost:3000/task/${payload.id}`,
+        url: `/task/${payload.id}`,
         headers: {
           access_token: localStorage.getItem("access_token"),
         },
@@ -412,7 +412,7 @@ export default {
       let google_access_token = payload
       axios({
         method: "POST",
-        url: 'http://localhost:3000/googleLogin',
+        url: '/googleLogin',
         headers: {
           google_access_token
         }
