@@ -12,7 +12,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Statuses',
+          key: 'id'
+        }
       },
       orgId: {
         type: Sequelize.INTEGER,

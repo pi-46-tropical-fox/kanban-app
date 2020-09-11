@@ -1,5 +1,5 @@
 const errHandler = (err, req, res, next) => {
-    console.log(err);
+    console.log(err, '<<< dari errhandler');
     let status
     let errors = []
 
@@ -9,8 +9,12 @@ const errHandler = (err, req, res, next) => {
             errors.push('User not authenticated')
             status = 401
         case 'SequelizeUniqueConstraintError':
-            errors.push('Email is already registered')
+            errors.push('Username/Email is already registered')
             status = 400
+            break
+        case 'ValidationError':
+            errors.push(err.message)
+            status= 400
             break
         default:
             errors.push(err.message)

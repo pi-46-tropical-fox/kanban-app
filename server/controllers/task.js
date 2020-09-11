@@ -1,4 +1,4 @@
-const { User, Task, Organization } = require('../models')
+const { User, Task, Organization, Status } = require('../models')
 
 class TaskController {
     static async getTasks (req, res, next) {
@@ -12,12 +12,26 @@ class TaskController {
                 include: [
                     {
                         model: User,
-                        attributes: ['email']
+                        attributes: ['username']
+                    }, {
+                        model: Status,
+                        attributes: ['name']
                     }
                 ]
             })
 
-            return res.status(200).json({tasks})
+            const statuses = await Status.findAll()
+
+            let sorted = {}
+            statuses.forEach(status => {
+                sorted[status.name] = []
+            })
+
+            tasks.forEach(task => {
+                sorted[task.Status.name].push(task)
+            })
+
+            return res.status(200).json(sorted)
         } catch (err) {
             return next(err)
         }
@@ -55,9 +69,7 @@ class TaskController {
 
     static async move (req, res, next) {
         try {
-            const {id} = req.params
-            const {movement} = req.body
-            const categories = ['backlog', 'todo', 'doing', 'done']
+            const {id, movement} = req.params
     
             const task = await Task.findOne({
                 where: {
@@ -66,7 +78,7 @@ class TaskController {
                 attributes: ['status']
             })
 
-            let index = categories.findIndex(cat => task.status == cat)
+            let index = task.status
 
             switch (movement) {
                 case 'next':
@@ -80,7 +92,7 @@ class TaskController {
             }
     
             let movedTask = await Task.update({
-                status: categories[index]
+                status: index
             }, {
                 where: {
                     id
