@@ -2,29 +2,22 @@ const { Task, User, Category } = require('../models')
 
 class TaskController{
     static show(req, res){
-        let sort = {
-            include: [User, Category]
-        }
-        Task.findAll(sort)
-        .then((data) => {
-            const newData = data.filter(el => el.User.organization === req.userData.organization)
-            return newData
-        })
+        // Category.findAll(
+        //     {include:{
+        //         model: Task, include: {
+        //             model: User, where: {
+        //                 organization: req.userData.organization
+        //             }
+        //         }
+        //     }
+        // })
+        Task.findAll()
         .then(data => {
-            const categoryName = {}
-            data.forEach(i => {
-                if (!categoryName[i.Category.name]) {
-                    categoryName[i.Category.name] = [i]
-                } else {
-                    categoryName[i.Category.name].push(i)
-                }
-            });
-            return res.status(200).json(categoryName)
+            res.status(200).json(data)
         })
-
-        .catch((err) => {
-            return next(err)
-        });
+        .catch(err => {
+            next(err)
+        })
     }
     
     static create(req, res, next) {

@@ -3,7 +3,7 @@ const { User } = require('../models')
 
 const authentication = async (req, res, next) => {
     const {access_token} = req.headers
-
+    console.log(access_token, '<<<<<< this token')
     if(!access_token) {
         throw {name: 'USER_NOT_FOUND', statusCode: 400}
     }
