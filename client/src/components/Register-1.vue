@@ -4,10 +4,10 @@
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                <a class="nav-link active" href="#">Register</a>
+                <a class="nav-link active" v-on:click.prevent="openRegister" href="#">Register</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" v-on:click.prevent="openLogin" href="#">Login</a>
                 </li>
                 </ul>
             </div>
@@ -47,12 +47,20 @@ export default {
             }
 
             this.$emit('registerSubmit', payload)
+        },
+
+        openLogin () {
+            this.$emit("openForm", "loginPage")
+        },
+
+         openRegister () {
+            this.$emit("openForm", "registerPage")
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 #cardRegister {
     display: flex;
     margin-top: 50px;

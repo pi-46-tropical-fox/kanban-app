@@ -1,11 +1,14 @@
 <template>
   <div>
     <LoginPage v-if="currentPage === 'loginPage' "
-        v-on:loginSubmit="login">
+        v-on:loginSubmit="login" 
+        @openForm="openForm"
+        >
     </LoginPage>
 
     <RegisterPage v-if="currentPage === 'registerPage' "
-        v-on:registerSubmit="register">
+        v-on:registerSubmit="register"
+        @openForm="openForm">
     </RegisterPage>
 
   </div>
@@ -16,9 +19,10 @@ import axios from '../config/axios.js'
 import LoginPage from '../components/Login-1'
 import RegisterPage from '../components/Register-1'
 export default {
+    name: 'Auth',
     data () {
         return {
-            currentPage: 'loginPage'
+            currentPage: 'registerPage'
         }
     },
     components : {
@@ -36,24 +40,24 @@ export default {
             }
         },
         
-        login (payload) {
-          console.log (payload)
+        // login (payload) {
+        //   console.log (payload)
           
-          axios ({
-              url: "/users/login",
-              method: 'POST',
-              data: payload
-            })
+        //   axios ({
+        //       url: "/users/login",
+        //       method: 'POST',
+        //       data: payload
+        //     })
 
-            .then (({data}) => {
-                this.currentPage = 'dashboardPage'
-                localStorage.setItem('access_token', data.access_token)
-                console.log (data)
-            })
-            .catch  (err => {
-                console.log (err)
-            })
-        },
+        //     .then (({data}) => {
+        //         this.currentPage = 'dashboardPage'
+        //         localStorage.setItem('access_token', data.access_token)
+        //         console.log (data)
+        //     })
+        //     .catch  (err => {
+        //         console.log (err)
+        //     })
+        // },
 
         login (payload) {
           console.log (payload)
@@ -92,6 +96,10 @@ export default {
             })
         },
 
+        openForm (payload) {
+            this.currentPage = payload
+        },
+
         fetchTasks () {
             axios ({
               url: "/tasks/",
@@ -122,6 +130,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

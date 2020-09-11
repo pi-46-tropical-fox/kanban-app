@@ -10746,6 +10746,12 @@ var _default = {
         password: this.password
       };
       this.$emit('loginSubmit', payload);
+    },
+    openLogin: function openLogin() {
+      this.$emit("openForm", "loginPage");
+    },
+    openRegister: function openRegister() {
+      this.$emit("openForm", "registerPage");
     }
   }
 };
@@ -10764,7 +10770,43 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "cardLogin" } }, [
     _c("div", { staticClass: "card col-4" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "card-header" }, [
+        _c("ul", { staticClass: "nav nav-tabs card-header-tabs" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link active",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.openLogin($event)
+                  }
+                }
+              },
+              [_vm._v("Login")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.openRegister($event)
+                  }
+                }
+              },
+              [_vm._v("Register")]
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("h5", { staticClass: "card-title" }, [_vm._v("Login")]),
@@ -10865,35 +10907,14 @@ exports.default = _default;
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("ul", { staticClass: "nav nav-tabs card-header-tabs" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link active", attrs: { href: "#" } }, [
-            _vm._v("Login")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-            _vm._v("Register")
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-dd6db8",
             functional: undefined
           };
         })());
@@ -10973,6 +10994,12 @@ var _default = {
         password: this.password
       };
       this.$emit('registerSubmit', payload);
+    },
+    openLogin: function openLogin() {
+      this.$emit("openForm", "loginPage");
+    },
+    openRegister: function openRegister() {
+      this.$emit("openForm", "registerPage");
     }
   }
 };
@@ -10991,7 +11018,43 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "cardRegister" } }, [
     _c("div", { staticClass: "card col-4" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "card-header" }, [
+        _c("ul", { staticClass: "nav nav-tabs card-header-tabs" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link active",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.openRegister($event)
+                  }
+                }
+              },
+              [_vm._v("Register")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.openLogin($event)
+                  }
+                }
+              },
+              [_vm._v("Login")]
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("h5", { staticClass: "card-title" }, [_vm._v("Register")]),
@@ -11092,35 +11155,14 @@ exports.default = _default;
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("ul", { staticClass: "nav nav-tabs card-header-tabs" }, [
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link active", attrs: { href: "#" } }, [
-            _vm._v("Register")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-            _vm._v("Login")
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-0e053e",
             functional: undefined
           };
         })());
@@ -11160,23 +11202,36 @@ var _Login = _interopRequireDefault(require("../components/Login-1"));
 
 var _Register = _interopRequireDefault(require("../components/Register-1"));
 
-var _methods;
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
+  name: 'Auth',
   data: function data() {
     return {
-      currentPage: 'loginPage'
+      currentPage: 'registerPage'
     };
   },
   components: {
     LoginPage: _Login.default,
     RegisterPage: _Register.default
   },
-  methods: (_methods = {
+  methods: {
     checkAuth: function checkAuth() {
       if (localStorage.access_token) {
         this.currentPage = 'dashboardPage';
@@ -11185,6 +11240,22 @@ var _default = {
         this.currentPage = 'loginPage';
       }
     },
+    // login (payload) {
+    //   console.log (payload)
+    //   axios ({
+    //       url: "/users/login",
+    //       method: 'POST',
+    //       data: payload
+    //     })
+    //     .then (({data}) => {
+    //         this.currentPage = 'dashboardPage'
+    //         localStorage.setItem('access_token', data.access_token)
+    //         console.log (data)
+    //     })
+    //     .catch  (err => {
+    //         console.log (err)
+    //     })
+    // },
     login: function login(payload) {
       var _this = this;
 
@@ -11201,57 +11272,47 @@ var _default = {
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    register: function register(payload) {
+      var _this2 = this;
+
+      console.log(payload);
+      (0, _axios.default)({
+        url: "/users/register",
+        method: 'POST',
+        data: payload
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.currentPage = 'loginPage';
+        console.log(data);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    openForm: function openForm(payload) {
+      this.currentPage = payload;
+    },
+    fetchTasks: function fetchTasks() {
+      var _this3 = this;
+
+      (0, _axios.default)({
+        url: "/tasks/",
+        method: 'GET',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        console.log(data.tasks);
+        _this3.tasks = data.tasks;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    created: function created() {
+      this.checkAuth();
     }
-  }, _defineProperty(_methods, "login", function login(payload) {
-    var _this2 = this;
-
-    console.log(payload);
-    (0, _axios.default)({
-      url: "/users/login",
-      method: 'POST',
-      data: payload
-    }).then(function (_ref2) {
-      var data = _ref2.data;
-      _this2.currentPage = 'dashboardPage';
-      localStorage.setItem('access_token', data.access_token);
-      console.log(data);
-    }).catch(function (err) {
-      console.log(err);
-    });
-  }), _defineProperty(_methods, "register", function register(payload) {
-    var _this3 = this;
-
-    console.log(payload);
-    (0, _axios.default)({
-      url: "/users/register",
-      method: 'POST',
-      data: payload
-    }).then(function (_ref3) {
-      var data = _ref3.data;
-      _this3.currentPage = 'loginPage';
-      console.log(data);
-    }).catch(function (err) {
-      console.log(err);
-    });
-  }), _defineProperty(_methods, "fetchTasks", function fetchTasks() {
-    var _this4 = this;
-
-    (0, _axios.default)({
-      url: "/tasks/",
-      method: 'GET',
-      headers: {
-        access_token: localStorage.access_token
-      }
-    }).then(function (_ref4) {
-      var data = _ref4.data;
-      console.log(data.tasks);
-      _this4.tasks = data.tasks;
-    }).catch(function (err) {
-      console.log(err);
-    });
-  }), _defineProperty(_methods, "created", function created() {
-    this.checkAuth();
-  }), _methods)
+  }
 };
 exports.default = _default;
         var $0b3c72 = exports.default || module.exports;
@@ -11270,11 +11331,15 @@ exports.default = _default;
     "div",
     [
       _vm.currentPage === "loginPage"
-        ? _c("LoginPage", { on: { loginSubmit: _vm.login } })
+        ? _c("LoginPage", {
+            on: { loginSubmit: _vm.login, openForm: _vm.openForm }
+          })
         : _vm._e(),
       _vm._v(" "),
       _vm.currentPage === "registerPage"
-        ? _c("RegisterPage", { on: { registerSubmit: _vm.register } })
+        ? _c("RegisterPage", {
+            on: { registerSubmit: _vm.register, openForm: _vm.openForm }
+          })
         : _vm._e()
     ],
     1
@@ -11287,7 +11352,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-0b3c72",
             functional: undefined
           };
         })());
@@ -11320,6 +11385,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _axios = _interopRequireDefault(require("../config/axios.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -11330,13 +11400,34 @@ exports.default = void 0;
 //
 //
 var _default = {
+  name: 'Dashboard',
   data: function data() {
     return {
       message: 'Kanban Board',
       message2: 'Dashboard View',
-      currentPage: 'dashboardPage',
-      props: ['tasksData']
+      currentPage: 'dashboardPage'
     };
+  },
+  props: ['tasksData'],
+  components: {},
+  methods: {
+    fetchTasks: function fetchTasks() {
+      var _this = this;
+
+      (0, _axios.default)({
+        url: "/tasks",
+        method: 'GET',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+        console.log(data.tasks);
+        _this.tasks = data.tasks;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
   }
 };
 exports.default = _default;
@@ -11354,11 +11445,13 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.currentPage === "dashboardPage"
-      ? _c("h1", { staticClass: "text-center" }, [_vm._v(_vm._s(_vm.message))])
+      ? _c("h1", { staticClass: "text-center mt-5 " }, [
+          _vm._v(_vm._s(_vm.message))
+        ])
       : _vm._e(),
     _vm._v(" "),
     _vm.currentPage === "dashboardPage"
-      ? _c("p", { staticClass: "text-center" }, [_vm._v(_vm._s(_vm.message2))])
+      ? _c("p", { staticClass: "text-center " }, [_vm._v(_vm._s(_vm.message2))])
       : _vm._e(),
     _vm._v("\r\n    " + _vm._s(_vm.tasksData) + "\r\n")
   ])
@@ -11370,7 +11463,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-efdf55",
             functional: undefined
           };
         })());
@@ -11396,7 +11489,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"../config/axios.js":"src/config/axios.js","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11430,12 +11523,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 var _default = {
+  name: 'App',
   data: function data() {
     return {
       message: 'Kanban Board App',
       message2: 'Manage your project easily',
-      currentPage: 'loginPage',
-      // currentPage: 'registerPage',
+      // currentPage: 'loginPage',
+      currentPage: 'registerPage',
       tasks: []
     };
   },
@@ -11448,21 +11542,26 @@ var _default = {
       var _this = this;
 
       (0, _axios.default)({
-        url: "/tasks/",
+        url: "/tasks",
         method: 'GET',
         headers: {
           access_token: localStorage.access_token
         }
       }).then(function (_ref) {
         var data = _ref.data;
-        console.log(data.tasks);
-        _this.tasks = data.tasks;
+        console.log(data);
+        _this.tasks = data;
       }).catch(function (err) {
         console.log(err);
       });
-    },
-    created: function created() {
-      this.checkAuth();
+    }
+  },
+  created: function created() {
+    if (localStorage.access_token) {
+      this.currentPage = 'dashboardPage';
+      this.fetchTasks();
+    } else {
+      this.currentPage = 'loginPage';
     }
   }
 };
@@ -11484,13 +11583,13 @@ exports.default = _default;
     { staticClass: "container" },
     [
       _vm.currentPage === "loginPage" || _vm.currentPage === "registerPage"
-        ? _c("h1", { staticClass: "text-center" }, [
+        ? _c("h1", { staticClass: "text-center mt-5 " }, [
             _vm._v(_vm._s(_vm.message))
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.currentPage === "loginPage" || _vm.currentPage === "registerPage"
-        ? _c("p", { staticClass: "text-center" }, [
+        ? _c("p", { staticClass: "text-center " }, [
             _vm._v(_vm._s(_vm.message2))
           ])
         : _vm._e(),

@@ -1,9 +1,12 @@
-#cardLogin {
+*[data-v-a48808] {
+    background-color: #74b9ff;
+}
+#cardLogin[data-v-dd6db8] {
     display: flex;
     margin-top: 50px;
     justify-content: center;
 }
-#cardRegister {
+#cardRegister[data-v-0e053e] {
     display: flex;
     margin-top: 50px;
     justify-content: center;

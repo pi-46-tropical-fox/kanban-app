@@ -56,11 +56,11 @@ module.exports = (sequelize, DataTypes) => {
         user.password = hash
         user.organization = "Hacktiv8"
       },
-      beforeValidate (user, options) {
-        let salt = bcrypt.genSaltSync (10)
-        let hash = bcrypt.hashSync (user.password, salt)
-        user.password = hash
-      }
+      // beforeValidate (user, options) {
+      //   let salt = bcrypt.genSaltSync (10)
+      //   let hash = bcrypt.hashSync (user.password, salt)
+      //   user.password = hash
+      // }
     }
   });
   return User;

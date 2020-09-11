@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const {User} = require ("../models")
 
 const {generateToken} = require ("../helpers/jwt.js")
@@ -39,6 +40,7 @@ class UserController {
         })
 
         .then (data => {
+            console.log (password, data.password)
             const validPassword = valid (password, data.password)
 
             if (validPassword) {
@@ -62,9 +64,17 @@ class UserController {
     }
 
     static editUser (req, res, next) {
-        let {email, password, organization} = req.body
 
-        User.update (req.body, {
+        let salt = bcrypt.genSaltSync (10)
+        let hash = bcrypt.hashSync (req.body.password, salt)
+
+        let payload = {
+            email : req.body.email,
+            password : hash,
+            organization : req.body.organization
+        }
+
+        User.update (payload, {
             where : {id : req.params.id}
         })
 
