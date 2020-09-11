@@ -12,7 +12,12 @@ class Controller {
                     include : [{
                         model : Task,
                         order : ['createdAt', 'DESC'],
-                        include : [ User ]
+                        include : [{
+                            model : User,
+                            attributes : {
+                                exclude : ['password']
+                            }
+                        }]
                     }]
                 }],
             })

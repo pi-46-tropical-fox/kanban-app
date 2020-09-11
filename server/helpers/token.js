@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 const generateToken = (data) => {
-    const token = jwt.sign(data, 'shhhhh');
+    const token = jwt.sign(data, process.env.JWT);
 
     return token
 }
 
 const decodeToken = (token) => {
-    const decoded = jwt.verify(token, 'shhhhh');
+    const decoded = jwt.verify(token, process.env.JWT);
 
     return decoded
 }

@@ -117,7 +117,6 @@ export default {
     },
 
     detailData(value) {
-      console.log(value, "detaildata");
       this.dataDetail = value;
     },
 

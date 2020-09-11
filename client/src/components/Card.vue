@@ -64,7 +64,6 @@ export default {
       })
         .then((res) => {
             this.$emit("detailData", res.data)
-            console.log(res.data, 'ini dari')
         })
         .catch((err) => {
           console.log(err);
@@ -111,8 +110,7 @@ export default {
         }
       })
         .then((res) => {
-          console.log(res)
-          // this.getCategory(this.$props.categoryData.id);
+          this.getCategory(this.$props.categoryData.id);
         })
         .catch((err) => {
           console.log(err);

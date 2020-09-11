@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Organization</b-nav-item>
+          <b-nav-item href="#" v-on:click="toOrg">Organization</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -35,6 +35,10 @@ export default {
     logout() {
       localStorage.clear()
       this.$props.changePage('login')
+    },
+
+    toOrg() {
+      this.$props.changePage('main-menu')
     }
   }
 };

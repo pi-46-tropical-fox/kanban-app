@@ -52,7 +52,6 @@ export default {
         },
       })
         .then((res) => {
-          console.log(res.data)
           this.categoryData = res.data;
           this.$props.changePage("category");
           this.$emit("getKanban", this.categoryData);
