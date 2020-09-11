@@ -8,17 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      // Required user inputs
       name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      uid: { // unique id for projects with same name between organizations
         type: Sequelize.STRING,
         allowNull: false
       },
       type: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      // End: required user inputs
+      uid: {
+        type: Sequelize.STRING,
+        unique: true
       },
       slug: {
         type: Sequelize.STRING,
