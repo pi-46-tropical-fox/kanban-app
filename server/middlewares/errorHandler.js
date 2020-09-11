@@ -40,6 +40,13 @@ const errorHandler = (err, req, res, next) => {
                 message: 'Error user not found',
             });
             break;
+        case 'notFoundCategory':
+            statusCode = 404;
+            errors.push({
+                name: err.name,
+                message: 'Error Category not found',
+            });
+            break;
         case 'notAuthorizedTask':
             statusCode = 401;
             errors.push({

@@ -1,0 +1,36 @@
+@import '../../node_modules/bulma/bulma.sass';
+
+.card-wrapper {
+	overflow: scroll;
+	max-height: 70vh;
+	min-height: 80vh;
+	.card {
+		width: 500px;
+		background-color: #f5f5f5;
+
+		// .card-item {
+		//     // background-color: #f5f5f5;
+		// }
+	}
+}
+
+// #00BFA6
+.form-auth {
+	border-radius: 20px;
+	padding: 50px;
+	box-shadow: 0px 0px 23px 4px rgba(168, 168, 168, 0.78);
+	margin: auto;
+}
+
+.form-side {
+	display: flex;
+}
+
+.btn-google {
+	background: url('https://developers-dot-devsite-v2-prod.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+}
+
+.category-header {
+	display: flex;
+	justify-content: space-between;
+}
