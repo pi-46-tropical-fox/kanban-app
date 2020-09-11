@@ -16,11 +16,11 @@ A kanban board to manage your tasks efficiently. This app has:
  - GET /categories/:id
  - PUT /categories/:id
  - DELETE /tasks/:id
- - POST /tasks/:CategoryId
+ - POST /tasks/:id
  - GET /tasks
  - GET /tasks/:id
- - PUT /tasks/:CategoryId
- - PATCH /tasks/:CategoryId
+ - PUT /tasks/:id
+ - PATCH /tasks/:id
  - DELETE /tasks/:id
 ```
 
@@ -183,7 +183,6 @@ _Response (201 - Created)_
 {
   "id": "<a unique id given by postgres>",  
   "name": "<the name of the category>",
-  "category": "<category of the task>",
   "createdAt": "2020-08-31T06:30:49.914Z",
   "updatedAt": "2020-08-31T06:30:49.914Z" 
 }
@@ -357,7 +356,7 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### POST /tasks/:CategoryId
+### POST /tasks/:id
 
 > Create a new task
 
@@ -575,7 +574,74 @@ _Request Body_
 ```
 {
   "title": "<the title of the task>",
-  "category": "<category of the task>"
+  "CategoryId": "<category of the task>"
+}
+```
+
+_Response (200 - OK)_
+```
+[
+  {
+  "id": "<a unique id given by postgres>",  
+  "title": "<the title of the task>",
+  "CategoryId": "<category of the task>",
+  "createdAt": "2020-08-31T06:30:49.914Z",
+  "updatedAt": "2020-08-31T06:30:49.914Z" 
+  }
+]
+```
+
+_Response (400 - Bad request)_
+```
+{
+  "errors": [
+    "<error messages regarding constraints and validations>"
+  ]
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+  "errors": [
+    "User is not authenticated"
+  ]
+}
+```
+
+_Response (404 - Not found)_
+```
+{
+  "errors": [
+    "Not Found"
+  ]
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "errors": [
+    "<some messages regarding server error>"
+  ]
+}
+```
+---
+### PATCH /tasks/:id
+
+> Update task based on id
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+}
+```
+
+_Request Body_
+```
+{
+  "CategoryId": "<category of the task>"
 }
 ```
 
