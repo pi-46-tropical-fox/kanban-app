@@ -49,7 +49,7 @@ methods:{
           this.fetchTasks()
         })
         .catch(err => {
-          console.log(err)
+         alertify.error('Email or Password is invalid')
         })
     },
     changeCurrent(currentPage){
@@ -66,7 +66,7 @@ methods:{
           alertify.success('You are now registered! Please login to continue.')
         })
         .catch(err => {
-          console.log(err)
+           
         })
     },
   fetchTasks(){
@@ -143,8 +143,8 @@ methods:{
   move(payload){
     const {id} = payload
     axios({
-      method: 'PUT',
-      url: `/task/${id}`,
+      method: 'PATCH',
+      url: `/task/${id}/move`,
       data: payload,
         headers:{
           access_token: localStorage.getItem('access_token')
@@ -158,6 +158,25 @@ methods:{
     .catch(err => {
       console.log(err)
     })
+  },
+  googleLogin(token){
+    axios({
+          url:'/googleLogin',
+          method: 'POST',
+          headers :{
+            google_access_token: token
+          }
+        })
+        .then(response => {
+          console.log(response)
+          this.current = 'dashboard'; 
+          localStorage.setItem('access_token', response.data.access_token)
+          localStorage.setItem('userEmail', response.data.email)
+          this.fetchTasks()
+        })
+        .catch(err => {
+         alertify.error('Email or Password is invalid')
+        })
   }
 
 },

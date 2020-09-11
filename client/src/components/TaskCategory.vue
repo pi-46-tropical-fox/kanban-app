@@ -1,5 +1,5 @@
 <template>
-    <div class="card col-3 mt-5" style="width: 15rem;" >
+    <div class="category" style="width: 15rem;" >
         <div>
             <nav class="navbar navbar-light category-title">
                 <a class="navbar-brand" href="#">
@@ -37,7 +37,7 @@ components:{
 methods:{
      addTask(){
          let task = this;
-        const text =  alertify.prompt('What are you up to?').set('modal', true)
+        const text =  alertify.prompt('What are you up to?').set({title: 'KANBAN'}, {modal: 'true'})
         .setting({
             'onok': function(){
                 alertify.success('Sucessfully added task')
@@ -46,7 +46,8 @@ methods:{
                             }
                         const category = task.category;
                         payload.category = category;
-                        task.$parent.$parent.addTask(payload)
+                        task.$parent.$parent.addTask(payload);
+                        text.settings.value = ''
             }
         })
    

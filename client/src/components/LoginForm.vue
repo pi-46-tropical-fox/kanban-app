@@ -1,28 +1,28 @@
 <template>
-    <section >
-        <div class="container" id="login-page">
-            <form id="login-form" @submit.prevent="login">
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" v-model="email" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" v-model="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-                <br>
-                <div class="g-signin2" @click="onSignIn"></div>
-                <br>
-                <a href="#" @click="signOut;">Sign out</a>
-                <br>
-                <p>Don't have an account? <a href="#" @click="register">Click here</a> to register.</p>
-        </div>
-    </section>
+    <div class="container" id="login-page">
+        <form id="login-form" @submit.prevent="login">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" v-model="email" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" v-model="password">
+            </div>
+            <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+             Or
+            <br>
+            <googleSignIn></googleSignIn>
+        <br>
+        <p>Don't have an account? <a style="text-decoration:none" href="#" @click="register">Click here</a> to register.</p>
+    </div>
 </template>
 <script>
+import googleSignIn from '../components/googleSignIn'
 export default {
 name: 'LoginForm',
 data: function(){
@@ -31,6 +31,7 @@ data: function(){
         password: ''
     }
 },
+components:{googleSignIn},
 methods: {
     login (){
         const payload = {
@@ -46,11 +47,8 @@ methods: {
         this.$parent.$parent.changeCurrent(current)
     },
     onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.   }
+        console.log('masuk ke login form')
+        this.$parent.$parent.googleLogin(googleUser)
     },  
     signOut() {
         var auth2 = gapi.auth2.getAuthInstance();

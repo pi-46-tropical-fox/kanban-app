@@ -62,7 +62,8 @@ _Request Body_
 _Response (200)_
 ```
   {
-    "access_token": "<your access token>"
+    "access_token": "<your access token>",
+    "userEmail" : "<your registered email>" 
   }
 ```
 
@@ -71,6 +72,38 @@ _Response (400)_
 {
   "message": "Email/Password is invalid"
 }
+```
+
+_Response (500)_
+```
+{
+  "message": "Internal Server Error"
+}
+```
+---
+### POST /googleLogin
+
+> Login account
+
+_Request Header_
+```
+{
+  not needed
+}
+```
+
+_Request Body_
+```
+{
+  not needed
+  }
+```
+
+_Response (200)_
+```
+  {
+    "google_access_token": "<your access token>"
+  }
 ```
 
 _Response (500)_
@@ -134,7 +167,6 @@ _Request Header_
 _Request Body_
 ```
 {
-  "title": "<your title>",
   "description": "<your description>",
   "category": "<your category>"
 }
@@ -145,7 +177,6 @@ _Response (201 - Created)_
 {
     "data": {
         "id": 4,
-        "title": "Belajar membuat REST API",
         "description": "Membuat KANBAN",
         "UserId": 1,
         "organization": "Hacktiv8",
@@ -162,7 +193,7 @@ _Response (500 - Internal Server Error)_
 }
 ```
 
-### PUT /task/:id
+### PATCH /task/:id
 
 > update specific task
 
@@ -176,7 +207,6 @@ _Request Header_
 _Request Body_
 ```
 {
-  "title": "<your title>",
   "description": "<your description>"
 }
 ```
@@ -185,6 +215,47 @@ _Response (200)_
 ```
 {
     "message": "Data has been successfully updated."
+}
+
+```
+
+_Response (400 - Bad Request)_
+```
+{
+  "message": "User is not authorized"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
+}
+```
+---
+
+### PATCH /task/:id/move
+
+> move specific task
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+}
+```
+
+_Request Body_
+```
+{
+  not needed
+}
+```
+
+_Response (200)_
+```
+{
+    "message": "Data has been successfully moved."
 }
 
 ```

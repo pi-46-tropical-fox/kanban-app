@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { comparePass } = require('../helper/bcrypt');
-const { generateToken } = require("../helper/jwt")
+const { generateToken } = require("../helper/jwt");
+const { OAuth2Client } = require('google-auth-library');
 
 class UserController {
     static register(req, res) {
@@ -19,7 +20,7 @@ class UserController {
                 res.status(201).json({ Data: output })
             })
             .catch(err => {
-                res.status(500).json({ messae: 'Internal Server Error' })
+                res.status(500).json({ message: 'Internal Server Error' })
             })
     }
 
@@ -46,6 +47,46 @@ class UserController {
             }).catch(err => {
                 console.log(err)
                 res.status(500).json({ messae: 'Internal Server Error' })
+            })
+    }
+
+    static googleLogin(req, res) {
+        let email, googleData;
+        const client = new OAuth2Client(process.env.CLIENT_ID);
+        const { google_access_token } = req.headers
+        client.verifyIdToken({
+                idToken: google_access_token,
+                audience: process.env.CLIENT_ID
+            })
+            .then(ticket => {
+                return ticket.getPayload()
+            })
+            .then(payload => {
+                googleData = payload;
+                console.log(payload)
+                email = payload.email
+                return User.findOne({
+                    where: { email }
+                })
+            })
+            .then(user => {
+                if (!user) {
+                    let obj = {
+                        email: email,
+                        password: 'randompasswordforgoogleuser'
+                    }
+                    return User.create(obj)
+                } else {
+                    return user
+                }
+            })
+            .then(user => {
+                const access_token = generateToken(user)
+                return res.status(200).json({ access_token, email })
+            })
+            .catch(err => {
+                console.log(err);
+                next(err)
             })
     }
 }

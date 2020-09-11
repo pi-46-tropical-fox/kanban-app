@@ -2,22 +2,21 @@
     <li class="list-group-item task">
         <!-- Move button -->
         <div class="arrow p-1">
-            <a v-on:click="moveBack"  href="#" v-if="task.category !== 'Backlog'">
+            <a v-on:click="moveBack"  href="#" v-show="task.category !== 'Backlog'">
                 <i class="fas fa-arrow-alt-circle-left"></i>
             </a>
-            <a v-on:click="moveForward" href="#" v-if="task.category !== 'Completed'">
+            <a v-on:click="moveForward" href="#" v-show="task.category !== 'Completed'">
                 <i class="fas fa-arrow-alt-circle-right"></i>
             </a>
         </div>
         <!-- Content -->
         <div class="mx-auto p-2">
-            <p v-if="!editToggle" class="card-text">{{task.description}}</p>
-            <editForm v-else></editForm>
-            <small class="card-username text-muted">Created by: <span>{{task.User.email}}</span>
+            <p class="card-text">{{task.description}}</p>
+            <small class="card-content">Created by: <span>{{task.User.email}}</span>
                 <br>
-                from: <span>{{task.User.organization}}</span>
+                from: <span class="card-content">{{task.User.organization}}</span>
                 <br>
-                <small v-text="createdTime"></small>
+                <small>{{task.createdAt}}</small>
             </small>
             <div class="action">
                 <a  href="#">
@@ -31,18 +30,13 @@
     </li>
 </template>
 <script>
-import editForm from '../components/editForm'
 export default {
 name: 'Task',
 props:['task'],
 data: function(){
     return {
-        editToggle: false,
-        createdTime : this.task.createdAt.toISOString().substring(0, 10)
+        editToggle: false
     }
-},
-components:{
-    editForm
 },
 methods:{
     deleteTask() {
@@ -54,7 +48,7 @@ methods:{
         const userEmail = localStorage.getItem('userEmail')
         if(userEmail === this.task.User.email){
             let task = this;
-            const text =  alertify.prompt('Did you change your thoughts?').set({title: 'KANBAN'}, {modal: 'true'})
+            const text =  alertify.prompt('Have a change in mind?').set({title: 'KANBAN'}, {modal: 'true'})
             .setting({
                 'onok': function(){
                     alertify.success('Sucessfully edited task')

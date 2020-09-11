@@ -1,6 +1,5 @@
 <template>
       <!-- REGISTER PAGE -->
-        <section>
             <div class="container" id="register-page">
                 <form @submit.prevent="registerUser" id="register-form">
                     <div class="form-group">
@@ -18,14 +17,13 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <br><br>
-                     <p>Already have an account? <a href="#" @click="login">Click here</a> to login.</p>
+                     <p>Already have an account? <a  style="text-decoration:none" href="#" @click="login">Click here</a> to login.</p>
                 </form>
-
             </div>
-        </section>
 </template>
 
 <script>
+
 export default {
 name: 'RegisterForm',
 data: function(){
