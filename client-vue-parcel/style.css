@@ -1,0 +1,167 @@
+nav{
+    height: 80px;
+    background-color: #2c2c54;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#title{
+    margin-left: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: gold;
+}
+.navbar a{
+    margin-right: 20px;
+    color: white;
+    font-size: 20px;
+}
+body {
+    background-color: #34ace0;
+}
+#button-add{
+    display: block;
+    margin: 0 auto;
+}
+main{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 1;
+    position: absolute;
+}
+.col-sm{
+    -webkit-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    background-color: #d1ccc0;
+    margin: 5px 10px;
+    border-radius: 5px;
+}
+
+.category-title{
+    /* padding: 5px 10px; */
+    background-color: #2c2c54;
+    color: whitesmoke;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    text-align: center;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.category-task{
+    max-height: 720px;
+    padding-bottom: 10px;
+    overflow: scroll;
+}
+.card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #d2dae2;
+}
+.action{
+    float: right;
+    margin: 0px;
+}
+#form_login{
+    margin: 0 auto;
+    width: 500px;
+    margin-bottom: 20px;
+    background-color: mintcream;
+    padding: 15px;
+    border-radius: 10px;
+}
+#form_login h3 {
+    background-color: #2c2c54;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    color: whitesmoke;
+}
+#form_registration{
+    width: 500px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+    background-color: mintcream;
+    padding: 15px;
+    border-radius: 10px;
+}
+#form_registration h3 {
+    background-color: #2c2c54;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    color: whitesmoke;
+}
+#addTask{
+    margin: 0 auto;
+    width: 500px;
+    background-color: mintcream;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25%;
+    -webkit-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+}
+#closeAdd{
+    float: right;
+}
+
+#addTask h3 {
+    background-color: #2c2c54;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    color: whitesmoke;
+}
+
+#editTask{
+    margin: 0 auto;
+    width: 500px;
+    background-color: mintcream;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25%;
+    -webkit-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: -6px 7px 10px -2px rgba(0,0,0,0.75);
+    transition: 1s;
+}
+#editTask h3 {
+    background-color: #2c2c54;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    color: whitesmoke;
+}
