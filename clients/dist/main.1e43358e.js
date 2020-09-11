@@ -10797,7 +10797,8 @@ var _default = {
         console.log(err);
       });
     },
-    onFailure: function onFailure() {}
+    onFailure: function onFailure() {},
+    showRegister: function showRegister() {}
   },
   components: {
     GoogleLogin: _vueGoogleLogin.default
@@ -10925,7 +10926,22 @@ exports.default = _default;
                         _vm._v(" "),
                         _c("br"),
                         _vm._v(" "),
-                        _vm._m(1)
+                        _c("span", [
+                          _vm._v("Dont have account? "),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.showRegister($event)
+                                }
+                              }
+                            },
+                            [_vm._v("Click Here")]
+                          )
+                        ])
                       ],
                       1
                     )
@@ -10952,15 +10968,6 @@ var staticRenderFns = [
           alt: "gambar-kanban"
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [
-      _vm._v("Dont have account? "),
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Click Here")])
     ])
   }
 ]
@@ -19150,7 +19157,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54243" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55450" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
