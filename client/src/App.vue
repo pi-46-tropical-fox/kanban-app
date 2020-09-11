@@ -37,7 +37,6 @@ export default {
         },
         googleLogin(data){
             axios.post('/user/googlelogin', data).then(res => {
-                console.log(res)
                 localStorage.setItem('access_token', res.data.access_token)
                 localStorage.setItem('email', res.data.email)
                 this.page = 'dashboard'
