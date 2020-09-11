@@ -39,7 +39,7 @@ _Request Body_
 _Response (201 - Created)_
 ```
 {
-  "id": "1",
+  "id": 1,
   "email": "johndoe@mail.com",
   "organization": "Hacktiv8"
 }
@@ -83,7 +83,7 @@ _Response (200 - OK)_
 ```
 {
   "access_token": "<your access token>",
-  "UserId": "1"
+  "UserId": 1
 }
 ```
 
@@ -154,7 +154,7 @@ _Request Body_
   "title": "Create Kanban Layout",
   "category": "Backlog",
   "description": "Create Kanban Layout with Bootstrap Vue",
-  "UserId": "1"
+  "UserId": 1
 }
 ```
 
@@ -216,27 +216,54 @@ _Response (200 - OK)_
     "title": "Create Kanban Layout",
     "category": "Backlog",
     "description": "Create Kanban Layout with Bootstrap Vue",
-    "UserId": "1",
+    "UserId": 1,
     "createdAt": "2020-01-27T07:15:12.149Z",
     "updatedAt": "2020-01-27T07:15:12.149Z",
+    "User": {
+        "id": 1,
+        "username": "johndoe",
+        "email": "johndoe@mail.com",
+        "password": "$2a$10$8cNk9n5a52qj9Ev1qQC5keD7.UjqlAgvYtSL/1hM/WXYDsY2JQhPu",
+        "organization": "Hacktiv8",
+        "createdAt": "2020-09-11T01:25:58.457Z",
+        "updatedAt": "2020-09-11T01:25:58.457Z"
+    }
   },
   {
     "id": "2",
     "title": "Create CRUD Features",
     "category": "To Do",
     "description": "Create CRUD Features with Sequelize and PosgreSQL",
-    "UserId": "1",
+    "UserId": 1,
     "createdAt": "2020-01-27T07:15:12.149Z",
     "updatedAt": "2020-01-27T07:15:12.149Z",
+    "User": {
+        "id": 1,
+        "username": "johndoe",
+        "email": "johndoe@mail.com",
+        "password": "$2a$10$8cNk9n5a52qj9Ev1qQC5keD7.UjqlAgvYtSL/1hM/WXYDsY2JQhPu",
+        "organization": "Hacktiv8",
+        "createdAt": "2020-09-11T01:25:58.457Z",
+        "updatedAt": "2020-09-11T01:25:58.457Z"
+    }
   },
   {
     "id": "3",
     "title": "Deploy",
     "category": "Done",
     "description": "Deploy server with Heroku, and client with Firebase",
-    "UserId": "2",
+    "UserId": 2,
     "createdAt": "2020-01-27T07:15:12.149Z",
     "updatedAt": "2020-01-27T07:15:12.149Z",
+    "User": {
+        "id": 2,
+        "username": "janedoe",
+        "email": "janedoe@mail.com",
+        "password": "$2lekd88cNk9n5a52qj9Ev1qQk39eD7.UjqlAgvYtSL/1hM/WXYDsY2JQhPu",
+        "organization": "Hacktiv8",
+        "createdAt": "2020-09-11T01:30:47.457Z",
+        "updatedAt": "2020-09-11T01:30:47.457Z"
+    }
   }
 ]
 ```
@@ -278,19 +305,18 @@ _Request Body_
 {
   "title": "Create Kanban Layout",
   "category": "Doing",
-  "description": "Create Kanban Layout with Bootstrap Vue",
-  "UserId": "1"
+  "description": "Create Kanban Layout with Bootstrap Vue"
 }
 ```
 
 _Response (200 - OK)_
 ```
 {
-  "id": "1",
+  "id": 1,
   "title": "Create Kanban Layout",
   "category": "Doing",
   "description": "Create Kanban Layout with Bootstrap Vue",
-  "UserId": "1",
+  "UserId": 1,
   "createdAt": "2020-01-27T07:15:12.149Z",
   "updatedAt": "2020-01-28T06:10:09.257Z",
 }
@@ -336,13 +362,22 @@ not needed
 _Response (200 - OK)_
 ```
 {
-  "id": "2",
-  "title": "Create CRUD Features",
-  "category": "To Do",
-  "description": "Create CRUD Features with Sequelize and PosgreSQL",
-  "UserId": "1",
-  "createdAt": "2020-01-27T07:15:12.149Z",
-  "updatedAt": "2020-01-27T07:15:12.149Z",
+    "id": 1,
+    "title": "Create Kanban Layout",
+    "category": "Doing",
+    "description": "Create Kanban Layout with Bootstrap Vue",
+    "UserId": 1,
+    "createdAt": "2020-09-11T01:39:55.743Z",
+    "updatedAt": "2020-09-11T07:44:31.593Z",
+    "User": {
+        "id": 1,
+        "username": "johndoe",
+        "email": "johndoe@mail.com",
+        "password": "$2a$10$8cNk9n5a52qj9Ev1qQC5keD7.UjqlAgvYtSL/1hM/WXYDsY2JQhPu",
+        "organization": "Hacktiv8",
+        "createdAt": "2020-09-11T01:25:58.457Z",
+        "updatedAt": "2020-09-11T01:25:58.457Z"
+    }
 }
 ```
 
