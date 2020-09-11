@@ -10808,7 +10808,7 @@ var _default = {
 
       (0, _axios.default)({
         method: "DELETE",
-        url: "http://localhost:3000/tasks/".concat(id)
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/tasks/".concat(id)
       }).then(function (_ref) {
         var data = _ref.data;
         console.log('delete success');
@@ -10819,16 +10819,6 @@ var _default = {
       });
     },
     editTask: function editTask(id) {
-      //  axios({
-      //     method: "GET",
-      //     url: `http://localhost:3000/tasks/${id}`
-      // })
-      // .then(({data}) => {
-      //     console.log('get by id');
-      //     // this.$emit('emitDeleteTask')
-      //     // console.log(data);
-      //     // this.tasks = data
-      // })
       this.$emit('editTask', id);
     }
   }
@@ -11228,7 +11218,7 @@ var _default = {
 
       (0, _axios.default)({
         method: "POST",
-        url: "http://localhost:3000/tasks",
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/tasks",
         data: {
           title: this.title,
           category: this.category
@@ -11439,7 +11429,7 @@ var _default = {
 
       (0, _axios.default)({
         method: "GET",
-        url: "http://localhost:3000/tasks",
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/tasks",
         headers: {
           access_token: localStorage.getItem('access_token')
         }
@@ -11590,7 +11580,7 @@ var _default = {
 
       (0, _axios.default)({
         method: "POST",
-        url: "http://localhost:3000/login",
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/login",
         data: {
           email: this.email,
           password: this.password
@@ -11617,7 +11607,7 @@ var _default = {
 
       (0, _axios.default)({
         method: "POST",
-        url: "http://localhost:3000/googlelogin",
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/googlelogin",
         headers: {
           google_access_token: googleUser.wc.id_token
         }
@@ -11856,7 +11846,7 @@ var _default = {
 
       (0, _axios.default)({
         method: "POST",
-        url: "http://localhost:3000/register",
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/register",
         data: {
           email: this.email,
           password: this.password
@@ -12074,7 +12064,7 @@ var _default = {
       console.log(this.taskId, '<< task id di edit');
       (0, _axios.default)({
         method: 'GET',
-        url: "http://localhost:3000/tasks/".concat(this.taskId),
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/tasks/".concat(this.taskId),
         headers: {
           access_token: localStorage.getItem('access_token')
         }
@@ -12092,7 +12082,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'PUT',
-        url: "http://localhost:3000/tasks/".concat(this.taskId),
+        url: "https://kanban-app-rizkygustianto.herokuapp.com/tasks/".concat(this.taskId),
         headers: {
           access_token: localStorage.getItem('access_token')
         },
@@ -12503,7 +12493,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43713" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43749" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
