@@ -29,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg: 'Category must be filled'
         }
-      },
-      defaultValue: 'back log'
+      }
     },
     UserId: DataTypes.INTEGER
   }, {

@@ -4,6 +4,7 @@ class TaskController {
     static addTask(req, res, next) {
         let taskObj = {
             title: req.body.title,
+            category: req.body.category,
             UserId: req.userData.id
         }
 
