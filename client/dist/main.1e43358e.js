@@ -11240,22 +11240,6 @@ var _default = {
         this.currentPage = 'loginPage';
       }
     },
-    // login (payload) {
-    //   console.log (payload)
-    //   axios ({
-    //       url: "/users/login",
-    //       method: 'POST',
-    //       data: payload
-    //     })
-    //     .then (({data}) => {
-    //         this.currentPage = 'dashboardPage'
-    //         localStorage.setItem('access_token', data.access_token)
-    //         console.log (data)
-    //     })
-    //     .catch  (err => {
-    //         console.log (err)
-    //     })
-    // },
     login: function login(payload) {
       var _this = this;
 
