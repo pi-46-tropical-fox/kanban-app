@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.category-body {
+  padding: 10px;
+  max-height: 480px;
+  height: auto;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar { 
+  display: none; 
+}
