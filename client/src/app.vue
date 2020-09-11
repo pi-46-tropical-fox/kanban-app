@@ -102,7 +102,8 @@ export default {
             .catch ( err => {
                 console.log(err)
             })
-        }
+        },
+        
     },
     created () {
         this.checkAuth()

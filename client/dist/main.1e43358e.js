@@ -10887,12 +10887,7 @@ exports.default = _default;
         ]
       ),
       _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "g-signin2",
-        attrs: { "data-onsuccess": "onSignIn" }
-      })
+      _vm._m(2)
     ])
   ])
 }
@@ -11969,7 +11964,7 @@ var _default = {
   },
   methods: {
     logout: function logout() {
-      this.$emit('logoutClick');
+      this.$emit('logout');
     },
     addTodo: function addTodo(payload) {
       var _this = this;

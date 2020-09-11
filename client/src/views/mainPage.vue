@@ -36,7 +36,7 @@ export default {
     },
     methods : {
         logout () {
-            this.$emit('logoutClick')
+            this.$emit('logout')
         },
         addTodo (payload) {
             axios({

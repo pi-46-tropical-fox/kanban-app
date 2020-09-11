@@ -22,7 +22,7 @@
             <div class="googleLogin">
                 <p>Sign in with your Google account</p>
             </div>
-            <div class="g-signin2" data-onsuccess="onSignIn" ></div>
+            <!-- <div class="g-signin2" data-onsuccess="onSignIn" ></div> -->
         </div>
     </div>
 </template>

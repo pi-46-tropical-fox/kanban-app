@@ -289,7 +289,7 @@ body {
 
 nav{
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
     height: 65px;
     background-color: lightblue;
     font-size: 21px;
