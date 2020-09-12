@@ -1,6 +1,5 @@
 <template>
     <a href="#"
-    v-if="categoryIdOption !== currentCategoryId"
     @click.prevent="moveCategory(currentTaskId, categoryIdOption)">
     Move to {{categoryNameOption}}
     </a>

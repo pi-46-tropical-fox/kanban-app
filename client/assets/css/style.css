@@ -122,14 +122,35 @@ body {
     border: 2px solid white;
 }
 
-.form-box .btn-social{
-    color: #fff;
-    border: 0px;
+.btn-social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-social {
+    color: #fff;    
     display: inline-block;
     margin: 0px;
     margin-right: 10px;
     font-weight: bold;
     margin-bottom: 10px;
+    cursor: pointer;
+    padding: 5px ;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.btn-google{
+    background: #da3f34;
+}
+
+.btn-google:hover{
+    background: #bf3b31;
+    color: #fff;
+    box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
+    -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
 }
 
 a {

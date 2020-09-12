@@ -10733,6 +10733,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'LoginPage',
   props: ['message'],
@@ -10740,7 +10742,8 @@ var _default = {
     return {
       email: '',
       password: '',
-      alerthtml: ''
+      alerthtml: '',
+      clientId: '798177998898-sv3v3mf543p6dfhot0lhaigcgjf1bu9q.apps.googleusercontent.com'
     };
   },
   methods: {
@@ -10759,6 +10762,13 @@ var _default = {
     showRegisterForm: function showRegisterForm() {
       this.$emit('showRegisterForm');
       this.clearField();
+    },
+    OnGoogleAuthSuccess: function OnGoogleAuthSuccess(idToken) {
+      this.$emit('googleLogin', idToken);
+      this.clearField();
+    },
+    OnGoogleAuthFail: function OnGoogleAuthFail(error) {
+      console.log(error);
     }
   }
 };
@@ -10853,6 +10863,26 @@ exports.default = _default;
               _vm._v(" "),
               _vm._m(2),
               _vm._v(" "),
+              _c("p", [_vm._v("or login with :")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-social-container" }, [
+                _c(
+                  "p",
+                  {
+                    directives: [
+                      {
+                        name: "google-signin-button",
+                        rawName: "v-google-signin-button",
+                        value: _vm.clientId,
+                        expression: "clientId"
+                      }
+                    ],
+                    staticClass: "btn btn-social btn-google"
+                  },
+                  [_c("i", { staticClass: "fab fa-google" }), _vm._v(" oogle")]
+                )
+              ]),
+              _vm._v(" "),
               _c("div", { staticStyle: { color: "#fff" } }, [
                 _vm._v("Don't have an account?\n                    "),
                 _c(
@@ -10897,15 +10927,7 @@ var staticRenderFns = [
     return _c("div", { staticStyle: { "text-align": "left" } }, [
       _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
         _vm._v("Login")
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("or login with :")]),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "g-signin2",
-        staticStyle: { "text-align": "center" },
-        attrs: { "data-onsuccess": "onSignIn" }
-      })
+      ])
     ])
   }
 ]
@@ -11409,21 +11431,19 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.categoryIdOption !== _vm.currentCategoryId
-    ? _c(
-        "a",
-        {
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.moveCategory(_vm.currentTaskId, _vm.categoryIdOption)
-            }
-          }
-        },
-        [_vm._v("\nMove to " + _vm._s(_vm.categoryNameOption) + "\n")]
-      )
-    : _vm._e()
+  return _c(
+    "a",
+    {
+      attrs: { href: "#" },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.moveCategory(_vm.currentTaskId, _vm.categoryIdOption)
+        }
+      }
+    },
+    [_vm._v("\nMove to " + _vm._s(_vm.categoryNameOption) + "\n")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11685,83 +11705,173 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.categoryId === _vm.taskCategoryId
-    ? _c("div", { staticClass: "list-task" }, [
-        _c("div", { staticClass: "list-task-details" }, [
-          _c("i", {
-            staticClass: "fas fa-edit",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.openModalEdit(_vm.taskId)
-              }
+  return _c("div", { staticClass: "list-task" }, [
+    _c("div", { staticClass: "list-task-details" }, [
+      _c("i", {
+        staticClass: "fas fa-edit",
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.openModalEdit(_vm.taskId)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-task-title" }, [
+        _c("h3", [_vm._v(_vm._s(_vm.taskTitle))]),
+        _vm._v(" "),
+        _c("h4", [_vm._v(_vm._s(_vm.taskDescription))]),
+        _vm._v(" "),
+        _c("p", [_vm._v("By : " + _vm._s(_vm.userEmail))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "badges" }, [
+        _c("i", {
+          staticClass: "fas fa-info-circle",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.openModalInfo(_vm.taskId)
             }
-          }),
+          }
+        }),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fas fa-trash-alt",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.deleteTask(_vm.taskId)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown" }, [
+          _c("i", { staticClass: "fas fa-arrows-alt" }),
           _vm._v(" "),
-          _c("div", { staticClass: "list-task-title" }, [
-            _c("h3", [_vm._v(_vm._s(_vm.taskTitle))]),
-            _vm._v(" "),
-            _c("h4", [_vm._v(_vm._s(_vm.taskDescription))]),
-            _vm._v(" "),
-            _c("p", [_vm._v("By : " + _vm._s(_vm.userEmail))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "badges" }, [
-            _c("i", {
-              staticClass: "fas fa-info-circle",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.openModalInfo(_vm.taskId)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "fas fa-trash-alt",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.deleteTask(_vm.taskId)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "dropdown" }, [
-              _c("i", { staticClass: "fas fa-arrows-alt" }),
-              _vm._v(" "),
-              _c(
+          _c(
+            "div",
+            { staticClass: "dropdown-content" },
+            _vm._l(_vm.categories, function(category) {
+              return _c(
                 "div",
-                { staticClass: "dropdown-content" },
-                _vm._l(_vm.categories, function(category) {
-                  return _c("MoveOption", {
-                    key: category.id,
-                    attrs: {
-                      categoryIdOption: category.id,
-                      categoryNameOption: category.name,
-                      currentCategoryId: _vm.categoryId,
-                      currentTaskId: _vm.taskId
-                    },
-                    on: {
-                      successMoved: _vm.successMoved,
-                      failMoved: _vm.failMoved
-                    }
-                  })
-                }),
+                { key: category.id },
+                [
+                  category.id !== _vm.categoryId
+                    ? _c("MoveOption", {
+                        attrs: {
+                          categoryIdOption: category.id,
+                          categoryNameOption: category.name,
+                          currentCategoryId: _vm.categoryId,
+                          currentTaskId: _vm.taskId
+                        },
+                        on: {
+                          successMoved: _vm.successMoved,
+                          failMoved: _vm.failMoved
+                        }
+                      })
+                    : _vm._e()
+                ],
                 1
               )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _vm.showModalEdit
-          ? _c("div", [
-              _c("div", { staticClass: "modal" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c(
-                    "span",
+            }),
+            0
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.showModalEdit
+      ? _c("div", [
+          _c("div", { staticClass: "modal" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "close",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.closeModalEdit($event)
+                    }
+                  }
+                },
+                [_vm._v("×")]
+              ),
+              _vm._v(" "),
+              _c("form", { staticClass: "modal-form" }, [
+                _c("h1", { staticStyle: { "text-align": "center" } }, [
+                  _vm._v("Edit Task")
+                ]),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
                     {
-                      staticClass: "close",
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.title,
+                      expression: "title"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.description,
+                      expression: "description"
+                    }
+                  ],
+                  attrs: { cols: "21", rows: "5" },
+                  domProps: { value: _vm.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.description = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "btn-container" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-save",
+                      staticStyle: { width: "20%" },
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.editTask(_vm.taskId)
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-cancel",
+                      staticStyle: { width: "20%" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -11769,105 +11879,158 @@ exports.default = _default;
                         }
                       }
                     },
-                    [_vm._v("×")]
-                  ),
-                  _vm._v(" "),
-                  _c("form", { staticClass: "modal-form" }, [
-                    _c("h1", { staticStyle: { "text-align": "center" } }, [
-                      _vm._v("Edit Task")
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.title,
-                          expression: "title"
-                        }
-                      ],
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.title },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.title = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.description,
-                          expression: "description"
-                        }
-                      ],
-                      attrs: { cols: "21", rows: "5" },
-                      domProps: { value: _vm.description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.description = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn-container" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn-save",
-                          staticStyle: { width: "20%" },
-                          attrs: { type: "submit" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.editTask(_vm.taskId)
-                            }
-                          }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn-cancel",
-                          staticStyle: { width: "20%" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.closeModalEdit($event)
-                            }
-                          }
-                        },
-                        [_vm._v("Cancel")]
-                      )
-                    ])
-                  ])
+                    [_vm._v("Cancel")]
+                  )
                 ])
               ])
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.showModalInfo
-          ? _c("div", { staticClass: "modal" }, [
-              _c("div", { staticClass: "modal-content" }, [
-                _c(
-                  "span",
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showModalInfo
+      ? _c("div", { staticClass: "modal" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c(
+              "span",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.closeModalInfo($event)
+                  }
+                }
+              },
+              [_vm._v("×")]
+            ),
+            _vm._v(" "),
+            _c("form", { staticClass: "modal-form modal-detail" }, [
+              _c("h1", { staticStyle: { "text-align": "center" } }, [
+                _vm._v("Detail Task")
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "close",
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.title,
+                    expression: "title"
+                  }
+                ],
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.title = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.description,
+                    expression: "description"
+                  }
+                ],
+                attrs: { cols: "21", rows: "2", disabled: "" },
+                domProps: { value: _vm.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.description = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.category,
+                    expression: "category"
+                  }
+                ],
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm.category },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.category = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user,
+                    expression: "user"
+                  }
+                ],
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm.user },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.user = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.created,
+                    expression: "created"
+                  }
+                ],
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm.created },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.created = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-container" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-back",
+                    staticStyle: { width: "20%" },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -11875,151 +12038,14 @@ exports.default = _default;
                       }
                     }
                   },
-                  [_vm._v("×")]
-                ),
-                _vm._v(" "),
-                _c("form", { staticClass: "modal-form modal-detail" }, [
-                  _c("h1", { staticStyle: { "text-align": "center" } }, [
-                    _vm._v("Detail Task")
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.title,
-                        expression: "title"
-                      }
-                    ],
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.title },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.title = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.description,
-                        expression: "description"
-                      }
-                    ],
-                    attrs: { cols: "21", rows: "2", disabled: "" },
-                    domProps: { value: _vm.description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.description = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.category,
-                        expression: "category"
-                      }
-                    ],
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.category },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.category = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user,
-                        expression: "user"
-                      }
-                    ],
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.user },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.user = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(6),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.created,
-                        expression: "created"
-                      }
-                    ],
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.created },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.created = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "btn-container" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn-back",
-                        staticStyle: { width: "20%" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.closeModalInfo($event)
-                          }
-                        }
-                      },
-                      [_vm._v("Back")]
-                    )
-                  ])
-                ])
+                  [_vm._v("Back")]
+                )
               ])
             ])
-          : _vm._e()
-      ])
-    : _vm._e()
+          ])
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -12145,6 +12171,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'ListTasks',
   props: ['listTask', 'categoryId', 'categories'],
@@ -12186,28 +12213,36 @@ exports.default = _default;
     "div",
     { staticClass: "list-tasks" },
     _vm._l(_vm.listTask, function(task) {
-      return _c("Task", {
-        key: task.id,
-        attrs: {
-          taskId: task.id,
-          taskTitle: task.title,
-          taskDescription: task.description,
-          userEmail: task.User.email,
-          taskCreated: task.createdAt,
-          taskCategoryId: task.CategoryId,
-          categoryId: _vm.categoryId,
-          categories: _vm.categories
-        },
-        on: {
-          successDeleted: _vm.successDeleted,
-          forbiddenAccess: _vm.forbiddenAccess,
-          failEdit: _vm.failEdit,
-          successMoved: _vm.successMoved,
-          successEdited: _vm.successEdited
-        }
-      })
+      return _c(
+        "div",
+        { key: task.id },
+        [
+          _vm.categoryId === task.CategoryId
+            ? _c("Task", {
+                attrs: {
+                  taskId: task.id,
+                  taskTitle: task.title,
+                  taskDescription: task.description,
+                  userEmail: task.User.email,
+                  taskCreated: task.createdAt,
+                  taskCategoryId: task.CategoryId,
+                  categoryId: _vm.categoryId,
+                  categories: _vm.categories
+                },
+                on: {
+                  successDeleted: _vm.successDeleted,
+                  forbiddenAccess: _vm.forbiddenAccess,
+                  failEdit: _vm.failEdit,
+                  successMoved: _vm.successMoved,
+                  successEdited: _vm.successEdited
+                }
+              })
+            : _vm._e()
+        ],
+        1
+      )
     }),
-    1
+    0
   )
 }
 var staticRenderFns = []
@@ -12881,17 +12916,20 @@ var _default = {
         _this.message = notif;
       });
     },
-    register: function register(user) {
+    googleLogin: function googleLogin(idToken) {
       var _this2 = this;
 
+      var google_access_token = idToken;
       (0, _axios.default)({
-        url: "/register",
-        method: 'POST',
-        data: user
+        method: "POST",
+        url: '/googleLogin',
+        headers: {
+          google_access_token: google_access_token
+        }
       }).then(function (_ref2) {
         var data = _ref2.data;
         localStorage.setItem('access_token', data.access_token);
-        _this2.message = "<p style=\"background-color: #2ed574b4;\">Account created successfully!</p>";
+        _this2.message = "<p style=\"background-color: #2ed574b4;\">You've logged in with Google successfully!</p>";
         _this2.currentPage = 'main';
 
         _this2.showAllTaskCategory();
@@ -12917,24 +12955,22 @@ var _default = {
         _this2.message = notif;
       });
     },
-    logout: function logout() {
-      localStorage.clear();
-      this.currentPage = 'login';
-      this.clearField();
-      this.message = "<p style=\"background-color: #2ed574b4;\">You've logged out successfully!</p>";
-    },
-    showAllTaskCategory: function showAllTaskCategory() {
+    register: function register(user) {
       var _this3 = this;
 
       (0, _axios.default)({
-        url: "/categories",
-        method: 'GET',
-        headers: {
-          access_token: localStorage.getItem('access_token')
-        }
+        url: "/register",
+        method: 'POST',
+        data: user
       }).then(function (_ref3) {
         var data = _ref3.data;
-        _this3.categories = data;
+        localStorage.setItem('access_token', data.access_token);
+        _this3.message = "<p style=\"background-color: #2ed574b4;\">Account created successfully!</p>";
+        _this3.currentPage = 'main';
+
+        _this3.showAllTaskCategory();
+
+        _this3.showAllTask();
       }).catch(function (error) {
         var notif = '';
 
@@ -12955,18 +12991,24 @@ var _default = {
         _this3.message = notif;
       });
     },
-    showAllTask: function showAllTask() {
+    logout: function logout() {
+      localStorage.clear();
+      this.currentPage = 'login';
+      this.clearField();
+      this.message = "<p style=\"background-color: #2ed574b4;\">You've logged out successfully!</p>";
+    },
+    showAllTaskCategory: function showAllTaskCategory() {
       var _this4 = this;
 
       (0, _axios.default)({
-        url: "/tasks",
+        url: "/categories",
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
         }
       }).then(function (_ref4) {
         var data = _ref4.data;
-        _this4.tasks = data;
+        _this4.categories = data;
       }).catch(function (error) {
         var notif = '';
 
@@ -12985,6 +13027,38 @@ var _default = {
         }
 
         _this4.message = notif;
+      });
+    },
+    showAllTask: function showAllTask() {
+      var _this5 = this;
+
+      (0, _axios.default)({
+        url: "/tasks",
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        }
+      }).then(function (_ref5) {
+        var data = _ref5.data;
+        _this5.tasks = data;
+      }).catch(function (error) {
+        var notif = '';
+
+        var _iterator5 = _createForOfIteratorHelper(error.response.data.errors),
+            _step5;
+
+        try {
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var msg = _step5.value;
+            notif += "<p style=\"background-color: #ff4756ce;\">".concat(msg, "</p>");
+          }
+        } catch (err) {
+          _iterator5.e(err);
+        } finally {
+          _iterator5.f();
+        }
+
+        _this5.message = notif;
       });
     },
     fetchData: function fetchData() {
@@ -13045,7 +13119,11 @@ exports.default = _default;
       _vm.currentPage === "login"
         ? _c("LoginPage", {
             attrs: { message: _vm.message },
-            on: { showRegisterForm: _vm.showRegisterForm, login: _vm.login }
+            on: {
+              showRegisterForm: _vm.showRegisterForm,
+              login: _vm.login,
+              googleLogin: _vm.googleLogin
+            }
           })
         : _vm.currentPage === "register"
         ? _c("RegisterPage", {
@@ -13108,21 +13186,77 @@ render._withStripped = true
       
       }
     })();
-},{"./config/axios":"src/config/axios.js","./views/LoginPage":"src/views/LoginPage.vue","./views/RegisterPage":"src/views/RegisterPage.vue","./views/MainPage":"src/views/MainPage.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
+},{"./config/axios":"src/config/axios.js","./views/LoginPage":"src/views/LoginPage.vue","./views/RegisterPage":"src/views/RegisterPage.vue","./views/MainPage":"src/views/MainPage.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/vue-google-signin-button-directive/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = _vue.default.directive('google-signin-button', {
+  bind: function (el, binding, vnode) {
+    CheckComponentMethods();
+    let clientId = binding.value;
+    let googleSignInAPI = document.createElement('script');
+    googleSignInAPI.setAttribute('src', 'https://apis.google.com/js/api:client.js');
+    document.head.appendChild(googleSignInAPI);
+    googleSignInAPI.onload = InitGoogleButton;
+
+    function InitGoogleButton() {
+      gapi.load('auth2', () => {
+        const auth2 = gapi.auth2.init({
+          client_id: clientId,
+          cookiepolicy: 'single_host_origin'
+        });
+        auth2.attachClickHandler(el, {}, OnSuccess, Onfail);
+      });
+    }
+
+    function OnSuccess(googleUser) {
+      vnode.context.OnGoogleAuthSuccess(googleUser.getAuthResponse().id_token);
+      googleUser.disconnect();
+    }
+
+    function Onfail(error) {
+      vnode.context.OnGoogleAuthFail(error);
+    }
+
+    function CheckComponentMethods() {
+      if (!vnode.context.OnGoogleAuthSuccess) {
+        throw new Error('The method OnGoogleAuthSuccess must be defined on the component');
+      }
+
+      if (!vnode.context.OnGoogleAuthFail) {
+        throw new Error('The method OnGoogleAuthFail must be defined on the component');
+      }
+    }
+  }
+});
+
+exports.default = _default;
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
+var _vueGoogleSigninButtonDirective = _interopRequireDefault(require("vue-google-signin-button-directive"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 new _vue.default({
   render: function render(h) {
     return h(_App.default);
-  }
+  },
+  GoogleSignInButton: _vueGoogleSigninButtonDirective.default
 }).$mount('#app');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","vue-google-signin-button-directive":"node_modules/vue-google-signin-button-directive/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13150,7 +13284,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37601" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40107" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

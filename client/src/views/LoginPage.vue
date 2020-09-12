@@ -19,9 +19,11 @@
                     </div>
                     <div style="text-align: left;">
                         <button type="submit" class="btn">Login</button>
-                        <p>or login with :</p>
-                        <div style="text-align: center;" class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
+                        <p>or login with :</p>
+                        <div class="btn-social-container">
+                            <p v-google-signin-button="clientId" class="btn btn-social btn-google"><i class="fab fa-google"></i> oogle</p>
+                        </div>
                     <div style="color: #fff">Don't have an account?
                         <a href="" @click.prevent="showRegisterForm" class="register-link">Register here</a>
                     </div>
@@ -40,7 +42,8 @@ export default {
         return{
             email: '',
             password: '',
-            alerthtml: ''
+            alerthtml: '',
+            clientId: '798177998898-sv3v3mf543p6dfhot0lhaigcgjf1bu9q.apps.googleusercontent.com'
         }
     },
     methods: {
@@ -59,6 +62,13 @@ export default {
         showRegisterForm(){
             this.$emit('showRegisterForm')
             this.clearField()
+        },
+        OnGoogleAuthSuccess (idToken) {
+            this.$emit('googleLogin', idToken)
+            this.clearField()
+        },
+        OnGoogleAuthFail (error) {
+        console.log(error)
         }
     }
 

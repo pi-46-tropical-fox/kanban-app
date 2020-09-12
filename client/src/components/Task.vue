@@ -1,5 +1,5 @@
 <template>
-            <div class="list-task" v-if="categoryId === taskCategoryId" >
+            <div class="list-task" >
                 
                 <!-- Task Detail -->
                 <div class="list-task-details" >
@@ -15,16 +15,17 @@
                         <div class="dropdown">
                             <i class="fas fa-arrows-alt"></i>
                             <div class="dropdown-content">
-                            <MoveOption
-                            v-for="category in categories"
-                            :key="category.id"
-                            :categoryIdOption="category.id"
-                            :categoryNameOption="category.name"
-                            :currentCategoryId="categoryId"
-                            :currentTaskId="taskId"
-                            @successMoved="successMoved"
-                            @failMoved="failMoved">
-                            </MoveOption>
+                                <div v-for="category in categories" :key="category.id">
+                                    <MoveOption                            
+                                    v-if="category.id !== categoryId"
+                                    :categoryIdOption="category.id"
+                                    :categoryNameOption="category.name"
+                                    :currentCategoryId="categoryId"
+                                    :currentTaskId="taskId"
+                                    @successMoved="successMoved"
+                                    @failMoved="failMoved">
+                                    </MoveOption>
+                                </div>
                             </div>
                         </div>
                     </div>

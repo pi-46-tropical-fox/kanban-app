@@ -49,7 +49,7 @@ class UserController {
                 audience: process.env.GOOGLE_CLIENT_ID
             });
             const payload = ticket.getPayload();
-            const {given_name, family_name, email} = payload
+            const {email} = payload
             const user = await User.findOne({
                 where : {
                     email
@@ -65,10 +65,9 @@ class UserController {
                 }
             }else{
                 let obj = {
-                    firstName: given_name,
-                    lastName: family_name,
                     email: email,
-                    password: process.env.DEFAULT_PASSWORD_GOOGLE
+                    password: process.env.DEFAULT_PASSWORD_GOOGLE,
+                    organization: ''
                 }
                 const newUser = await User.create(obj)
                 const access_token = generateToken(newUser)

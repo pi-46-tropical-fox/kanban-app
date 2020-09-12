@@ -1,22 +1,23 @@
 <template>
     <div class="list-tasks">
-        <Task
-        v-for="task in listTask"
-        :key="task.id"
-        :taskId="task.id"
-        :taskTitle="task.title"
-        :taskDescription="task.description"
-        :userEmail="task.User.email"
-        :taskCreated="task.createdAt"
-        :taskCategoryId="task.CategoryId"
-        :categoryId="categoryId"
-        :categories="categories"
-        @successDeleted="successDeleted"
-        @forbiddenAccess="forbiddenAccess"
-        @failEdit="failEdit"
-        @successMoved="successMoved"
-        @successEdited="successEdited">
-        </Task>
+        <div  v-for="task in listTask" :key="task.id">
+            <Task 
+            v-if="categoryId === task.CategoryId"
+            :taskId="task.id"
+            :taskTitle="task.title"
+            :taskDescription="task.description"
+            :userEmail="task.User.email"
+            :taskCreated="task.createdAt"
+            :taskCategoryId="task.CategoryId"
+            :categoryId="categoryId"
+            :categories="categories"
+            @successDeleted="successDeleted"
+            @forbiddenAccess="forbiddenAccess"
+            @failEdit="failEdit"
+            @successMoved="successMoved"
+            @successEdited="successEdited">
+            </Task>
+        </div>
     </div>
 </template>
 
