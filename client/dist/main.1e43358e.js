@@ -10897,7 +10897,15 @@ var staticRenderFns = [
     return _c("div", { staticStyle: { "text-align": "left" } }, [
       _c("button", { staticClass: "btn", attrs: { type: "submit" } }, [
         _vm._v("Login")
-      ])
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("or login with :")]),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "g-signin2",
+        staticStyle: { "text-align": "center" },
+        attrs: { "data-onsuccess": "onSignIn" }
+      })
     ])
   }
 ]
@@ -13142,7 +13150,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37601" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

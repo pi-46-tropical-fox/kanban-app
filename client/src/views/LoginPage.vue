@@ -19,8 +19,8 @@
                     </div>
                     <div style="text-align: left;">
                         <button type="submit" class="btn">Login</button>
-                        <!-- <p>or login with :</p>
-                        <div style="text-align: center;" class="g-signin2" data-onsuccess="onSignIn"></div> -->
+                        <p>or login with :</p>
+                        <div style="text-align: center;" class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                     <div style="color: #fff">Don't have an account?
                         <a href="" @click.prevent="showRegisterForm" class="register-link">Register here</a>
