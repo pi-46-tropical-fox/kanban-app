@@ -4,27 +4,27 @@
     <Sidebar v-if="currentPage === 'homePage'"></Sidebar>
     <LoginPage 
       v-if="currentPage === 'loginPage'"
-      @emitRegister="register"
+      @emitMovePageRegister="movePageRegister"
       @loginSubmit="login">
     </LoginPage>
     <RegisterPage 
       v-else-if="currentPage === 'registerPage'"
-      @emitRegister="registerUser">
+      @emitMovePageLogin="movePageLogin"
+      @emitRegister="submitRegister">
     </RegisterPage>
     <HomePage
       v-else-if="currentPage === 'homePage'"
       :tasks="tasks"
       :categories="categories"
       @emitAddTask="addTask"
-      @emitDelete="deleteTask"
-    >
+      @emitEditTask="refreshTask"
+      @emitDelete="deleteTask">
     </HomePage>
   </div>
 </template>
 
 <script>
 // import component
-import draggable from 'vuedraggable'
 import axios from './config/axios'
 import LoginPage from './views/Login'
 import RegisterPage from './views/Register'
@@ -36,6 +36,7 @@ export default {
     return {
       message: 'Hello world',
       currentPage: 'loginPage',
+      isLogin: false,
       tasks: [],
       categories: [
         {
@@ -58,8 +59,7 @@ export default {
     LoginPage,
     RegisterPage,
     HomePage,
-    Sidebar,
-    draggable
+    Sidebar
   },
   methods: {
     checkAuth() {
@@ -85,15 +85,16 @@ export default {
         console.log(err);
       })
     },
-    register() {
-      console.log('masuk ke app.vue register');
+    movePageRegister() {
+      console.log('masuk ke movePage di App.vue');
       this.currentPage = 'registerPage'
     },
-    registerUser(value) {
-      console.log(value, 'masuk ke registerUser app.vue');
-      this.currentPage = value
+    movePageLogin() {
+      this.currentPage = 'loginPage'
     },
-    logout(){
+    submitRegister(value) {
+      console.log(value, 'masuk ke app untuk register');
+      this.currentPage = value
     },
     fetchTasks() {
       axios({
@@ -117,6 +118,10 @@ export default {
     },
     deleteTask() {
       console.log('ini delete masuk ke app');
+      this.fetchTasks()
+    },
+    refreshTask() {
+      console.log('ini edt di app.vue');
       this.fetchTasks()
     }
   },
@@ -143,24 +148,16 @@ p {
   position: fixed;
   text-align: center;
   vertical-align: middle;
-  box-shadow: 0px 5px 5px #e0dada;
   font-family: 'Karla', sans-serif;
-}
-
-.logo-container{
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-.sidebar-menu{
-  padding-left: 0;
-  margin-top: 80px;
+  -webkit-box-shadow: 10px 0px 47px -30px rgba(63,81,181,0.26);
+  -moz-box-shadow: 10px 0px 47px -30px rgba(63,81,181,0.26);
+  box-shadow: 10px 0px 47px -30px rgba(63,81,181,0.26);
 }
 
 .sidebar-menu a{
   font-weight: lighter;
-  margin: 40px 0px;
-  display: block;
+  display: flex;
+  justify-content: baseline;
   font-size: 16px;
   text-decoration: none;
   color: #1e2223;
@@ -168,8 +165,6 @@ p {
 
 .sidebar-menu a:hover{
   font-weight: lighter;
-  margin: 40px 0px;
-  display: block;
   font-size: 20px;
   text-shadow: 0px 0px 4px #303778;
   color: #303778;
@@ -177,14 +172,13 @@ p {
 
 .sidebar-footer {
   position: fixed;
-  left: 6%;
+  margin-bottom: 5%;
+  left: 5%;
   bottom: 0;
 }
 
-.main-container{
-  background-image: url('https://i.imgur.com/sIRVPzA.jpg');
+.main-container {
   height: 100vh;
-  margin-left: 15%; 
 }
 
 .board {
@@ -195,9 +189,7 @@ p {
 
 .category {
   width: 25%;
-  margin: 0 15px 0 15px;
-  /* border: 1px solid #303778; */
-  /* overflow: scroll; */
+  margin: 0 1.5rem 0 0;
 }
 
 .card-board-header {
@@ -207,7 +199,8 @@ p {
 }
 
 .header-icon {
-  padding-right: 20px;
+  padding-right: 10px;
+
 }
 
 .card-body {
@@ -215,8 +208,6 @@ p {
   padding: 1rem;
   border-radius: 5px;
   margin: 1rem;
-  box-shadow: 0px 5px 5px #e9ebf0;
-  border-radius: 10px;
   
 }
 </style>

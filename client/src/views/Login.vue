@@ -3,7 +3,7 @@
     <center>
       <img class="responsive-img" style="width: 250px;" src="" />
       <div class="section"></div>
-      <h5 class="sub-title">Please login to your account</h5>
+      <h5 class="sub-title">Login to your account</h5>
       <div class="section"></div>
       <div class="container">
         <div class="z-depth-1 grey lighten-4 row"
@@ -42,7 +42,7 @@
           </center> -->
         </div>
       </div>
-      <a @click.prevent="register" href="#">Create account</a>
+      <a @click.prevent="movePageRegister" href="#">Create account</a>
     </center>
   </div>
 </template>
@@ -64,9 +64,9 @@ export default {
       }
       this.$emit('loginSubmit', payload)
     },
-    register() {
-      console.log('masuk ke register yang di');
-      this.$emit('emitRegister')
+    movePageRegister() {
+      console.log('masuk ke register yang di login');
+      this.$emit('emitMovePageRegister')
     }
   }
 }

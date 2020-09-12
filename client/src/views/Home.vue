@@ -15,6 +15,7 @@
         :category="category"
         :tasks="tasks"
         @emitAddTask="addTask"
+        @emitEditTask="refreshTask"
         @emitDelete="deleteTask"
         :key="i">
       </CardCategory>
@@ -40,10 +41,21 @@ export default {
     deleteTask() {
       console.log('masuk deleteTask di home');
       this.$emit('emitDelete')
+    },
+    refreshTask() {
+      console.log('masuk edit task di home');
+      this.$emit('emitEditTask')
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+
+.main-container{
+  /* background-image: url('https://i.imgur.com/sIRVPzA.jpg'); */
+  height: 100%;
+  margin-left: 15%; 
+}
+
 </style>
