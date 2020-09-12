@@ -6,7 +6,7 @@ Membuat kanban web app
 https://documenter.getpostman.com/view/8059699/TVK5dMdW
 ```
 
-# Live Demo
+# Demo
 ```
 https://kanban-app-289212.web.app/
 ```
