@@ -143,6 +143,7 @@ body {
 
 .btn-google{
     background: #da3f34;
+    width: 100px;
 }
 
 .btn-google:hover{
@@ -210,35 +211,55 @@ nav {
     padding: 10px;
     display: flex;
 }
-.list-wraper {
+.wraper {
     margin-right: 10px;
 }
-.list-content {
+.content-container {
     background-color: #f5f6fa;
     width: 300px;
     border-radius: 10px;
-    padding: 15px;
     display: flex;
     flex-direction: column;
 }
-.list-tasks {
+.content-header, .content-footer {
+    height: 10vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
 }
-.list-header, .list-task, .list-footer-task {
+.main-content {
+    /* display: flex;
+    flex-direction: column; */
+    max-height: 52vh;
+    overflow-y: auto;
+}
+/* .list-header, .list-task, .list-footer-task {
     padding: 10px;
+} */
+.list-task-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
 }
-.list-header {
-    text-align: center;
-}
-.list-task, .list-footer-task {
+.task, .content-footer h3 {
     color: #535c68;
     transition: 0.5s;
 }
-#add-task {
+/* #add-task {
     transition: 0.5s;
+} */
+.content-footer h3 {
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+
 }
-.list-footer-task:hover {
+.content-footer h3:hover {
     background-color: #57606f1e;
     cursor: pointer;
     border-radius: 5px;
@@ -246,27 +267,34 @@ nav {
     -webkit-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
     -moz-box-shadow: 0px 9px 10px -2px rgba(0,0,0,0.55);
 }
-.list-task {
+.task {
     margin-bottom: 10px;
     background-color: white;
     border-radius: 5px;
-    cursor: pointer;
+    width: 100%;
+    padding: 10px;
 }
-.list-task i {
+.task-edit {
+    margin: 0 10px;
+}
+.task-edit textarea {
+    margin-bottom: 10px;
+}
+.task i {
     font-size: 13px;
 }
 .fa-edit{
     float: right;
 }
-.list-task-title {
+.detail-task {
     display: flex;
     flex-direction: column;
 }
-.list-task-title h3 {
+.detail-task h3 {
     margin-bottom: 15px;
     color: #31363d;
 }
-.list-task-title p {
+.detail-task p {
     font-size: small;
 }
 .badges i {
@@ -278,6 +306,9 @@ nav {
 textarea#title {
     border-style: none; 
     border-color: Transparent; 
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
     resize: none;
     overflow: auto;
     font-size: 18px;
@@ -420,5 +451,24 @@ i {
     background-color: white;
     border-style: none;
 }
-
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f5f6fa; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 

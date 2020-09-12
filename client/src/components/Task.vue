@@ -1,10 +1,10 @@
 <template>
-            <div class="list-task" >
+            <div class="list-task-container" >
                 
                 <!-- Task Detail -->
-                <div class="list-task-details" >
+                <div class="task" >
                     <i class="fas fa-edit" @click.prevent="openModalEdit(taskId)"></i>
-                    <div class="list-task-title">                                    
+                    <div class="detail-task">                                    
                         <h3>{{taskTitle}}</h3>
                         <h4>{{taskDescription}}</h4>
                         <p>By : {{userEmail}}</p>

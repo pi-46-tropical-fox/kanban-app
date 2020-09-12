@@ -1,5 +1,5 @@
 <template>
-    <div class="list-tasks">
+    <div class="main-content">
         <div  v-for="task in listTask" :key="task.id">
             <Task 
             v-if="categoryId === task.CategoryId"
@@ -24,7 +24,7 @@
 <script>
 import Task from './Task'
 export default {
-    name: 'ListTasks',
+    name: 'MainContent',
     props: ['listTask', 'categoryId', 'categories'],
     components: {
         Task

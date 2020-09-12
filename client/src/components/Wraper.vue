@@ -1,10 +1,10 @@
 <template>
-<div class="list-wraper">
-    <div class="list-content">
-        <div class="list-header">
+<div class="wraper">
+    <div class="content-container">
+        <div class="content-header">
             <h1>{{categoryName}}</h1>
         </div>
-        <ListTasks
+        <MainContent
         :categories="categories"
         :listTask="listTask"
         :categoryId="categoryId"
@@ -13,9 +13,9 @@
         @successMoved="successMoved"
         @successEdited="successEdited"
         @failEdit="failEdit">
-        </ListTasks>
-        <div id="add-task" v-if="currentAddFormCategoryId === categoryId">
-            <div class="list-task">
+        </MainContent>
+        <div class="task-edit" v-if="currentAddFormCategoryId === categoryId">
+            <div>
                 <textarea name="title" id="title" cols="21" rows="2" placeholder="Enter a title of this task . ." v-model="taskTitle"></textarea>                                
             </div>
             <div class="btn-container">
@@ -23,8 +23,8 @@
                 <button class="btn-cancel" style="width: 40%;" @click.prevent="closeAddForm">Cancel</button>
             </div>
         </div>
-        <div class="list-footer-task" @click.prevent="showAddForm(categoryId)" v-else>                        
-            <h3><i class="fas fa-plus"></i> Add another task</h3>                        
+        <div class="content-footer" v-else>                        
+            <h3 @click.prevent="showAddForm(categoryId)"><i class="fas fa-plus"></i> Add another task</h3>                        
         </div>
     </div>
 </div>
@@ -33,12 +33,12 @@
 
 <script>
 import axios from '../config/axios'
-import ListTasks from './ListTasks'
+import MainContent from './MainContent'
 export default {
-    name: 'ListWraper',
+    name: 'Wraper',
     props: ['categoryName', 'categoryId', 'listTask','currentAddFormCategoryId','categories'],
     components: {
-        ListTasks
+        MainContent
     },
     data(){
         return{
@@ -48,9 +48,11 @@ export default {
     methods: {
         showAddForm(categoryId){            
             this.$emit('currentAddFormId', categoryId)
+            this.taskTitle = ''
         },
         closeAddForm(){
             this.$emit('clearCurrentAddFormId')
+            this.taskTitle = ''
         },
         createNewTask(categoryId){
           axios({

@@ -10345,7 +10345,7 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var instance = _axios.default.create({
-  baseURL: 'https://my-kanban-apps-2.herokuapp.com'
+  baseURL: 'http://localhost:3000'
 });
 
 var _default = instance;
@@ -11705,8 +11705,8 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "list-task" }, [
-    _c("div", { staticClass: "list-task-details" }, [
+  return _c("div", { staticClass: "list-task-container" }, [
+    _c("div", { staticClass: "task" }, [
       _c("i", {
         staticClass: "fas fa-edit",
         on: {
@@ -11717,7 +11717,7 @@ exports.default = _default;
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "list-task-title" }, [
+      _c("div", { staticClass: "detail-task" }, [
         _c("h3", [_vm._v(_vm._s(_vm.taskTitle))]),
         _vm._v(" "),
         _c("h4", [_vm._v(_vm._s(_vm.taskDescription))]),
@@ -12137,7 +12137,7 @@ render._withStripped = true
       
       }
     })();
-},{"../config/axios":"src/config/axios.js","./MoveOption":"src/components/MoveOption.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/ListTasks.vue":[function(require,module,exports) {
+},{"../config/axios":"src/config/axios.js","./MoveOption":"src/components/MoveOption.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/MainContent.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12173,7 +12173,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 var _default = {
-  name: 'ListTasks',
+  name: 'MainContent',
   props: ['listTask', 'categoryId', 'categories'],
   components: {
     Task: _Task.default
@@ -12197,21 +12197,21 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $d5e899 = exports.default || module.exports;
+        var $b9de3e = exports.default || module.exports;
       
-      if (typeof $d5e899 === 'function') {
-        $d5e899 = $d5e899.options;
+      if (typeof $b9de3e === 'function') {
+        $b9de3e = $b9de3e.options;
       }
     
         /* template */
-        Object.assign($d5e899, (function () {
+        Object.assign($b9de3e, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "list-tasks" },
+    { staticClass: "main-content" },
     _vm._l(_vm.listTask, function(task) {
       return _c(
         "div",
@@ -12265,9 +12265,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$d5e899', $d5e899);
+            api.createRecord('$b9de3e', $b9de3e);
           } else {
-            api.reload('$d5e899', $d5e899);
+            api.reload('$b9de3e', $b9de3e);
           }
         }
 
@@ -12278,7 +12278,7 @@ render._withStripped = true
       
       }
     })();
-},{"./Task":"src/components/Task.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/ListWraper.vue":[function(require,module,exports) {
+},{"./Task":"src/components/Task.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/Wraper.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12288,7 +12288,7 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("../config/axios"));
 
-var _ListTasks = _interopRequireDefault(require("./ListTasks"));
+var _MainContent = _interopRequireDefault(require("./MainContent"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12299,10 +12299,10 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var _default = {
-  name: 'ListWraper',
+  name: 'Wraper',
   props: ['categoryName', 'categoryId', 'listTask', 'currentAddFormCategoryId', 'categories'],
   components: {
-    ListTasks: _ListTasks.default
+    MainContent: _MainContent.default
   },
   data: function data() {
     return {
@@ -12312,9 +12312,11 @@ var _default = {
   methods: {
     showAddForm: function showAddForm(categoryId) {
       this.$emit('currentAddFormId', categoryId);
+      this.taskTitle = '';
     },
     closeAddForm: function closeAddForm() {
       this.$emit('clearCurrentAddFormId');
+      this.taskTitle = '';
     },
     createNewTask: function createNewTask(categoryId) {
       var _this = this;
@@ -12374,28 +12376,28 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $611104 = exports.default || module.exports;
+        var $8e5d7d = exports.default || module.exports;
       
-      if (typeof $611104 === 'function') {
-        $611104 = $611104.options;
+      if (typeof $8e5d7d === 'function') {
+        $8e5d7d = $8e5d7d.options;
       }
     
         /* template */
-        Object.assign($611104, (function () {
+        Object.assign($8e5d7d, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "list-wraper" }, [
+  return _c("div", { staticClass: "wraper" }, [
     _c(
       "div",
-      { staticClass: "list-content" },
+      { staticClass: "content-container" },
       [
-        _c("div", { staticClass: "list-header" }, [
+        _c("div", { staticClass: "content-header" }, [
           _c("h1", [_vm._v(_vm._s(_vm.categoryName))])
         ]),
         _vm._v(" "),
-        _c("ListTasks", {
+        _c("MainContent", {
           attrs: {
             categories: _vm.categories,
             listTask: _vm.listTask,
@@ -12411,8 +12413,8 @@ exports.default = _default;
         }),
         _vm._v(" "),
         _vm.currentAddFormCategoryId === _vm.categoryId
-          ? _c("div", { attrs: { id: "add-task" } }, [
-              _c("div", { staticClass: "list-task" }, [
+          ? _c("div", { staticClass: "task-edit" }, [
+              _c("div", [
                 _c("textarea", {
                   directives: [
                     {
@@ -12473,35 +12475,29 @@ exports.default = _default;
                 )
               ])
             ])
-          : _c(
-              "div",
-              {
-                staticClass: "list-footer-task",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.showAddForm(_vm.categoryId)
+          : _c("div", { staticClass: "content-footer" }, [
+              _c(
+                "h3",
+                {
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.showAddForm(_vm.categoryId)
+                    }
                   }
-                }
-              },
-              [_vm._m(0)]
-            )
+                },
+                [
+                  _c("i", { staticClass: "fas fa-plus" }),
+                  _vm._v(" Add another task")
+                ]
+              )
+            ])
       ],
       1
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", [
-      _c("i", { staticClass: "fas fa-plus" }),
-      _vm._v(" Add another task")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
           return {
@@ -12521,9 +12517,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$611104', $611104);
+            api.createRecord('$8e5d7d', $8e5d7d);
           } else {
-            api.reload('$611104', $611104);
+            api.reload('$8e5d7d', $8e5d7d);
           }
         }
 
@@ -12534,7 +12530,7 @@ render._withStripped = true
       
       }
     })();
-},{"../config/axios":"src/config/axios.js","./ListTasks":"src/components/ListTasks.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/Board.vue":[function(require,module,exports) {
+},{"../config/axios":"src/config/axios.js","./MainContent":"src/components/MainContent.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/Board.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12542,7 +12538,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _ListWraper = _interopRequireDefault(require("./ListWraper"));
+var _Wraper = _interopRequireDefault(require("./Wraper"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12573,7 +12569,7 @@ var _default = {
   name: 'Board',
   props: ['categories', 'tasks'],
   components: {
-    ListWraper: _ListWraper.default
+    Wraper: _Wraper.default
   },
   data: function data() {
     return {
@@ -12632,7 +12628,7 @@ exports.default = _default;
     "div",
     { staticClass: "board" },
     _vm._l(_vm.categories, function(category) {
-      return _c("ListWraper", {
+      return _c("Wraper", {
         key: category.id,
         attrs: {
           categories: _vm.categories,
@@ -12690,7 +12686,7 @@ render._withStripped = true
       
       }
     })();
-},{"./ListWraper":"src/components/ListWraper.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/MainPage.vue":[function(require,module,exports) {
+},{"./Wraper":"src/components/Wraper.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/MainPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13284,7 +13280,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40107" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43877" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,6 +1,6 @@
 <template>
     <div class="board">                
-        <ListWraper
+        <Wraper
         :categories="categories"
         :listTask="tasks"
         v-for="category in categories"
@@ -17,17 +17,17 @@
         @successMoved="successMoved"
         @successEdited="successEdited"
         @failEdit="failEdit">
-        </ListWraper>
+        </Wraper>
     </div>
 </template>
 
 <script>
-import ListWraper from './ListWraper'
+import Wraper from './Wraper'
 export default {
     name: 'Board',
     props: ['categories', 'tasks'],
     components: {
-        ListWraper
+        Wraper
     },
     data(){
         return{
