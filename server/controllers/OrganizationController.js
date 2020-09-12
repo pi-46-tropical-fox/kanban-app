@@ -7,7 +7,7 @@ class Controller {
             const created = await Organization.create({ name, description })
             const member = await Membership.create({ UserId : req.userData.id, OrganizationId : created.id, role : 'Owner' })
 
-            res.status(201).json(member)
+            res.status(201).json({created, member})
         } catch (err) {
             console.log(err)
             res.status(500).json(`Interval Server Error`)
