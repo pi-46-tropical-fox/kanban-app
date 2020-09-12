@@ -1,7 +1,7 @@
 const { Organization, Membership } = require('../models')
 
 class Controller {
-    static async createOrganization(req, res) {
+    static async createOrganization(req, res, next) {
         try {
             const { name, description } = req.body
             const created = await Organization.create({ name, description })
@@ -9,23 +9,21 @@ class Controller {
 
             res.status(201).json({created, member})
         } catch (err) {
-            console.log(err)
-            res.status(500).json(`Interval Server Error`)
+            next(err)
         }
     }
 
-    static async showAllOrganization(req, res) {
+    static async showAllOrganization(req, res, next) {
         try {
             const list = await Organization.findAll()
 
             res.status(200).json(list)
         } catch (err) {
-            console.log(err);
-            res.status(500).json(`Interval Server Error`)
+            next(err)
         }
     }
 
-    static async ownOrganization(req, res) {
+    static async ownOrganization(req, res, next) {
         try {
             const list = await Membership.findAll({
                 attributes : ['role'],
@@ -37,8 +35,7 @@ class Controller {
 
             res.status(200).json(list)
         } catch(err) {
-            console.log(err);
-            res.status(500).json(`Interval Server Error`)
+            next(err)
         }
     }
 }

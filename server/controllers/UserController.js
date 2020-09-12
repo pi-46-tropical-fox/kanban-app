@@ -4,7 +4,7 @@ const { generateToken } = require('../helpers/token')
 const { OAuth2Client } = require('google-auth-library');
 
 class Controller {
-    static async login(req, res) {
+    static async login(req, res, next) {
         try {
             const { email, password } = req.body
 
@@ -18,18 +18,17 @@ class Controller {
 
                     res.status(200).json({access_token : token})
                 } else {
-                    res.status(401).json({ msg :  'Email / Password Salah'})
+                    throw { message : 'Email / Password Is Incorrect' , statusCode : 401}
                 }
             } else {
-                res.status(401).json(`Email / Password Salah`)
+                throw { message : 'Email / Password Is Incorrect' , statusCode : 401}
             }
         } catch (err) {
-            // console.log(err);
-            res.status(500).json(`Interval Server Error`)
+            next(err)
         }
     }
 
-    static async register(req, res) {
+    static async register(req, res, next) {
         try {
             const { email, name, password } = req.body
 
@@ -38,7 +37,7 @@ class Controller {
 
             res.status(201).json({ email, name })
         } catch (err) {
-            res.status(500).json('Interval Server Error')
+            next(err)
         }
     }
 

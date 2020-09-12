@@ -12,11 +12,10 @@ const authentication = async (req, res, next) => {
             req.userData = decoded
             next()
         } else {
-            res.status(401).json('User Not Auth')
+            throw { message : 'User Not Authenticated', statusCode : 401 }
         }
     } catch (err) {
-        console.log(err);
-        res.status(401).json('User Not Auth')
+        next(err)
     }
 }
 
@@ -25,16 +24,16 @@ const authorization = async (req, res, next) => {
         const found = await Task.findByPk(req.params.id)
 
         if(found === null) {
-            res.status(404).json('404 Not Found')
+            throw { message : '404 Not Found', statusCode : 404 }
         } else {
             if(found.UserId == req.userData.id) {
                 next()
             } else {
-                res.status(403).json('Forbidden Access')
+                throw { message : 'Forbidden', statusCode : 403 }
             }
         } 
     } catch (err) {
-        res.status(500).json('Interval Server Error')
+        next(err)
     }
 }
 

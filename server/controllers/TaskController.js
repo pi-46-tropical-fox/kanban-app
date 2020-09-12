@@ -47,8 +47,7 @@ class Controller {
 
             res.status(200).json(update)
         } catch(err) {
-            console.log(err)
-            res.status(500).json("Interval Server Error")
+            next(err)
         }
     }
 
@@ -61,7 +60,7 @@ class Controller {
 
             res.status(200).json(update)
         } catch(err) {
-            res.status(500).json("Interval Server Error")
+            next(err)
         }
     }
 }

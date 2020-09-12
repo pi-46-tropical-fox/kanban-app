@@ -1,7 +1,7 @@
 const { Category, Task, Board, User } = require('../models');
 
 class Controller {
-    static async showAll(req, res) {
+    static async showAll(req, res, next) {
         try {
             const data = await Board.findOne({
                 where : {
@@ -24,11 +24,11 @@ class Controller {
 
             res.status(200).json(data)
         } catch(err) {
-            res.status(500).json(`Interval Server Error`)
+            next(err)
         }
     }
 
-    static async createCategory(req, res) {
+    static async createCategory(req, res, next) {
         try {
             const id = req.params.boardId
             const { title } = req.body
@@ -37,8 +37,7 @@ class Controller {
 
             res.status(201).json(created)
         } catch (err) {
-            console.log(err);
-            res.status(500).json(`Interval Server Error`)
+            next(err)
         }
     }
 }
