@@ -4,7 +4,10 @@ class TaskController {
     static async showAllTask(req, res, next){
         try {
             const tasks = await Task.findAll({
-                include: [User]
+                include: [{
+                    model: User,
+                    attributes: ['id','email']
+                }]
             })
             return res.status(200).json(tasks)
         } catch (err) {
@@ -14,7 +17,13 @@ class TaskController {
     static async findTaskById(req, res, next){
         try {
             const task = await Task.findOne({
-                include: [User, Category],
+                include: [{
+                    model: User,
+                    attributes: ['id','email']
+                }, {
+                    model: Category,
+                    attributes: ['id', 'name']
+                }],
                 where: {
                     id: +req.params.taskId
                 }

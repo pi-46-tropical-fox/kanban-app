@@ -9,7 +9,7 @@
 import axios from '../config/axios'
 export default {
     name: 'MoveOption',
-    props: ['categoryIdOption', 'categoryNameOption', 'currentCategoryId', 'currentTaskId'],
+    props: ['categoryIdOption', 'categoryNameOption', 'taskId'],
     methods: {
         moveCategory(taskId, categoryId){
           axios({

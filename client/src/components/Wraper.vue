@@ -6,7 +6,7 @@
         </div>
         <MainContent
         :categories="categories"
-        :listTask="listTask"
+        :tasks="tasks"
         :categoryId="categoryId"
         @successDeleted="successDeleted"
         @forbiddenAccess="forbiddenAccess"
@@ -36,7 +36,7 @@ import axios from '../config/axios'
 import MainContent from './MainContent'
 export default {
     name: 'Wraper',
-    props: ['categoryName', 'categoryId', 'listTask','currentAddFormCategoryId','categories'],
+    props: ['categoryName', 'categoryId', 'tasks','currentAddFormCategoryId','categories'],
     components: {
         MainContent
     },

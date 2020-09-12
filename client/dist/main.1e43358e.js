@@ -11381,7 +11381,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var _default = {
   name: 'MoveOption',
-  props: ['categoryIdOption', 'categoryNameOption', 'currentCategoryId', 'currentTaskId'],
+  props: ['categoryIdOption', 'categoryNameOption', 'taskId'],
   methods: {
     moveCategory: function moveCategory(taskId, categoryId) {
       var _this = this;
@@ -11762,8 +11762,8 @@ exports.default = _default;
                         attrs: {
                           categoryIdOption: category.id,
                           categoryNameOption: category.name,
-                          currentCategoryId: _vm.categoryId,
-                          currentTaskId: _vm.taskId
+                          categoryId: _vm.categoryId,
+                          taskId: _vm.taskId
                         },
                         on: {
                           successMoved: _vm.successMoved,
@@ -12174,7 +12174,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'MainContent',
-  props: ['listTask', 'categoryId', 'categories'],
+  props: ['tasks', 'categoryId', 'categories'],
   components: {
     Task: _Task.default
   },
@@ -12212,7 +12212,7 @@ exports.default = _default;
   return _c(
     "div",
     { staticClass: "main-content" },
-    _vm._l(_vm.listTask, function(task) {
+    _vm._l(_vm.tasks, function(task) {
       return _c(
         "div",
         { key: task.id },
@@ -12300,7 +12300,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var _default = {
   name: 'Wraper',
-  props: ['categoryName', 'categoryId', 'listTask', 'currentAddFormCategoryId', 'categories'],
+  props: ['categoryName', 'categoryId', 'tasks', 'currentAddFormCategoryId', 'categories'],
   components: {
     MainContent: _MainContent.default
   },
@@ -12400,7 +12400,7 @@ exports.default = _default;
         _c("MainContent", {
           attrs: {
             categories: _vm.categories,
-            listTask: _vm.listTask,
+            tasks: _vm.tasks,
             categoryId: _vm.categoryId
           },
           on: {
@@ -12632,7 +12632,7 @@ exports.default = _default;
         key: category.id,
         attrs: {
           categories: _vm.categories,
-          listTask: _vm.tasks,
+          tasks: _vm.tasks,
           categoryName: category.name,
           categoryId: category.id,
           currentAddFormCategoryId: _vm.addFormId
@@ -13280,7 +13280,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43877" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34137" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

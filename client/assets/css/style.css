@@ -278,7 +278,7 @@ nav {
     margin: 0 10px;
 }
 .task-edit textarea {
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 .task i {
     font-size: 13px;

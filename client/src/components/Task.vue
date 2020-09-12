@@ -20,8 +20,8 @@
                                     v-if="category.id !== categoryId"
                                     :categoryIdOption="category.id"
                                     :categoryNameOption="category.name"
-                                    :currentCategoryId="categoryId"
-                                    :currentTaskId="taskId"
+                                    :categoryId="categoryId"
+                                    :taskId="taskId"
                                     @successMoved="successMoved"
                                     @failMoved="failMoved">
                                     </MoveOption>

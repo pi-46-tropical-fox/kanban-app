@@ -2,7 +2,7 @@
     <div class="board">                
         <Wraper
         :categories="categories"
-        :listTask="tasks"
+        :tasks="tasks"
         v-for="category in categories"
         :key="category.id"
         :categoryName="category.name"

@@ -23,7 +23,7 @@ const errHandler = (err, req, res, next) => {
         errors.push('User not authenticated')
     }else if(err.name === 'ForbidenAccess'){
         statusCode = 403
-        errors.push(`Forbiden access`)
+        errors.push(`Forbidden access`)
     }else if(err.name === 'TaskNotFound'){
         statusCode = 404
         errors.push('Task not found')
