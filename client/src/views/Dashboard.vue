@@ -1,8 +1,9 @@
 <template>
 <div id="container">
+    
     <!-- <div class="row">  -->
         <h1 class= "text-center mt-5 " v-if="currentPage === 'dashboardPage' ">{{ message }}</h1>
-    <p class= "text-center "  v-if="currentPage === 'dashboardPage' ">{{ message2 }}</p>
+        <p class= "text-center "  v-if="currentPage === 'dashboardPage' ">{{ message2 }}</p>
     <!-- {{tasksData}} -->
     <!-- <CardTask 
     v-for="task in tasksData" 
@@ -12,7 +13,7 @@
     </CardTask> -->
     <!-- </div> -->
     
-    <div class="row">
+    <div class="row" id=row-cardstatus>
         <CardStatus 
         v-for="(status,i) in statusesData" 
         :status="status"
@@ -20,6 +21,7 @@
         :key="i"
         ></CardStatus>
     </div>
+    
 
 </div>
  
@@ -27,7 +29,7 @@
 
 <script>
 import axios from '../config/axios.js'
-import CardTask from '../components/CardTask'
+// import CardTask from '../components/CardTask'
 import CardStatus from '../components/CardStatus'
 export default {
     name: 'Dashboard',
@@ -40,7 +42,7 @@ export default {
     },
     props: ['tasksData', 'statusesData'],
     components : {
-        CardTask,
+        // CardTask,
         CardStatus
     },
     methods : {
@@ -74,8 +76,15 @@ export default {
 }
 
 #container {
-    overflow-x:auto
+    overflow-x:auto;
 }
+
+/* #row-cardstatus{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    display:inline-block;
+} */
 
 
 </style>

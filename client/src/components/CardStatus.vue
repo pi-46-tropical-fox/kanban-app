@@ -1,14 +1,13 @@
 <template>
   <div>
-      <div class="col-3" id="cardStatus">
-          <div class="shadow bg-info  text-white rounded">
+      <div class="col-3 p-2" id="cardStatus">
+          <div class="bg-primary text-white rounded text-center">
               {{ status.status}}
           </div>
           <div class="shadow p-2">
-              <!-- {{ status }} -->
               <div class="row">
                   <CardTask 
-              v-for="task in tasksData"
+              v-for="task in filteredTasks"
               :key="task.id"
               :task="task"
               ></CardTask>
@@ -25,15 +24,21 @@ export default {
     components: {
         CardTask
     },
+    computed: {
+        filteredTasks () {
+            return this.tasksData.filter (el => el.CategoryId === this.status.id)
+        }
+    },
     props: ['status','tasksData']
 
 }
 </script>
 
 <style scope>
-#cardStatus {
+/* #cardStatus {
     overflow-y: scroll;
-}
+    display:inline-block;
+} */
 
 
 </style>

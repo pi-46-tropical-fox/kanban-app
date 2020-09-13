@@ -52,7 +52,6 @@ export default {
             .then (({data}) => {
                 this.currentPage = 'dashboardPage'
                 localStorage.setItem('access_token', data.access_token)
-                console.log (data)
             })
             .catch  (err => {
                 console.log (err)

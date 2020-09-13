@@ -11252,7 +11252,6 @@ var _default = {
         var data = _ref.data;
         _this.currentPage = 'dashboardPage';
         localStorage.setItem('access_token', data.access_token);
-        console.log(data);
       }).catch(function (err) {
         console.log(err);
       });
@@ -11407,20 +11406,18 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card mb-4 rounded bg-light" }, [
-          _vm._m(0),
+    _c("div", { staticClass: "col-12" }, [
+      _c("div", { staticClass: "card mb-4 rounded bg-light" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", { staticClass: "card-text", attrs: { id: "card-text" } }, [
+            _vm._v("Task : " + _vm._s(_vm.task.title))
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("p", { staticClass: "card-text", attrs: { id: "card-text" } }, [
-              _vm._v("Task : " + _vm._s(_vm.task.title))
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2)
-          ])
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2)
         ])
       ])
     ])
@@ -11526,11 +11523,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   name: "CardStatus",
   components: {
     CardTask: _CardTask.default
+  },
+  computed: {
+    filteredTasks: function filteredTasks() {
+      var _this = this;
+
+      return this.tasksData.filter(function (el) {
+        return el.CategoryId === _this.status.id;
+      });
+    }
   },
   props: ['status', 'tasksData']
 };
@@ -11548,8 +11553,8 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col-3", attrs: { id: "cardStatus" } }, [
-      _c("div", { staticClass: "shadow bg-info  text-white rounded" }, [
+    _c("div", { staticClass: "col-3 p-2", attrs: { id: "cardStatus" } }, [
+      _c("div", { staticClass: "bg-primary text-white rounded text-center" }, [
         _vm._v("\n            " + _vm._s(_vm.status.status) + "\n        ")
       ]),
       _vm._v(" "),
@@ -11557,7 +11562,7 @@ exports.default = _default;
         _c(
           "div",
           { staticClass: "row" },
-          _vm._l(_vm.tasksData, function(task) {
+          _vm._l(_vm.filteredTasks, function(task) {
             return _c("CardTask", { key: task.id, attrs: { task: task } })
           }),
           1
@@ -11609,8 +11614,6 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("../config/axios.js"));
 
-var _CardTask = _interopRequireDefault(require("../components/CardTask"));
-
 var _CardStatus = _interopRequireDefault(require("../components/CardStatus"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -11642,6 +11645,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+// import CardTask from '../components/CardTask'
 var _default = {
   name: 'Dashboard',
   data: function data() {
@@ -11653,7 +11659,7 @@ var _default = {
   },
   props: ['tasksData', 'statusesData'],
   components: {
-    CardTask: _CardTask.default,
+    // CardTask,
     CardStatus: _CardStatus.default
   },
   methods: {
@@ -11702,7 +11708,7 @@ exports.default = _default;
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "row" },
+      { staticClass: "row", attrs: { id: "row-cardstatus" } },
       _vm._l(_vm.statusesData, function(status, i) {
         return _c("CardStatus", {
           key: i,
@@ -11746,7 +11752,7 @@ render._withStripped = true
       
       }
     })();
-},{"../config/axios.js":"src/config/axios.js","../components/CardTask":"src/components/CardTask.vue","../components/CardStatus":"src/components/CardStatus.vue","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"../config/axios.js":"src/config/axios.js","../components/CardStatus":"src/components/CardStatus.vue","_css_loader":"C:/Users/Fandi Ario/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11790,15 +11796,19 @@ var _default = {
       currentPage: 'registerPage',
       tasks: [],
       statuses: [{
+        id: 1,
         status: "BackLog",
         backgroundColor: 'bg-primary'
       }, {
+        id: 2,
         status: "To Do",
         backgroundColor: 'bg-primary'
       }, {
+        id: 3,
         status: "Doing",
         backgroundColor: 'bg-primary'
       }, {
+        id: 5,
         status: "Done",
         backgroundColor: 'bg-primary'
       }]
@@ -11951,7 +11961,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57133" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60407" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

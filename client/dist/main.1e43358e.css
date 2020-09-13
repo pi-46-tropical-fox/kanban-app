@@ -8,12 +8,20 @@
     margin-top: 50px;
     justify-content: center;
 }
-#cardStatus {
+/* #cardStatus {
     overflow-y: scroll;
-}
+    display:inline-block;
+} */
 #card-text[data-v-efdf55] {
     font-size: 14px;
 }
 #container[data-v-efdf55] {
-    overflow-x:auto
+    overflow-x:auto;
 }
+
+/* #row-cardstatus{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    display:inline-block;
+} */

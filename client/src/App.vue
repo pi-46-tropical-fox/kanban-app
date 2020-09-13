@@ -30,19 +30,23 @@ export default {
             currentPage: 'registerPage',
             tasks: [],
             statuses: [
-                {
+                {   
+                    id: 1,
                     status: "BackLog",
                     backgroundColor: 'bg-primary'
                 },
-                {
+                {   
+                    id: 2,
                     status: "To Do",
                     backgroundColor: 'bg-primary'
                 },
-                {
+                {   
+                    id: 3,
                     status: "Doing",
                     backgroundColor: 'bg-primary'
                 },
-                {
+                {   
+                    id: 5,
                     status: "Done",
                     backgroundColor: 'bg-primary'
                 },
