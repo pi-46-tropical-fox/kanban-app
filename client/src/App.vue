@@ -2,7 +2,7 @@
   <div>
     <Navbar @logout="logout" @toRegister="changePage('register')" @toLogin="changePage('login')"></Navbar>
     <LoginPage v-if="pageName === 'login'" @loginApp="login"></LoginPage>
-    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask"></HomePage>
+    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask" @deleteTask="deleteTask"></HomePage>
     <AddForm v-if="pageName === 'addTask'" @addTask="addTask" :selectedCategory="selectedCategory"></AddForm>
     <EditTask v-if="pageName=== 'editTask'"></EditTask>
     <Register v-if="pageName === 'register'" @register="register"></Register>
@@ -57,6 +57,9 @@ export default {
     Register
   },
   methods: {
+    // deleteTask(paylod) {
+    //   console.log(paylod);
+    // },
     toAddTask(paylod) {
       this.selectedCategory=paylod
       this.changePage('addTask')
@@ -133,21 +136,27 @@ export default {
           }
         )
         .then(({ data }) => {
+          this.changePage('home')
           this.fetchTasks();
         })
         .catch(console.log);
     },
-    deleteTask(id) {
+    deleteTask(paylod) {
+      console.log(paylod);
       axios
-      .delete(`/tasks/${id}`, {
+      .delete(`/tasks/${paylod}`, {
         headers: {
               access_token: localStorage.access_token,
             }
       })
-      .then(_ => {
+      .then((data) => {
+        console.log(data);
         this.changePage('home')
+        this.fetchTasks();
       })
-      .catch(console.log)
+      .catch(err => {
+        console.log(err);
+      })
     }
   },
   created() {

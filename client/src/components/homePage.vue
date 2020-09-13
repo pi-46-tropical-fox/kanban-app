@@ -12,6 +12,7 @@
         :category='category'
         :tasks='tasks'
         @toAddTask = 'toAddTask'
+        @deleteTask = 'deleteTask'
         ></Category>
       </div>
     </div>
@@ -29,6 +30,9 @@ export default {
   methods: {
     toAddTask(paylod) {
       this.$emit('toAddTask', paylod)
+    },
+    deleteTask(paylod) {
+      this.$emit('deleteTask', paylod)
     }
   }
 };

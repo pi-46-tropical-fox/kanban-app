@@ -12,6 +12,7 @@
             v-for="task in filterTasks"
             :key="task.id"
             :task='task'
+            @deleteTask='deleteTask'
             ></TaskCard>
             <!-- card task-->
         </div>
@@ -26,6 +27,10 @@ export default {
     methods: {
         addTask() {
             this.$emit('toAddTask',this.category.category)
+        },
+        deleteTask(paylod) {
+            
+            this.$emit('deleteTask',paylod)
         }
     },
     props: ['category','tasks'],

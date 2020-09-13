@@ -10,10 +10,10 @@
             <li class="nav-item active">
               <a class="nav-link" href="#" @click.prevent="pageName('home')">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
               <a @click.prevent="toLogin" class="nav-link" href="#">Login</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
               <a @click.prevent="toRegister" class="nav-link" href="#">Register</a>
             </li>
             <li class="nav-item">
@@ -28,6 +28,7 @@
 <script>
 export default {
     name:'Navbar',
+    
     methods: {
         logout() {
             this.$emit('logout')
