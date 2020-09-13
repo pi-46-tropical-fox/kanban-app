@@ -2,21 +2,12 @@
   <div class="category shadow bg-light">
     <div class="card-header title-category shadow">
       <h4 class="text-center">{{ category.name }}</h4>
+      <a @click.prevent="deleteCategory" href="#" class="btn-sm btn-danger">Delete</a>
     </div>
     <div class="category-body">
-      <TaskCard
-        v-for="task in filteredTasks"
-        :key="task.id"
-        :task="task"
-        :categoriesData="categoriesData"
-        :isEdit="isEdit"
-        @deleteClick="deleteClick"
-        @editClick="editClick"
-        >
-      </TaskCard>
       <div class="form-group row">
         <div class="col-md-5 ml-auto">
-          <a @click.prevent="toggleFormAdd" href="#" class="btn btn-secondary">+ Add</a>
+          <a @click.prevent="toggleFormAdd" href="#" class="btn-sm btn-secondary">+ Add</a>
         </div>
       </div>
       <form @submit.prevent="addTask" v-if="isAdd">
@@ -27,10 +18,20 @@
         </div>
         <div class="form-group row">
           <div class="col-md-5 ml-auto">
-            <button type="submit" class="btn btn-secondary">+ Add</button>
+            <button type="submit" class="btn btn-secondary">Submit</button>
           </div>
         </div>
       </form>
+      <TaskCard
+        v-for="task in filteredTasks"
+        :key="task.id"
+        :task="task"
+        :categoriesData="categoriesData"
+        :isEdit="isEdit"
+        @deleteClick="deleteClick"
+        @editClick="editClick"
+        >
+      </TaskCard>
     </div>
   </div>
 </template>
@@ -71,6 +72,10 @@ export default {
     },
     editClick(editId, payload) {
       this.$emit("editClick", editId, payload);
+    },
+    deleteCategory() {
+      let deleteId = this.category.id;
+      this.$emit("deleteCategory", deleteId);
     }
   },
   computed: {

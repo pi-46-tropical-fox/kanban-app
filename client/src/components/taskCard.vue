@@ -6,6 +6,7 @@
         <h5 class="card-title">{{ task.title }}</h5>
         <a class="btn btn-secondary" href="#" role="button" @click="toggleEdit">Edit</a>
         <a class="btn btn-danger" href="#" role="button" @click="deleteTask">Delete</a>
+        <p class="username_show mt-2">By: {{ task.User.username }}</p>
       </div>
     </div>
     <form @submit.prevent="editTask" v-if="isEditTC">

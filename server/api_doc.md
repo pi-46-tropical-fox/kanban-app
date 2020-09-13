@@ -16,7 +16,7 @@ A kanban board to manage your tasks efficiently. This app has:
  - GET /categories/:id
  - PUT /categories/:id
  - DELETE /tasks/:id
- - POST /tasks/:id
+ - POST /tasks
  - GET /tasks
  - GET /tasks/:id
  - PUT /tasks/:id
@@ -356,7 +356,7 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### POST /tasks/:id
+### POST /tasks
 
 > Create a new task
 
@@ -444,18 +444,40 @@ _Response (200 - OK)_
 ```
 [
   {
-  "id": "<a unique id given by postgres>",  
-  "title": "<the title of the task>",
-  "CategoryId": "<category of the task>",
-  "createdAt": "2020-08-31T06:30:49.914Z",
-  "updatedAt": "2020-08-31T06:30:49.914Z" 
+    "id": "<a unique id given by postgres>",  
+    "title": "<the title of the task>",
+    "CategoryId": "<category of the task>",
+    "createdAt": "2020-08-31T06:30:49.914Z",
+    "updatedAt": "2020-08-31T06:30:49.914Z", 
+    "Category": {
+      "id": "<a unique id given by postgres>",
+      "name": "<category name>",
+      "createdAt": "2020-09-09T18:31:34.585Z",
+      "updatedAt": "2020-09-09T18:31:34.585Z",
+    }
+    "User": {
+      "username": "<registered username>",
+      "email": "<user's email>",
+      "organization": "<user's organization>"
+    }
   },
   {
-  "id": "<a unique id given by postgres>",  
-  "title": "<the title of the task>",
-  "CategoryId": "<category of the task>",
-  "createdAt": "2020-08-31T06:30:49.914Z",
-  "updatedAt": "2020-08-31T06:30:49.914Z" 
+    "id": "<a unique id given by postgres>",  
+    "title": "<the title of the task>",
+    "CategoryId": "<category of the task>",
+    "createdAt": "2020-08-31T06:30:49.914Z",
+    "updatedAt": "2020-08-31T06:30:49.914Z", 
+    "Category": {
+      "id": "<a unique id given by postgres>",
+      "name": "<category name>",
+      "createdAt": "2020-09-09T18:31:34.585Z",
+      "updatedAt": "2020-09-09T18:31:34.585Z",
+    }
+    "User": {
+      "username": "<registered username>",
+      "email": "<user's email>",
+      "organization": "<user's organization>"
+    }
   }
 ]
 ```

@@ -18,6 +18,22 @@
       </div>
     </nav>
 
+    <div class="container mt-2">
+    <a @click.prevent="toggleAddCategory" href="#" class="btn-sm btn-secondary">+ Add Category</a>
+    </div>
+      <form @submit.prevent="addCategory" v-if="isAddCategory">
+        <div class="form-group row mt-3">
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Category Name" v-model="name" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-5 ml-0">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </div>
+        </div>
+      </form>
+
     <section class="container-fluid d-flex justify-content-around mt-5">
       <CategoryCard 
         v-for="category in categoriesData"
@@ -29,6 +45,7 @@
         @addTaskSubmit="addTaskSubmit"
         @deleteClick="deleteClick"
         @editClick="editClick"
+        @deleteCategory="deleteCategory"
         >
       </CategoryCard>
     </section>
@@ -48,6 +65,12 @@ export default {
   components: {
     CategoryCard
   },
+  data() {
+    return {
+      isAddCategory: false,
+      name: ""
+    };
+  },
   methods: {
     logout() {
       localStorage.clear();
@@ -61,6 +84,23 @@ export default {
     },
     editClick(editId, payload) {
       this.$emit("editClick", editId, payload);
+    },
+    toggleAddCategory() {
+      if (this.isAddCategory) {
+        return this.isAddCategory = false;
+      }
+      this.isAddCategory = true;
+    },
+    addCategory() {
+      let payload = {
+        name: this.name
+      };
+      this.$emit("addCategory", payload);
+      this.name = "";
+      this.isAddCategory = false;
+    },
+    deleteCategory(deleteId) {
+      this.$emit("deleteCategory", deleteId);
     }
   }
 }

@@ -23,6 +23,8 @@
       @addTaskSubmit="addTask"
       @deleteClick="deleteClick"
       @editClick="editClick"
+      @addCategory="addCategory"
+      @deleteCategory="deleteCategory"
       >
     </DashboardPage>
   </div>
@@ -127,6 +129,7 @@ export default {
         data: payload
       })
         .then(({ data }) => {
+          swal("Register Success", "You have been registered!", "success");
           this.currentPage = "dashboardPage"
           localStorage.setItem("access_token", data.access_token);
           localStorage.setItem("email_user", data.email);
@@ -180,15 +183,15 @@ export default {
             .then(({ data }) => {
               this.fetchCategories();
               this.fetchTasks();
+              swal("Delete Success","Your task has been deleted!", {
+                icon: "success",
+              });
             })
             .catch((err) => {
               console.log(err);
               swal(err.response.data.errors[0], "Error", "error");
 
             });
-          swal("Your task has been deleted!", {
-            icon: "success",
-          });
         }
       });
     },
@@ -229,6 +232,59 @@ export default {
         .catch((err) => {
           console.log(err, "<<<< error google login");
         })
+    },
+    addCategory(payload) {
+      console.log(payload);
+      axios({
+        url: "/categories",
+        method: "POST",
+        headers: {
+          access_token: localStorage.access_token
+        },
+        data: payload
+      })
+        .then(({ data }) => {
+          swal("Add Success", "A new category has been aded successfully!", "success");
+          this.fetchCategories();
+          this.fetchTasks();
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          swal(err.response.data.errors[0], "Error", "error");
+        })
+    },
+    deleteCategory(deleteId) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this category!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios({
+            url: `/categories/${deleteId}`,
+            method: "DELETE",
+            headers: {
+              access_token: localStorage.access_token
+            }
+          })
+            .then(({ data }) => {
+              this.fetchCategories();
+              this.fetchTasks();
+              swal("Delete Success", "Your category has been deleted!", {
+                icon: "success",
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              swal(err.response.data.errors[0], "Error", "error");
+
+            });
+        }
+      });
     }
   },
   created() {
