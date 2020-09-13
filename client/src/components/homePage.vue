@@ -11,6 +11,7 @@
         :key="i"
         :category='category'
         :tasks='tasks'
+        @toAddTask = 'toAddTask'
         ></Category>
       </div>
     </div>
@@ -24,7 +25,12 @@ export default {
   components: {
     Category,
   },
-  props: ['categories','tasks']
+  props: ['categories','tasks'],
+  methods: {
+    toAddTask(paylod) {
+      this.$emit('toAddTask', paylod)
+    }
+  }
 };
 </script>
 

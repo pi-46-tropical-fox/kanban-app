@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <Navbar @logout="logout" @toRegister="changePage('register')" @toLogin="changePage('login')"></Navbar>
     <LoginPage v-if="pageName === 'login'" @loginApp="login"></LoginPage>
-    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks"></HomePage>
-    <AddForm v-if="pageName === 'addTask'" @addTask="addTask"></AddForm>
-    <EditTask></EditTask>
-    <Register v-if="pageName === 'login'" @register="register"></Register>
+    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask"></HomePage>
+    <AddForm v-if="pageName === 'addTask'" @addTask="addTask" :selectedCategory="selectedCategory"></AddForm>
+    <EditTask v-if="pageName=== 'editTask'"></EditTask>
+    <Register v-if="pageName === 'register'" @register="register"></Register>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       pageName: "login",
+      selectedCategory: '',
       categories: [
         {
           title: "Backlog",
@@ -56,6 +57,14 @@ export default {
     Register
   },
   methods: {
+    toAddTask(paylod) {
+      this.selectedCategory=paylod
+      this.changePage('addTask')
+    },
+    logout() {
+      localStorage.clear()
+      this.changePage('login')
+    },
     changePage(page) {
       this.pageName = page;
     },

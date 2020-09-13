@@ -3,7 +3,7 @@
         <div class="card rounded shadow">
             <div class="card-header" :class="category.color">
                 <button type="button" class="close text-black ml-auto" aria-label="Close">
-                    <span aria-hidden="true">+</span>
+                    <span @click="addTask" aria-hidden="true">+</span>
                 </button>
                 <h3>{{category.title}}</h3>
             </div>
@@ -23,6 +23,11 @@ import TaskCard from './taskCard'
 
 export default {
     name:'Category',
+    methods: {
+        addTask() {
+            this.$emit('toAddTask',this.category.category)
+        }
+    },
     props: ['category','tasks'],
     components: {
         TaskCard

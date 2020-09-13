@@ -11,13 +11,13 @@
               <a class="nav-link" href="#" @click.prevent="pageName('home')">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a @click.prevent="toLogin" class="nav-link" href="#">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
+              <a @click.prevent="toRegister" class="nav-link" href="#">Register</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Logout</a>
+              <a @click.prevent="logout" class="nav-link" href="#">Logout</a>
             </li>
           </ul>
         </div>
@@ -27,7 +27,18 @@
 
 <script>
 export default {
-    name:'Navbar'
+    name:'Navbar',
+    methods: {
+        logout() {
+            this.$emit('logout')
+        },
+        toRegister() {
+            this.$emit('toRegister')
+        },
+        toLogin(){
+            this.$emit('toLogin')
+        }
+    }
 
 }
 </script>

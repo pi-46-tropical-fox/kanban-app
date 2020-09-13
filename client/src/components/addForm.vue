@@ -53,6 +53,10 @@ export default {
                 }
             this.$emit('addTask', payload)
         }
+    },
+    props: ['selectedCategory'],
+    created() {
+        this.category = this.selectedCategory
     }
 
 }
