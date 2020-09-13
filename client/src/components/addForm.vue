@@ -56,6 +56,7 @@ export default {
     },
     props: ['selectedCategory'],
     created() {
+        // console.log(this.selectedCategory);
         this.category = this.selectedCategory
     }
 

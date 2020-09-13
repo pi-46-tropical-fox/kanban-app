@@ -6,6 +6,7 @@
             </button>
             <h6>{{task.title}}</h6>
             <p class="text-muted">User ID:{{task.UserId}}</p>
+            <button @click="toEdit" type="button" class="btn btn-success">Edit</button>
         </div>
     </div>
 </template>
@@ -15,6 +16,9 @@ export default {
     name: 'TaskCard',
     props: ['task'],
     methods: {
+        toEdit() {
+            this.$emit('toEdit', this.task.id)
+        },
         deleteTask() {
             this.$emit('deleteTask',this.task.id)
         }

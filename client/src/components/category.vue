@@ -13,6 +13,7 @@
             :key="task.id"
             :task='task'
             @deleteTask='deleteTask'
+            @toEdit='toEdit'
             ></TaskCard>
             <!-- card task-->
         </div>
@@ -25,6 +26,9 @@ import TaskCard from './taskCard'
 export default {
     name:'Category',
     methods: {
+        toEdit(paylod) {
+            this.$emit('toEdit',paylod)
+        },
         addTask() {
             this.$emit('toAddTask',this.category.category)
         },

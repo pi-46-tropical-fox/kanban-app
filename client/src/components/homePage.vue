@@ -13,6 +13,7 @@
         :tasks='tasks'
         @toAddTask = 'toAddTask'
         @deleteTask = 'deleteTask'
+        @toEdit='toEdit'
         ></Category>
       </div>
     </div>
@@ -28,6 +29,9 @@ export default {
   },
   props: ['categories','tasks'],
   methods: {
+    toEdit(paylod) {
+      this.$emit('toEdit', paylod)
+    },
     toAddTask(paylod) {
       this.$emit('toAddTask', paylod)
     },

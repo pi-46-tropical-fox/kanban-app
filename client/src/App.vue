@@ -2,9 +2,9 @@
   <div>
     <Navbar @logout="logout" @toRegister="changePage('register')" @toLogin="changePage('login')"></Navbar>
     <LoginPage v-if="pageName === 'login'" @loginApp="login"></LoginPage>
-    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask" @deleteTask="deleteTask"></HomePage>
+    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask" @deleteTask="deleteTask" @toEdit='toEdit'></HomePage>
     <AddForm v-if="pageName === 'addTask'" @addTask="addTask" :selectedCategory="selectedCategory"></AddForm>
-    <EditTask v-if="pageName=== 'editTask'"></EditTask>
+    <EditTask v-if="pageName=== 'editTask'" :edites='edites' @update='update'></EditTask>
     <Register v-if="pageName === 'register'" @register="register"></Register>
   </div>
 </template>
@@ -46,6 +46,7 @@ export default {
         },
       ],
       tasks: [],
+      edites: {}
     };
   },
   components: {
@@ -57,9 +58,43 @@ export default {
     Register
   },
   methods: {
-    // deleteTask(paylod) {
-    //   console.log(paylod);
-    // },
+    update(paylod) {
+      const {id,title,category} = paylod
+
+      axios
+      .put(`/tasks/${id}`,{
+        title,category
+      }, {
+        headers: {
+          access_token:localStorage.access_token
+        }
+      })
+      .then(({data}) => {
+        // console.log(data);
+        this.changePage("home");
+        this.fetchTasks()
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },
+    toEdit(paylod) {
+      // console.log(paylod);
+      axios
+      .get(`/tasks/${paylod}`,{
+        headers: {
+          access_token:localStorage.access_token
+        }
+      })
+      .then(({data}) => {
+        // console.log(data);
+        this.edites = data
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      this.changePage('editTask')
+    },
     toAddTask(paylod) {
       this.selectedCategory=paylod
       this.changePage('addTask')
@@ -94,7 +129,7 @@ export default {
           password,
         })
         .then(({ data }) => {
-          console.log(data)          
+          // console.log(data)          
           this.changePage("login");
         })
         .catch(console.log);
@@ -142,7 +177,7 @@ export default {
         .catch(console.log);
     },
     deleteTask(paylod) {
-      console.log(paylod);
+      // console.log(paylod);
       axios
       .delete(`/tasks/${paylod}`, {
         headers: {
@@ -150,7 +185,7 @@ export default {
             }
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         this.changePage('home')
         this.fetchTasks();
       })
