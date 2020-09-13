@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar @logout="logout" @toRegister="changePage('register')" @toLogin="changePage('login')"></Navbar>
-    <LoginPage v-if="pageName === 'login'" @loginApp="login"></LoginPage>
+    <LoginPage v-if="pageName === 'login'" @loginApp="login" @googleChangePage="googlePage"></LoginPage>
     <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask" @deleteTask="deleteTask" @toEdit='toEdit'></HomePage>
     <AddForm v-if="pageName === 'addTask'" @addTask="addTask" :selectedCategory="selectedCategory"></AddForm>
     <EditTask v-if="pageName=== 'editTask'" :edites='edites' @update='update'></EditTask>
@@ -58,6 +58,7 @@ export default {
     Register
   },
   methods: {
+    // Update task
     update(paylod) {
       const {id,title,category} = paylod
 
@@ -78,6 +79,7 @@ export default {
         console.log(err);
       })
     },
+    // mendapatkan task untuk edit
     toEdit(paylod) {
       // console.log(paylod);
       axios
@@ -95,17 +97,21 @@ export default {
       })
       this.changePage('editTask')
     },
+    // menampilkan form untuk add task
     toAddTask(paylod) {
       this.selectedCategory=paylod
       this.changePage('addTask')
     },
+    // fungsi logout
     logout() {
       localStorage.clear()
       this.changePage('login')
     },
+    // fungsi changpage
     changePage(page) {
       this.pageName = page;
     },
+    // fungsi login
     login(paylod) {
       const { email, password } = paylod;
       axios
@@ -121,6 +127,7 @@ export default {
         })
         .catch(console.log);
     },
+    // fungsi register
     register(paylod) {
       const { email, password } = paylod;
       axios
@@ -134,6 +141,7 @@ export default {
         })
         .catch(console.log);
     },
+    // fungsi checkout
     checkAuth() {
       if (localStorage.access_token) {
         this.changePage("home");
@@ -142,6 +150,11 @@ export default {
         this.changePage("login");
       }
     },
+    googlePage() {
+      this.changePage("home");
+      this.fetchTasks();
+    },
+    // fetch data
     fetchTasks() {
       axios
         .get("/tasks", {
@@ -154,6 +167,7 @@ export default {
         })
         .catch(console.log);
     },
+    // tambah task
     addTask(payload) {
       const { title, category } = payload;
 
@@ -176,6 +190,7 @@ export default {
         })
         .catch(console.log);
     },
+    // delete task
     deleteTask(paylod) {
       // console.log(paylod);
       axios
