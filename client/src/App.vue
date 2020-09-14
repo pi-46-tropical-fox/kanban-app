@@ -242,6 +242,7 @@ export default {
           localStorage.setItem("access_token", data.access_token);
           this.changePage("home");
           this.fetchTasks()
+          this.isLogin = true
         })
         .catch(err => {
           // console.log(err.response.data.errors.join(','));
