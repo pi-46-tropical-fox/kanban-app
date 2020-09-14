@@ -1,12 +1,12 @@
 <template>
   <div>
     <Navbar
-      @changePage= "changePage"
+      @logout="changePage"
     ></Navbar>
     <a class="nav-link" href="#" @click.prevent="toggleAdd">Add Category +</a>
     <AddCategory
       v-if="isAdd"
-      @fetchTasks= "fetchTasks"
+      @fetchTasks="fetchTasks"
     ></AddCategory>
     <section class="container-fluid d-flex justify-content-around">
       <Category 
@@ -16,7 +16,7 @@
         :tasks="categories[categoryName]"
         :allCategoryId="allCategoryId"
         :allCategoryName="allCategoryName"
-        @fetchTasks= "fetchTasks"
+        @fetchTasks="fetchTasks"
       ></Category>
     </section>
   </div>
@@ -67,7 +67,9 @@ export default {
           console.log(err)
         })
       },
-
+      logout(){
+        this.$emit("changePage", "LoginPage")
+      },
       toggleAdd(){
         this.isAdd = !this.isAdd
       },

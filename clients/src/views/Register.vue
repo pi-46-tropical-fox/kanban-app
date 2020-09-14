@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-4">
                 <div class="card-body d-flex align-items-center" style="height: 100%;">
-                <form @submit.prevent="login" >
+                <form @submit.prevent="register" >
                     <div class="form-group">
                     <input type="email" class="form-control" v-model="email" aria-describedby="emailHelp" placeholder="Email">
                     </div>
@@ -45,12 +45,16 @@ export default {
                 }
             })
             .then(({data}) => {
-                this.$emit("changePage", LoginPage)
+                console.log(`here`)
+                this.$emit("changePage", "LoginPage")
             })
             .catch(err => {
                 console.log(err)
             })
         }
+    },
+    created(){
+        localStorage.setItem("current_page", "register")
     }
 }
 </script>

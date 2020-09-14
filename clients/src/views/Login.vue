@@ -90,6 +90,9 @@ export default {
             this.$emit("changePage", "RegisterPage")
         }
     },
+    created(){
+        localStorage.setItem("current_page", "login")
+    },
     components: {
             GoogleLogin
     }

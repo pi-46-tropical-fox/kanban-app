@@ -45,7 +45,11 @@ export default {
       if(localStorage.getItem("access_token")){
           this.currentPage = 'DashboardPage'
       } else {
-          this.currentPage = 'LoginPage'
+          if(localStorage.getItem("current_page") === "register"){
+            this.currentPage = 'RegisterPage'
+          } else {
+            this.currentPage = 'LoginPage'
+          }
       }
   },
 };

@@ -18,11 +18,11 @@
 
 <script>
 export default {
-    props: ["changePage"],
+    // props: ["logout"],
     methods: {
         logout(){
           localStorage.clear()
-          this.$emit("changePage")
+          this.$emit("logout")
         }
     }
 }

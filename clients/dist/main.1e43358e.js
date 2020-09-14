@@ -10345,8 +10345,11 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var instance = _axios.default.create({
-  baseURL: 'https://kanban-juan-ganteng.herokuapp.com'
-});
+  baseURL: 'http://localhost:3000'
+}); // const instance = axios.create({
+//     baseURL: 'https://kanban-juan-ganteng.herokuapp.com'
+//   });
+
 
 var _default = instance;
 exports.default = _default;
@@ -10802,6 +10805,9 @@ var _default = {
       this.$emit("changePage", "RegisterPage");
     }
   },
+  created: function created() {
+    localStorage.setItem("current_page", "login");
+  },
   components: {
     GoogleLogin: _vueGoogleLogin.default
   }
@@ -11031,11 +11037,11 @@ exports.default = void 0;
 //
 //
 var _default = {
-  props: ["changePage"],
+  // props: ["logout"],
   methods: {
     logout: function logout() {
       localStorage.clear();
-      this.$emit("changePage");
+      this.$emit("logout");
     }
   }
 };
@@ -18905,6 +18911,9 @@ var _default = {
         console.log(err);
       });
     },
+    logout: function logout() {
+      this.$emit("changePage", "LoginPage");
+    },
     toggleAdd: function toggleAdd() {
       this.isAdd = !this.isAdd;
     }
@@ -18929,7 +18938,7 @@ exports.default = _default;
   return _c(
     "div",
     [
-      _c("Navbar", { on: { changePage: _vm.changePage } }),
+      _c("Navbar", { on: { logout: _vm.changePage } }),
       _vm._v(" "),
       _c(
         "a",
@@ -19063,12 +19072,16 @@ var _default = {
         }
       }).then(function (_ref) {
         var data = _ref.data;
+        console.log("here");
 
-        _this.$emit("changePage", LoginPage);
+        _this.$emit("changePage", "LoginPage");
       }).catch(function (err) {
         console.log(err);
       });
     }
+  },
+  created: function created() {
+    localStorage.setItem("current_page", "register");
   }
 };
 exports.default = _default;
@@ -19113,7 +19126,7 @@ exports.default = _default;
                         on: {
                           submit: function($event) {
                             $event.preventDefault()
-                            return _vm.login($event)
+                            return _vm.register($event)
                           }
                         }
                       },
@@ -19301,7 +19314,11 @@ var _default = {
     if (localStorage.getItem("access_token")) {
       this.currentPage = 'DashboardPage';
     } else {
-      this.currentPage = 'LoginPage';
+      if (localStorage.getItem("current_page") === "register") {
+        this.currentPage = 'RegisterPage';
+      } else {
+        this.currentPage = 'LoginPage';
+      }
     }
   }
 };
@@ -19407,7 +19424,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55450" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63622" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
