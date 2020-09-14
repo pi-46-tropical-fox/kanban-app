@@ -1,11 +1,40 @@
 <template>
   <div>
-    <Navbar @logout="logout" @toRegister="changePage('register')" @toLogin="changePage('login')"></Navbar>
-    <LoginPage v-if="pageName === 'login'" @loginApp="login" @googleChangePage="googlePage"></LoginPage>
-    <HomePage v-if="pageName === 'home'" :categories="categories" :tasks="tasks" @toAddTask="toAddTask" @deleteTask="deleteTask" @toEdit='toEdit'></HomePage>
-    <AddForm v-if="pageName === 'addTask'" @addTask="addTask" :selectedCategory="selectedCategory"></AddForm>
-    <EditTask v-if="pageName=== 'editTask'" :edites='edites' @update='update'></EditTask>
-    <Register v-if="pageName === 'register'" @register="register"></Register>
+    <Navbar 
+    @logout="logout" 
+    @toRegister="changePage('register')" 
+    @toLogin="changePage('login')" 
+    @toHome="changePage('home')"
+    :isLogin = 'isLogin'
+    
+    ></Navbar>
+    <LoginPage 
+    v-if="pageName === 'login'" 
+    @loginApp="login" 
+    @googleChangePage="googlePage"
+    ></LoginPage>
+    <HomePage 
+    v-if="pageName === 'home'" 
+    :categories="categories" 
+    :tasks="tasks" 
+    @toAddTask="toAddTask" 
+    @deleteTask="deleteTask" 
+    @toEdit='toEdit'
+    ></HomePage>
+    <AddForm 
+    v-if="pageName === 'addTask'" 
+    @addTask="addTask" 
+    :selectedCategory="selectedCategory"
+    ></AddForm>
+    <EditTask 
+    v-if="pageName=== 'editTask'" 
+    :edites='edites' 
+    @update='update'
+    ></EditTask>
+    <Register 
+    v-if="pageName === 'register'" 
+    @register="register"
+    ></Register>
   </div>
 </template>
 
@@ -21,6 +50,7 @@ export default {
   name: "App",
   data() {
     return {
+      isLogin: false,
       pageName: "login",
       selectedCategory: '',
       categories: [
@@ -122,6 +152,7 @@ export default {
     logout() {
       localStorage.clear()
       this.changePage('login')
+      this.isLogin = false
     },
     // fungsi changpage
     changePage(page) {
@@ -145,6 +176,7 @@ export default {
           localStorage.setItem("access_token", data.access_token);
           this.changePage("home");
           this.fetchTasks()
+          this.isLogin = true
         })
         .catch((err) => {
           // console.log(err.response.data.errors.join(','));
@@ -186,6 +218,7 @@ export default {
       if (localStorage.access_token) {
         this.changePage("home");
         this.fetchTasks();
+        this.isLogin = true
       } else {
         this.changePage("login");
       }
