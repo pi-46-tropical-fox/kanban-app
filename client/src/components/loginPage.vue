@@ -77,10 +77,10 @@ export default {
     },
     OnGoogleAuthSuccess (idToken) {
       // console.log(idToken,"access_token")
-      localStorage.setItem("access_token", idToken);
+      // localStorage.setItem("access_token", idToken);
       // this.changePage("home");
       // this.fetchTasks()
-      this.$emit('googleChangePage')
+      this.$emit('googleChangePage',idToken)
       // Receive the idToken and make your magic with the backend
     },
     OnGoogleAuthFail (error) {

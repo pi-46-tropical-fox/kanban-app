@@ -42,6 +42,7 @@ class UserController {
     static async googleLogin(req,res,next) {
         const client = new OAuth2Client(process.env.CLIENT_ID)
         const {google_access_token} = req.headers
+        console.log(google_access_token, 'google access token');
 
         let email_google = ""
         let profile_picture = ""
@@ -52,6 +53,7 @@ class UserController {
             audience: process.env.CLIENT_ID
         })
         .then(ticket => {
+            console.log(ticket,'<<<< ini ticket');
             return ticket.getPayload()
         })
         .then(payload => {
@@ -73,12 +75,13 @@ class UserController {
         })
         .then(user => {
            const payload = {email:user.email,id:user.id}
+           console.log(payload,'<<<<<<< ini payload');
            const access_token = signToken(payload) 
 
            return res.status(200).json({access_token,avatar:profile_picture,email:email_google})
         })
         .catch(err => {
-            console.log(err)
+           next(err)
         })
     }
 

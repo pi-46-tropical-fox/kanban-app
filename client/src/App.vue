@@ -91,11 +91,12 @@ export default {
       .then(({data}) => {
         // console.log(data);
         this.edites = data
+        this.changePage('editTask')
+
       })
       .catch(err => {
         console.log(err);
       })
-      this.changePage('editTask')
     },
     // menampilkan form untuk add task
     toAddTask(paylod) {
@@ -125,7 +126,9 @@ export default {
           this.changePage("home");
           this.fetchTasks()
         })
-        .catch(console.log);
+        .catch((err) => {
+          console.log(err.response.data);
+        });
     },
     // fungsi register
     register(paylod) {
@@ -150,9 +153,24 @@ export default {
         this.changePage("login");
       }
     },
-    googlePage() {
-      this.changePage("home");
-      this.fetchTasks();
+    googlePage(idToken) {
+      console.log(idToken, 'ini id token dari google');
+      axios({
+        url: '/googleLogin',
+        method: 'post',
+        headers: {
+          google_access_token: idToken
+        }
+      })
+      .then(({data}) => {
+          localStorage.setItem("access_token", data.access_token);
+          this.changePage("home");
+          this.fetchTasks()
+        })
+        .catch(err => {
+          console.log(err.response.data);
+        })
+    
     },
     // fetch data
     fetchTasks() {

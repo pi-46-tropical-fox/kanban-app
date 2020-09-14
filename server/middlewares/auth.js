@@ -4,10 +4,11 @@ const {Task, User} = require('../models');
 const authentication = async (req,res,next) => {
     // console.log(req.headers, "ini authentication...")
     const {access_token} = req.headers // saat login ia mengenerate token yang disimpan pada req.headers
-    
+    console.log(access_token);
     try {
         const userData = verifyToken(access_token) // oh ya ada tokennya nih
         // isi tokennya (id) dicek ke database
+        console.log(userData);
         let user = await User.findOne({
             where: {
                 email: userData.email
