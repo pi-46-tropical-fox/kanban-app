@@ -72,11 +72,21 @@ export default {
       })
       .then(({data}) => {
         // console.log(data);
+        Swal.fire(
+            'Good job!',
+            `${data.message}`,
+            'success'
+            )
         this.changePage("home");
         this.fetchTasks()
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err.response.data.errors.join(','));
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.errors.join(',')           
+          }) 
       })
     },
     // mendapatkan task untuk edit
@@ -95,7 +105,12 @@ export default {
 
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err.response.data.message);
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message             
+          }) 
       })
     },
     // menampilkan form untuk add task
@@ -122,12 +137,22 @@ export default {
         })
         .then(({ data }) => {
           // console.log(data)
+          Swal.fire(
+            'Good job!',
+            `${data.email} telah login`,
+            'success'
+            )
           localStorage.setItem("access_token", data.access_token);
           this.changePage("home");
           this.fetchTasks()
         })
         .catch((err) => {
-          console.log(err.response.data);
+          // console.log(err.response.data.errors.join(','));
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.errors.join(',')              
+          })   
         });
     },
     // fungsi register
@@ -139,10 +164,22 @@ export default {
           password,
         })
         .then(({ data }) => {
-          // console.log(data)          
+          // console.log(data)
+          Swal.fire(
+            'Good job!',
+            `${data.email} telah ditambahkan pada database`,
+            'success'
+            )          
           this.changePage("login");
         })
-        .catch(console.log);
+        .catch(err => {
+          // console.log(err.response.data.errors.join(','));
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.errors.join(',')              
+          })  
+        });
     },
     // fungsi checkout
     checkAuth() {
@@ -153,8 +190,9 @@ export default {
         this.changePage("login");
       }
     },
+    // google sign in
     googlePage(idToken) {
-      console.log(idToken, 'ini id token dari google');
+      // console.log(idToken, 'ini id token dari google');
       axios({
         url: '/googleLogin',
         method: 'post',
@@ -163,12 +201,22 @@ export default {
         }
       })
       .then(({data}) => {
+          Swal.fire(
+          'Good job!',
+          `${data.email} telah login`,
+          'success'
+          )   
           localStorage.setItem("access_token", data.access_token);
           this.changePage("home");
           this.fetchTasks()
         })
         .catch(err => {
-          console.log(err.response.data);
+          // console.log(err.response.data.errors.join(','));
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.errors.join(',')              
+          })  
         })
     
     },
@@ -183,7 +231,14 @@ export default {
         .then(({ data }) => {
           this.tasks = data;
         })
-        .catch(console.log);
+        .catch(err => {
+          // console.log(err.response.data.errors.join(','));
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.errors.join(',')              
+          })  
+        });
     },
     // tambah task
     addTask(payload) {
@@ -203,28 +258,66 @@ export default {
           }
         )
         .then(({ data }) => {
+          // console.log(data);
+          Swal.fire(
+            'Good job!',
+            `${data.title} telah ditambahkan`,
+            'success'
+            )
           this.changePage('home')
           this.fetchTasks();
         })
-        .catch(console.log);
+        .catch(err => {
+          // console.log(err.response.data.message);
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message              
+          })  
+        });
     },
     // delete task
     deleteTask(paylod) {
       // console.log(paylod);
-      axios
-      .delete(`/tasks/${paylod}`, {
-        headers: {
-              access_token: localStorage.access_token,
-            }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
       })
-      .then((data) => {
-        // console.log(data);
-        this.changePage('home')
-        this.fetchTasks();
+      .then((result) => {
+        if (result.isConfirmed) {
+            axios
+            .delete(`/tasks/${paylod}`, {
+              headers: {
+                    access_token: localStorage.access_token,
+                  }
+            })
+            .then(({data}) => {
+              // console.log(data);
+              Swal.fire(
+                  'Good job!',
+                  `${data.message}`,
+                  'success'
+                  )
+              this.changePage('home')
+              this.fetchTasks();
+            })
+            .catch(err => {
+              // console.log(err.response.data.message);
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.response.data.message              
+                })  
+            })
+            
+          }
       })
-      .catch(err => {
-        console.log(err);
-      })
+      
     }
   },
   created() {

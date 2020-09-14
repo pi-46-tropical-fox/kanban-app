@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: "Tidak boleh kosong"
+          msg: "Password tidak boleh kosong"
         },
         min: {
           args: 5,

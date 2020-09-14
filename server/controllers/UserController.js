@@ -29,7 +29,7 @@ class UserController {
 
                 if(isValid) {
                     let access_token = signToken(data)
-                    res.status(200).json({access_token})
+                    res.status(200).json({access_token,email:data.email})
                 } else {
                     throw {message: "Username/password invalid", statusCode:400}
                 }
