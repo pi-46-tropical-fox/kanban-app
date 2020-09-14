@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty : {
           args : true,
-          msg : 'Title must not empty!'
+          msg : 'Description must not empty!'
         }
       }
     }

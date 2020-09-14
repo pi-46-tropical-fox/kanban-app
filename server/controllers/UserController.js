@@ -4,6 +4,7 @@ const { User } = require('../models')
 const { checkPassword } = require('../helpers/bcryptjs')
 const { generateToken } = require('../helpers/jwt')
 const { OAuth2Client } = require('google-auth-library')
+const extractMail = require('../helpers/extractMail')
 
 class UserController {
 
@@ -65,14 +66,15 @@ class UserController {
     
     .then((user) => {
       if (user) {
-        // console.log(user);
+        console.log(user);
         console.log('User is already registered in the server')
         return user
       } else {
         console.log('Create new user!')
+        
         console.log(payload, "ini payload controller");
         return User.create({
-          username: payload.name,
+          name: extractMail(payload.email),
           email: payload.email,
           password: 's4mu3l91rs4n6'
         })
@@ -81,9 +83,11 @@ class UserController {
     .then((user) => {
       // payload = { id: user._id, email: user.email }
       console.log(user);
+      const name = user.name
+      const id = user.id
       const access_token = generateToken(user)
       res.status(201).json({
-        message: 'Successfully logged in', access_token
+        message: 'Successfully logged in', access_token, id, name
       })
     })
     .catch(next)

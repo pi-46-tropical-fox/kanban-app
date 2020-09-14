@@ -128,12 +128,13 @@ class TaskController {
       })
     })
     .then(response => {
+      console.log(response[1][0]); 
       res.status(200).json(response[1][0])
     })
     .catch(next)
   }
 
-  static backStatus(req, rex, next) {
+  static backStatus(req, res, next) {
     Task.findOne({ where : { id : +req.params.task_id } })
     .then(response => {
       console.log('HITT!!<<<<<<');
@@ -145,6 +146,11 @@ class TaskController {
         returning : true
       })
     })
+    .then(response => {
+      // console.log(response[1][0]);
+      res.status(200).json(response[1][0])
+    })
+    .catch(next)
   }
 
   static async deleteTaskById(req, res, next) {

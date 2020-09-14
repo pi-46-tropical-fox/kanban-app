@@ -19,8 +19,10 @@ function errorHandler (err, req, res, next) {
     statusCode = 401
   }
   else {
-    errors.push(err.message)
-    statusCode = err.statusCode || 500
+      if (!errors[0]) {
+        errors.push(err.message)
+        statusCode = err.statusCode || 500
+      }
     
   }
   return res.status(statusCode).json({ errors })
