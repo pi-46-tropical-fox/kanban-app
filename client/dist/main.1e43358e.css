@@ -1,0 +1,27 @@
+#cardLogin[data-v-dd6db8] {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+#cardRegister[data-v-0e053e] {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+/* #cardStatus {
+    overflow-y: scroll;
+    display:inline-block;
+} */
+#card-text[data-v-efdf55] {
+    font-size: 14px;
+}
+#container[data-v-efdf55] {
+    overflow-x:auto;
+}
+
+/* #row-cardstatus{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    display:inline-block;
+} */
