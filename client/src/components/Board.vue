@@ -6,11 +6,11 @@
         <i class="fa fa-folder" aria-hidden="true"></i>
         List Organization
       </a>&nbsp;
-      <!-- <a class="btn btn-sm trello-btn-bg text-light" data-toggle="modal"
+      <a class="btn btn-sm trello-btn-bg text-light" data-toggle="modal"
         data-target="#createTask"><i class="fa fa-plus" 
         aria-hidden="true"></i>
         Create New Task
-      </a> -->
+      </a>
     </div>
     <div class="col-md-12 card-wrapper">
       <div class="row">

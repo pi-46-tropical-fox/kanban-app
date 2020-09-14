@@ -81,7 +81,7 @@ export default {
         headers: {
           access_token: localStorage.access_token
         },
-        url: `${this.host}/organizations`,
+        url: `/organizations`,
         method:'post',
         data: value
       })

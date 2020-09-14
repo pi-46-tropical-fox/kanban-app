@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     deleteOrganization(id) {
-      axios.delete(`${this.host}/organizations/${id}`, {
+      axios.delete(`/organizations/${id}`, {
         headers: {
           access_token: localStorage.access_token
         }

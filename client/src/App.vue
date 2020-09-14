@@ -43,7 +43,8 @@ export default {
   },
   data () {
     return {
-      host: "http://localhost:4000",
+      // host: 'http://localhost:4000',
+      // host: 'https://afternoon-brushlands-38586.herokuapp.com/',
       toaster: null,
       email: '',
       page: {
@@ -69,7 +70,7 @@ export default {
       }
       // console.log(data);
       axios
-        .post(`${this.host}/login`, data)
+        .post(`/login`, data)
         .then(response => {
           console.log('HIT');
           this.page.login = false
@@ -93,7 +94,7 @@ export default {
       }
 
       axios
-        .post(`${this.host}/register`, data)
+        .post(`/register`, data)
         .then(response => {
 
           // this.page.login = true
@@ -120,7 +121,15 @@ export default {
         this.toaster = null
       }, 2000)
     },
-   
+     redirectToHomePage() {
+       console.log('HIT');
+       if (access_token) {
+        console.log(this.page);
+        this.page.login = false
+        this.page.register = false 
+        this.page.home = true
+        }
+    },
     redirectAuthPage() {
       console.log(this.page);
       this.page.login = this.page.login ? false : true

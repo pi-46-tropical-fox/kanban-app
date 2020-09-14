@@ -1,0 +1,106 @@
+h3[data-v-424fef] {
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+h6[data-v-424fef] {
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: left;
+  margin: 20px 0 0 0;
+}
+#icon-logout[data-v-424fef] {
+  text-align: right;
+  color: whitesmoke;
+  font-size: 20px;
+}
+#logout-text[data-v-424fef] {
+  text-align: right;
+  color: whitesmoke;
+  /* font-family: 'Nunito Sans', sans-serif; */
+  font-size: 15px;
+  margin: 12px 0 0 0;
+}
+.logout-bar[data-v-424fef] {
+  display: flex;
+  flex-direction: column;
+}
+.google-signin-button[data-v-48c523] {
+  color: white;
+  background-color: red;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 10px 20px 25px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+a {
+  text-decoration: none;
+}
+.add-task[data-v-fa2f6b] {
+  width: 96%;
+  margin: 0 auto;
+}
+.btn-place[data-v-fa2f6b] {
+  display: flex;
+  justify-content: flex-end;
+  width: 96%;
+  margin: 0 auto;
+}
+.btn-place button[data-v-fa2f6b] {
+  position: relative;
+  top : -10px;
+}
+.bg-board[data-v-6c178c] {
+  background-color: rgb(75, 191, 107) ;
+}
+.trello-btn-bg[data-v-6c178c] {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.card-wrapper[data-v-6c178c] {
+  min-height: 95vh;
+  background-color: rgb(75, 191, 107);
+}
+.add-task[data-v-e31d08] {
+  width: 96%;
+  margin: 0 auto;
+}
+.btn-place[data-v-e31d08] {
+  display: flex;
+  justify-content: flex-end;
+  width: 96%;
+  margin: 0 auto;
+}
+.btn-place button[data-v-e31d08] {
+  position: relative;
+  top : -10px;
+}
+.pill-width[data-v-6331be] {
+  width: 60%;
+}
+.pill-text-size[data-v-6331be] {
+  font-size: 14px;
+}
+.organization-card[data-v-6331be] {
+  cursor: pointer;
+  height: 120px;
+  border-radius : 5px;
+  box-shadow: 1px 1px   d;
+  transition: box-shadow 0.5s;
+}
+.organization-card[data-v-6331be]:hover {
+  box-shadow : 2px 2px #181717a6;
+}
+.organization-header[data-v-6331be]{
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+}
+.organization-header a[data-v-6331be] {
+  padding-top: 3px;
+  font-size: 12px;
+  text-decoration: none
+}
+.tab-title[data-v-6331be] {
+  position: relative;
+  left: -15px;
+}

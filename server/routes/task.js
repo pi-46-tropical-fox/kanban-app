@@ -13,8 +13,8 @@ router.post('/:org_id', TaskController.createTask)
 
 router.get('/org/:task_id', authorizationTask, TaskController.readTaskById)
 router.put('/org/:task_id', authorizationTask, TaskController.updateTaskById)
-router.put('/org/:task_id', authorizationTask, TaskController.updateStatus)
-router.put('/org/:task_id', authorizationTask, TaskController.backStatus)
+router.patch('/org/:task_id', authorizationTask, TaskController.updateStatus)
+router.patch('/org/:task_id', authorizationTask, TaskController.backStatus)
 router.delete('/org/:task_id', authorizationTask, TaskController.deleteTaskById)
 
 

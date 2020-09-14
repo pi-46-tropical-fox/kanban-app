@@ -109,17 +109,20 @@ export default {
         id_token: id_token
       }
     })
-      .then(function (response) {
+      .then(response => {
         console.log(response)
         localStorage.setItem('access_token', response.access_token)
         console.log('User successfully signed in')
-        
+        this.$emit('redirectToHomePage', response.access_token)
       })
 
     },
     OnGoogleAuthFail (error) {
       console.log(error)
-    }
+    },
+    redirectToHome() {
+      this.$parent.redirectToHomePage()
+    },
   }
 }
 </script>

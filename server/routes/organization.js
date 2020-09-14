@@ -9,6 +9,8 @@ router.use(authentication)
 
 router.get('/', OrganizationController.readOrganization)
 router.post('/', OrganizationController.createOrganization)
+
+// authorization organization <<<
 router.delete('/:org_id', OrganizationController.deleteOrganization)
 
 

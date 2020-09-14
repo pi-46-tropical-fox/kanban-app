@@ -105,6 +105,7 @@ class TaskController {
       }
     })
     .then(response => {
+      console.log('HITTTT NEXT<<<<<<');
       const data = {
         CategoryId: response.CategoryId + 1
       }
@@ -122,6 +123,7 @@ class TaskController {
   static backStatus(req, rex, next) {
     Task.findOne({ where : { id : +req.params.task_id } })
     .then(response => {
+      console.log('HITT!!<<<<<<');
       const data = {
         CategoryId : response.CategoryId - 1
       }

@@ -68,7 +68,7 @@ export default {
         headers: {
           access_token: localStorage.access_token
         },
-        url: `${this.host}/tasks/${localStorage.OrganizationId}`,
+        url: `/tasks/${localStorage.OrganizationId}`,
         method: 'post',
         data: value
       })

@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getOrganization() {
-      axios.get(`${this.host}/organizations`, {
+      axios.get(`/organizations`, {
         headers: {
           access_token: localStorage.access_token
         }
@@ -67,7 +67,7 @@ export default {
       })
     },
     boardRender(id) {
-      axios.get(`${this.host}/tasks/${id}`, {
+      axios.get(`/tasks/${id}`, {
         headers: {
           access_token: localStorage.access_token
         }
