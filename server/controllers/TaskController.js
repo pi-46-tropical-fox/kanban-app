@@ -5,16 +5,29 @@ const e = require('express')
 
 class TaskController {
   static showTask (req, res, next) {
-    Category.findAll({
+
+    const findTaskofOrg = Category.findAll({
       include :[{
         model : Task,
-        where : {
-          OrganizationId : +req.params.org_id
-        }
+       
       }]
     })
+
+    const findAllCategory = Category.findAll()
+    // let newFindAllCategory = []
+    // newFindAllCategory.push(findAllCategory)
+
+    Promise.all([
+      findAllCategory,
+      findTaskofOrg
+      // newFindAllCategory
+
+    ])
     .then(response => {
       res.status(200).json(response)
+      // response.forEach(element => {
+      //   res.status(200).json(element)
+      // });
     })
     .catch(next)
   }
