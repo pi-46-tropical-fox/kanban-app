@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const instance = axios.create({
   // baseURL: 'http://localhost:4000',
-  baseURL: 'https://afternoon-brushlands-38586.herokuapp.com/',
+  baseURL: 'https://kanban-sam.herokuapp.com/'
+  // baseURL: 'https://afternoon-brushlands-38586.herokuapp.com/',
 });
 
 // Add a response interceptor

@@ -17,7 +17,6 @@
             List Organization
           </a>
           <CreateOrganization
-            :host="host"
             :toaster="toaster">
           </CreateOrganization>
         </div>
@@ -53,7 +52,7 @@ export default {
     OrganizationCard,
     CreateOrganization
   },
-  props: ['host', 'toaster', 'organization_list'],
+  props: ['toaster', 'organization_list'],
   data() {
     return {
     }

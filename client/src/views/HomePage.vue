@@ -1,18 +1,17 @@
 <template>
   <div>
     <div>
-      <Navbar @logout="$emit('logout')" :name=name></Navbar>
+      <Navbar @logout="$emit('logout')" :name="name"></Navbar>
     </div>
 
     <div v-if="page.organization">
       <OrganizationList
-        :host="host"
         :toaster="toaster"
         :organization_list="organizations">
       </OrganizationList>
     </div>
       <div v-if="page.board">
-        <Board :host="host"  :boardList="boardList"></Board>
+        <Board :boardList="boardList"></Board>
       </div>
     
   </div>
@@ -42,7 +41,7 @@ export default {
       activeBoard: null
     }
   },
-  props: ['name', 'host', 'toaster'],
+  props: ['name', 'toaster'],
   mounted() {
     this.getOrganization()
     if(!localStorage.OrganizationId) {
@@ -60,6 +59,7 @@ export default {
         }
       })
       .then(response => {
+        this.name = localStorage.name
         this.organizations = response.data
       })
       .catch(err => {
@@ -73,11 +73,14 @@ export default {
         }
       })
       .then(response => {
-        console.log('HIT');
-        console.log(response);
+        // console.log('HIT');
+        // console.log(response);
         this.page.organization = false
         this.page.board = true
-        this.boardList = response.data
+        this.boardList = response.data[1]
+        // this.boardCat = response.data[0]
+        // console.log([...response.data]);
+        // console.log(response.data[1]);
         localStorage.OrganizationId = id
       })
       .catch(err => {

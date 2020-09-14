@@ -35,7 +35,7 @@ import axios from "../config/axios"
 
 export default {
   name: 'CreateTask',
-  props: ['host', 'category_id', 'boardList', 'keys'],
+  props: ['category_id', 'boardList', 'keys'],
   data() {
     return {
       form: {

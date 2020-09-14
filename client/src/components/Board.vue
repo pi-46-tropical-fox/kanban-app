@@ -22,11 +22,11 @@
           </div>
           <div class="card-content">
             <CardContent 
-              :tasks="board.Tasks" :host="host" :keys="i" :boardList="boardList">
+              :tasks="board.Tasks" :keys="i" :boardList="boardList">
             </CardContent>
           </div>
           <div v-if="form_category == board.id" class="card-form">
-            <CreateTask :host="host" :category_id="board.id"
+            <CreateTask :category_id="board.id"
             :keys="i" :boardList="boardList">
             </CreateTask>
           </div>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <CreateNewTask :host="host" :boardList="boardList"></CreateNewTask>
+    <CreateNewTask :boardList="boardList"></CreateNewTask>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ import CreateTask from './CreateTaskCategory'
 
 export default {
   name: 'Board',
-  props: ['boardList', 'host'],
+  props: ['boardList'],
   components: {
     CardContent,
     CreateNewTask,

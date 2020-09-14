@@ -5,7 +5,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-plus"></i> Create Organization
+            <i class="fa fa-plus"></i> Create New Task
           </h5>
           <button type="button" class="close" data-dismiss="modal"
             aria-label="Close">
@@ -46,7 +46,7 @@
 import axios from "../config/axios";
 
 export default {
-  props: ['host', 'boardList'],
+  props: ['boardList'],
   data() {
     return {
       form: {
@@ -71,7 +71,7 @@ export default {
         CategoryId: 1,
         UserId: localStorage.id
       }
-      // console.log(value, "DI VUE");
+      console.log(value, "DI VUE");
       
       axios({
         headers: {

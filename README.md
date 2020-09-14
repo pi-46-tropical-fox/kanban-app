@@ -1,7 +1,7 @@
 # kanban-app
 Membuat kanban web app
 
-Firebase URL: https://kanban-sam-3af39.web.app
+Firebase URL: https://kanbanapp-sam.web.app/#
 <!-- Heroku URL: -->
 
 
@@ -17,10 +17,12 @@ Firebase URL: https://kanban-sam-3af39.web.app
   - GET /organizations
   - DELETE /organizations/:org_id
   - GET /tasks/:org_id
-  - POST /tasks/org_id
-  - GET /tasks/org/task_id
-  - PUT /tasks/org/task_id (update task and dynamic category)
-  - DELETE tasks/org/task_id
+  - POST /tasks/:org_id
+  - GET /tasks/org/:task_id
+  - PUT /tasks/org/:task_id 
+  - PATCH /tasks/org1/:task_id
+  - PATCH /tasks/org/:task_id 
+  - DELETE tasks/org/:task_id
   - POST /categories
 ```
 ### POST /register
@@ -94,6 +96,41 @@ _Response (401 - Unauthorized)_
 {
   "errors": [
     Invalid name or password
+  ]
+}
+```
+---
+
+### POST /googleLogin
+> Google signin
+_Request Header_
+```
+{
+  not needed
+}
+```
+
+_Request Body_
+```
+{
+  "google email" : <samuel@gmail.com>
+}
+```
+
+_Response (200 - OK)_
+```
+{
+  "access_token": "<access_token>,
+  "name": "samuel",
+  "id": <your user id>
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+  "errors": [
+    Unauthorized 
   ]
 }
 ```
@@ -373,7 +410,7 @@ _Response (404 - Bad Request)_
 ```
 ---
 
-## PUT /tasks/org/task_id (update task and dynamic category)
+## PUT /tasks/org/task_id 
 > Edit task
 _Request Header_
 ```
@@ -412,6 +449,85 @@ _Response (404 - Bad Request)_
     title must not empty!
   ]
 
+}
+```
+---
+
+
+## PATCH /tasks/org1/:task_id
+> move task forward by its owner
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+  "task_id": "<your task id>"
+}
+```
+
+_Request Body_
+```
+{
+  "id": <request id of task for update>
+}
+```
+
+_Response (200 - OK)_
+```
+  id: <task id>
+  title: <task title>
+  CategoryId: <task category>
+  OrganizationId: <organization id>
+  UserId: <owner task id
+  description: <task description>
+  
+```
+
+_Response (404 - Not found)_
+```
+{
+  "errors": [
+    Task not found
+  ]
+}
+```
+---
+
+## PATCH /tasks/org/:task_id 
+> move task backward by its owner
+
+_Request Header_
+```
+{
+  "access_token": "<your access token>"
+  "task_id": "<your task id>"
+}
+```
+
+_Request Body_
+```
+{
+  "id": <request id of task for update>
+}
+```
+
+_Response (200 - OK)_
+```
+  id: <task id>
+  title: <task title>
+  CategoryId: <task category>
+  OrganizationId: <organization id>
+  UserId: <owner task id
+  description: <task description>
+  
+```
+
+_Response (404 - Not found)_
+```
+{
+  "errors": [
+    Task not found
+  ]
 }
 ```
 ---

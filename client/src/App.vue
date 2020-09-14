@@ -9,7 +9,7 @@
       </div>
     </div>
     <div v-if="page.login">
-      <LoginPage v-on:login="login" :host="host"></LoginPage>
+      <LoginPage v-on:login="login"></LoginPage>
     </div>
     <div v-if="page.register">
       <RegisterPage :register_data = register></RegisterPage>
@@ -19,7 +19,6 @@
         @logout="logout"
         :email="email"
         :name="name"
-        :host="host"
         :toaster="toaster">
       </HomePage>
     </div>
@@ -72,13 +71,14 @@ export default {
       axios
         .post(`/login`, data)
         .then(response => {
-          console.log('HIT');
+          // console.log('HIT');
           this.page.login = false
           this.page.home = true
           this.toaster = 'Login Successfully!'
           localStorage.access_token = response.data.access_token
           localStorage.name = response.data.name
           localStorage.id = response.data.id
+          this.name = localStorage.name
           form.clearField()
           setTimeout(() => {
             this.toaster = null
@@ -97,7 +97,7 @@ export default {
         .post(`/register`, data)
         .then(response => {
 
-          // this.page.login = true
+          this.page.login = true
           this.page.register = false 
           this.page.home = false
           this.toaster = 'You have registered successfully!'
@@ -111,41 +111,54 @@ export default {
         })
       
     },
+    
     logout() {
       localStorage.clear()
       this.page.login = true
       this.page.home = false
       this.toaster = 'You have logged out successfully!'
+      this.name = ''
 
       setTimeout(() => {
         this.toaster = null
       }, 2000)
     },
-     redirectToHomePage() {
-       console.log('HIT');
-       if (access_token) {
-        console.log(this.page);
-        this.page.login = false
-        this.page.register = false 
-        this.page.home = true
-        }
+    
+    redirectToHomePage(name) {
+      
+      console.log('HIT');
+      console.log(name);
+      console.log(this.page);
+      this.name = name
+      this.page.login = false
+      this.page.register = false 
+      this.page.home = true
+      this.toaster = 'Login Successfully!'
+      
+      setTimeout(() => {
+        this.toaster = null
+      }, 2000)
     },
+    
     redirectAuthPage() {
       console.log(this.page);
       this.page.login = this.page.login ? false : true
       this.page.register = this.page.register ? false : true
     },
+    
     clearValidation: function(objectValidation) {
       for(let key in objectValidation) {
         objectValidation[key] = ''
       }
     },
+    
     clearField: function(field) {
       for(let key in field) {
         field[key] = ''
       }
     }
   }, 
+  
   mounted() {
     if (localStorage.access_token) {
       this.page.register = false

@@ -62,7 +62,7 @@ import axios from "../config/axios"
 
 export default {
   name: "RegisterPage",
-  props: ['host', 'register_data', 'page'],
+  props: ['register_data', 'page'],
   components: {
     Navbar
   },

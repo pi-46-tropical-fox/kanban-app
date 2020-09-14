@@ -14,7 +14,7 @@
         Back
       </a>
       <a v-if="task.CategoryId !==4" @click.prevent="updateStatus(task.id)" 
-      class="badge badge-success" style="text-decoration:none" href="#">
+      href="#" class="badge badge-success" style="text-decoration:none">
         Next
       </a>
       <a href="#" @click.prevent="updateForm(task.id)" class="badge badge-warning">
@@ -26,7 +26,7 @@
     </div>
     <div class="content">
       <div v-if="update_form == task.id">
-        <Description :host="host" :task="task" :keys="i"
+        <Description :task="task" :keys="i"
           :show_form="update_form" :task_id="task.id">
         </Description>
       </div>
@@ -45,7 +45,7 @@ import Description from './Description'
 
 export default {
   name: 'TaskContent',
-  props: ['host', 'task', 'update_form', 'taskActive', 'i', 'id'],
+  props: ['task', 'update_form', 'taskActive', 'i', 'id'],
   components: {
     Description
   },

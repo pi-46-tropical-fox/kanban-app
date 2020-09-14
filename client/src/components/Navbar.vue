@@ -7,12 +7,11 @@
           <h3>
             Kanban Board
           </h3> 
-      <h6>Thank you for using this Kanban, {{name}}!</h6>
-      <h6>User ID : {{id}}</h6>
+      <h6>Thank you for using this Kanban <b>{{name}}</b> !</h6>
         </span> 
       </a>
         
-      <div class="logout-bar">
+      <div class="logout-bar" v-if="isLogin">
         
         <a href="#" @click.prevent="$emit('logout')" id="icon-logout" style="color: white" class="oi oi-account-logout"></a>
         <span id="logout-text">Logout</span>

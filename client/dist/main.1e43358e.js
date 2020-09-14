@@ -13610,7 +13610,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var instance = _axios.default.create({
   // baseURL: 'http://localhost:4000',
-  baseURL: 'https://afternoon-brushlands-38586.herokuapp.com/'
+  baseURL: 'https://kanban-sam.herokuapp.com/' // baseURL: 'https://afternoon-brushlands-38586.herokuapp.com/',
+
 }); // Add a response interceptor
 
 
@@ -14009,7 +14010,6 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {
   name: 'Navbar',
   props: ['name'],
@@ -14059,30 +14059,30 @@ exports.default = _default;
             _c("h3", [_vm._v("\n          Kanban Board\n        ")]),
             _vm._v(" "),
             _c("h6", [
-              _vm._v(
-                "Thank you for using this Kanban, " + _vm._s(_vm.name) + "!"
-              )
-            ]),
-            _vm._v(" "),
-            _c("h6", [_vm._v("User ID : " + _vm._s(_vm.id))])
+              _vm._v("Thank you for using this Kanban "),
+              _c("b", [_vm._v(_vm._s(_vm.name))]),
+              _vm._v(" !")
+            ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "logout-bar" }, [
-          _c("a", {
-            staticClass: "oi oi-account-logout",
-            staticStyle: { color: "white" },
-            attrs: { href: "#", id: "icon-logout" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.$emit("logout")
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { id: "logout-text" } }, [_vm._v("Logout")])
-        ])
+        _vm.isLogin
+          ? _c("div", { staticClass: "logout-bar" }, [
+              _c("a", {
+                staticClass: "oi oi-account-logout",
+                staticStyle: { color: "white" },
+                attrs: { href: "#", id: "icon-logout" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.$emit("logout")
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { id: "logout-text" } }, [_vm._v("Logout")])
+            ])
+          : _vm._e()
       ]
     )
   ])
@@ -14194,7 +14194,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: "RegisterPage",
-  props: ['host', 'register_data', 'page'],
+  props: ['register_data', 'page'],
   components: {
     Navbar: _Navbar.default
   },
@@ -14468,7 +14468,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _default = {
   name: "LoginPage",
-  props: ['page', 'host'],
+  props: ['page'],
   components: {
     Navbar: _Navbar.default
   },
@@ -14478,7 +14478,7 @@ var _default = {
         email: '',
         password: ''
       },
-      clientId: '20286266958-b0t0r7502651bmvrvl98dfab8gkq97l1.apps.googleusercontent.com'
+      clientId: '458646890960-stb8cuanu3geoqa3o1s38pitm1p4utad.apps.googleusercontent.com'
     };
   },
   methods: {
@@ -14508,17 +14508,21 @@ var _default = {
       var id_token = idToken; // console.log(id_token, 'id_token client');
 
       (0, _axios.default)({
-        url: "".concat(this.host, "/googleLogin"),
+        url: "/googleLogin",
         method: 'POST',
         headers: {
           id_token: id_token
         }
       }).then(function (response) {
-        console.log(response);
-        localStorage.setItem('access_token', response.access_token);
-        console.log('User successfully signed in');
+        console.log(response); // console.log(response.data);
 
-        _this2.$emit('redirectToHomePage', response.access_token);
+        console.log(response.data.name);
+        localStorage.setItem('name', response.data.name);
+        localStorage.setItem('id', response.data.id);
+        localStorage.setItem('access_token', response.data.access_token);
+        console.log('User successfully signed in'); // this.$emit('redirectToHomePage',localStorage.getItem.access_token)
+
+        _this2.$parent.redirectToHomePage(localStorage.getItem.name);
       });
     },
     OnGoogleAuthFail: function OnGoogleAuthFail(error) {
@@ -14788,7 +14792,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'Description',
-  props: ['task', 'task_id', 'show_form', 'host', 'keys'],
+  props: ['task', 'task_id', 'show_form', 'keys'],
   data: function data() {
     return {
       form: {
@@ -14818,15 +14822,14 @@ var _default = {
           access_token: localStorage.access_token
         },
         method: 'put',
-        url: "".concat(this.host, "/tasks/org/").concat(id),
+        url: "/tasks/org/".concat(id),
         data: value
       }).then(function (response) {
-        // console.log(response);
+        console.log(response);
+
         _this.$parent.$parent.updateData(response.data, _this.keys);
 
         _this.$parent.$parent.updateForm(null);
-      }).catch(function (err) {
-        console.log(err);
       });
     }
   }
@@ -15021,7 +15024,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'TaskContent',
-  props: ['host', 'task', 'update_form', 'taskActive', 'i', 'id'],
+  props: ['task', 'update_form', 'taskActive', 'i', 'id'],
   components: {
     Description: _Description.default
   },
@@ -15141,7 +15144,6 @@ exports.default = _default;
             [
               _c("Description", {
                 attrs: {
-                  host: _vm.host,
                   task: _vm.task,
                   keys: _vm.i,
                   show_form: _vm.update_form,
@@ -15222,7 +15224,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'CardContent',
-  props: ['tasks', 'host', 'keys', 'boardList'],
+  props: ['tasks', 'keys', 'boardList'],
   components: {
     TaskContent: _TaskContent.default
   },
@@ -15240,7 +15242,7 @@ var _default = {
     deleteData: function deleteData(id) {
       var _this = this;
 
-      _axios.default.delete("".concat(this.host, "/tasks/org/").concat(id), {
+      _axios.default.delete("/tasks/org/".concat(id), {
         headers: {
           access_token: localStorage.access_token
         }
@@ -15260,8 +15262,10 @@ var _default = {
           access_token: localStorage.access_token
         },
         method: 'patch',
-        url: "".concat(this.host, "/tasks/org/").concat(id)
+        url: "/tasks/org1/".concat(id)
       }).then(function (response) {
+        console.log(response.data, 'NEXT');
+
         _this2.boardList[_this2.keys + 1].Tasks.push(response.data);
       }).catch(function (err) {
         console.log(err);
@@ -15271,15 +15275,21 @@ var _default = {
       var _this3 = this;
 
       // console.log(id);
-      this.removeData(this.keys, id);
+      // console.log('HIT <<<< CARD-BACKST');
+      this.removeData(this.keys, id); // console.log('HIT <<<< CARD-BACKST');
+
       (0, _axios.default)({
         headers: {
           access_token: localStorage.access_token
         },
         method: 'patch',
-        url: "".concat(this.host, "/tasks/org/").concat(id, " ")
+        url: "/tasks/org/".concat(id)
       }).then(function (response) {
+        console.log(response.data, 'BACK');
+
         _this3.boardList[_this3.keys - 1].Tasks.push(response.data);
+
+        _this3.$parent.$parent.boardRender(localStorage.OrganizationId);
       }).catch(function (err) {
         console.log(err);
       });
@@ -15320,7 +15330,6 @@ exports.default = _default;
               task: task,
               i: i,
               id: _vm.id,
-              host: _vm.host,
               update_form: _vm.update_form,
               taskActive: "taskActive"
             }
@@ -15422,7 +15431,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 var _default = {
-  props: ['host', 'boardList'],
+  props: ['boardList'],
   data: function data() {
     return {
       form: {
@@ -15448,8 +15457,8 @@ var _default = {
         description: this.form.description,
         CategoryId: 1,
         UserId: localStorage.id
-      }; // console.log(value, "DI VUE");
-
+      };
+      console.log(value, "DI VUE");
       (0, _axios.default)({
         headers: {
           access_token: localStorage.access_token
@@ -15601,7 +15610,7 @@ var staticRenderFns = [
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
         [
           _c("i", { staticClass: "fa fa-plus" }),
-          _vm._v(" Create Organization\n        ")
+          _vm._v(" Create New Task\n        ")
         ]
       ),
       _vm._v(" "),
@@ -15713,7 +15722,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'CreateTask',
-  props: ['host', 'category_id', 'boardList', 'keys'],
+  props: ['category_id', 'boardList', 'keys'],
   data: function data() {
     return {
       form: {
@@ -15962,7 +15971,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'Board',
-  props: ['boardList', 'host'],
+  props: ['boardList'],
   components: {
     CardContent: _CardContent.default,
     CreateNewTask: _CreateNewTask.default,
@@ -16054,7 +16063,6 @@ exports.default = _default;
                     _c("CardContent", {
                       attrs: {
                         tasks: board.Tasks,
-                        host: _vm.host,
                         keys: i,
                         boardList: _vm.boardList
                       }
@@ -16070,7 +16078,6 @@ exports.default = _default;
                       [
                         _c("CreateTask", {
                           attrs: {
-                            host: _vm.host,
                             category_id: board.id,
                             keys: i,
                             boardList: _vm.boardList
@@ -16114,9 +16121,7 @@ exports.default = _default;
         )
       ]),
       _vm._v(" "),
-      _c("CreateNewTask", {
-        attrs: { host: _vm.host, boardList: _vm.boardList }
-      })
+      _c("CreateNewTask", { attrs: { boardList: _vm.boardList } })
     ],
     1
   )
@@ -16417,7 +16422,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   name: 'CreateOrganization',
-  props: ['host', 'toaster'],
+  props: ['toaster'],
   data: function data() {
     return {
       form: {
@@ -16739,14 +16744,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   name: 'OrganizationList',
   components: {
     OrganizationCard: _OrganizationCard.default,
     CreateOrganization: _CreateOrganization.default
   },
-  props: ['host', 'toaster', 'organization_list'],
+  props: ['toaster', 'organization_list'],
   data: function data() {
     return {};
   },
@@ -16805,9 +16809,7 @@ exports.default = _default;
           [
             _vm._m(1),
             _vm._v(" "),
-            _c("CreateOrganization", {
-              attrs: { host: _vm.host, toaster: _vm.toaster }
-            })
+            _c("CreateOrganization", { attrs: { toaster: _vm.toaster } })
           ],
           1
         )
@@ -16972,7 +16974,7 @@ var _default = {
       activeBoard: null
     };
   },
-  props: ['name', 'host', 'toaster'],
+  props: ['name', 'toaster'],
   mounted: function mounted() {
     this.getOrganization();
 
@@ -17005,11 +17007,14 @@ var _default = {
           access_token: localStorage.access_token
         }
       }).then(function (response) {
-        console.log('HIT');
-        console.log(response);
+        // console.log('HIT');
+        // console.log(response);
         _this2.page.organization = false;
         _this2.page.board = true;
-        _this2.boardList = response.data;
+        _this2.boardList = response.data[1]; // this.boardCat = response.data[0]
+        // console.log([...response.data]);
+        // console.log(response.data[1]);
+
         localStorage.OrganizationId = id;
       }).catch(function (err) {
         console.log(err);
@@ -17075,7 +17080,6 @@ exports.default = _default;
           [
             _c("OrganizationList", {
               attrs: {
-                host: _vm.host,
                 toaster: _vm.toaster,
                 organization_list: _vm.organizations
               }
@@ -17086,13 +17090,7 @@ exports.default = _default;
       : _vm._e(),
     _vm._v(" "),
     _vm.page.board
-      ? _c(
-          "div",
-          [
-            _c("Board", { attrs: { host: _vm.host, boardList: _vm.boardList } })
-          ],
-          1
-        )
+      ? _c("div", [_c("Board", { attrs: { boardList: _vm.boardList } })], 1)
       : _vm._e()
   ])
 }
@@ -17175,7 +17173,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   name: 'app',
   components: {
@@ -17213,13 +17210,14 @@ var _default = {
       }; // console.log(data);
 
       _axios.default.post("/login", data).then(function (response) {
-        console.log('HIT');
+        // console.log('HIT');
         _this.page.login = false;
         _this.page.home = true;
         _this.toaster = 'Login Successfully!';
         localStorage.access_token = response.data.access_token;
         localStorage.name = response.data.name;
         localStorage.id = response.data.id;
+        _this.name = localStorage.name;
         form.clearField();
         setTimeout(function () {
           _this.toaster = null;
@@ -17236,7 +17234,7 @@ var _default = {
       };
 
       _axios.default.post("/register", data).then(function (response) {
-        // this.page.login = true
+        _this2.page.login = true;
         _this2.page.register = false;
         _this2.page.home = false;
         _this2.toaster = 'You have registered successfully!';
@@ -17258,15 +17256,19 @@ var _default = {
         _this3.toaster = null;
       }, 2000);
     },
-    redirectToHomePage: function redirectToHomePage() {
-      console.log('HIT');
+    redirectToHomePage: function redirectToHomePage(name) {
+      var _this4 = this;
 
-      if (access_token) {
-        console.log(this.page);
-        this.page.login = false;
-        this.page.register = false;
-        this.page.home = true;
-      }
+      console.log('HIT');
+      console.log(this.page);
+      this.name = name;
+      this.page.login = false;
+      this.page.register = false;
+      this.page.home = true;
+      this.toaster = 'Login Successfully!';
+      setTimeout(function () {
+        _this4.toaster = null;
+      }, 2000);
     },
     redirectAuthPage: function redirectAuthPage() {
       console.log(this.page);
@@ -17326,16 +17328,7 @@ exports.default = _default;
     ]),
     _vm._v(" "),
     _vm.page.login
-      ? _c(
-          "div",
-          [
-            _c("LoginPage", {
-              attrs: { host: _vm.host },
-              on: { login: _vm.login }
-            })
-          ],
-          1
-        )
+      ? _c("div", [_c("LoginPage", { on: { login: _vm.login } })], 1)
       : _vm._e(),
     _vm._v(" "),
     _vm.page.register
@@ -17351,12 +17344,7 @@ exports.default = _default;
           "div",
           [
             _c("HomePage", {
-              attrs: {
-                email: _vm.email,
-                name: _vm.name,
-                host: _vm.host,
-                toaster: _vm.toaster
-              },
+              attrs: { email: _vm.email, name: _vm.name, toaster: _vm.toaster },
               on: { logout: _vm.logout }
             })
           ],
@@ -17538,7 +17526,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56659" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62219" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

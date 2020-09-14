@@ -68,7 +68,7 @@ import axios from "../config/axios"
 
 export default {
   name: "LoginPage",
-  props: ['page', 'host'],
+  props: ['page'],
   components: {
     Navbar
   },
@@ -78,7 +78,7 @@ export default {
         email: '',
         password: '',
       },
-      clientId: '20286266958-b0t0r7502651bmvrvl98dfab8gkq97l1.apps.googleusercontent.com'
+      clientId: '458646890960-stb8cuanu3geoqa3o1s38pitm1p4utad.apps.googleusercontent.com'
     }
   },
   methods: {
@@ -99,22 +99,27 @@ export default {
     // console.log('HIT');
     // Receive the idToken and make your 
     // magic with the backend
-    const id_token = idToken
+      const id_token = idToken
     // console.log(id_token, 'id_token client');
-  
-    axios ({
-      url: `${this.host}/googleLogin`,
-      method: 'POST',
-      headers: {
-        id_token: id_token
-      }
-    })
-      .then(response => {
-        console.log(response)
-        localStorage.setItem('access_token', response.access_token)
-        console.log('User successfully signed in')
-        this.$emit('redirectToHomePage', response.access_token)
+
+      axios ({
+        url: `/googleLogin`,
+        method: 'POST',
+        headers: {
+          id_token: id_token
+        }
       })
+        .then(response => {
+          console.log(response);
+          // console.log(response.data);
+          console.log(response.data.name)
+          localStorage.setItem('name', response.data.name)
+          localStorage.setItem('id', response.data.id)
+          localStorage.setItem('access_token', response.data.access_token)
+          console.log('User successfully signed in')
+          // this.$emit('redirectToHomePage',localStorage.getItem.access_token)
+          this.$parent.redirectToHomePage(localStorage.name)
+        })
 
     },
     OnGoogleAuthFail (error) {

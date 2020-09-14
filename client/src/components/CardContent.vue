@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :key="i" v-for="(task, i) in tasks" class="item">
-      <TaskContent :task="task" :i="i" :id="id" :host="host"
+      <TaskContent :task="task" :i="i" :id="id" 
         :update_form="update_form" taskActive="taskActive">
       </TaskContent>
     </div>
@@ -14,7 +14,7 @@ import TaskContent from './TaskContent'
 
 export default {
   name: 'CardContent',
-  props: ['tasks', 'host', 'keys', 'boardList'],
+  props: ['tasks', 'keys', 'boardList'],
   components: {
     TaskContent
   },
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     deleteData(id) {
-      axios.delete(`${this.host}/tasks/org/${id}`, {
+      axios.delete(`/tasks/org/${id}`, {
         headers: {
           access_token: localStorage.access_token
         }
@@ -50,9 +50,10 @@ export default {
           access_token : localStorage.access_token
         },
         method : 'patch',
-        url : `${this.host}/tasks/org/${id}`
+        url : `/tasks/org1/${id}`
       })
       .then(response => {
+        console.log(response.data, 'NEXT');
         this.boardList[this.keys + 1].Tasks.push(response.data)
       })
       .catch(err => {
@@ -61,17 +62,20 @@ export default {
     },
     backStatus(id) {
       // console.log(id);
+      // console.log('HIT <<<< CARD-BACKST');
       this.removeData(this.keys, id)
-
+      // console.log('HIT <<<< CARD-BACKST');
       axios({
         headers : {
           access_token : localStorage.access_token
         },
         method : 'patch',
-        url : `${this.host}/tasks/org/${id} `
+        url : `/tasks/org/${id}`
       })
       .then(response => {
+        console.log(response.data, 'BACK');
         this.boardList[this.keys - 1].Tasks.push(response.data)
+        this.$parent.$parent.boardRender(localStorage.OrganizationId)
       })
       .catch(err => {
         console.log(err);

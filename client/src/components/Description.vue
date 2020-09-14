@@ -33,7 +33,7 @@ import axios from "../config/axios"
 
 export default {
   name: 'Description',
-  props: ['task', 'task_id', 'show_form', 'host', 'keys'],
+  props: ['task', 'task_id', 'show_form', 'keys'],
   data() {
     return {
       form: {
@@ -62,17 +62,15 @@ export default {
           access_token: localStorage.access_token
         },
         method: 'put',
-        url: `${this.host}/tasks/org/${id}`,
+        url: `/tasks/org/${id}`,
         data: value
       })
       .then(response => {
-        // console.log(response);
+        console.log(response);
         this.$parent.$parent.updateData(response.data, this.keys)
         this.$parent.$parent.updateForm(null)
       })
-      .catch(err => {
-        console.log(err);
-      })
+      
     }
   }
 }

@@ -60,7 +60,7 @@ import axios from "../config/axios"
 
 export default {
   name: 'CreateOrganization',
-  props: ['host', 'toaster'],
+  props: ['toaster'],
   data() {
     return {
       form: {
