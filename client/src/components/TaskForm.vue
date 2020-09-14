@@ -57,10 +57,34 @@ export default {
 			    this.$emit('editTask', id)
         },
         backCategory(id) {
+          axios({
+            url: `/kanban/1/tasks/${id}/back`,
+            method: "PUT",
+            // data: payload,
+            headers: {
+              access_token: localStorage.access_token
+            }
+              })
+          .then(({data})=> {				
+            let status = "showKanban"
+            this.$emit('changeActivity', status)
+          })
 
         },
         nextCategory(id) {
-
+          
+          axios({
+            url: `/kanban/1/tasks/${id}/move`,
+            method: "PUT",
+            // data: payload,
+            headers: {
+              access_token: localStorage.access_token
+            }
+              })
+          .then(({data})=> {				
+            let status = "showKanban"
+            this.$emit('changeActivity', status)
+          })
         },
         deleteTask(id) {
           this.activity = 'showDelete'

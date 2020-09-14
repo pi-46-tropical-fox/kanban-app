@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsToMany(models.Organization,{through:models.UserOrganization})
       User.hasMany(models.UserOrganization)
-      User.hasMany(models.Project)
       User.hasMany(models.Task)
     }
   };

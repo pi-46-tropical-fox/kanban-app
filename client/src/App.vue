@@ -1,26 +1,27 @@
 <template>
-	<div>
-		<div class="btn-group btn-group-toggle" v-if="currentPage != 'dashBoardPage'" data-toggle="buttons">
-			<label class="btn btn-secondary active">
-				<input type="radio" @click="changePage('loginPage')" checked> Login
-			</label>
-			<label class="btn btn-secondary">
-				<input type="radio" @click="changePage('registerPage')" checked> Register
-			</label>
+	<div >
+		<div style="position:fixed; top:45%; left:50%; transform: translate(-50%, -50%);">
+			<div class="btn-group btn-group-toggle" v-if="currentPage != 'dashBoardPage'" data-toggle="buttons">
+				<label class="btn btn-secondary active">
+					<input type="radio" @click="changePage('loginPage')" checked> Login
+				</label>
+				<label class="btn btn-secondary">
+					<input type="radio" @click="changePage('registerPage')" checked> Register
+				</label>
+			</div>
+
+			<LoginPage 
+				v-if="currentPage == 'loginPage'"
+				@changePage="changePage">
+				</LoginPage>
+
+			<RegisterPage 
+				v-else-if="currentPage == 'registerPage'"
+				@changePage="changePage">
+				</RegisterPage>
 		</div>
-
-		<LoginPage 
-			v-if="currentPage == 'loginPage'"
-			@changePage="changePage">
-			 </LoginPage>
-
-		<RegisterPage 
-			v-else-if="currentPage == 'registerPage'"
-			@changePage="changePage">
-			</RegisterPage>
-
 		<DashBoardPage 
-			v-else-if="currentPage == 'dashBoardPage'"
+			v-if="currentPage == 'dashBoardPage'"
 			@changePage="changePage">
 
 			</DashBoardPage>

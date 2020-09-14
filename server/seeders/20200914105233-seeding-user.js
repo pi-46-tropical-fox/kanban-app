@@ -11,13 +11,10 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Tasks', [{
-    title: "Create Kanban App",
-    description: "Semangat",
-    date_post: null,
-    due_date: null,
-    CategoryId : 1,
-    UserId : 1,
+   await queryInterface.bulkInsert('Users', [{
+    username: "admin",
+    email : "admin@mail.com",
+    password: "adminadmin",
     createdAt: new Date(),
     updatedAt: new Date()
   }], {});
@@ -30,5 +27,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };

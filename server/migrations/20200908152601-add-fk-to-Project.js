@@ -1,48 +1,32 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.addColumn("Projects", "UserId", {
+    await queryInterface.addColumn("Projects", "OrganizationId", {
       type : Sequelize.INTEGER,
       references : {
-        model : "Users",
+        model : "Organizations",
         key : 'id'
       },
       onUpdate : 'CASCADE',
       onDelete : 'CASCADE'
-    }).then(()=>{
-      queryInterface.addColumn("Projects", "OrganizationId", {
-        type : Sequelize.INTEGER,
-        references : {
-          model : "Organizations",
-          key : 'id'
-        },
-        onUpdate : 'CASCADE',
-        onDelete : 'CASCADE'
-      })
     })
-    .catch(err=>{
-      console.log(err);
-    })
-  },
+},
 
-  down: (queryInterface, Sequelize) => {
+  down: async (queryInterface, Sequelize) => {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    return queryInterface.removeColumn('Projects', 'UserId')
-      .then(()=>{
-        return queryInterface.removeColumn('Projects', 'OrganizationId')
-      })
+    await queryInterface.removeColumn('Projects', 'OrganizationId')
   }
 };
 

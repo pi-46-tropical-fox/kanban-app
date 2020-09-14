@@ -7,6 +7,7 @@ const generateToken = (user)=> {
         id: user.id,
         email: user.email},
         secret);
+        console.log(access_token,'ini token');
     return access_token
 }
 

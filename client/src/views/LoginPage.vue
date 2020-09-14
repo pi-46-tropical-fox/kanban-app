@@ -5,15 +5,14 @@
             <div class="form-group">
               <label for="username">Username</label>
               <input type="text" class="form-control" v-model="username">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" v-model="password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+             <button v-google-signin-button="clientId" class="ml-3 google-signin-button g-signin2"></button>
           </form>
-            <button v-google-signin-button="clientId" class="g-signin2"> Continue with Google</button>
       </div>
   </div>
 </template>
@@ -31,7 +30,6 @@ export default {
     },
     methods: {
         login() {
-          console.log('masuk');
             let payload = {
                 username : this.username,
                 password : this.password
@@ -41,9 +39,7 @@ export default {
                 method: "POST",
                 data: payload
               })
-              .then(({data})=> {
-                console.log('login success');					
-                this.$emit('changePage', 'dashBoardPage')
+              .then(({data})=> {	
                 localStorage.setItem('access_token',data.access_token)
                 localStorage.setItem('username', data.username)
                 localStorage.setItem('UserId', data.id)
@@ -53,36 +49,37 @@ export default {
             this.password = ''
         },
         OnGoogleAuthSuccess (idToken) {
-          var google_id_token = idToken;
+          var google_id_token = idToken
+          
           axios({
             method: 'POST',
             url: '/googleLogin',
             headers: {google_id_token}
           })
           .then(({data})=> {
-            console.log('yang ini ya',data);
-                localStorage.setItem('access_token',data.access_token)
-                localStorage.setItem('username', data.username)
-                localStorage.setItem('UserId', data.id)
-                this.$emit('changePage', 'dashBoardPage')
+            localStorage.setItem('access_token',data.access_token)
+            localStorage.setItem('username', data.username)
+            localStorage.setItem('UserId', data.id)
+            this.$emit('changePage', 'dashBoardPage')
           })
         },
-        OnGoogleAuthFail (error) {
+      OnGoogleAuthFail (error) {
           console.log(error)
       }
+    },
+    created() {
     }
 
 }
 </script>
 
 <style>
-/* .google-signin-button {
-  color: white;
-  background-color: red;
+.google-signin-button {
+  color: transparent !important;
+  background-color: transparent !important;
   height: 50px;
   font-size: 16px;
-  border-radius: 10px;
+  border-color: #f8f9fa!important;
   padding: 10px 20px 25px 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */
+}
 </style>

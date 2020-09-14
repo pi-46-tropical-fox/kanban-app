@@ -12,8 +12,7 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('Projects', [{
-    note: "Create Kanban",
-    UserId: 1,
+    title: "Create Kanban",
     OrganizationId : 1,
     createdAt: new Date(),
     updatedAt: new Date()

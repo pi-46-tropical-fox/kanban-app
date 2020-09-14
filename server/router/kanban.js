@@ -1,22 +1,25 @@
 const router = require('express').Router()
-// const UserController = require('../controllers/UserController.js')
+
+const {authorization} = require('../middlewares/auth.js')
 const KanbanController = require('../controllers/KanbanController.js')
 
-router.get('/kanban', KanbanController.getProjects)
+router.get('/', KanbanController.getProjects)
 
-router.get('/kanban/:id', KanbanController.getCategories)
-router.post('/kanban/:id', KanbanController.postCategory)
-router.put('/kanban/:id', KanbanController.updateCategory)
-router.delete('/kanban/:id', KanbanController.deleteCategory)
-
-
-router.post('/kanban/:id/tasks', KanbanController.postTask)
+router.get('/:id', KanbanController.getCategories)
+router.post('/:id', KanbanController.postCategory)
+router.put('/:id', KanbanController.updateCategory)
+router.delete('/:id', KanbanController.deleteCategory)
 
 
-// router.put('/kanban/:id', KanbanController.updateTask)
-router.get('/kanban/:id/tasks/:id', KanbanController.getTask)
-router.put('/kanban/:id/tasks/:id', KanbanController.updateTask)
-router.delete('/kanban/:id/tasks/:id', KanbanController.deleteTask)
+router.get('/:id/tasks/:id', KanbanController.getTask)
+
+
+router.post('/:id/tasks', KanbanController.postTask)
+
+router.put('/:id/tasks/:id', authorization, KanbanController.updateTask)
+router.put('/:id/tasks/:id/move', authorization, KanbanController.moveTask)
+router.put('/:id/tasks/:id/back', authorization, KanbanController.backTask)
+router.delete('/:id/tasks/:id', authorization, KanbanController.deleteTask)
 
 
 module.exports = router

@@ -1,21 +1,21 @@
 <template>
     <div class="text-center" style="margin-top:30px;">
-        <h1>KANBAN</h1>
-        <div><div class="input-group mb-3">
+        <h1>Hi {{username}}!</h1>
+        <div>
+    <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <label class="input-group-text" for="inputGroupSelect01">Project</label>
+    <label class="input-group-text"  style="margin-left: 20px;" for="inputGroupSelect01">Project</label>
   </div>
   <select class="custom-select" id="inputGroupSelect01">
-    <option selected>Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+    <option selected style="text-weight:bold;">Create Kanban</option>
+
   </select>
   <button class="btn btn-primary" @click.prevent="addCategoryForm()" 
-  style="margin-left: 20px" data-toggle="modal" data-target="#staticBackdrop">
+  style="margin-left: 20px; margin-right: 20px;" data-toggle="modal" data-target="#staticBackdrop">
 					Add Category
 				</button>
-</div></div>
+</div>
+</div>
         <div class="row flex-nowrap mr-2 ml-2" style="overflow-x: auto;">
             <CardCategories
                 v-for="category in categories" :key="category.id"
@@ -49,7 +49,7 @@
 
                 <AddCategoryForm v-if="activity == 'createCategory'"
                      @createCategory="submitCreateCategory">
-                    </AddCategoryForm>>
+                    </AddCategoryForm>
     </div>
   
 </template>
@@ -66,6 +66,7 @@ export default {
     props: ['categoriesData'],
     data() {
         return {
+            username: '',
             activity: '',
             categories: [],
             categoryId: null,
@@ -145,7 +146,7 @@ export default {
         },
          
         submitEditTask(payload){
-            console.log(payload);
+            
             payload.CategoryId = this.categoryId
             payload.UserId = +localStorage.UserId
             axios({
@@ -175,7 +176,7 @@ export default {
 				}
               })
               .then(({data})=> {
-                console.log('create success');					
+                				
                 this.activity = 'show'
                 this.fetchCategories()
               })
@@ -186,6 +187,7 @@ export default {
         
         fetchCategories() {
             console.log('jalan');
+            
 			axios({
 				url: '/kanban/1',
 				method: "GET",
@@ -194,7 +196,8 @@ export default {
 				}
 			})
 			.then(({data})=> {
-				this.categories = data
+                this.username = localStorage.username
+                this.categories = data
 			})
 	        .catch(err=> {
 			    console.log(err);

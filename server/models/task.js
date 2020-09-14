@@ -35,19 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    due_date: {
-      type: DataTypes.DATE,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: `Due Date is required!`,
-        },
-        isAfter: {
-          args: new Date().toISOString(),
-          msg: "Cannot set this due date!"
-        }
-      },
-    },
+    due_date: DataTypes.DATE,
     UserId : DataTypes.INTEGER,
     CategoryId : DataTypes.INTEGER
   }, {

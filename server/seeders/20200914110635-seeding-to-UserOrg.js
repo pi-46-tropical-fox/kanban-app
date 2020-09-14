@@ -11,13 +11,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('UserOrganizations', [{
-    role: "Student",
-    OrganizationsId: 1,
-    UserId : 1,
-    createdAt: new Date(),
-    updatedAt: new Date()
-  }], {});
+    await queryInterface.bulkInsert('UserOrganizations', [{
+      role: "Student",
+      OrganizationsId: 1,
+      UserId : 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
