@@ -7,7 +7,7 @@ class UserController {
     static async register(req, res) {
         const { email, password } = req.body
         try {
-            const user = await User.create({email, password})
+            await User.create({email, password})
             return res.status(201).json({email})
         }
         catch(err) {
@@ -27,7 +27,6 @@ class UserController {
                 return res.status(400).json({message: "Invalid Password"})
             }
             const access_token = generateToken({email, id: user.id})
-            console.log(access_token);
             return res.status(200).json({access_token})
         }
         catch(err) {
@@ -42,9 +41,8 @@ class UserController {
         let given_name='';
         client.verifyIdToken({
             idToken: google_access_token,
-            audience: process.env.CLIENT_ID,
+            audience: process.env.CLIENT_ID
         })
-        console.log('google')
         .then(ticket => {
             return ticket.getPayload()
         })
@@ -56,7 +54,6 @@ class UserController {
         .then (user => {
             if (!user) {
                 const obj = {
-                    username: given_name,
                     email: email_google,
                     password: 'random'
                 }

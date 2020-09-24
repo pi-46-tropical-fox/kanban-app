@@ -1,5 +1,5 @@
 const { verifyToken } = require('../helpers/jwt')
-const { User, Task, UserOrganization } = require('../models')
+const { User, Task } = require('../models')
 
 const authentication = async function(req, res, next) {
     const { access_token } = req.headers
@@ -20,16 +20,14 @@ const authentication = async function(req, res, next) {
 }
 const authorization = async function(req, res, next) {
     try {
-        const conjunction = await UserOrganization.findOne({where: {OrganizationId: req.params.organizationId, UserId: req.userData.id}})
-        if (!conjunction) {
-            return res.status(403).json({message: 'User Not Authorization<<'})
-        } else next()
-        // const task = await Task.findOne({where: {id: conjunction.TaskId}})
-        // if (task) {
-        //     next()
-        // } else {
-        //     return res.status(403).json({message: 'User Not Authorization'})
-        // }
+        const {taskId}= req.params
+        const task = await Task.findByPk(taskId)
+        if (task && task.UserId == req.userData.id) {
+            next()
+        } else {
+            return res.status(403).json({message: 'User Not Authorized'})
+        }
+        // next()
     }
     catch(err) {
         console.log(err, '<<<< error Authorization')

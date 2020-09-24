@@ -7,8 +7,9 @@
         :tasksData="tasksData"
         :key="i"
         @addTask="addTask"
+        @updateTask="update"
+        @switchCategory="switchCategory"
         @deleteTask="deleteTask"
-        @userEmail="userEmail"
         >
         </Category>
     </div> 
@@ -19,7 +20,7 @@
 import Category from '../components/Category'
 export default {
   name: 'Dashboard Task',
-  props: ['tasksData', 'categoryData', 'userEmail'],
+  props: ['tasksData', 'categoryData'],
   components : {
     Category
   },
@@ -27,8 +28,14 @@ export default {
     addTask(data, id) {
       this.$emit('addTask', data, id)
     },
+    update(data) {
+      this.$emit('updateTask', data)
+    },
     deleteTask(id) {
       this.$emit('deleteTask', id)
+    },
+    switchCategory(data) {
+        this.$emit('switchCategory', data)
     }
   }
 }

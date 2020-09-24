@@ -21,19 +21,31 @@
                     </div>
                 </div>
                 <button class="button is-info" type="submit">Login</button>
-                <div class="g-signin2" :onsuccess="onSignIn" v-on:click="onSignIn"></div>
+                <GoogleLogin :params="params" :onSuccess="onSuccess" style="padding: 0; border: none">
+                    <img src="https://raw.githubusercontent.com/rmartide/vue-google-login/master/images/ui.png" style="width: auto; height: auto">
+                </GoogleLogin>
             </form>
         </div>
     </div>
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
+
 export default {
     name: 'LoginPage',
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            params: {
+                    client_id: "49894177923-1bd80rp3j1v4s7l6gkloobtn7psq8ivk.apps.googleusercontent.com"
+            }, 
+            renderParams: {
+                width: 250,
+                height: 50,
+                longtitle: true
+            }
         }
     },
     // mounted() {
@@ -49,13 +61,16 @@ export default {
             }
             this.$emit('loginSubmit', payload)
         },
-        onSignIn(user) {
-            console.log(user, '<<<<<<<< user')
-            this.$emit('googleLogin', user)
+        onSuccess(googleUser) {
+            console.log(googleUser);
+            this.$emit('googleLogin', googleUser)
         },
         switchRegister() {
             this.$emit('switchRegister')
         }
+    },
+    components: {
+        GoogleLogin
     }
 }
 </script>

@@ -3,10 +3,27 @@ const { User, Task, Category } = require('../models')
 class TaskController {
     static async showTasks(req, res) {
         try {
-            // const conjunction = await UserOrganization.findAll({where: {OrganizationId: req.params.organizationId}})
+            let arr = []
             const category = await Category.findAll()
-            const tasks = await Task.findAll({where: {OrganizationId: req.params.organizationId}})
-            return res.status(200).json({tasks, category})
+            const users = await User.findAll()
+            const tasks = await Task.findAll({order: ['id']})
+            for (let i=0;i<users.length;i++) {
+                for (let j=0;j<tasks.length;j++) {
+                    if (users[i].id == tasks[j].UserId) {
+                        arr.push({
+                            id: tasks[j].id,
+                            title: tasks[j].title,
+                            updatedAt: tasks[j].updatedAt,
+                            CategoryId: tasks[j].CategoryId,
+                            user: {
+                                id: users[i].id,
+                                email: users[i].email
+                            }
+                        })
+                    }
+                }
+            }
+            return res.status(200).json(arr)
         }
         catch(err) {
             console.log(err, '<<<< error show task')
@@ -16,8 +33,7 @@ class TaskController {
     static async addTask(req, res) {
         const { title } = req.body
         try {
-            const task = await Task.create({title, CategoryId: req.body.CategoryId, UserId: req.userData.id, OrganizationId: req.params.organizationId})
-            // const conjunction = await UserOrganization.create({OrganizationId: req.params.organizationId, UserId: req.userData.id})
+            const task = await Task.create({title, CategoryId: req.body.CategoryId, UserId: req.userData.id})
             return res.status(201).json(task)
         }
         catch(err) {
@@ -26,12 +42,9 @@ class TaskController {
         }
     }
     static async getTaskById(req, res) {
-        const { taskId, organizationId } = req.params
+        const { taskId } = req.params
         try {
-            // const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
-            // if (!conjunction ) {
-                // }
-            const task = await Task.findOne({where: {id: taskId, OrganizationId: organizationId}})
+            const task = await Task.findOne({where: {id: taskId}})
             if (!task) {
                     return res.status(400).json({message: 'Task Not Found'})
             } else {
@@ -47,11 +60,7 @@ class TaskController {
        const { taskId } = req.params
        const { title, CategoryId } = req.body
         try {
-            // const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
-            // if (!conjunction) {
-            //     return res.status(400).json({message: 'Task Not Found'})
-            // }
-            const task = await Task.update({title, CategoryId}, {where: {id: taskId}})
+            const task = await Task.update({title, CategoryId, updatedAt: new Date()}, {where: {id: taskId}})
             if (!task) {
                 return res.status(400).json({message: 'Task Not Found'})
             } else {
@@ -66,10 +75,6 @@ class TaskController {
     static async deleteTask(req, res) {
         const { taskId } = req.params
         try {
-            // const conjunction = await UserOrganizationTask.findOne({where: {UserId: req.userData.id, OrganizationId: organizationId, TaskId: taskId}})
-            // if (!conjunction) {
-            //     return res.status(400).json({message: 'Task Not Found'})
-            // }
             const task = await Task.destroy({where: {id: taskId}})
             if (!task) {
                 return res.status(400).json({message: 'Task Not Found'})

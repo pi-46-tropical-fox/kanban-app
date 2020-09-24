@@ -16,13 +16,15 @@ module.exports = (sequelize, DataTypes) => {
   };
   User.init({
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    organization: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
     hooks: {
       beforeCreate(user, option) {
         user.password = generatePassword(user.password)
+        user.organization = "Hacktiv8"
       }
     }
   });

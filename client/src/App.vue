@@ -15,40 +15,17 @@
 
     <Navbar 
     @logoutButton="logout"
-    @dashboardOrganizationButton="getOrganization"
-    v-if="currentPage === 'loginPage' || currentPage === 'dashboardTask' || currentPage === 'dashboardOrganizationPage' || currentPage === 'createOrganizationPage' || currentPage === 'joinOrganizationPage'
+    v-if="currentPage === 'dashboardTask'
     "></Navbar>
-
-    <DashboardOrganization
-    :organizationData="organizations"
-    @enterOrganization="getTask"
-    @createOrganizationButton="createOrganization"
-    @joinOrganizationButton="joinOrganization"
-    v-if="currentPage === 'dashboardOrganizationPage'">
-    </DashboardOrganization>
-
-    <JoinOrganization 
-    :organizationData="organizations"
-    @dashboardOrganizationButton="getOrganization"
-    @joinOrganization="joinOrganization"
-    @createOrganizationButton="createOrganization"
-    v-if="currentPage === 'joinOrganizationPage'">
-    </JoinOrganization>
-
-    <CreateOrganization 
-    @dashboardOrganizationButton="getOrganization"
-    @createOrganizationButton="createOrganization"
-    @joinOrganizationButton="joinOrganization" 
-    v-if="currentPage === 'createOrganizationPage'">
-    </CreateOrganization>
 
     <DashboardTask
     v-if="currentPage === 'dashboardTask'"
     :tasksData="tasks"
-    :categoryData="category"
+    :categoryData="categories"
     @addTask="addTask"
+    @updateTask="update"
+    @switchCategory="switchCategory"
     @deleteTask="deleteTask"
-    @userEmail="userEmail"
     ></DashboardTask>
   </div>
 </template>
@@ -58,9 +35,6 @@ import axios from './config/axios'
 import Navbar from './views/Navbar.vue'
 import LoginPage from './views/Login.vue'
 import RegisterPage from './views/Register'
-import DashboardOrganization from './views/DasboardOrganization.vue'
-import CreateOrganization from './views/CreateOrganizationPage.vue'
-import JoinOrganization from './views/JoinOrganization'
 import DashboardTask from './views/DashboardTask'
 export default {
   name: 'App', 
@@ -68,43 +42,22 @@ export default {
     return {
       message: 'Hello world',
       currentPage: 'loginPage',
-      enterTask: false,
       tasks: [],
-      organizations: [],
-      category: [
-        { 
-          id: 1,
-          name: 'Backlog'
-        },
-        {
-          id: 2,
-          name: 'Todo' 
-        },
-        {
-          id: 3,
-          name: 'Doing' 
-        },
-        {
-          id: 4,
-          name: 'Done' 
-        }
-      ]
+      categories: []
     };
   },
   components: {
       Navbar,
       LoginPage,
       RegisterPage,
-      DashboardOrganization,
-      JoinOrganization,
-      CreateOrganization,
       DashboardTask
   },
   methods: {
     checkAuth() {
       if (localStorage.access_token) {
-          this.currentPage = 'dashboardOrganizationPage'
-          this.getOrganization()
+          this.currentPage = 'dashboardTask'
+          this.getTask()
+          this.getCategories()
       } else {
           this.currentPage = 'loginPage'
       }
@@ -117,10 +70,10 @@ export default {
         data: payload
       })
       .then(({data})=> {
-        console.log(payload)
-        this.currentPage = 'dashboardOrganizationPage',
-        this.enterTask = false;
+        this.currentPage = 'dashboardTask'
         localStorage.setItem('access_token', data.access_token)
+        this.getTask()
+        this.getCategories()
       })
       .catch(err => {
         console.log(err)
@@ -142,19 +95,18 @@ export default {
       })
     },
     onSignIn(googleUser) {
-      console.log(googleUser);
       var google_access_token = googleUser.getAuthResponse().id_token;
-      $.ajax({
+      axios({
           method: 'POST',
           url: 'http://localhost:3000/googlelogin',
           headers: {google_access_token}
       })
-        .done ((response) => {
-            localStorage.setItem('access_token', response.access_token)
-            this.currentPage='loginPage'
-            this.checkAuth()
+        .then (({data}) => {
+          localStorage.setItem('access_token', data.access_token)
+          this.currentPage='loginPage'
+          this.checkAuth()
         })
-        .fail((err) => {
+        .catch((err) => {
             console.log(err)
         })
     },
@@ -165,25 +117,23 @@ export default {
       });
     },
     logout() {
+      this.signOut()
       localStorage.clear()
       localStorage.removeItem('access_token')
-      // this.signOut()
       this.currentPage='loginPage'
       this.enterTask = false;
     },
     getTask(id) { 
-      console.log(id)
       axios({
-        url: `/${id}/task`,
+        url: `/task`,
         method: 'GET',
         headers: {
           access_token: localStorage.access_token
         }
       })
       .then(({data})=> {
-        this.tasks = data.tasks
+        this.tasks = data
         this.currentPage = 'dashboardTask'
-        this.enterTask = true;
       })
       .catch(err => {
         console.log(err)
@@ -191,85 +141,99 @@ export default {
     },
     addTask(data) {
       axios({
-        url: `/1/task`,
+        url: `/task`,
         method: 'POST',
         headers: {
           access_token: localStorage.access_token
         },
         data: data
       })
+      .then(({data})=> {
+        console.log(data);
+        this.getTask()
+      })
       .catch(err => {
         console.log(err)
       })
     },
-    deleteTask(id) {
+    update(data) {
       axios({
-        url: `/1/task/${id}`,
-        method: 'DELETE',
+        url: `/task/${data.id}`,
+        method: 'PUT',
         headers: {
           access_token: localStorage.access_token
+        },
+        data: {
+          title: data.title
         }
+      })
+      .then(data => {
+        this.getTask()
       })
       .catch(err=> {
         console.log(err)
       })
     },
-    getOrganization() {
-      this.currentPage = 'dashboardOrganizationPage'
+    deleteTask(id) {
       axios({
-        url: `/organization`,
+        url: `/task/${id}`,
+        method: 'DELETE',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+      .then(data => {
+        this.getTask()
+      })
+      .catch(err=> {
+        console.log(err)
+      })
+    },
+    getCategories() {
+      axios({
+        url: `/category`,
         method: 'GET',
         headers: {
           access_token: localStorage.access_token
         }
       })
-      .then(({data})=> {
+      .then(({data}) => {
         console.log(data)
-        this.organizations = data
-        this.enterTask = true
+        this.categories = data
       })
-      .catch(err => {
+      .catch(err=> {
         console.log(err)
       })
     },
-    joinOrganization(id) {
-      this.currentPage = 'joinOrganizationPage'
-      axios({
-        url: `/organization/${id}`,
-        method: 'GET',
-        headers: {
-          access_token: localStorage.access_token
-        }
-      })
-      .then(({data})=> {
-        console.log(data)
-        this.organizations = data
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    },
-    createOrganization(data) {
-      this.currentPage = 'createOrganizationPage'
-      axios({
-        url: `/organization`,
-        method: 'POST',
+    switchCategory(data) {
+        axios({
+        url: `/category/${data.id}`,
+        method: 'PUT',
         headers: {
           access_token: localStorage.access_token
         },
-        data: data
+        data: {
+          number: data.number
+        }
       })
-      .then(({data})=> {
-        console.log(data)
-        this.currentPage = 'dashboardOrganizationPage'
+      .then(({data}) => {
+        this.getTask()
       })
-      .catch(err => {
+      .catch(err=> {
         console.log(err)
       })
     }
   },
   created() {
     this.checkAuth()
+  },
+  computed: {
+    setCategories() {
+      return this.getCategories()
+    },
+    setTask() {
+      return this.getTask()
+    }
   }
 };
 </script>

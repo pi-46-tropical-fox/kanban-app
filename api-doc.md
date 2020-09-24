@@ -8,13 +8,13 @@ My Assets App is an application to manage your assets. This app has :
 ## RESTful endpoints
 * POST /register => Untuk register User
 * POST /login => Untuk login User
-* GET /organization => Untuk mendapatkan nama organisasi
-* POST /organization => Menambahkan Organisasi
-* GET /:organizationId/task => Menampilkan Task berdasarkan id Organisasi
-* POST /:organizationId/task => Menambahkan Task berdasarkan id Organisasi
-* GET /:organizationId/task/:taskId => Mendapatkan data Task berdasarkan id Task
-* PUT /:organizationId/task/:taskId => Memperbarui data Task berdasarkan id Task
-* DELETE /:organizationId/task/:taskId => Menghapus data Task berdasarkan id Task
+* GET /category => Untuk menampilkan category
+* PUT /category/:taskId => Untuk memindah category berdasarkan task Id 
+* GET /task => Menampilkan Task berdasarkan id Organisasi
+* POST /task => Menambahkan Task berdasarkan id Organisasi
+* GET /task/:taskId => Mendapatkan data Task berdasarkan id Task
+* PUT /task/:taskId => Memperbarui data Task berdasarkan id Task
+* DELETE /task/:taskId => Menghapus data Task berdasarkan id Task
 ---
 ### POST /login
 
@@ -100,9 +100,9 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### GET /organization
+### GET /category
 
-> Get all organization
+> Get all category
 
 _Request Header_
 ```
@@ -121,10 +121,20 @@ _Response (200)_
 [
   {
     "id": 1,
-    "name": "Hackitv8",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
-  }
+    "name": "Backlog"
+  },
+  {
+    "id": 2,
+    "name": "Todo"
+  },
+  {
+    "id": 3,
+    "name": "Doing"
+  },
+  {
+    "id": 4,
+    "name": "Done"
+  },
 ]
 ```
 
@@ -141,9 +151,9 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### POST /organization
+### PUT /category/:taskId
 
-> Create new Organization
+> Switch Task Category
 
 _Request Header_
 ```
@@ -155,22 +165,21 @@ _Request Header_
 _Request Body_
 ```
 {
-  "name": "Tropical Fox"
+  "number": 1
 }
 ```
 
-_Response (201 - Created)_
+_Response (200)_
 ```
 {
-  "id": 2,
-  "name": "Tropical Fox"
+  "message": 'Successfully to Switch'
 }
 ```
 
 _Response (400 - Bad Request)_
 ```
 {
-  "message": "Invalid requests"
+  "message": "Invalid request"
 }
 ```
 _Response (500 - Internal Server Error)_
@@ -180,7 +189,7 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### GET /:organizationId/task
+### GET /task
 
 > Get all Task
 
@@ -202,16 +211,12 @@ _Response (200)_
   {
     "id": 1,
     "tile": "Kanban-app",
-    "category": "Development",
-    "createdAt": "2020-03-20T07:15:12.149Z",
     "updatedAt": "2020-03-20T07:15:12.149Z",
-  },
-  {
-    "id": 2,
-    "title": "Fancy Todo",
-    "category": "Done",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
+    "categoryId": "1",
+    "user": {
+      id: 1,
+      email: user@mail.com
+    }
   }
 ]
 ```
@@ -229,7 +234,7 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### POST /:organizationId/task
+### POST /task
 
 > Create new task
 
@@ -253,7 +258,9 @@ _Response (201 - Created)_
 {
   "id": 3,
   "title": "Live Code Week 6",
-  "category": "Done",
+  "category": "Doing",
+  "createdAt": "2020-03-20T07:15:12.149Z",
+  "updatedAt": "2020-03-20T07:15:12.149Z",
 }
 ```
 
@@ -270,9 +277,9 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### GET /:organizationId/task/:taskId
+### GET /task/:taskId
 
-> Create new task
+> Get task by Id
 
 _Request Header_
 ```
@@ -282,18 +289,14 @@ _Request Header_
 ```
 _Request Body_
 ```
-{
-  "title": "Pair Project week 6",
-  "category": "Done"
-}
 ```
 
 _Response (200)_
 ```
 {
   "id": 3,
-  "title": "Pair Project Week 6",
-  "category": "Done",
+  "title": "Live Code Week 6",
+  "category": "Doing",
 }
 ```
 
@@ -310,9 +313,9 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-### PUT /:organizationId/task/:taskId
+### PUT /task/:taskId
 
-> Create new task
+> Update task
 
 _Request Header_
 ```
@@ -342,9 +345,9 @@ _Response (500 - Internal Server Error)_
   "message": "Internal Server Error"
 }
 ```
-### DELETE /:organizationId/task/:taskId
+### DELETE /task/:taskId
 
-> Create new task
+> Delete task
 
 _Request Header_
 ```

@@ -10,20 +10,9 @@
         </div>
       
         <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" v-on:click="dashboardOrganization">
-              Dashboard
-            </a>
-          </div>
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <!-- <a class="button is-primary has-text-justify">
-                    <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                    Log in
-                </a> -->
                 <a class="button is-danger" v-on:click="logout">
                     Log out
                 </a>

@@ -1,14 +1,15 @@
 <template>
     <div>
-        <p class="header">{{ category.name }}</p>
+        <p class="header title is-size-5">{{ category.name }}</p>
         <TaskCard
         v-for="task in filteredTasks"
         :key="task.id"
         :task="task"
+        @updateTask="update"
+        @switchCategory="switchCategory"
         @deleteTask="deleteTask"
-        @userEmail="userEmail"
         ></TaskCard>
-        <form class="field" @submit.prevent="addTask(category.id)">
+        <form class="field columns" @submit.prevent="addTask(category.id)" style="margin-left: 0; width: 100%">
             <input class="input" type="text" name="title" v-model="title">
             <button class="button" type="submit">Add</button>
         </form>
@@ -40,9 +41,16 @@ export default {
                 CategoryId: id
             }
             this.$emit('addTask', data, id)
+            this.title = ''
+        },
+        update(data) {
+            this.$emit('updateTask', data)
         },
         deleteTask(id) {
             this.$emit('deleteTask', id)
+        },
+        switchCategory(data) {
+            this.$emit('switchCategory', data)
         }
     }
 }

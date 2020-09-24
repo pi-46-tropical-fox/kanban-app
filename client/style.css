@@ -12368,20 +12368,6 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 28px 30px;
 }
 
-.container-form .box-form .organization-list .organization-item {
-  margin: 5px 0;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 .container-kanban {
   height: 80vh;
   width: 100%;
