@@ -98,7 +98,7 @@ export default {
       var google_access_token = googleUser.getAuthResponse().id_token;
       axios({
           method: 'POST',
-          url: 'http://localhost:3000/googlelogin',
+          url: '/googlelogin',
           headers: {google_access_token}
       })
         .then (({data}) => {
