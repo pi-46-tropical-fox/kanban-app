@@ -10,13 +10,13 @@
           @getId="getId"
           @getTaskId='getTaskId'
           @fetchTasks='fetchTasks'
+          @taskForward="taskForward"
         />
       </div>
     </div>
     <AddTask @tasksSubmit="tasksSubmit"></AddTask>
     <EditTask @tasksEdit="tasksEdit" :task="task"></EditTask>
-    <EditBack :tasksData="tasksData" @Back="Back"></EditBack>
-    <EditForward :tasksData="tasksData" @Forward="Forward"></EditForward>
+
   </div>
 </template>
 
@@ -26,8 +26,7 @@ import Navbar from "../components/Navbar";
 import AddTask from "../components/AddTask";
 import axios from "../config/axios";
 import EditTask from "../components/EditTask"
-import EditBack from "../components/EditBack"
-import EditForward from "../components/EditForward"
+
 export default {
   name: "Dashboard",
   props: ["tasksData"],
@@ -36,8 +35,6 @@ export default {
     Navbar,
     AddTask,
     EditTask,
-    EditBack,
-    EditForward
   },
   data() {
     return {
@@ -64,8 +61,19 @@ export default {
       this.id = id;
     },
     getTaskId(task) {
-      this.task = task
-      this.taskId = task.id
+       axios({
+        method: 'PATCH',
+        url: `/tasks/${task.id}`,
+        data: {
+          CategoryId: task.CategoryId-1
+        },
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+      .then(data => {
+        this.fetchTasks()
+      })
     },
     tasksEdit(payload) {
       axios({
@@ -87,35 +95,23 @@ export default {
     signOut() {
       this.$emit('signOut')
     },
-    Back(tasksData) {
+    taskForward(task) {
       axios({
         method: 'PATCH',
-        url: `/tasks/${tasksData.id}`,
+        url: `/tasks/${task.id}`,
         data: {
-          CategoryId: tasksData.CategoryId-1
+          CategoryId: task.CategoryId + 1
         },
         headers: {
           access_token: localStorage.access_token
         }
       })
-      .then(data => {
-        this.$bvModal('modal-6')
-      })
-    },
-    Forward(tasksData) {
-      axios({
-        method: 'PATCH',
-        url: `/tasks/${tasksData.id}`,
-        data: {
-          CategoryId: tasksData.CategoryId + 1
-        },
-        headers: {
-          access_token: localStorage.access_token
-        }
-      })
-      .then(data => {
-        this.$bvModal('modal-9')
-      })
+      .then((data) => {
+        this.fetchTasks()
+      }).catch((err) => {
+        console.log(err)
+      });
+
     }
   },
 };

@@ -5,7 +5,7 @@
         <b-button v-b-modal.modal-1 @click="getId">Add</b-button>
         <h4>{{ tasks.name }}</h4>
       </div>
-      <CardTask v-for="value in tasks.Tasks" :value="value" :key="value.id" @getTaskId="getTaskId" @fetchTasks='fetchTasks'>
+      <CardTask v-for="value in tasks.Tasks" :value="value" :key="value.id" @getTaskId="getTaskId" @taskForward="taskForward" @fetchTasks='fetchTasks'>
       </CardTask>
     </div>
   </div>
@@ -29,6 +29,9 @@ export default {
     },
     fetchTasks() {
       this.$emit('fetchTasks')
+    },
+    taskForward(task) {
+      this.$emit('taskForward', task)
     }
   }
 };

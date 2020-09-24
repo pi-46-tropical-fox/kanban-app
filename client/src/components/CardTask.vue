@@ -5,9 +5,9 @@
       <p class="text-muted">{{ value.description }}</p>
       <p>{{ value.User.email }}</p>
       <b-button v-b-modal.modal-2 @click="getId">Edit</b-button>
-      <b-button v-b-modal.modal-6 @click="getId">Back</b-button>
-      <b-button v-b-modal.modal-9 @click="getId">Forward</b-button>
-      <a href="#" @fetchtasks='fetchTasks' @click.prevent="deleteTask">Delete</a>
+      <button @click="getId"><i class="far fa-hand-point-left"></i></button>
+      <button @click="getIdForward"><i class="far fa-hand-point-right"></i></button>
+      <button @fetchtasks='fetchTasks' @click.prevent="deleteTask"><i class="fas fa-trash"></i></button>
     </div>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
   methods: {
     getId() {
       this.$emit("getTaskId", this.value);
+    },
+    getIdForward() {
+      this.$emit('taskForward', this.value)
     },
     deleteTask() {
       axios({
