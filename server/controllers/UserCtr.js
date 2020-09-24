@@ -39,7 +39,6 @@ class Controller{
                 throw error
             }
         } catch(err) {
-            console.log(err)
             return next(err)
         }
     }

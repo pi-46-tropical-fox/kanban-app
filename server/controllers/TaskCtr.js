@@ -8,13 +8,10 @@ class Controller{
 
         try{
             const task = await Task.create({title, UserId: id, CategoryId: categoryId})
-            console.log('================>', task.dataValues)
             return res.status(201).json({
                 data:{
                     message: "Successfully create new Task"
                 }
-                // ...task.dataValues,
-                // message: "Successfully create new Task"
             })
         }catch(err){
             console.log(err)
