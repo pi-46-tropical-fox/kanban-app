@@ -1,0 +1,33 @@
+@import './node_modules/bulma/bulma.sass';
+
+// CSS CODE
+
+.container-form {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(8, 160, 114);
+    .box-form {
+        border-radius: 5px;
+        background-color: #fff;
+        width: 360px;
+        padding: 28px 30px;
+    }
+}
+.container-kanban {
+    height: 80vh;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    .category {
+        margin: 0 10px;
+        width: 25%;
+        .header {
+            padding: 10px;
+            color:white;
+            background-color: rgb(37, 37, 37);
+        }
+    }
+}
