@@ -36,7 +36,7 @@
 		methods: {
 			fetchTasks() {
 				axios({
-					url: "http://localhost:3000/tasks",
+					url: "https://kanban-app-alftirta.herokuapp.com/tasks",
 					method: "GET",
 					headers: {
 						access_token: localStorage.access_token

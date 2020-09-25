@@ -47,7 +47,7 @@
 		methods: {
 			login() {
 				axios({
-					url: "http://localhost:3000/users/login",
+					url: "https://kanban-app-alftirta.herokuapp.com/users/login",
 					method: "POST",
 					data: {
 						email: this.email,

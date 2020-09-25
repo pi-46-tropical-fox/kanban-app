@@ -17,7 +17,7 @@
 		methods: {
 			deleteTask(id) {
 				axios({
-					url: `http://localhost:3000/tasks/${id}`,
+					url: `https://kanban-app-alftirta.herokuapp.com/tasks/${id}`,
 					method: "DELETE",
 					headers: {
 						access_token: localStorage.access_token

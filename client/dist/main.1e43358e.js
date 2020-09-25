@@ -10770,7 +10770,7 @@ var _default = {
       var _this = this;
 
       (0, _axios.default)({
-        url: "http://localhost:3000/users/login",
+        url: "https://kanban-app-alftirta.herokuapp.com/users/login",
         method: "POST",
         data: {
           email: this.email,
@@ -11247,7 +11247,7 @@ var _default = {
       var _this = this;
 
       (0, _axios.default)({
-        url: "http://localhost:3000/tasks/".concat(id),
+        url: "https://kanban-app-alftirta.herokuapp.com/tasks/".concat(id),
         method: "DELETE",
         headers: {
           access_token: localStorage.access_token
@@ -11623,7 +11623,7 @@ var _default = {
       var _this = this;
 
       (0, _axios.default)({
-        url: "http://localhost:3000/tasks/".concat(id),
+        url: "https://kanban-app-alftirta.herokuapp.com/tasks/".concat(id),
         method: "PUT",
         headers: {
           access_token: localStorage.access_token
@@ -11962,7 +11962,7 @@ var _default = {
       var _this = this;
 
       (0, _axios.default)({
-        url: "http://localhost:3000/tasks",
+        url: "https://kanban-app-alftirta.herokuapp.com/tasks",
         method: "GET",
         headers: {
           access_token: localStorage.access_token
@@ -12416,7 +12416,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42189" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39733" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

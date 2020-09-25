@@ -58,7 +58,7 @@
 		methods: {
 			edit(id) {
 				axios({
-					url: `http://localhost:3000/tasks/${id}`,
+					url: `https://kanban-app-alftirta.herokuapp.com/tasks/${id}`,
 					method: "PUT",
 					headers: {
 						access_token: localStorage.access_token
