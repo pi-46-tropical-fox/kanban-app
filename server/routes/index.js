@@ -1,23 +1,18 @@
+const ControlUser  = require('../controllers/userControl')
+const authentication = require('../middleware/authentication')
+const authorization = require('../middleware/authorization')
 const router = require('express').Router()
-const UserController = require('../controllers/userController')
-const TaskController = require('../controllers/TaskController')
-const CategoryController = require('../controllers/catogoryController')
-const authentication = require('../middlewares/authentication')
-const authorization = require('../middlewares/authorization')
 
-router.post('/register', UserController.register)
-router.post('/login', UserController.login)
+router.post('/register', ControlUser.register )
+router.post('/login', ControlUser.login)
+router.post('/googleLogin', ControlUser.googleLogin)
 
-router.post('/googleLogin', UserController.googleLogin)
+router.get('/',ControlUser.getTask)
+router.use(authentication)
 
-router.get('/tasks', authentication, TaskController.show)
-router.post('/tasks/:CategoryId', authentication, TaskController.create)
-router.get('/tasks/:id', authentication, authorization, TaskController.find)
-router.put('/tasks/:id', authentication, authorization, TaskController.edit)
-router.delete('/tasks/:id', authentication, authorization, TaskController.delete)
+router.post('/',ControlUser.postTask)
+router.get('/:id',ControlUser.findOne)
+router.put('/:id',ControlUser.putTask)
+router.delete('/:id',ControlUser.deleteTask)
 
-router.post('/category', authentication, CategoryController.create)
-
-module.exports = router 
-
-
+module.exports = router

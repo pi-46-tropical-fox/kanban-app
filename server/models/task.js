@@ -1,35 +1,29 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Task extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      Task.belongsTo(models.User)
-      Task.belongsTo(models.Category)
-    }
-  };
+  const { Model } = sequelize.Sequelize
+  class Task extends Model{}
   Task.init({
-    title: {
+    title:{
       type: DataTypes.STRING,
-      validate: {
-        notEmpty:{
-          args: true,
-          msg : 'title cannot be empty'
-        }
+      allowNull : false,
+      validate :{
+        notNull : {msg : "title cannot be empty"},
+        notEmpty : {msg : "title cannot be empty"}
+      }
+    }, 
+    category:{
+      type: DataTypes.STRING,
+      allowNull : false,
+      validate :{
+        notNull : {msg : "category cannot be empty"},
+        notEmpty : {msg : "category cannot be empty"}
       }
     },
-    UserId: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Task',
-  });
+    UserId: DataTypes.INTEGER
+  },{sequelize})
+  Task.associate = function(models) {
+    Task.belongsTo(models.User)
+    // associations can be defined here
+  };
   return Task;
 };

@@ -7,12 +7,10 @@
 - POST /register
 - POST /login
 - POST /googleLogin
-- POST /tasks/:CategoryId
+- POST /tasks/:id
 - GET /tasks
 - GET /tasks/:id
-- PUT /tasks/:id
 - DELETE /tasks/:id
-- POST /categories
 ````
 
 ## RESTful endpoints
@@ -28,15 +26,16 @@ not needed
 _Request Body_
 ```json
 {
+    "username": "Input username User",
     "email": "<email to get insert into>",
     "password": "<password to get insert into>",
 }
 ```
 
-_Response (201 - Created)_
+_Response (200 - Created)_
 ```json
 {
-    "email": "<posted email>"
+    "message": "ok"
 }
 ```
 
@@ -44,13 +43,6 @@ _Response (400 - Bad Request)_
 ```json
 {
   "message": "Please input email format!, Password minimum 4 characters!"
-}
-```
-
-_Response (500 - Internal Error Server)_
-```json
-{
-  "message": "Internal Server Error"
 }
 ```
 
@@ -73,25 +65,18 @@ _Request Body_
 _Response (200)_
 ```json
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtZXJjaGlrYTExQGdtYWlsLmNvbSIsImlhdCI6MTU5OTcyNDU5MX0.e57UHSGXy9T-zkYKtLpDMiEP8LQ1HoYoqRdU0qyAsQE"
+    "access_token": "<access_token>"
 }
 ```
 
-_Response (400 - Bad Request)_
+_Response (401 - Bad Request)_
 ```json
 {
     "message": "Invalid email or password"
 }
 ```
 
-_Response (500 - Internal Server Error)_
-```json
-{
-    "message": "Internal Server Error"
-}
-```
-
-### POST /googleLogin
+### POST /google-login
 
 > Login to kanban app with your google account
 _Request Header_
@@ -101,16 +86,17 @@ not needed
 
 _Request Body_
 ```json
-{
-    "google_email": "<google email insert into>",
-    "password_goole_email": "google password insert into"
+{ 
+    "username": "Input username User",
+    "email": "<google email insert into>",
+    "password": "google password insert into"
 }
 ```
 
 _Response (200)_
 ```json
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtZXJjaGlrYTExQGdtYWlsLmNvbSIsImlhdCI6MTU5OTcyNDU5MX0.e57UHSGXy9T-zkYKtLpDMiEP8LQ1HoYoqRdU0qyAsQE"
+    "token": "<access_token>"
 }
 ```
 
@@ -157,7 +143,7 @@ _Response (200)_
                 "id": 1,
                 "email": "<user_email>",
                 "password": "<user_password>",
-                "organization": "Hacktiv8",
+                "organization": "<user organization>",
                 "createdAt": "2020-09-09T05:52:45.218Z",
                 "updatedAt": "2020-09-09T05:52:45.218Z"
             },
@@ -172,10 +158,10 @@ _Response (200)_
 }
 ```
 
-_Response (401 - Not Authenticated)_
+_Response (400)_
 ```json
 {
-  "message": "Doesnt recognize User!"
+  "message": "invalid input"
 }
 ```
 
@@ -186,7 +172,7 @@ _Response (500 - Internal server error)_
 }
 ```
 
-### POST /tasks/:CategoryId
+### POST /tasks/:id
 > Create new tasks
 _Request Header_
 ```json
@@ -198,113 +184,20 @@ _Request Header_
 _Request Body_
 ```json
 {
-    "title": "<title to get insert into>"
+    "title": "<title to get insert into>",
+    "description": "<Task description>",
+    "status": "<Task status>"
 }
 ```
 
 _Response (201 - Created)_
 ```json
-{
-    "id": 1,
-    "title": "<title name>",
-    "UserId": 1,
-    "CategoryId": 1,
-    "updatedAt": "2020-09-09T14:55:06.648Z",
-    "createdAt": "2020-09-09T14:55:06.648Z"
-}
+  "message": "ok"
 ```
 _Response (400 - Bad Request)_
 ```json
 {
   "message": "Please fill the title!"
-}
-```
-
-### GET /tasks/:id
-> Find detail tasks by ID
-_Request Header_
-```json
-{
-  "access_token": "<your access token>"
-}
-```
-
-_Request Body_
-```
-not needed
-```
-
-_Response (200)_
-```json
-{
-    "id": 1,
-    "title": "<title_name>",
-    "UserId": 1,
-    "CategoryId": 1,
-    "createdAt": "2020-09-09T14:55:06.648Z",
-    "updatedAt": "2020-09-09T15:30:58.690Z"
-}
-```
-
-_Response (401 - Not Authenticated)_
-```json
-{
-  "message": "Doesnt recognize User!"
-}
-```
-_Response (404 - Not Found)_
-```json
-{
-  "message": "Not Found"
-}
-```
-
-### PUT /tasks/:id
-> Update tasks by ID
-_Request Header_
-```json
-{
-  "access_token": "<your access token>"
-}
-```
-
-_Request Body_
-```json
-{
-    "title": "<title to get insert into>"
-}
-```
-
-_Response (200)_
-```json
-{
-    "id": 1,
-    "title": "<updated title>",
-    "UserId": 1,
-    "CategoryId": 1,
-    "createdAt": "2020-09-09T14:55:06.648Z",
-    "updatedAt": "2020-09-09T15:30:58.690Z"
-}
-```
-
-> Error response:
-_Response (400 - Bad request)_
-```json
-{
-  "message": "Please fill the title!"
-}
-```
-_Response (404 - Not Found)_
-```json
-{
-  "message": "Not Found"
-}
-```
-
-_Response (500 - Internal Server Error)_
-```json
-{
-  "message": "Internal Server Error"
 }
 ```
 
@@ -342,39 +235,5 @@ _Response (500 - Internal Server Error)_
 ```json
 {
   "message": "Internal Server Error"
-}
-```
-
-### POST /categories
-
-> Add new category
-_Request Header_
-```json
-{
-  "access_token": "<your access token>"
-}
-```
-
-_Request Body_
-```json
-{
-    "name": "<category name>"
-}
-```
-
-_Response (200)_
-```json
-{
-    "id": 1,
-    "name": "<category name insert into>",
-    "updatedAt": "2020-09-09T14:47:18.118Z",
-    "createdAt": "2020-09-09T14:47:18.118Z"
-}
-```
-
-_Response (400 - Bad Request)_
-```json
-{
-  "message": "Bad Request"
 }
 ```
