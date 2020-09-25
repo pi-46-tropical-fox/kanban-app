@@ -1,10 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const userRouter = require('./userRouter');
-const taskRouter = require('./taskRouter');
-const authentication = require('../middlewares/authentication');
+const router = require('express').Router()
+const Controller = require('../controllers')
+const authentication = require('../middlewares/authentication')
+const authorization = require('../middlewares/authorization')
 
-router.use('/', userRouter);
-router.use('/tasks', authentication, taskRouter);
+router.post('/register', Controller.register)
+router.post('/login', Controller.login)
+router.post('/googleSignIn', Controller.googleSignIn)
 
-module.exports = router;
+router.use(authentication)
+
+router.post('/tasks', Controller.addTask)
+router.get('/tasks', Controller.getTasks)
+router.get('/tasks/:id', authorization, Controller.getOneTask)
+router.put('/tasks/:id', authorization, Controller.editTask)
+router.delete('/tasks/:id', authorization, Controller.deleteTask)
+
+module.exports = router

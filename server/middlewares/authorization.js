@@ -1,19 +1,22 @@
-const { Task } = require('../models');
+const { Task } = require('../models')
 
-const authorization = (req, res, next) => {
+module.exports = (req, res, next) => {
+  let { UserId } = req.user
+  let id = req.params.id
+
   Task.findOne({
-    where: {
-      UserId: req.userId,
-    },
+    where: { id }
   })
-    .then((data) => {
-      if (data.UserId == req.userId) {
-        next();
-      } else {
-        throw new Error('Access denied!');
-      }
-    })
-    .catch(next);
-};
-
-module.exports = authorization;
+  .then(isFound => {
+    if(!isFound) {
+      throw {status: 404, message: 'Task not found'}
+    }
+    if(UserId !== isFound.UserId) {
+      throw {status: 403, message: 'Forbidden access'}
+    }
+    next()
+  })
+  .catch(err => {
+    next(err)
+  })
+}

@@ -1,289 +1,384 @@
-# kanban
+#### API Demo : https://glacial-ocean-84777.herokuapp.com/
+#### App Demo : https://bukanban2.web.app/
 
-# CRUD Database
+# Kanban Server
+Kanban is an application to manage organization's tasks. This app has : 
+* RESTful endpoint for task's CRUD operation
+* authorization
+* JSON formatted response
 
-1. ____POST/tasks_:
+&nbsp;
 
-- Request header:
+## RESTful endpoints
+### POST /register
 
-```javascript
-{
-  "Content-Type": "application/json"
-}
+> Create new user
+
+_Request Header_
 ```
-- Request body:
-
-```javascript
-{
-  "title":"RestAPI",
-  "category": "routing",
-}
+not needed
 ```
-- Response:
 
-**Success**
-```javascript
+_Request Body_
+```
 {
-  "status": 201
-    "message": "Berhasil menambah data"
-    "data": {
-      "id": 1,
-      "title":"RestAPI",
-      "category": "routing",
-      "UserId":<integer>
-    }
+  "name": <your name>,
+  "email": <your email>,
+  "password": <your password>
 }
 ```
 
-**Error**
-```javascript
+#### Success Response: ####
+_Response (201 - Created)_
+```
 {
-  status: 404
-  "error": "Error message"
+  "id": <id>,
+  "name": <your name>,
+  "email": <your email>,
+  "password": <your encrypted password>,
+  "updatedAt": <date>,
+  "createdAt": <date>
 }
+```
+
+#### Error Response: ####
+_Response (400 - Bad Request)_
+```
+[
+  "message": <detail message>
+]
+```
+
+_Response (409 - conflict)_
+```
 {
-  "status": 500
-  "error": "Internal server error"
+  "message": "Email Already registered!"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
+}
+```
+
+### POST /login
+
+> Process Login
+
+_Request Header_
+```
+not needed
+```
+
+_Request Body_
+```
+{
+  "email": <your email>,
+  "password": <your password>
+}
+```
+
+#### Success Response: ####
+_Response (200 - Ok)_
+```
+{
+  "access_token": <your access token>
+}
+```
+
+#### Error Response: ####
+
+_Response (400 - Bad Request)_
+```
+[
+  "message": <detail message>
+]
+```
+
+_Response (404 - Not Found)_
+```
+{
+  "message": "user not registered!"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
+}
+```
+
+### POST /tasks
+
+> Create new task
+
+_Request Header_
+```
+{
+  "access_token": <your access token>
+}
+```
+
+_Request Body_
+```
+{
+	"title": <title>
+	"category": <category>
+	"description": <description> 
+}
+```
+
+#### Success Response: ####
+_Response (201 - Created)_
+```
+{
+  "id": <id>,
+  "title": <title>,
+  "description": <description> ",
+  "category": <category>,
+  "UserId": <UserId>,
+  "updatedAt": <date>,
+  "createdAt": <date>
+}
+```
+
+#### Error Response: ####
+_Response (400 - Bad Request)_
+```
+[
+  "message": <message detail>
+]
+```
+_Response (401 - Unauthorized)_
+```
+{
+  "message": "Not authenticated!"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
+}
+```
+
+### GET /tasks
+
+> Get User's tasks
+
+_Request Header_
+```
+{
+  "access_token": <your access token>
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+#### Success Response: ####
+_Response (200 - Ok)_
+```
+[
+	{
+    "id": <id>,
+    "title": <title>,
+    "description": <description>,
+    "category": <category>,
+    "UserId": <UserId>,
+    "Creator": <your name>
+	},
+	{
+    "id": <id>,
+    "title": <title>,
+    "description": <description>,
+    "category": <category>,
+    "UserId": <UserId>,
+    "Creator": <your name>
+	},
+]
+```
+
+#### Error Response: ####
+_Response (401 - Unauthorized)_
+```
+{
+  "message": "Not authenticated!"
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
+}
+```
+
+### GET /tasks/:id
+
+> Get task by task's id
+
+_Request Header_
+```
+{
+  "access_token": <your access token>
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+#### Success Response: ####
+_Response (200 - Ok)_
+```
+{
+  "id": <id>,
+  "title": <title>,
+  "description": <description>,
+  "category": <category>,
+  "UserId": <UserId>,
+  "Creator": <your name>
+},
+```
+
+#### Error Response: ####
+_Response (401 - Unauthorized)_
+```
+{
+  "message": "Not authenticated!"
+}
+```
+_Response (403 - Forbidden)_
+```
+{
+  "message": "Forbidden access!"
+}
+```
+_Response (404 - Not Found)_
+```
+{
+  "message": "task not found! "
+}
+```
+
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
 }
 ```
 
 
-2. _GET/tasks_:
+### PUT /tasks/:id
 
-- Response:
+> Update task
 
-**Success**
-```javascript
+_Request Header_
+```
 {
-  "status": 200
-  "data": [{All data from database}]
+  "access_token": <your access token>
 }
 ```
 
-**Error**
-```javascript
+_Request Body_
+```
 {
-  "status": 404
-  "error": "Error message"
-}
-{
-  "status": 500
-  "error": "Internal server error"
+	"title": <title> "
+	"category": <category>
+	"description": <description>"
 }
 ```
 
-
-3. _GET/tasks/:id_:
-
-- Response:
-
-**Success**
-```javascript
+#### Success Response: ####
+_Response (200 - Created)_
+```
 {
-  "status": 200
-  "data": [{ Specified data as requested from database}]
+  "message": "Update task success"
 }
 ```
 
-**Error**
-```javascript
+#### Error Response: ####
+_Response (401 - Unauthorized)_
+```
 {
-  "status": 404
-  "error": "Error message"
-}
-{
-  "status": 500
-  "error": "Internal server error"
+  "message": "Not authenticated!"
 }
 ```
-
-
-4. _PUT/tasks/:id_:
-
-
-- Request body:
-
-```javascript
+_Response (403 - Forbidden)_
+```
 {
-  "title":"RestAPI",
-  "category": "routing",
+  "message": "Forbidden access!"
 }
 ```
-
-- Response:
-
-**Success**
-```javascript
+_Response (404 - Not Found)_
+```
 {
-  "status": 201
-  "message": "Berhasil mengupdate data"
+  "message": "task not found! "
 }
 ```
-
-**Error**
-```javascript
-{
-  status: 404
-  "error": "Error message"
-}
-{
-  "status": 500
-  "error": "Internal server error"
-}
+_Response (500 - Internal Server Error)_
 ```
-
-
-5. DELETE/tasks/:id_:
-
-- Response:
-
-**Success**
-
-```javascript
 {
-  "status": 200
-  "message": "Berhasil menghapus data"
-}
-```
-
-**Error**
-
-```javascript
-{
-  "status": 500
-  "error": "Internal server error"
-}
-```
-
-
-# Login and Register 
-
-1. ____POST/register__:
-
-- Request header:
-
-```javascript
-{
-  "Content-Type": "application/json"
-}
-```
-- Request body:
-
-```javascript
-{
-  "email": "jhondoe@google.com",
-  "password":"*******",
-}
-```
-- Response:
-
-```javascript
-{
-  "id": 1
-  "email": "jhondoe@google.com",
-  "password":"*******"
-  "organization": "Hactiv8",
-}
-```
-
-**Success**
-```javascript
-{
-  "status": 201
-  "message": "succesfuly created new user"
-}
-```
-
-**Error**
-```javascript
-{
-  status: 400
-  "error": "validation error"
-}
-{
-  "status": 500
-  "error": "Internal server error"
-}
-```
-
-
-2. __POST/login__:
-
-- Request header:
-
-```javascript
-{
-  "Content-Type": "application/json"
-}
-```
-- Request body:
-
-```javascript
-{
-  "username":"Jhon Doe",
-  "password":"*******"
-}
-```
-- Response:
-
-**Success**
-```javascript
-{
-  "status": 201
-  "message": "succesfuly created new user"
-  "token": "kjashsncfhvoyi38572375nicuelircw"
-}
-```
-
-**Error**
-```javascript
-{
-  status: 400
-  "error": "Bad request"
-}
-{
-  "status": 500
-  "error": "Internal server error"
+  "message": "Internal Server Error"
 }
 ```
 
 
 
-3. __POST/todos/google-sign-in__:
+### DELETE /tasks/:id
 
-- Request body:
+> Update task
 
-```javascript
-{
-  "token": "hancyb8a7aw83n4nx"
-}
+_Request Header_
 ```
-- Response:
-
-**Success**
-```javascript
 {
-  "status": 200
-  "message": "succesfuly signed in"
+  "access_token": <your access token>
 }
 ```
 
-**Success**
-```javascript
+_Request Body_
+```
+not needed
+```
+
+#### Success Response: ####
+_Response (200 - Ok)_
+```
 {
-  "status": 201
-  "message": "succesfuly created new user"
+  "message": "Delete task success"
 }
 ```
 
-**Error**
-```javascript
+#### Error Response: ####
+_Response (401 - Unauthorized)_
+```
 {
-  status: 400
-  "error": "Bad request"
+  "message": "Not authenticated!"
 }
+```
+_Response (403 - Forbidden)_
+```
 {
-  "status": 500
-  "error": "Internal server error"
+  "message": "Forbidden access!"
+}
+```
+_Response (404 - Not Found)_
+```
+{
+  "message": "task not found! "
+}
+```
+_Response (500 - Internal Server Error)_
+```
+{
+  "message": "Internal Server Error"
 }
 ```

@@ -1,51 +1,63 @@
 'use strict';
-const bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    'User',
-    {
-      organization: {
-        type: DataTypes.STRING,
-        defaultValue: 'Hacktiv8',
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          min: {
-            args: 6,
-          },
-          notEmpty: {
-            msg: 'Password Cannot Be Empty',
-          },
+  const { Model } = sequelize.Sequelize
+  const { hash } = require('../helpers/bcrypt')
+  class User extends Model {}
+  User.init({
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull : {
+          msg: 'Name can\'t be null'
         },
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          notEmpty: {
-            msg: 'Email Cannot Be Empty',
-          },
-        },
-      },
+        notEmpty: {
+          msg: 'Name can\'t be empty'
+        }
+      }
     },
-    {
-      sequelize,
-      hooks: {
-        beforeValidate: (User, options) => {
-          const salt = bcrypt.genSaltSync(8);
-          const hash = bcrypt.hashSync(User.password, salt);
-          User.password = hash;
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail : {
+          msg: 'Email not valid'
         },
-      },
+        notEmpty: {
+          msg: 'Email can\'t be empty'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull : {
+          msg: 'Password can\'t be null'
+        },
+        notEmpty: {
+          msg: 'Password can\'t be empty'
+        }
+      }
+    },
+    organization: {
+      type: DataTypes.STRING,
     }
-  );
-  User.associate = function (models) {
-    // associations can be defined here
-    User.hasMany(models.Task);
+  },
+  {
+    hooks: {
+      beforeSave(user, options) {
+        return hash(user.password)
+        .then(encrypted => {
+          user.password = encrypted
+          user.organization = 'hacktiv8'
+        })
+      }
+    },
+    sequelize
+  })
+  User.associate = function(models) {
+    User.hasMany(models.Task)
   };
   return User;
 };
-
