@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "PortoKanban2",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "aykwvmdpjbplzd",
+    "password": "ff7c1c6952f818babd68c73ec78479edef76deb9a9ce281f7ba3a87b9189829a",
+    "database": "dblcvp95ghh06s",
+    "host": "ec2-100-25-100-81.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
+}
