@@ -11,12 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Project.belongsTo(models.Organization)
-      Project.hasMany(models.Category)
     }
   };
   Project.init({
-    note: {
+    title: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {

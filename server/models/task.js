@@ -11,8 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Task.belongsTo(models.Category)
-      Task.belongsTo(models.User)
     }
   };
   Task.init({
@@ -36,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     due_date: DataTypes.DATE,
+    username : DataTypes.STRING,
     UserId : DataTypes.INTEGER,
     CategoryId : DataTypes.INTEGER
   }, {

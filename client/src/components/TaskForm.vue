@@ -1,11 +1,11 @@
 <template>
 
    <div class="modal-dialog  shadow" style="pointer-events:all !important;">
-       <div class="card-header ">
-         <button class="btn btn-primary float-left" 
+       <div class="card-header " style=" color:white;background-color: #797a7e;">
+         <button class="btn  float-left" style="background-color: #89beb3; color:white;" 
             @click="backCategory(taskData.id)">Back</button>
          My Task~
-       <button class="btn btn-primary float-right" 
+       <button class="btn  float-right" style="background-color: #89beb3; color:white;"
             @click="nextCategory(taskData.id)">Next</button>
        </div>
         <div class="card mb-3 text-center" style="max-width: 540px;">
@@ -14,16 +14,16 @@
             <img src="https://cdn.idntimes.com/content-images/community/2019/08/wlds43-654640-2400-958e9aa679a799d1f221b159ae3731ce.jpg" class="card-img" alt="gajah">
           </div>
           <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{taskData.title}}</h5>
-              <p class="card-text">{{taskData.description}}</p>
-              <p class="card-text"><small class="text-muted">{{taskData.due_date}}</small></p>
+            <div class="card-body text-left" style="background-color: #d8d3cd;">
+              <h5 class="card-title">Title: {{taskData.title}}</h5>
+              <p class="card-text">Detail: {{taskData.description}}</p>
+              <p class="card-text"><small class="text-muted">Due date: {{due_date}}</small></p>
             </div>
-            <div class="card-footer">
-              <button class="btn btn-primary" @click="editTask(taskData.id)">
+            <div class="card-footer" style="background-color: #797a7e;">
+              <button class="btn " @click="editTask(taskData.id)" style="background-color: #89beb3; color:white;">
                 Edit Task
               </button>
-              <button class="btn btn-primary" @click="deleteTask(taskData.id)">
+              <button class="btn " @click="deleteTask(taskData.id)" style="background-color: #89beb3; color:white;">
                 Delete Task
               </button>
               </div>
@@ -45,8 +45,7 @@ export default {
       data() {
           return {
               activity: '',
-              // description: '',
-              // due_date: '',
+              due_date: null
           }
     },
      components: {
@@ -66,7 +65,7 @@ export default {
             }
               })
           .then(({data})=> {				
-            let status = "showKanban"
+            let status = "show"
             this.$emit('changeActivity', status)
           })
 
@@ -82,7 +81,7 @@ export default {
             }
               })
           .then(({data})=> {				
-            let status = "showKanban"
+            let status = "show"
             this.$emit('changeActivity', status)
           })
         },
@@ -107,7 +106,15 @@ export default {
               this.$emit('changeActivity', status)
             })
           }
+        },
+        formatDate() {
+          let temp = this.taskData.due_date.split('T')
+          let tempDate = temp[0].split('-')
+          this.due_date = `${tempDate[2]}-${tempDate[1]}-${tempDate[0]}`
         }
+    },
+    created(){
+      this.formatDate()
     }
 }
 </script>

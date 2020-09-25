@@ -2,7 +2,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const instance = axios.create({
-  baseURL: 'https://kanbanapphacktiv8.herokuapp.com'
+  baseURL: 'https://kanbanapphacktiv8.herokuapp.com' //'http://localhost:3000'
 })
 
 instance.interceptors.response.use(function (response) {

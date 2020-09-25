@@ -10,7 +10,7 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" v-model="password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-secondary">Login</button>
              <button v-google-signin-button="clientId" class="ml-3 google-signin-button g-signin2"></button>
           </form>
       </div>

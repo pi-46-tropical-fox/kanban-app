@@ -7,8 +7,9 @@ router.get('/', KanbanController.getProjects)
 
 router.get('/:id', KanbanController.getCategories)
 router.post('/:id', KanbanController.postCategory)
-router.put('/:id', KanbanController.updateCategory)
-router.delete('/:id', KanbanController.deleteCategory)
+router.get('/:id/:categories', KanbanController.getCategory)
+router.put('/:id/:categories', KanbanController.updateCategory)
+router.delete('/:id/:categories', KanbanController.deleteCategory)
 
 
 router.get('/:id/tasks/:id', KanbanController.getTask)

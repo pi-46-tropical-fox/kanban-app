@@ -10,41 +10,39 @@ class TaskController {
         try {
             
             const {username,email,password} = req.body
-
+            console.log({username,email,password});
             if (username.includes(' ')) {
                 throw {statusCode: 400, msg: "invalid username(must alphanumeric)"}
             }
 
             const user = await User.create({username,email,password})
-            // const inputUserToOrganization = {
-            //     role: "Student",
-            //     OrganizationsId: 1, //asumsi hanya 1 organization
-            //     UserId : user.id
-            // }
+            const userOrg = {
+                role: 'Student',
+                OrganizationsId: 1, //asumsi hanya 1
+                UserId : user.id
+            }
+            const _ = await UserOrganization.create(userOrg)
 
-            // const success = await UserOrganization.create(inputUserToOrganization)
             let payload = {id: user.id, username:user.username}
             
             return res.status(201).json(payload)
 
         } catch(err) {
-            console.log(err);
             return next(err)
         }
     }
     
     static async login(req,res,next) {
         try {
-            
             const {username,password} = req.body
 
             const user = await User.findOne({where: {username}})
-            
+
             if(!user) {
                 throw {statusCode: 400, msg: "invalid username or password"}
             }
-
             const isValid = await compareBcrypt(password, user.password)
+            console.log(isValid);
             
             if(isValid) {
                 const access_token = generateToken(user)
@@ -60,7 +58,6 @@ class TaskController {
 
     static async googleLogin(req,res,next){
         try{
-            console.log('masuk google');
             const client = new OAuth2Client(process.env.CLIENT_GOOGLE);
 
             const  {google_id_token} = req.headers

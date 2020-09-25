@@ -20,6 +20,15 @@ module.exports = {
       due_date: {
         type: Sequelize.DATE
       },
+      username: {
+        type: Sequelize.STRING,
+      },
+      UserId: {
+        type: Sequelize.INTEGER
+      },
+      CategoryId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

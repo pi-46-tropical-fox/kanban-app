@@ -11,9 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Organization.hasMany(models.Project)
-      Organization.belongsToMany(models.User,{through:models.UserOrganization})
-      Organization.hasMany(models.UserOrganization)
     }
   };
   Organization.init({
@@ -22,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: `Name is required!`,
+          msg: `Organization name is required!`,
         },
       },
     },

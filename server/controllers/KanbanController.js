@@ -4,10 +4,7 @@ class KanbanController {
 
     static async getProjects(req,res,next) {
         try {
-            // console.log(req.userData.id);
-            const projectUser = await Project.findAll({
-                include: Category
-            })
+            const projectUser = await Project.findAll()
             return res.status(200).json(projectUser)
         } catch(err) {
             return next(err)
@@ -16,28 +13,27 @@ class KanbanController {
 
     static async getCategories(req,res,next) {
         try {
-            
-            // const projectUser = await Project.findAll({
-            //     where: {id: 1} // asumsi hanya ada 1 project
-            // })
-            // console.log('berhasil', projectUser);
-            
-            const categoriesUser = await Category.findAll({
+        
+            const categories = await Category.findAll({
                 where: {ProjectId : req.params.id},
-                include: Task,
                 order: [['id', 'ASC']]
             })
-            
-
-            return res.status(200).json(categoriesUser)
+            for (let i = 0; i < categories.length; i++) {
+                categories[i].Tasks = []
+                const temp = await Task.findAll({
+                    where: {CategoryId : categories[i].id},
+                    order: [['due_date', 'ASC']]
+                })
+                categories[i].dataValues['Tasks'] = temp
+            }
+            return res.status(200).json(categories)
         } catch(err) {
             return next(err)
         }
     }
 
     static async postCategory(req,res,next) {
-        try {
-            
+        try {  
             const addCategory = {
                 title: req.body.title,
                 ProjectId: req.params.id,
@@ -49,18 +45,26 @@ class KanbanController {
             return next(err)
         }
     }
+    
+    static async getCategory(req,res,next) {
+        try {
+            const CategoryUser = await Category.findByPk(req.params.categories)
+            return res.status(200).json(CategoryUser)
+        } catch(err) {
+            return next(err)
+        }
+    }
 
     static async updateCategory(req,res,next) {
         try {
             const updateCategory = {
                 title: req.body.title,
-                ProjectId: req.params.id,
             }
             const result = await Category.update(updateCategory, {
-                where: {id: 13} // dari body
+                where: {id : req.params.categories},
             })
 
-            return res.status(200).json(updateCategory)
+            return res.status(200).json(result)
         } catch(err) {
             return next(err)
         }
@@ -69,9 +73,9 @@ class KanbanController {
     static async deleteCategory(req,res,next) {
         try { 
             const deletedCategory = await Category.destroy({
-                where: {id : 16},
+                where: {id : req.params.categories},
             })
-    
+
             return res.status(200).json(deletedCategory)
         } catch(err) {
             return next(err)
@@ -80,13 +84,13 @@ class KanbanController {
 
     static async postTask(req,res,next) {
         try {
-            
              //butuh oper category id ke data (body)
             const addTask = {
                 title: req.body.title,
                 description: req.body.description,
                 date_post: new Date(),
                 due_date: req.body.due_date|| null,
+                username: req.userData.username,
                 UserId : req.userData.id, //req.userData.id,
                 CategoryId : req.body.CategoryId || 1
             }
@@ -115,7 +119,6 @@ class KanbanController {
             const updatedTask = {
                 title: req.body.title,
                 description: req.body.description,
-                date_post: new Date(),
                 due_date: req.body.due_date|| null
             }
 
@@ -159,7 +162,6 @@ class KanbanController {
                     const moveTask = {
                         CategoryId: move,
                     }
-                   console.log(categoriesUser);
                     const result = await Task.update(moveTask, {
                         where: {id: req.params.id}
                     })

@@ -1,7 +1,11 @@
 <template>
 	<div >
-		<div style="position:fixed; top:45%; left:50%; transform: translate(-50%, -50%);">
-			<div class="btn-group btn-group-toggle" v-if="currentPage != 'dashBoardPage'" data-toggle="buttons">
+		<div class="section" v-if="currentPage !== 'dashBoardPage'">
+
+       
+		<div class="form">
+			<h1>Kanban App</h1>
+			<div class="btn-group btn-group-toggle mb-5" v-if="currentPage != 'dashBoardPage'" data-toggle="buttons">
 				<label class="btn btn-secondary active">
 					<input type="radio" @click="changePage('loginPage')" checked> Login
 				</label>
@@ -9,7 +13,6 @@
 					<input type="radio" @click="changePage('registerPage')" checked> Register
 				</label>
 			</div>
-
 			<LoginPage 
 				v-if="currentPage == 'loginPage'"
 				@changePage="changePage">
@@ -20,6 +23,13 @@
 				@changePage="changePage">
 				</RegisterPage>
 		</div>
+        <div class="video-container">
+            <div class="color-overlay"></div>
+            <video autoplay loop muted>
+                <source src="../assets/background-web.mp4" type="video/mp4">
+            </video>
+        </div>
+	</div>
 		<DashBoardPage 
 			v-if="currentPage == 'dashBoardPage'"
 			@changePage="changePage">
@@ -27,15 +37,11 @@
 			</DashBoardPage>
 	
 	</div>
-    <!-- <div class="container">
-        <h1>ini form login</h1>
-        <LoginPage></LoginPage>
-    </div> -->
   
 </template>
 
 <script>
-// import axios from './config/axios'
+
 import DashBoardPage from './views/Dashboard'
 import LoginPage from './views/LoginPage'
 import RegisterPage from './views/RegisterPage'
@@ -64,12 +70,48 @@ name: 'App',
 		},
 	},
 	created () {
-		console.log('masuk auth');
 		this.checkAuth()
 	}
 }
 </script>
 
 <style scoped>
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
+.form {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  font-size: 1em;
+  padding: 20px;
+  margin: 15px;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.5;
+}
 </style>

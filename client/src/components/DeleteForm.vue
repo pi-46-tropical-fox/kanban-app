@@ -1,6 +1,6 @@
 <template>
-  <div>
-      sure want to delete? <a href="">
+  <div style=" color:white;background-color: #797a7e;">
+       sure want to delete?
     <button type="button"  @click.prevent="confirm('yes')" class="btn btn-success">Yes</button>
     <button type="button"  @click.prevent="confirm('no')" class="btn btn-danger">No</button>
   </div>

@@ -1,23 +1,21 @@
 <template>
-<div>
-    <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">Go Productive! </a>
-      <button @click="logout" class="btn btn-outline-success my-2 my-sm-0" type="button" style="float: right !important">Logout</button>
+<div  style="color:white">
+    <nav class="navbar navbar-light" style="background-color: #797a7e;">
+  <a style="font-weight:bold;" @click.prevent="backActivity"> Go Productive! </a>
+  <h5>Hi - {{username}}!</h5>
+      <button @click="logout" class="btn " type="button" style="float: right !important; background-color: #89beb3; color:white;">Logout</button>
 </nav>
 </div>
-  <!-- <nav class="navbar navbar-light bg-secondary">
-    <a class="navbar-brand text-white" href="#">
-      MaKanban
-    </a>
-    <span class="navbar-text text-white">
-        Navbar text with an inline element
-      </span>
-  </nav> -->
 </template>
 
 <script>
 export default {
     name: "navbar",
+    data () {
+      return {
+        username: null
+      }
+    },
     methods: {
       logout(){
         // var auth2 = gapi.auth2.getAuthInstance();
@@ -29,7 +27,13 @@ export default {
       },
       home(){
         this.$emit('changeActivity', 'projects')
+      },
+      setName() {
+        this.username = localStorage.username
       }
+    },
+     created() {
+      this.setName() 
     }
 }
 </script>

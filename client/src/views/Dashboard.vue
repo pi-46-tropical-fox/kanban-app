@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="background-color: #f7f2e7; height: 100vh;">
         
         <Navbar 
             @changePage="changePage">

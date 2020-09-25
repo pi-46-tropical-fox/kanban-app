@@ -1,29 +1,36 @@
 <template>
     <div class="text-center" style="margin-top:30px;">
-        <h1>Hi {{username}}!</h1>
         <div>
     <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <label class="input-group-text"  style="margin-left: 20px;" for="inputGroupSelect01">Project</label>
+    <label class="input-group-text"  style="margin-left: 20px; background-color: #89beb3; color:white;" for="inputGroupSelect01">Project</label>
   </div>
   <select class="custom-select" id="inputGroupSelect01">
-    <option selected style="text-weight:bold;">Create Kanban</option>
+    <option v-for="project in projects" :key="project.id" selected style="text-weight:bold;"
+        >{{project.title}}</option>
 
   </select>
-  <button class="btn btn-primary" @click.prevent="addCategoryForm()" 
-  style="margin-left: 20px; margin-right: 20px;" data-toggle="modal" data-target="#staticBackdrop">
+  <button class="btn" @click.prevent="addCategoryForm()" 
+    style="margin-left: 20px; margin-right: 20px; background-color: #89beb3; color:white;" 
+    data-toggle="modal" data-target="#staticBackdrop">
 					Add Category
 				</button>
 </div>
-</div>
-        <div class="row flex-nowrap mr-2 ml-2" style="overflow-x: auto;">
+</div>  
+        <div  v-if="activity == 'show'" class="row flex-nowrap mr-2 ml-2" style="overflow-x: auto;">
             <CardCategories
                 v-for="category in categories" :key="category.id"
                 :category="category"
                 @getTaskForm="showTaskForm"
                 @createTask="createForm"
+                @editCategory="editCategory"
+                @deleteCategory="deleteCategory"
             />                    
         </div>
+        <CancelButton v-if="activity != 'show'"
+            @cancelAction="cancelAction"> 
+            </CancelButton>
+            
             <EditTaskForm
                 v-if="activity == 'editTask'"
                 :taskData="taskData"
@@ -50,6 +57,11 @@
                 <AddCategoryForm v-if="activity == 'createCategory'"
                      @createCategory="submitCreateCategory">
                     </AddCategoryForm>
+
+                <EditCategoryForm v-if="activity == 'editCategory'"
+                    :categoryData="categoryData"
+                     @submitEdit="submitEdit">
+                    </EditCategoryForm>
     </div>
   
 </template>
@@ -61,6 +73,8 @@ import TaskForm from '../components/TaskForm'
 import CardCategories from '../components/CardCategories'
 import EditTaskForm from '../components/EditTaskForm'
 import AddCategoryForm from '../components/AddCategoryForm'
+import EditCategoryForm from '../components/EditCategoryForm'
+import CancelButton from '../components/cancelButton'
 export default {
     name: 'Kanban',
     props: ['categoriesData'],
@@ -71,7 +85,8 @@ export default {
             categories: [],
             categoryId: null,
             taskData: null,
-            projectId: 1, //asumsi saat ini hanya ada 1 project
+            projects: [],    //asumsi saat ini hanya ada 1 project
+            categoryData: {}
         }                       
     },
     components: {
@@ -79,18 +94,48 @@ export default {
         CreateTaskForm,
         TaskForm,
         EditTaskForm,
-        AddCategoryForm
+        AddCategoryForm,
+        EditCategoryForm,
+        CancelButton
     },
     methods: {
+        cancelAction(payload) {
+            this.activity =payload
+        },
+        editCategory(payload) {      
+             axios({
+                url: `/kanban/1/${payload}`,
+                method: "GET",
+				headers: {
+					access_token: localStorage.access_token
+				}
+              })
+              .then(({data})=> {
+                this.categoryData = data
+                this.activity = 'editCategory'
+              })
+        },
+        submitEdit(payload) {
+             axios({
+                url: `/kanban/1/${payload.id}`,
+                method: "PUT",
+                data: payload,
+				headers: {
+					access_token: localStorage.access_token
+				}
+              })
+              .then(({data})=> {
+                this.activity = 'show'
+                this.fetchCategories()
+              })
+        },
+        deleteCategory(payload) {
+           this.activity = 'show'
+           this.fetchCategories()
+        },
    		addNewTodo(payload) {
 			this.todos.push(payload)
         },    
-        nextCategory(id) {
-
-        },
-        backCategory(id) {
-
-        },
         changePage(status){
             localStorage.clear()
             this.$emit('changePage', status)
@@ -130,9 +175,8 @@ export default {
               })
         },
         submitCreateCategory(payload){
-            payload.ProjectId = this.projectId
             axios({
-                url: `/kanban/${this.projectId}`,
+                url: `/kanban/1`,
                 method: "POST",
                 data: payload,
 				headers: {
@@ -146,7 +190,6 @@ export default {
         },
          
         submitEditTask(payload){
-            
             payload.CategoryId = this.categoryId
             payload.UserId = +localStorage.UserId
             axios({
@@ -166,7 +209,6 @@ export default {
         submitCreateTask(payload){
             payload.CategoryId = this.categoryId
             payload.UserId = +localStorage.UserId
-            console.log(payload);
             axios({
                 url: '/kanban/1/tasks',
                 method: "POST",
@@ -180,13 +222,9 @@ export default {
                 this.activity = 'show'
                 this.fetchCategories()
               })
-              .catch(err=> {
-                console.log(err);
-              })
         },
         
         fetchCategories() {
-            console.log('jalan');
             
 			axios({
 				url: '/kanban/1',
@@ -199,14 +237,26 @@ export default {
                 this.username = localStorage.username
                 this.categories = data
 			})
-	        .catch(err=> {
-			    console.log(err);
+        },
+        fetchProjects() {
+            
+			axios({
+				url: '/kanban/', //asumsi hanya 1 project
+				method: "GET",
+				headers: {
+					access_token: localStorage.access_token
+				}
+			})
+			.then(({data})=> {
+                this.projects = data
 			})
         },
  		
     },
     created() {
       this.fetchCategories()
+      this.fetchProjects()
+      this.activity = 'show'
     }
 }
 </script>
