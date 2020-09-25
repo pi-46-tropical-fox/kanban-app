@@ -12198,7 +12198,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "main-page" },
+    { staticClass: "container" },
     [
       _vm.currentPage === "loginPage"
         ? _c("loginPage", {
@@ -63092,7 +63092,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42337" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40565" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

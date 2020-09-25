@@ -143,10 +143,14 @@ export default {
     background-color: cadetblue;
     position: fixed;
 }
-.login {
+.login  {
     display: flex;
     justify-content: center;
     margin-top: 100px;
 }
-
+.register {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
 </style>
