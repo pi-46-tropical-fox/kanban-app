@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <a class="navbar-brand" href="#">Logo</a>
       <button
         class="navbar-toggler"

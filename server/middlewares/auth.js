@@ -5,7 +5,6 @@ const authentication  = async (req,res,next) =>{
     const { access_token } = req.headers
     try {
         const { email, id, organization } = verifyToken(access_token)
-        console.log(verifyToken(access_token), access_token)
         let user = await User.findAll({where:{email}})
         if(user){
             req.userData = { email, id, organization }

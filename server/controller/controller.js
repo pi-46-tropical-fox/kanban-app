@@ -15,7 +15,7 @@ class Controlller{
     static showCategory(req,res,next){
         Category.findAll()
         .then(data =>{
-            return res.status(201).json(data)
+            return res.status(200).json(data)
         })
         .catch(err =>{
             return next(err)
@@ -25,7 +25,7 @@ class Controlller{
     static showTask(req,res,next){
         Category.findAll({include:{model:Task,include:{model:User , where:{organization:req.userData.organization}}}})
         .then(data =>{
-           return res.status(201).json(data)
+           return res.status(200).json(data)
         })
         .catch(err =>{
             return next(err)
@@ -52,7 +52,7 @@ class Controlller{
         // console.log(req.params.taskId)
         Task.findOne({where:{id:req.params.id}})
         .then(data =>{
-            return res.status(201).json(data)
+            return res.status(200).json(data)
         })
         .catch(err =>{
             return next(err)
@@ -69,7 +69,7 @@ class Controlller{
         }
         Task.update(params,id)
         .then(data =>{
-            return res.status(201).json(data)
+            return res.status(200).json(data)
         })
         .catch(err =>{
             return next(err)
@@ -77,16 +77,28 @@ class Controlller{
     }
 
     static moveTask(req,res,next){
+        console.log('ini masuk movetask')
         let id = {where:{id: req.params.id}}
-        console.log(req.params.taskId)
+        console.log(req.params.id)
         const params = {
-            title : req.body.title,
-            description : req.body.description,
             CategoryId : req.body.CategoryId
         }
+        console.log(params)
         Task.update(params,id)
         .then(data =>{
-            return res.status(201).json(data)
+            return res.status(200).json(data)
+        })
+        .catch(err =>{
+            console.log(err)
+            return next(err)
+        })
+    }
+
+    static remove(req,res,next){
+        let id = {where:{id: req.params.id}}
+        Task.destroy(id)
+        .then(data =>{
+            return res.status(200).json(data)
         })
         .catch(err =>{
             return next(err)

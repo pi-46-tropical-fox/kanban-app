@@ -54,8 +54,8 @@ export default {
         description: this.addDescription,
       };
       this.$emit("addTask", payload);
-    //   this.title = "";
-    //   this.description = "";
+      this.title = "";
+      this.description = "";
     },
   },
 };

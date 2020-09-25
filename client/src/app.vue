@@ -11,7 +11,8 @@
       :taskData="tasks"
       @logOut="logOut"
       @refetch="getTask"
-      :catData = "category"
+      :catData="category"
+      @deleted="deleted"
     >
     </Dashboard>
   </div>
@@ -31,7 +32,7 @@ export default {
     return {
       currentPage: "Loginpage",
       tasks: [],
-      category: []
+      category: [],
     };
   },
   created() {
@@ -65,22 +66,52 @@ export default {
         });
     },
     getCat() {
-      axios.get("/category", {
-        headers: {
-          access_token: localStorage.getItem("access_token"),
-        },
-      })
-      .then(({data})=>{
-          this.category = data
-          console.log(data)
-      })
-      .catch(err =>{
-        console.log(err)
-      })
+      axios
+        .get("/category", {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        })
+        .then(({ data }) => {
+          this.category = data;
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     logOut(payload) {
       this.currentPage = payload;
       this.tasks = [];
+    },
+    deleted(id) {
+      axios
+        .delete(`/task/${id}`, {
+          headers: { access_token: localStorage.getItem("access_token") },
+        })
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    googleLogin(token) {
+      let self = this
+      axios({
+        url: `/googleLogin`,
+        method: `POST`,
+        headers: { google_access_token: token },
+      })
+        .then(({ data }) => {
+          console.log(data.access_token);
+          localStorage.setItem("access_token", data.access_token);
+          self.currentPage = "Dashboardpage";
+          self.getTask();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

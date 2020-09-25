@@ -10345,10 +10345,24 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var instance = _axios.default.create({
-  baseURL: 'https://kanbantet.herokuapp.com'
+  // baseURL: 'https://kanbantet.herokuapp.com'
+  baseURL: 'http://localhost:4000'
 });
 
 var _default = instance;
+/**
+ * npm i -g firebase-tools
+ * ke folder client
+ * jalanin firebase login
+ * firebase init
+ * pilih hosting arahin pake arah panah abis itu kasih space sebelum teken enter
+ * pilih pake use existing project 
+ * pilih project 
+ * ketik pilih folder dist 
+ * iya mau bikin folder spa 
+ * ditanya pengen overwrite file index jawabnya jangan kata eas 
+ */
+
 exports.default = _default;
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
@@ -10745,14 +10759,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $eb04be = exports.default || module.exports;
+        var $31a874 = exports.default || module.exports;
       
-      if (typeof $eb04be === 'function') {
-        $eb04be = $eb04be.options;
+      if (typeof $31a874 === 'function') {
+        $31a874 = $31a874.options;
       }
     
         /* template */
-        Object.assign($eb04be, (function () {
+        Object.assign($31a874, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -10760,7 +10774,7 @@ exports.default = _default;
   return _c("header", [
     _c(
       "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary" },
+      { staticClass: "navbar navbar-expand-lg navbar-dark bg-secondary" },
       [
         _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
           _vm._v("Logo")
@@ -10862,9 +10876,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$eb04be', $eb04be);
+            api.createRecord('$31a874', $31a874);
           } else {
-            api.reload('$eb04be', $eb04be);
+            api.reload('$31a874', $31a874);
           }
         }
 
@@ -10936,20 +10950,21 @@ var _default = {
         title: this.addTitle,
         description: this.addDescription
       };
-      this.$emit("addTask", payload); //   this.title = "";
-      //   this.description = "";
+      this.$emit("addTask", payload);
+      this.title = "";
+      this.description = "";
     }
   }
 };
 exports.default = _default;
-        var $d578b1 = exports.default || module.exports;
+        var $e75906 = exports.default || module.exports;
       
-      if (typeof $d578b1 === 'function') {
-        $d578b1 = $d578b1.options;
+      if (typeof $e75906 === 'function') {
+        $e75906 = $e75906.options;
       }
     
         /* template */
-        Object.assign($d578b1, (function () {
+        Object.assign($e75906, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11061,9 +11076,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$d578b1', $d578b1);
+            api.createRecord('$e75906', $e75906);
           } else {
-            api.reload('$d578b1', $d578b1);
+            api.reload('$e75906', $e75906);
           }
         }
 
@@ -11099,21 +11114,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   name: 'moveCategory',
-  props: ['category'],
+  props: {
+    category: Array
+  },
   methods: {// axios.get()
   }
 };
 exports.default = _default;
-        var $fb3842 = exports.default || module.exports;
+        var $6f1e68 = exports.default || module.exports;
       
-      if (typeof $fb3842 === 'function') {
-        $fb3842 = $fb3842.options;
+      if (typeof $6f1e68 === 'function') {
+        $6f1e68 = $6f1e68.options;
       }
     
         /* template */
-        Object.assign($fb3842, (function () {
+        Object.assign($6f1e68, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11136,7 +11154,7 @@ exports.default = _default;
           },
           [
             _c("b-form-select-option", { attrs: { value: "category.id" } }, [
-              _vm._v("category.name")
+              _vm._v(_vm._s(category.name))
             ])
           ],
           1
@@ -11144,7 +11162,7 @@ exports.default = _default;
       }),
       _vm._v(" "),
       _c("div", { staticClass: "mt-3" }, [
-        _vm._v("\n    Selected: "),
+        _vm._v("\n    Selected: \n    "),
         _c("strong", [_vm._v(_vm._s(_vm.selected))])
       ])
     ],
@@ -11171,9 +11189,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$fb3842', $fb3842);
+            api.createRecord('$6f1e68', $6f1e68);
           } else {
-            api.reload('$fb3842', $fb3842);
+            api.reload('$6f1e68', $6f1e68);
           }
         }
 
@@ -11194,6 +11212,8 @@ exports.default = void 0;
 
 var _selectCat = _interopRequireDefault(require("../components/selectCat"));
 
+var _axiosInstance = _interopRequireDefault(require("../axios/axiosInstance"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -11213,39 +11233,88 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 var _default = {
-  name: 'CardTask',
-  props: ['datum', 'category'],
+  name: "CardTask",
+  props: ["datum", "category"],
   components: {
     selectCat: _selectCat.default
   },
   methods: {
     getTaskId: function getTaskId() {
       console.log(this.datum.id, "dari card task");
-      this.$emit('getTaskId', this.datum.id);
+      this.$emit("getTaskId", this.datum.id);
+    },
+    deleted: function deleted(id) {
+      this.$emit("deleted", id);
+    },
+    move: function move(id, CategoryId) {
+      var params = {
+        CategoryId: CategoryId + 1
+      };
+      (0, _axiosInstance.default)({
+        url: "/task/".concat(id),
+        method: 'PATCH',
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        },
+        data: params
+      }).then(function (data) {
+        console.log(data);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    moveBack: function moveBack(id, CategoryId) {
+      var params = {
+        CategoryId: CategoryId - 1
+      };
+      (0, _axiosInstance.default)({
+        url: "/task/".concat(id),
+        method: 'PATCH',
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        },
+        data: params
+      }).then(function (data) {
+        console.log(data);
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   }
 };
 exports.default = _default;
-        var $12871f = exports.default || module.exports;
+        var $ebdaea = exports.default || module.exports;
       
-      if (typeof $12871f === 'function') {
-        $12871f = $12871f.options;
+      if (typeof $ebdaea === 'function') {
+        $ebdaea = $ebdaea.options;
       }
     
         /* template */
-        Object.assign($12871f, (function () {
+        Object.assign($ebdaea, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card text-center", staticStyle: { width: "18rem" } },
+    {
+      staticClass: "card text-top",
+      staticStyle: { width: "15rem" },
+      attrs: { id: "top" }
+    },
     [
       _c(
         "div",
-        { staticClass: "card text-center", staticStyle: { width: "18rem" } },
+        {
+          staticClass: "card text-center",
+          staticStyle: { width: "18rem" },
+          attrs: { id: "center" }
+        },
         [
           _c(
             "div",
@@ -11284,14 +11353,39 @@ exports.default = _default;
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.deleted($event)
+                      return _vm.deleted(_vm.datum.id)
                     }
                   }
                 },
                 [_vm._v("Delete")]
               ),
+              _c("br"),
               _vm._v(" "),
-              _c("selectCat", { on: { getTaskId: _vm.getTaskId } })
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.moveBack(_vm.datum.id, _vm.datum.CategoryId)
+                    }
+                  }
+                },
+                [_vm._v("Backward")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.move(_vm.datum.id, _vm.datum.CategoryId)
+                    }
+                  }
+                },
+                [_vm._v("Forward")]
+              )
             ],
             1
           )
@@ -11320,9 +11414,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$12871f', $12871f);
+            api.createRecord('$ebdaea', $ebdaea);
           } else {
-            api.reload('$12871f', $12871f);
+            api.reload('$ebdaea', $ebdaea);
           }
         }
 
@@ -11333,7 +11427,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/selectCat":"src/components/selectCat.vue","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/cardBody.vue":[function(require,module,exports) {
+},{"../components/selectCat":"src/components/selectCat.vue","../axios/axiosInstance":"src/axios/axiosInstance.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/cardBody.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11357,6 +11451,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "CardBody",
   props: ["task"],
@@ -11365,64 +11465,68 @@ var _default = {
   },
   methods: {
     getId: function getId() {
-      this.$emit('getId', this.task.id);
+      this.$emit("getId", this.task.id);
     },
     getTaskId: function getTaskId(id) {
       console.log(id, "dari card body");
-      this.$emit('getTaskId', id);
+      this.$emit("getTaskId", id);
+    },
+    deleted: function deleted(id) {
+      this.$emit('deleted', id);
     }
   }
 };
 exports.default = _default;
-        var $c0c9c4 = exports.default || module.exports;
+        var $832bed = exports.default || module.exports;
       
-      if (typeof $c0c9c4 === 'function') {
-        $c0c9c4 = $c0c9c4.options;
+      if (typeof $832bed === 'function') {
+        $832bed = $832bed.options;
       }
     
         /* template */
-        Object.assign($c0c9c4, (function () {
+        Object.assign($832bed, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container-fluid d-flex justify-content-sbetween col-12" },
-    [
-      _c(
-        "div",
-        { staticClass: "col-3" },
-        [
-          _c("h3", [_vm._v(_vm._s(_vm.task.name))]),
-          _vm._v(" "),
-          _c(
-            "b-button",
-            {
-              directives: [
-                {
-                  name: "b-modal",
-                  rawName: "v-b-modal.modal-1",
-                  modifiers: { "modal-1": true }
-                }
-              ],
-              on: { click: _vm.getId }
-            },
-            [_vm._v("Add Task")]
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.task.Tasks, function(datum) {
-            return _c("cardTask", {
-              key: datum.id,
-              attrs: { datum: datum, category: _vm.category },
-              on: { getTaskId: _vm.getTaskId }
-            })
+  return _c("div", { staticClass: "container-body" }, [
+    _c(
+      "div",
+      { staticClass: "col-3" },
+      [
+        _c("h3", [_vm._v(_vm._s(_vm.task.name))]),
+        _vm._v(" "),
+        _c(
+          "b-button",
+          {
+            directives: [
+              {
+                name: "b-modal",
+                rawName: "v-b-modal.modal-1",
+                modifiers: { "modal-1": true }
+              }
+            ],
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.getId($event)
+              }
+            }
+          },
+          [_vm._v("Add Task")]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.task.Tasks, function(datum) {
+          return _c("cardTask", {
+            key: datum.id,
+            attrs: { datum: datum },
+            on: { getTaskId: _vm.getTaskId, deleted: _vm.deleted }
           })
-        ],
-        2
-      )
-    ]
-  )
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11444,9 +11548,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$c0c9c4', $c0c9c4);
+            api.createRecord('$832bed', $832bed);
           } else {
-            api.reload('$c0c9c4', $c0c9c4);
+            api.reload('$832bed', $832bed);
           }
         }
 
@@ -11519,14 +11623,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $1c12dc = exports.default || module.exports;
+        var $753599 = exports.default || module.exports;
       
-      if (typeof $1c12dc === 'function') {
-        $1c12dc = $1c12dc.options;
+      if (typeof $753599 === 'function') {
+        $753599 = $753599.options;
       }
     
         /* template */
-        Object.assign($1c12dc, (function () {
+        Object.assign($753599, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -11638,9 +11742,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$1c12dc', $1c12dc);
+            api.createRecord('$753599', $753599);
           } else {
-            api.reload('$1c12dc', $1c12dc);
+            api.reload('$753599', $753599);
           }
         }
 
@@ -11688,11 +11792,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+// import addCategory from "../components/addCat"
 var _default = {
   name: "DashboardPage",
   components: {
     navbar: _navbarCmp.default,
     addTask: _addTask.default,
+    // addCategory,
     cardBody: _cardBody.default,
     editTask: _editTask.default
   },
@@ -11747,45 +11856,81 @@ var _default = {
         console.log(err);
       });
     },
+    addCategory: function addCategory(payload) {
+      var _this3 = this;
+
+      console.log(payload);
+
+      _axiosInstance.default.post("/category", payload, {
+        headers: {
+          access_token: localStorage.getItem("access_token")
+        }
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        // this.$emit('')
+        console.log(data);
+
+        _this3.$bvModal.hide("modal-3");
+
+        _this3.$emit('refetch');
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
     getId: function getId(id) {
       this.id = id;
     },
     getTaskId: function getTaskId(id) {
       this.taskId = id;
+    },
+    deleted: function deleted(id) {
+      this.$emit('deleted', id);
     }
   }
 };
 exports.default = _default;
-        var $1148ed = exports.default || module.exports;
+        var $5d5e95 = exports.default || module.exports;
       
-      if (typeof $1148ed === 'function') {
-        $1148ed = $1148ed.options;
+      if (typeof $5d5e95 === 'function') {
+        $5d5e95 = $5d5e95.options;
       }
     
         /* template */
-        Object.assign($1148ed, (function () {
+        Object.assign($5d5e95, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container-dashboard" },
     [
       _c("navbar", { on: { logOut: _vm.logOut } }),
       _vm._v(" "),
-      _vm._l(_vm.taskData, function(task) {
-        return _c("cardBody", {
-          key: task.id,
-          attrs: { task: task, category: _vm.category },
-          on: { getId: _vm.getId, getTaskId: _vm.getTaskId }
-        })
-      }),
-      _vm._v(" "),
-      _c("addTask", { on: { addTask: _vm.addTask } }),
-      _vm._v(" "),
-      _c("editTask", { on: { editTask: _vm.editTask } })
+      _c(
+        "div",
+        { staticClass: "container-inside" },
+        [
+          _vm._l(_vm.taskData, function(task) {
+            return _c("cardBody", {
+              key: task.id,
+              attrs: { task: task },
+              on: {
+                getId: _vm.getId,
+                getTaskId: _vm.getTaskId,
+                deleted: _vm.deleted
+              }
+            })
+          }),
+          _vm._v(" "),
+          _c("addTask", { on: { addTask: _vm.addTask } }),
+          _vm._v(" "),
+          _c("editTask", { on: { editTask: _vm.editTask } })
+        ],
+        2
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -11808,9 +11953,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$1148ed', $1148ed);
+            api.createRecord('$5d5e95', $5d5e95);
           } else {
-            api.reload('$1148ed', $1148ed);
+            api.reload('$5d5e95', $5d5e95);
           }
         }
 
@@ -11905,14 +12050,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $dd73bf = exports.default || module.exports;
+        var $edd17b = exports.default || module.exports;
       
-      if (typeof $dd73bf === 'function') {
-        $dd73bf = $dd73bf.options;
+      if (typeof $edd17b === 'function') {
+        $edd17b = $edd17b.options;
       }
     
         /* template */
-        Object.assign($dd73bf, (function () {
+        Object.assign($edd17b, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12059,9 +12204,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$dd73bf', $dd73bf);
+            api.createRecord('$edd17b', $edd17b);
           } else {
-            api.reload('$dd73bf', $dd73bf);
+            api.reload('$edd17b', $edd17b);
           }
         }
 
@@ -12152,14 +12297,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $675fd2 = exports.default || module.exports;
+        var $dd1333 = exports.default || module.exports;
       
-      if (typeof $675fd2 === 'function') {
-        $675fd2 = $675fd2.options;
+      if (typeof $dd1333 === 'function') {
+        $dd1333 = $dd1333.options;
       }
     
         /* template */
-        Object.assign($675fd2, (function () {
+        Object.assign($dd1333, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12306,9 +12451,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$675fd2', $675fd2);
+            api.createRecord('$dd1333', $dd1333);
           } else {
-            api.reload('$675fd2', $675fd2);
+            api.reload('$dd1333', $dd1333);
           }
         }
 
@@ -12319,7 +12464,116 @@ render._withStripped = true
       
       }
     })();
-},{"../axios/axiosInstance":"src/axios/axiosInstance.js","../views/dashboardPage.vue":"src/views/dashboardPage.vue","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/accountPage.vue":[function(require,module,exports) {
+},{"../axios/axiosInstance":"src/axios/axiosInstance.js","../views/dashboardPage.vue":"src/views/dashboardPage.vue","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/googleSigin.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  data: function data() {
+    return {
+      /**
+       * The Auth2 parameters, as seen on
+       * https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
+       * As the very least, a valid client_id must present.
+       * @type {Object} 
+       */
+      googleSignInParams: {
+        client_id: '360618096035-a2o6lethnqssmh344ehadh8qteggmbvc.apps.googleusercontent.com'
+      }
+    };
+  },
+  methods: {
+    onSignInSuccess: function onSignInSuccess(googleUser) {
+      console.log('succes');
+      var google_access_token = googleUser.getAuthResponse().id_token; // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+
+      var profile = googleUser.getBasicProfile(); // etc etc
+
+      this.$parent.$parent.googleLogin(google_access_token);
+    },
+    onSignInError: function onSignInError(error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error);
+    }
+  }
+};
+exports.default = _default;
+        var $069e3f = exports.default || module.exports;
+      
+      if (typeof $069e3f === 'function') {
+        $069e3f = $069e3f.options;
+      }
+    
+        /* template */
+        Object.assign($069e3f, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "g-signin-button",
+        {
+          attrs: { params: _vm.googleSignInParams },
+          on: { success: _vm.onSignInSuccess, error: _vm.onSignInError }
+        },
+        [_vm._v("\n    Sign in with Google\n  ")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$069e3f', $069e3f);
+          } else {
+            api.reload('$069e3f', $069e3f);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/accountPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12331,8 +12585,11 @@ var _loginCmp = _interopRequireDefault(require("../components/loginCmp"));
 
 var _registerCmp = _interopRequireDefault(require("../components/registerCmp"));
 
+var _googleSigin = _interopRequireDefault(require("../components/googleSigin"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -12344,7 +12601,8 @@ var _default = {
   name: 'Authpage',
   components: {
     Login: _loginCmp.default,
-    Register: _registerCmp.default
+    Register: _registerCmp.default,
+    Google: _googleSigin.default
   },
   data: function data() {
     return {
@@ -12370,14 +12628,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $1d5b62 = exports.default || module.exports;
+        var $e0e156 = exports.default || module.exports;
       
-      if (typeof $1d5b62 === 'function') {
-        $1d5b62 = $1d5b62.options;
+      if (typeof $e0e156 === 'function') {
+        $e0e156 = $e0e156.options;
       }
     
         /* template */
-        Object.assign($1d5b62, (function () {
+        Object.assign($e0e156, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12393,7 +12651,9 @@ exports.default = _default;
               getTask: _vm.getTask
             }
           })
-        : _c("Register", { on: { openLogin: _vm.openLogin } })
+        : _c("Register", { on: { openLogin: _vm.openLogin } }),
+      _vm._v(" "),
+      _c("Google")
     ],
     1
   )
@@ -12418,9 +12678,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$1d5b62', $1d5b62);
+            api.createRecord('$e0e156', $e0e156);
           } else {
-            api.reload('$1d5b62', $1d5b62);
+            api.reload('$e0e156', $e0e156);
           }
         }
 
@@ -12431,7 +12691,7 @@ render._withStripped = true
       
       }
     })();
-},{"../components/loginCmp":"src/components/loginCmp.vue","../components/registerCmp":"src/components/registerCmp.vue","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
+},{"../components/loginCmp":"src/components/loginCmp.vue","../components/registerCmp":"src/components/registerCmp.vue","../components/googleSigin":"src/components/googleSigin.vue","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/App.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12447,6 +12707,7 @@ var _dashboardPage = _interopRequireDefault(require("./views/dashboardPage"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -12527,18 +12788,48 @@ var _default = {
     logOut: function logOut(payload) {
       this.currentPage = payload;
       this.tasks = [];
+    },
+    deleted: function deleted(id) {
+      _axiosInstance.default.delete("/task/".concat(id), {
+        headers: {
+          access_token: localStorage.getItem("access_token")
+        }
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        console.log(data);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    googleLogin: function googleLogin(token) {
+      var self = this;
+      (0, _axiosInstance.default)({
+        url: "/googleLogin",
+        method: "POST",
+        headers: {
+          google_access_token: token
+        }
+      }).then(function (_ref4) {
+        var data = _ref4.data;
+        console.log(data.access_token);
+        localStorage.setItem("access_token", data.access_token);
+        self.currentPage = "Dashboardpage";
+        self.getTask();
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   }
 };
 exports.default = _default;
-        var $5f7447 = exports.default || module.exports;
+        var $2ed71b = exports.default || module.exports;
       
-      if (typeof $5f7447 === 'function') {
-        $5f7447 = $5f7447.options;
+      if (typeof $2ed71b === 'function') {
+        $2ed71b = $2ed71b.options;
       }
     
         /* template */
-        Object.assign($5f7447, (function () {
+        Object.assign($2ed71b, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12554,7 +12845,11 @@ exports.default = _default;
         : _vm.currentPage === "Dashboardpage"
         ? _c("Dashboard", {
             attrs: { taskData: _vm.tasks, catData: _vm.category },
-            on: { logOut: _vm.logOut, refetch: _vm.getTask }
+            on: {
+              logOut: _vm.logOut,
+              refetch: _vm.getTask,
+              deleted: _vm.deleted
+            }
           })
         : _vm._e()
     ],
@@ -12581,9 +12876,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$5f7447', $5f7447);
+            api.createRecord('$2ed71b', $2ed71b);
           } else {
-            api.reload('$5f7447', $5f7447);
+            api.reload('$2ed71b', $2ed71b);
           }
         }
 
@@ -63357,7 +63652,11 @@ exports.BootstrapVue = BootstrapVue;
 // Default export is the BootstrapVue plugin
 var _default = BootstrapVue;
 exports.default = _default;
-},{"./utils/plugins":"node_modules/bootstrap-vue/esm/utils/plugins.js","./components":"node_modules/bootstrap-vue/esm/components/index.js","./directives":"node_modules/bootstrap-vue/esm/directives/index.js","./bv-config":"node_modules/bootstrap-vue/esm/bv-config.js","./components/modal/helpers/bv-modal":"node_modules/bootstrap-vue/esm/components/modal/helpers/bv-modal.js","./components/toast/helpers/bv-toast":"node_modules/bootstrap-vue/esm/components/toast/helpers/bv-toast.js","./icons/plugin":"node_modules/bootstrap-vue/esm/icons/plugin.js","./icons/icon":"node_modules/bootstrap-vue/esm/icons/icon.js","./icons/iconstack":"node_modules/bootstrap-vue/esm/icons/iconstack.js","./icons/icons":"node_modules/bootstrap-vue/esm/icons/icons.js","./components/alert":"node_modules/bootstrap-vue/esm/components/alert/index.js","./components/alert/alert":"node_modules/bootstrap-vue/esm/components/alert/alert.js","./components/aspect":"node_modules/bootstrap-vue/esm/components/aspect/index.js","./components/aspect/aspect":"node_modules/bootstrap-vue/esm/components/aspect/aspect.js","./components/avatar":"node_modules/bootstrap-vue/esm/components/avatar/index.js","./components/avatar/avatar":"node_modules/bootstrap-vue/esm/components/avatar/avatar.js","./components/avatar/avatar-group":"node_modules/bootstrap-vue/esm/components/avatar/avatar-group.js","./components/badge":"node_modules/bootstrap-vue/esm/components/badge/index.js","./components/badge/badge":"node_modules/bootstrap-vue/esm/components/badge/badge.js","./components/breadcrumb":"node_modules/bootstrap-vue/esm/components/breadcrumb/index.js","./components/breadcrumb/breadcrumb":"node_modules/bootstrap-vue/esm/components/breadcrumb/breadcrumb.js","./components/breadcrumb/breadcrumb-item":"node_modules/bootstrap-vue/esm/components/breadcrumb/breadcrumb-item.js","./components/button":"node_modules/bootstrap-vue/esm/components/button/index.js","./components/button/button":"node_modules/bootstrap-vue/esm/components/button/button.js","./components/button/button-close":"node_modules/bootstrap-vue/esm/components/button/button-close.js","./components/button-group":"node_modules/bootstrap-vue/esm/components/button-group/index.js","./components/button-group/button-group":"node_modules/bootstrap-vue/esm/components/button-group/button-group.js","./components/button-toolbar":"node_modules/bootstrap-vue/esm/components/button-toolbar/index.js","./components/button-toolbar/button-toolbar":"node_modules/bootstrap-vue/esm/components/button-toolbar/button-toolbar.js","./components/calendar":"node_modules/bootstrap-vue/esm/components/calendar/index.js","./components/calendar/calendar":"node_modules/bootstrap-vue/esm/components/calendar/calendar.js","./components/card":"node_modules/bootstrap-vue/esm/components/card/index.js","./components/card/card":"node_modules/bootstrap-vue/esm/components/card/card.js","./components/card/card-body":"node_modules/bootstrap-vue/esm/components/card/card-body.js","./components/card/card-footer":"node_modules/bootstrap-vue/esm/components/card/card-footer.js","./components/card/card-group":"node_modules/bootstrap-vue/esm/components/card/card-group.js","./components/card/card-header":"node_modules/bootstrap-vue/esm/components/card/card-header.js","./components/card/card-img":"node_modules/bootstrap-vue/esm/components/card/card-img.js","./components/card/card-img-lazy":"node_modules/bootstrap-vue/esm/components/card/card-img-lazy.js","./components/card/card-sub-title":"node_modules/bootstrap-vue/esm/components/card/card-sub-title.js","./components/card/card-text":"node_modules/bootstrap-vue/esm/components/card/card-text.js","./components/card/card-title":"node_modules/bootstrap-vue/esm/components/card/card-title.js","./components/carousel":"node_modules/bootstrap-vue/esm/components/carousel/index.js","./components/carousel/carousel":"node_modules/bootstrap-vue/esm/components/carousel/carousel.js","./components/carousel/carousel-slide":"node_modules/bootstrap-vue/esm/components/carousel/carousel-slide.js","./components/collapse":"node_modules/bootstrap-vue/esm/components/collapse/index.js","./components/collapse/collapse":"node_modules/bootstrap-vue/esm/components/collapse/collapse.js","./components/dropdown":"node_modules/bootstrap-vue/esm/components/dropdown/index.js","./components/dropdown/dropdown":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown.js","./components/dropdown/dropdown-item":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-item.js","./components/dropdown/dropdown-item-button":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-item-button.js","./components/dropdown/dropdown-divider":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-divider.js","./components/dropdown/dropdown-form":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-form.js","./components/dropdown/dropdown-group":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-group.js","./components/dropdown/dropdown-header":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-header.js","./components/dropdown/dropdown-text":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-text.js","./components/embed":"node_modules/bootstrap-vue/esm/components/embed/index.js","./components/embed/embed":"node_modules/bootstrap-vue/esm/components/embed/embed.js","./components/form":"node_modules/bootstrap-vue/esm/components/form/index.js","./components/form/form":"node_modules/bootstrap-vue/esm/components/form/form.js","./components/form/form-datalist":"node_modules/bootstrap-vue/esm/components/form/form-datalist.js","./components/form/form-text":"node_modules/bootstrap-vue/esm/components/form/form-text.js","./components/form/form-invalid-feedback":"node_modules/bootstrap-vue/esm/components/form/form-invalid-feedback.js","./components/form/form-valid-feedback":"node_modules/bootstrap-vue/esm/components/form/form-valid-feedback.js","./components/form-checkbox":"node_modules/bootstrap-vue/esm/components/form-checkbox/index.js","./components/form-checkbox/form-checkbox":"node_modules/bootstrap-vue/esm/components/form-checkbox/form-checkbox.js","./components/form-checkbox/form-checkbox-group":"node_modules/bootstrap-vue/esm/components/form-checkbox/form-checkbox-group.js","./components/form-datepicker":"node_modules/bootstrap-vue/esm/components/form-datepicker/index.js","./components/form-datepicker/form-datepicker":"node_modules/bootstrap-vue/esm/components/form-datepicker/form-datepicker.js","./components/form-file":"node_modules/bootstrap-vue/esm/components/form-file/index.js","./components/form-file/form-file":"node_modules/bootstrap-vue/esm/components/form-file/form-file.js","./components/form-group":"node_modules/bootstrap-vue/esm/components/form-group/index.js","./components/form-group/form-group":"node_modules/bootstrap-vue/esm/components/form-group/form-group.js","./components/form-input":"node_modules/bootstrap-vue/esm/components/form-input/index.js","./components/form-input/form-input":"node_modules/bootstrap-vue/esm/components/form-input/form-input.js","./components/form-radio":"node_modules/bootstrap-vue/esm/components/form-radio/index.js","./components/form-radio/form-radio":"node_modules/bootstrap-vue/esm/components/form-radio/form-radio.js","./components/form-radio/form-radio-group":"node_modules/bootstrap-vue/esm/components/form-radio/form-radio-group.js","./components/form-rating":"node_modules/bootstrap-vue/esm/components/form-rating/index.js","./components/form-rating/form-rating":"node_modules/bootstrap-vue/esm/components/form-rating/form-rating.js","./components/form-tags":"node_modules/bootstrap-vue/esm/components/form-tags/index.js","./components/form-tags/form-tags":"node_modules/bootstrap-vue/esm/components/form-tags/form-tags.js","./components/form-tags/form-tag":"node_modules/bootstrap-vue/esm/components/form-tags/form-tag.js","./components/form-select":"node_modules/bootstrap-vue/esm/components/form-select/index.js","./components/form-select/form-select":"node_modules/bootstrap-vue/esm/components/form-select/form-select.js","./components/form-select/form-select-option":"node_modules/bootstrap-vue/esm/components/form-select/form-select-option.js","./components/form-select/form-select-option-group":"node_modules/bootstrap-vue/esm/components/form-select/form-select-option-group.js","./components/form-spinbutton":"node_modules/bootstrap-vue/esm/components/form-spinbutton/index.js","./components/form-spinbutton/form-spinbutton":"node_modules/bootstrap-vue/esm/components/form-spinbutton/form-spinbutton.js","./components/form-textarea":"node_modules/bootstrap-vue/esm/components/form-textarea/index.js","./components/form-textarea/form-textarea":"node_modules/bootstrap-vue/esm/components/form-textarea/form-textarea.js","./components/form-timepicker":"node_modules/bootstrap-vue/esm/components/form-timepicker/index.js","./components/form-timepicker/form-timepicker":"node_modules/bootstrap-vue/esm/components/form-timepicker/form-timepicker.js","./components/image":"node_modules/bootstrap-vue/esm/components/image/index.js","./components/image/img":"node_modules/bootstrap-vue/esm/components/image/img.js","./components/image/img-lazy":"node_modules/bootstrap-vue/esm/components/image/img-lazy.js","./components/input-group":"node_modules/bootstrap-vue/esm/components/input-group/index.js","./components/input-group/input-group":"node_modules/bootstrap-vue/esm/components/input-group/input-group.js","./components/input-group/input-group-addon":"node_modules/bootstrap-vue/esm/components/input-group/input-group-addon.js","./components/input-group/input-group-append":"node_modules/bootstrap-vue/esm/components/input-group/input-group-append.js","./components/input-group/input-group-prepend":"node_modules/bootstrap-vue/esm/components/input-group/input-group-prepend.js","./components/input-group/input-group-text":"node_modules/bootstrap-vue/esm/components/input-group/input-group-text.js","./components/jumbotron":"node_modules/bootstrap-vue/esm/components/jumbotron/index.js","./components/jumbotron/jumbotron":"node_modules/bootstrap-vue/esm/components/jumbotron/jumbotron.js","./components/layout":"node_modules/bootstrap-vue/esm/components/layout/index.js","./components/layout/container":"node_modules/bootstrap-vue/esm/components/layout/container.js","./components/layout/row":"node_modules/bootstrap-vue/esm/components/layout/row.js","./components/layout/col":"node_modules/bootstrap-vue/esm/components/layout/col.js","./components/layout/form-row":"node_modules/bootstrap-vue/esm/components/layout/form-row.js","./components/link":"node_modules/bootstrap-vue/esm/components/link/index.js","./components/link/link":"node_modules/bootstrap-vue/esm/components/link/link.js","./components/list-group":"node_modules/bootstrap-vue/esm/components/list-group/index.js","./components/list-group/list-group":"node_modules/bootstrap-vue/esm/components/list-group/list-group.js","./components/list-group/list-group-item":"node_modules/bootstrap-vue/esm/components/list-group/list-group-item.js","./components/media":"node_modules/bootstrap-vue/esm/components/media/index.js","./components/media/media":"node_modules/bootstrap-vue/esm/components/media/media.js","./components/media/media-aside":"node_modules/bootstrap-vue/esm/components/media/media-aside.js","./components/media/media-body":"node_modules/bootstrap-vue/esm/components/media/media-body.js","./components/modal":"node_modules/bootstrap-vue/esm/components/modal/index.js","./components/modal/modal":"node_modules/bootstrap-vue/esm/components/modal/modal.js","./components/nav":"node_modules/bootstrap-vue/esm/components/nav/index.js","./components/nav/nav":"node_modules/bootstrap-vue/esm/components/nav/nav.js","./components/nav/nav-form":"node_modules/bootstrap-vue/esm/components/nav/nav-form.js","./components/nav/nav-item":"node_modules/bootstrap-vue/esm/components/nav/nav-item.js","./components/nav/nav-item-dropdown":"node_modules/bootstrap-vue/esm/components/nav/nav-item-dropdown.js","./components/nav/nav-text":"node_modules/bootstrap-vue/esm/components/nav/nav-text.js","./components/navbar":"node_modules/bootstrap-vue/esm/components/navbar/index.js","./components/navbar/navbar":"node_modules/bootstrap-vue/esm/components/navbar/navbar.js","./components/navbar/navbar-brand":"node_modules/bootstrap-vue/esm/components/navbar/navbar-brand.js","./components/navbar/navbar-nav":"node_modules/bootstrap-vue/esm/components/navbar/navbar-nav.js","./components/navbar/navbar-toggle":"node_modules/bootstrap-vue/esm/components/navbar/navbar-toggle.js","./components/overlay":"node_modules/bootstrap-vue/esm/components/overlay/index.js","./components/overlay/overlay":"node_modules/bootstrap-vue/esm/components/overlay/overlay.js","./components/pagination":"node_modules/bootstrap-vue/esm/components/pagination/index.js","./components/pagination/pagination":"node_modules/bootstrap-vue/esm/components/pagination/pagination.js","./components/pagination-nav":"node_modules/bootstrap-vue/esm/components/pagination-nav/index.js","./components/pagination-nav/pagination-nav":"node_modules/bootstrap-vue/esm/components/pagination-nav/pagination-nav.js","./components/popover":"node_modules/bootstrap-vue/esm/components/popover/index.js","./components/popover/popover":"node_modules/bootstrap-vue/esm/components/popover/popover.js","./components/progress":"node_modules/bootstrap-vue/esm/components/progress/index.js","./components/progress/progress":"node_modules/bootstrap-vue/esm/components/progress/progress.js","./components/progress/progress-bar":"node_modules/bootstrap-vue/esm/components/progress/progress-bar.js","./components/sidebar":"node_modules/bootstrap-vue/esm/components/sidebar/index.js","./components/sidebar/sidebar":"node_modules/bootstrap-vue/esm/components/sidebar/sidebar.js","./components/spinner":"node_modules/bootstrap-vue/esm/components/spinner/index.js","./components/spinner/spinner":"node_modules/bootstrap-vue/esm/components/spinner/spinner.js","./components/table":"node_modules/bootstrap-vue/esm/components/table/index.js","./components/table/table":"node_modules/bootstrap-vue/esm/components/table/table.js","./components/table/table-lite":"node_modules/bootstrap-vue/esm/components/table/table-lite.js","./components/table/table-simple":"node_modules/bootstrap-vue/esm/components/table/table-simple.js","./components/table/tbody":"node_modules/bootstrap-vue/esm/components/table/tbody.js","./components/table/thead":"node_modules/bootstrap-vue/esm/components/table/thead.js","./components/table/tfoot":"node_modules/bootstrap-vue/esm/components/table/tfoot.js","./components/table/tr":"node_modules/bootstrap-vue/esm/components/table/tr.js","./components/table/th":"node_modules/bootstrap-vue/esm/components/table/th.js","./components/table/td":"node_modules/bootstrap-vue/esm/components/table/td.js","./components/tabs":"node_modules/bootstrap-vue/esm/components/tabs/index.js","./components/tabs/tabs":"node_modules/bootstrap-vue/esm/components/tabs/tabs.js","./components/tabs/tab":"node_modules/bootstrap-vue/esm/components/tabs/tab.js","./components/time":"node_modules/bootstrap-vue/esm/components/time/index.js","./components/time/time":"node_modules/bootstrap-vue/esm/components/time/time.js","./components/toast":"node_modules/bootstrap-vue/esm/components/toast/index.js","./components/toast/toast":"node_modules/bootstrap-vue/esm/components/toast/toast.js","./components/toast/toaster":"node_modules/bootstrap-vue/esm/components/toast/toaster.js","./components/tooltip":"node_modules/bootstrap-vue/esm/components/tooltip/index.js","./components/tooltip/tooltip":"node_modules/bootstrap-vue/esm/components/tooltip/tooltip.js","./directives/hover":"node_modules/bootstrap-vue/esm/directives/hover/index.js","./directives/hover/hover":"node_modules/bootstrap-vue/esm/directives/hover/hover.js","./directives/modal":"node_modules/bootstrap-vue/esm/directives/modal/index.js","./directives/modal/modal":"node_modules/bootstrap-vue/esm/directives/modal/modal.js","./directives/popover":"node_modules/bootstrap-vue/esm/directives/popover/index.js","./directives/popover/popover":"node_modules/bootstrap-vue/esm/directives/popover/popover.js","./directives/scrollspy":"node_modules/bootstrap-vue/esm/directives/scrollspy/index.js","./directives/scrollspy/scrollspy":"node_modules/bootstrap-vue/esm/directives/scrollspy/scrollspy.js","./directives/toggle":"node_modules/bootstrap-vue/esm/directives/toggle/index.js","./directives/toggle/toggle":"node_modules/bootstrap-vue/esm/directives/toggle/toggle.js","./directives/tooltip":"node_modules/bootstrap-vue/esm/directives/tooltip/index.js","./directives/tooltip/tooltip":"node_modules/bootstrap-vue/esm/directives/tooltip/tooltip.js","./directives/visible":"node_modules/bootstrap-vue/esm/directives/visible/index.js","./directives/visible/visible":"node_modules/bootstrap-vue/esm/directives/visible/visible.js"}],"src/main.js":[function(require,module,exports) {
+},{"./utils/plugins":"node_modules/bootstrap-vue/esm/utils/plugins.js","./components":"node_modules/bootstrap-vue/esm/components/index.js","./directives":"node_modules/bootstrap-vue/esm/directives/index.js","./bv-config":"node_modules/bootstrap-vue/esm/bv-config.js","./components/modal/helpers/bv-modal":"node_modules/bootstrap-vue/esm/components/modal/helpers/bv-modal.js","./components/toast/helpers/bv-toast":"node_modules/bootstrap-vue/esm/components/toast/helpers/bv-toast.js","./icons/plugin":"node_modules/bootstrap-vue/esm/icons/plugin.js","./icons/icon":"node_modules/bootstrap-vue/esm/icons/icon.js","./icons/iconstack":"node_modules/bootstrap-vue/esm/icons/iconstack.js","./icons/icons":"node_modules/bootstrap-vue/esm/icons/icons.js","./components/alert":"node_modules/bootstrap-vue/esm/components/alert/index.js","./components/alert/alert":"node_modules/bootstrap-vue/esm/components/alert/alert.js","./components/aspect":"node_modules/bootstrap-vue/esm/components/aspect/index.js","./components/aspect/aspect":"node_modules/bootstrap-vue/esm/components/aspect/aspect.js","./components/avatar":"node_modules/bootstrap-vue/esm/components/avatar/index.js","./components/avatar/avatar":"node_modules/bootstrap-vue/esm/components/avatar/avatar.js","./components/avatar/avatar-group":"node_modules/bootstrap-vue/esm/components/avatar/avatar-group.js","./components/badge":"node_modules/bootstrap-vue/esm/components/badge/index.js","./components/badge/badge":"node_modules/bootstrap-vue/esm/components/badge/badge.js","./components/breadcrumb":"node_modules/bootstrap-vue/esm/components/breadcrumb/index.js","./components/breadcrumb/breadcrumb":"node_modules/bootstrap-vue/esm/components/breadcrumb/breadcrumb.js","./components/breadcrumb/breadcrumb-item":"node_modules/bootstrap-vue/esm/components/breadcrumb/breadcrumb-item.js","./components/button":"node_modules/bootstrap-vue/esm/components/button/index.js","./components/button/button":"node_modules/bootstrap-vue/esm/components/button/button.js","./components/button/button-close":"node_modules/bootstrap-vue/esm/components/button/button-close.js","./components/button-group":"node_modules/bootstrap-vue/esm/components/button-group/index.js","./components/button-group/button-group":"node_modules/bootstrap-vue/esm/components/button-group/button-group.js","./components/button-toolbar":"node_modules/bootstrap-vue/esm/components/button-toolbar/index.js","./components/button-toolbar/button-toolbar":"node_modules/bootstrap-vue/esm/components/button-toolbar/button-toolbar.js","./components/calendar":"node_modules/bootstrap-vue/esm/components/calendar/index.js","./components/calendar/calendar":"node_modules/bootstrap-vue/esm/components/calendar/calendar.js","./components/card":"node_modules/bootstrap-vue/esm/components/card/index.js","./components/card/card":"node_modules/bootstrap-vue/esm/components/card/card.js","./components/card/card-body":"node_modules/bootstrap-vue/esm/components/card/card-body.js","./components/card/card-footer":"node_modules/bootstrap-vue/esm/components/card/card-footer.js","./components/card/card-group":"node_modules/bootstrap-vue/esm/components/card/card-group.js","./components/card/card-header":"node_modules/bootstrap-vue/esm/components/card/card-header.js","./components/card/card-img":"node_modules/bootstrap-vue/esm/components/card/card-img.js","./components/card/card-img-lazy":"node_modules/bootstrap-vue/esm/components/card/card-img-lazy.js","./components/card/card-sub-title":"node_modules/bootstrap-vue/esm/components/card/card-sub-title.js","./components/card/card-text":"node_modules/bootstrap-vue/esm/components/card/card-text.js","./components/card/card-title":"node_modules/bootstrap-vue/esm/components/card/card-title.js","./components/carousel":"node_modules/bootstrap-vue/esm/components/carousel/index.js","./components/carousel/carousel":"node_modules/bootstrap-vue/esm/components/carousel/carousel.js","./components/carousel/carousel-slide":"node_modules/bootstrap-vue/esm/components/carousel/carousel-slide.js","./components/collapse":"node_modules/bootstrap-vue/esm/components/collapse/index.js","./components/collapse/collapse":"node_modules/bootstrap-vue/esm/components/collapse/collapse.js","./components/dropdown":"node_modules/bootstrap-vue/esm/components/dropdown/index.js","./components/dropdown/dropdown":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown.js","./components/dropdown/dropdown-item":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-item.js","./components/dropdown/dropdown-item-button":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-item-button.js","./components/dropdown/dropdown-divider":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-divider.js","./components/dropdown/dropdown-form":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-form.js","./components/dropdown/dropdown-group":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-group.js","./components/dropdown/dropdown-header":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-header.js","./components/dropdown/dropdown-text":"node_modules/bootstrap-vue/esm/components/dropdown/dropdown-text.js","./components/embed":"node_modules/bootstrap-vue/esm/components/embed/index.js","./components/embed/embed":"node_modules/bootstrap-vue/esm/components/embed/embed.js","./components/form":"node_modules/bootstrap-vue/esm/components/form/index.js","./components/form/form":"node_modules/bootstrap-vue/esm/components/form/form.js","./components/form/form-datalist":"node_modules/bootstrap-vue/esm/components/form/form-datalist.js","./components/form/form-text":"node_modules/bootstrap-vue/esm/components/form/form-text.js","./components/form/form-invalid-feedback":"node_modules/bootstrap-vue/esm/components/form/form-invalid-feedback.js","./components/form/form-valid-feedback":"node_modules/bootstrap-vue/esm/components/form/form-valid-feedback.js","./components/form-checkbox":"node_modules/bootstrap-vue/esm/components/form-checkbox/index.js","./components/form-checkbox/form-checkbox":"node_modules/bootstrap-vue/esm/components/form-checkbox/form-checkbox.js","./components/form-checkbox/form-checkbox-group":"node_modules/bootstrap-vue/esm/components/form-checkbox/form-checkbox-group.js","./components/form-datepicker":"node_modules/bootstrap-vue/esm/components/form-datepicker/index.js","./components/form-datepicker/form-datepicker":"node_modules/bootstrap-vue/esm/components/form-datepicker/form-datepicker.js","./components/form-file":"node_modules/bootstrap-vue/esm/components/form-file/index.js","./components/form-file/form-file":"node_modules/bootstrap-vue/esm/components/form-file/form-file.js","./components/form-group":"node_modules/bootstrap-vue/esm/components/form-group/index.js","./components/form-group/form-group":"node_modules/bootstrap-vue/esm/components/form-group/form-group.js","./components/form-input":"node_modules/bootstrap-vue/esm/components/form-input/index.js","./components/form-input/form-input":"node_modules/bootstrap-vue/esm/components/form-input/form-input.js","./components/form-radio":"node_modules/bootstrap-vue/esm/components/form-radio/index.js","./components/form-radio/form-radio":"node_modules/bootstrap-vue/esm/components/form-radio/form-radio.js","./components/form-radio/form-radio-group":"node_modules/bootstrap-vue/esm/components/form-radio/form-radio-group.js","./components/form-rating":"node_modules/bootstrap-vue/esm/components/form-rating/index.js","./components/form-rating/form-rating":"node_modules/bootstrap-vue/esm/components/form-rating/form-rating.js","./components/form-tags":"node_modules/bootstrap-vue/esm/components/form-tags/index.js","./components/form-tags/form-tags":"node_modules/bootstrap-vue/esm/components/form-tags/form-tags.js","./components/form-tags/form-tag":"node_modules/bootstrap-vue/esm/components/form-tags/form-tag.js","./components/form-select":"node_modules/bootstrap-vue/esm/components/form-select/index.js","./components/form-select/form-select":"node_modules/bootstrap-vue/esm/components/form-select/form-select.js","./components/form-select/form-select-option":"node_modules/bootstrap-vue/esm/components/form-select/form-select-option.js","./components/form-select/form-select-option-group":"node_modules/bootstrap-vue/esm/components/form-select/form-select-option-group.js","./components/form-spinbutton":"node_modules/bootstrap-vue/esm/components/form-spinbutton/index.js","./components/form-spinbutton/form-spinbutton":"node_modules/bootstrap-vue/esm/components/form-spinbutton/form-spinbutton.js","./components/form-textarea":"node_modules/bootstrap-vue/esm/components/form-textarea/index.js","./components/form-textarea/form-textarea":"node_modules/bootstrap-vue/esm/components/form-textarea/form-textarea.js","./components/form-timepicker":"node_modules/bootstrap-vue/esm/components/form-timepicker/index.js","./components/form-timepicker/form-timepicker":"node_modules/bootstrap-vue/esm/components/form-timepicker/form-timepicker.js","./components/image":"node_modules/bootstrap-vue/esm/components/image/index.js","./components/image/img":"node_modules/bootstrap-vue/esm/components/image/img.js","./components/image/img-lazy":"node_modules/bootstrap-vue/esm/components/image/img-lazy.js","./components/input-group":"node_modules/bootstrap-vue/esm/components/input-group/index.js","./components/input-group/input-group":"node_modules/bootstrap-vue/esm/components/input-group/input-group.js","./components/input-group/input-group-addon":"node_modules/bootstrap-vue/esm/components/input-group/input-group-addon.js","./components/input-group/input-group-append":"node_modules/bootstrap-vue/esm/components/input-group/input-group-append.js","./components/input-group/input-group-prepend":"node_modules/bootstrap-vue/esm/components/input-group/input-group-prepend.js","./components/input-group/input-group-text":"node_modules/bootstrap-vue/esm/components/input-group/input-group-text.js","./components/jumbotron":"node_modules/bootstrap-vue/esm/components/jumbotron/index.js","./components/jumbotron/jumbotron":"node_modules/bootstrap-vue/esm/components/jumbotron/jumbotron.js","./components/layout":"node_modules/bootstrap-vue/esm/components/layout/index.js","./components/layout/container":"node_modules/bootstrap-vue/esm/components/layout/container.js","./components/layout/row":"node_modules/bootstrap-vue/esm/components/layout/row.js","./components/layout/col":"node_modules/bootstrap-vue/esm/components/layout/col.js","./components/layout/form-row":"node_modules/bootstrap-vue/esm/components/layout/form-row.js","./components/link":"node_modules/bootstrap-vue/esm/components/link/index.js","./components/link/link":"node_modules/bootstrap-vue/esm/components/link/link.js","./components/list-group":"node_modules/bootstrap-vue/esm/components/list-group/index.js","./components/list-group/list-group":"node_modules/bootstrap-vue/esm/components/list-group/list-group.js","./components/list-group/list-group-item":"node_modules/bootstrap-vue/esm/components/list-group/list-group-item.js","./components/media":"node_modules/bootstrap-vue/esm/components/media/index.js","./components/media/media":"node_modules/bootstrap-vue/esm/components/media/media.js","./components/media/media-aside":"node_modules/bootstrap-vue/esm/components/media/media-aside.js","./components/media/media-body":"node_modules/bootstrap-vue/esm/components/media/media-body.js","./components/modal":"node_modules/bootstrap-vue/esm/components/modal/index.js","./components/modal/modal":"node_modules/bootstrap-vue/esm/components/modal/modal.js","./components/nav":"node_modules/bootstrap-vue/esm/components/nav/index.js","./components/nav/nav":"node_modules/bootstrap-vue/esm/components/nav/nav.js","./components/nav/nav-form":"node_modules/bootstrap-vue/esm/components/nav/nav-form.js","./components/nav/nav-item":"node_modules/bootstrap-vue/esm/components/nav/nav-item.js","./components/nav/nav-item-dropdown":"node_modules/bootstrap-vue/esm/components/nav/nav-item-dropdown.js","./components/nav/nav-text":"node_modules/bootstrap-vue/esm/components/nav/nav-text.js","./components/navbar":"node_modules/bootstrap-vue/esm/components/navbar/index.js","./components/navbar/navbar":"node_modules/bootstrap-vue/esm/components/navbar/navbar.js","./components/navbar/navbar-brand":"node_modules/bootstrap-vue/esm/components/navbar/navbar-brand.js","./components/navbar/navbar-nav":"node_modules/bootstrap-vue/esm/components/navbar/navbar-nav.js","./components/navbar/navbar-toggle":"node_modules/bootstrap-vue/esm/components/navbar/navbar-toggle.js","./components/overlay":"node_modules/bootstrap-vue/esm/components/overlay/index.js","./components/overlay/overlay":"node_modules/bootstrap-vue/esm/components/overlay/overlay.js","./components/pagination":"node_modules/bootstrap-vue/esm/components/pagination/index.js","./components/pagination/pagination":"node_modules/bootstrap-vue/esm/components/pagination/pagination.js","./components/pagination-nav":"node_modules/bootstrap-vue/esm/components/pagination-nav/index.js","./components/pagination-nav/pagination-nav":"node_modules/bootstrap-vue/esm/components/pagination-nav/pagination-nav.js","./components/popover":"node_modules/bootstrap-vue/esm/components/popover/index.js","./components/popover/popover":"node_modules/bootstrap-vue/esm/components/popover/popover.js","./components/progress":"node_modules/bootstrap-vue/esm/components/progress/index.js","./components/progress/progress":"node_modules/bootstrap-vue/esm/components/progress/progress.js","./components/progress/progress-bar":"node_modules/bootstrap-vue/esm/components/progress/progress-bar.js","./components/sidebar":"node_modules/bootstrap-vue/esm/components/sidebar/index.js","./components/sidebar/sidebar":"node_modules/bootstrap-vue/esm/components/sidebar/sidebar.js","./components/spinner":"node_modules/bootstrap-vue/esm/components/spinner/index.js","./components/spinner/spinner":"node_modules/bootstrap-vue/esm/components/spinner/spinner.js","./components/table":"node_modules/bootstrap-vue/esm/components/table/index.js","./components/table/table":"node_modules/bootstrap-vue/esm/components/table/table.js","./components/table/table-lite":"node_modules/bootstrap-vue/esm/components/table/table-lite.js","./components/table/table-simple":"node_modules/bootstrap-vue/esm/components/table/table-simple.js","./components/table/tbody":"node_modules/bootstrap-vue/esm/components/table/tbody.js","./components/table/thead":"node_modules/bootstrap-vue/esm/components/table/thead.js","./components/table/tfoot":"node_modules/bootstrap-vue/esm/components/table/tfoot.js","./components/table/tr":"node_modules/bootstrap-vue/esm/components/table/tr.js","./components/table/th":"node_modules/bootstrap-vue/esm/components/table/th.js","./components/table/td":"node_modules/bootstrap-vue/esm/components/table/td.js","./components/tabs":"node_modules/bootstrap-vue/esm/components/tabs/index.js","./components/tabs/tabs":"node_modules/bootstrap-vue/esm/components/tabs/tabs.js","./components/tabs/tab":"node_modules/bootstrap-vue/esm/components/tabs/tab.js","./components/time":"node_modules/bootstrap-vue/esm/components/time/index.js","./components/time/time":"node_modules/bootstrap-vue/esm/components/time/time.js","./components/toast":"node_modules/bootstrap-vue/esm/components/toast/index.js","./components/toast/toast":"node_modules/bootstrap-vue/esm/components/toast/toast.js","./components/toast/toaster":"node_modules/bootstrap-vue/esm/components/toast/toaster.js","./components/tooltip":"node_modules/bootstrap-vue/esm/components/tooltip/index.js","./components/tooltip/tooltip":"node_modules/bootstrap-vue/esm/components/tooltip/tooltip.js","./directives/hover":"node_modules/bootstrap-vue/esm/directives/hover/index.js","./directives/hover/hover":"node_modules/bootstrap-vue/esm/directives/hover/hover.js","./directives/modal":"node_modules/bootstrap-vue/esm/directives/modal/index.js","./directives/modal/modal":"node_modules/bootstrap-vue/esm/directives/modal/modal.js","./directives/popover":"node_modules/bootstrap-vue/esm/directives/popover/index.js","./directives/popover/popover":"node_modules/bootstrap-vue/esm/directives/popover/popover.js","./directives/scrollspy":"node_modules/bootstrap-vue/esm/directives/scrollspy/index.js","./directives/scrollspy/scrollspy":"node_modules/bootstrap-vue/esm/directives/scrollspy/scrollspy.js","./directives/toggle":"node_modules/bootstrap-vue/esm/directives/toggle/index.js","./directives/toggle/toggle":"node_modules/bootstrap-vue/esm/directives/toggle/toggle.js","./directives/tooltip":"node_modules/bootstrap-vue/esm/directives/tooltip/index.js","./directives/tooltip/tooltip":"node_modules/bootstrap-vue/esm/directives/tooltip/tooltip.js","./directives/visible":"node_modules/bootstrap-vue/esm/directives/visible/index.js","./directives/visible/visible":"node_modules/bootstrap-vue/esm/directives/visible/visible.js"}],"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js":[function(require,module,exports) {
+var define;
+'use strict';var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(obj){return typeof obj}:function(obj){return obj&&'function'==typeof Symbol&&obj.constructor===Symbol&&obj!==Symbol.prototype?'symbol':typeof obj};(function(){function a(c){'undefined'!=typeof console&&console.error('[g-signin-button] '+c)}function b(c){c.component('g-signin-button',{name:'g-signin-button',render:function render(d){return d('div',{attrs:{class:'g-signin-button'},ref:'signinBtn'},this.$slots.default)},props:{params:{type:Object,required:!0,default:function _default(){return{}}}},mounted:function mounted(){var _this=this;return window.gapi?this.params.client_id?void window.gapi.load('auth2',function(){var d=window.gapi.auth2.init(_this.params);d.attachClickHandler(_this.$refs.signinBtn,{},function(e){_this.$emit('success',e)},function(e){_this.$emit('error',e),_this.$emit('failure',e)})}):void a('params.client_id must be specified.'):void a('"https://apis.google.com/js/api:client.js" needs to be included as a <script>.')}})}'object'==('undefined'==typeof exports?'undefined':_typeof(exports))?module.exports=b:'function'==typeof define&&define.amd?define([],function(){return b}):window.Vue&&window.Vue.use(b)})();
+
+},{}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -63366,9 +63665,13 @@ var _App = _interopRequireDefault(require("./App.vue"));
 
 var _bootstrapVue = require("bootstrap-vue");
 
+var _vueGoogleSigninButton = _interopRequireDefault(require("vue-google-signin-button"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Install BootstrapVue
+_vue.default.use(_vueGoogleSigninButton.default); // Install BootstrapVue
+
+
 _vue.default.use(_bootstrapVue.BootstrapVue); // Optionally install the BootstrapVue icon components plugin
 
 
@@ -63379,7 +63682,7 @@ new _vue.default({
     return h(_App.default);
   }
 }).$mount('#app');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","bootstrap-vue":"node_modules/bootstrap-vue/esm/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./App.vue":"src/App.vue","bootstrap-vue":"node_modules/bootstrap-vue/esm/index.js","vue-google-signin-button":"node_modules/vue-google-signin-button/dist/vue-google-signin-button.min.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -63407,7 +63710,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50196" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59881" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

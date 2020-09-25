@@ -1,7 +1,7 @@
 const { User } = require('../models')
 const { createHash, compareHash } = require('../helpers/bcrypt')
 const { generateToken, verifyToken } = require('../helpers/jwt')
-
+const { OAuth2Client } = require('google-auth-library')
 
 class Controller{
     static register(req,res,next){
@@ -42,6 +42,48 @@ class Controller{
         .catch(err =>{
             return next(err)
         })
+    }
+
+    static googleLogin(req,res,next){
+        let email, googleData;
+        const client = new OAuth2Client('360618096035-a2o6lethnqssmh344ehadh8qteggmbvc.apps.googleusercontent.com')
+        const { google_access_token } = req.headers
+        client.verifyIdToken({
+                idToken: google_access_token,
+                audience: '360618096035-a2o6lethnqssmh344ehadh8qteggmbvc.apps.googleusercontent.com'
+            })
+            .then(ticket => {
+                return ticket.getPayload()
+            })
+            .then(payload => {
+                googleData = payload;
+                console.log(payload)
+                email = payload.email
+                return User.findOne({
+                    where: { email }
+                })
+            })
+            .then(user => {
+                if (!user) {
+                    let obj = {
+                        email: email,
+                        password: 'randompasswordforgoogleuser'
+                    }
+                    return User.create(obj)
+                } else {
+                    return user
+                }
+            })
+            .then(user => {
+                const data = {id:user.id, email:user.email, organization:'Hacktiv8'}
+                const access_token = generateToken(data)
+                console.log(access_token)
+                return res.status(200).json({ access_token, email })
+            })
+            .catch(err => {
+                console.log(err);
+                next(err)
+            })
     }
 }
 

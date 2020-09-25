@@ -2,17 +2,20 @@
   <div>
     <Login v-if="currentForm === 'login'" @isLogin="isLogin" @openRegister="openRegister" @getTask = "getTask"></Login>
     <Register v-else @openLogin = "openLogin"></Register>
+    <Google ></Google>
   </div>
 </template>
 
 <script>
 import Login from '../components/loginCmp'
 import Register from '../components/registerCmp'
+import Google from '../components/googleSigin'
 export default {
     name : 'Authpage',
     components : {
         Login,
-        Register
+        Register,
+        Google
     },
     data(){
         return{
