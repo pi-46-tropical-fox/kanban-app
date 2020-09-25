@@ -1,5 +1,5 @@
-#### API Demo : https://glacial-ocean-84777.herokuapp.com/
-#### App Demo : https://bukanban2.web.app/
+
+#### App Demo : https://kanban-adiet.web.app/
 
 # Kanban Server
 Kanban is an application to manage organization's tasks. This app has : 
