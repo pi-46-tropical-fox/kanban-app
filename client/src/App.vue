@@ -129,7 +129,7 @@ export default {
     },
     getTasks() {
       this.getName()
-      axios.defaults.baseURL = 'https://glacial-ocean-84777.herokuapp.com';
+      axios.defaults.baseURL = 'https://kanban-adiet95s.herokuapp.com';
       // axios.defaults.baseURL = 'http://localhost:3000';
       if(localStorage.getItem('access_token')){
         axios({

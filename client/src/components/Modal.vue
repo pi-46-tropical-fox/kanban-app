@@ -12,7 +12,7 @@
           <form>
             <div class="form-group">
               <label class="col-form-label text-dark">Title</label>
-              <input type="text" class="form-control "v-model="title">
+              <input type="text" class="form-control" v-model="title">
             </div>
             <div class="form-group">
               <label class="col-form-label text-dark">Category</label>
