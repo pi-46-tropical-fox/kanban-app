@@ -14,7 +14,7 @@ class TodoController {
 
     }
 
-    static add (req, res, next) {
+    static addTodo (req, res, next) {
         const { title, description, due_date, CategoryId } = req.body
         const UserId = req.headers.id
 
@@ -28,8 +28,9 @@ class TodoController {
         
     }
 
-    static edit (req, res, next) {
+    static editTodo (req, res, next) {
         let id = req.params.id
+        
         Todo.findOne({where: {id}})
             .then(todo => {
                 if(!todo) {
@@ -43,7 +44,7 @@ class TodoController {
             })
     }
 
-    static editPost (req, res, next) {
+    static editPostTodo (req, res, next) {
         const { title, description, due_date, CategoryId } = req.body
         const UserId = req.headers.id
 
@@ -56,7 +57,8 @@ class TodoController {
             })
     }
 
-    static delete (req, res, next) {
+    static deleteTodo (req, res, next) {
+        
         Todo.destroy({where: {id:req.params.id}})
             .then( todo => {
                 return res.status(200).json({message: "successfully deleted task"})

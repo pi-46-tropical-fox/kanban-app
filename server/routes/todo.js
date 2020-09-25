@@ -5,9 +5,9 @@ const router = require('express').Router()
 
 
 router.get('/', TodoController.show)
-router.post('/add', TodoController.add)
-router.get('/edit/:id', authorization, TodoController.edit)
-router.put('/edit/:id', authorization, TodoController.editPost)
-router.delete('/delete/:id', authorization, TodoController.delete)
+router.post('/', TodoController.addTodo)
+router.get('/:id', authorization, TodoController.editTodo)
+router.put('/:id', authorization, TodoController.editPostTodo)
+router.delete('/:id', authorization, TodoController.deleteTodo)
 
 module.exports = router

@@ -10345,10 +10345,11 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var instance = _axios.default.create({
-  baseURL: 'https://kanbanapaaja.herokuapp.com/'
+  baseURL: 'https://localhost:3000'
 });
 
-var _default = instance;
+var _default = instance; //https://kanbanapaaja.herokuapp.com/
+
 exports.default = _default;
 },{"axios":"node_modules/axios/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
@@ -10939,287 +10940,6 @@ render._withStripped = true
             api.createRecord('$8eb93c', $8eb93c);
           } else {
             api.reload('$8eb93c', $8eb93c);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"../config/axios":"src/config/axios.js","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/add.vue":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _axios = _interopRequireDefault(require("../config/axios"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  name: 'addForm',
-  data: function data() {
-    return {
-      title: '',
-      description: '',
-      due_date: '',
-      CategoryId: ''
-    };
-  },
-  props: ['categories'],
-  methods: {
-    addTask: function addTask() {
-      var payload = {
-        title: this.title,
-        description: this.description,
-        due_date: this.due_date,
-        CategoryId: this.CategoryId,
-        UserId: localStorage.getItem('id')
-      };
-      this.$emit('addTodo', payload);
-    }
-  }
-};
-exports.default = _default;
-        var $545a67 = exports.default || module.exports;
-      
-      if (typeof $545a67 === 'function') {
-        $545a67 = $545a67.options;
-      }
-    
-        /* template */
-        Object.assign($545a67, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-modal",
-        { attrs: { "hide-footer": "", id: "modal", title: "Add Task" } },
-        [
-          _c(
-            "form",
-            {
-              ref: "form",
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.addTask($event)
-                }
-              }
-            },
-            [
-              _c(
-                "b-form-group",
-                {
-                  attrs: {
-                    label: "Title",
-                    "label-for": "title-input",
-                    "invalid-feedback": "Title is required"
-                  }
-                },
-                [
-                  _c("b-form-input", {
-                    attrs: { id: "title-input", required: "" },
-                    model: {
-                      value: _vm.title,
-                      callback: function($$v) {
-                        _vm.title = $$v
-                      },
-                      expression: "title"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                {
-                  attrs: {
-                    label: "Description",
-                    "label-for": "description-input",
-                    "invalid-feedback": "Description is required"
-                  }
-                },
-                [
-                  _c("b-form-input", {
-                    attrs: { id: "description-input", required: "" },
-                    model: {
-                      value: _vm.description,
-                      callback: function($$v) {
-                        _vm.description = $$v
-                      },
-                      expression: "description"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                {
-                  attrs: {
-                    label: "Date",
-                    "label-for": "date-input",
-                    "invalid-feedback": "Date is required"
-                  }
-                },
-                [
-                  _c("b-form-input", {
-                    attrs: { id: "due_date-input", type: "date", required: "" },
-                    model: {
-                      value: _vm.due_date,
-                      callback: function($$v) {
-                        _vm.due_date = $$v
-                      },
-                      expression: "due_date"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                {
-                  attrs: {
-                    label: "Category",
-                    "label-for": "category-input",
-                    "invalid-feedback": "Category is required"
-                  }
-                },
-                [
-                  _c("b-form-select", {
-                    attrs: {
-                      id: "title-input",
-                      options: _vm.categories,
-                      required: "",
-                      "value-field": "id",
-                      "text-field": "category"
-                    },
-                    model: {
-                      value: _vm.CategoryId,
-                      callback: function($$v) {
-                        _vm.CategoryId = $$v
-                      },
-                      expression: "CategoryId"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-button",
-                { attrs: { type: "submit", variant: "primary" } },
-                [_vm._v("Submit")]
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$545a67', $545a67);
-          } else {
-            api.reload('$545a67', $545a67);
           }
         }
 
@@ -11924,8 +11644,6 @@ exports.default = void 0;
 
 var _axios = _interopRequireDefault(require("../config/axios"));
 
-var _add = _interopRequireDefault(require("../components/add"));
-
 var _navbar = _interopRequireDefault(require("../components/navbar"));
 
 var _cardGroup = _interopRequireDefault(require("../components/cardGroup"));
@@ -11959,32 +11677,29 @@ var _default = {
   props: ['categories', 'todos'],
   components: {
     navbar: _navbar.default,
-    cardGroup: _cardGroup.default,
-    add: _add.default
+    cardGroup: _cardGroup.default // add
+
   },
   methods: {
     logout: function logout() {
       this.$emit('logout');
     },
-    addTodo: function addTodo(payload) {
-      var _this = this;
-
-      (0, _axios.default)({
-        url: '/todos/add',
-        method: "POST",
-        data: payload,
-        headers: {
-          'access_token': localStorage.getItem('access_token')
-        }
-      }).then(function (respose) {
-        // console.log(response)
-        _this.$bvModal.hide('modal');
-
-        _this.$emit('todo');
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
+    // addTodo (payload) {
+    //     axios({
+    //         url: '/todos/add',
+    //         method: "POST",
+    //         data: payload,
+    //         headers: { 'access_token': localStorage.getItem('access_token')}
+    //     })
+    //     .then (respose => {
+    //         // console.log(response)
+    //         this.$bvModal.hide('modal')
+    //         this.$emit('todo')
+    //     })
+    //     .catch ( err => {
+    //         console.log(err)
+    //     })
+    // },
     deleteTask: function deleteTask() {
       this.$emit('deleteTask');
     }
@@ -12041,12 +11756,7 @@ exports.default = _default;
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("add", {
-        attrs: { categories: _vm.categories },
-        on: { addTodo: _vm.addTodo }
-      })
+      )
     ],
     1
   )
@@ -12084,7 +11794,7 @@ render._withStripped = true
       
       }
     })();
-},{"../config/axios":"src/config/axios.js","../components/add":"src/components/add.vue","../components/navbar":"src/components/navbar.vue","../components/cardGroup":"src/components/cardGroup.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/registerPage.vue":[function(require,module,exports) {
+},{"../config/axios":"src/config/axios.js","../components/navbar":"src/components/navbar.vue","../components/cardGroup":"src/components/cardGroup.vue","_css_loader":"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/views/registerPage.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12488,7 +12198,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "main-page" },
     [
       _vm.currentPage === "loginPage"
         ? _c("loginPage", {
@@ -63382,7 +63092,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37281" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42337" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

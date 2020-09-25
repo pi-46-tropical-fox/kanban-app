@@ -5,8 +5,8 @@ const { authorization } = require('../middlewares/auth')
 
 
 router.get('/', CategoryController.show)
-router.post('/add', authorization, CategoryController.add)
-router.post('/delete/:id', authorization, CategoryController.delete)
+router.post('/', authorization, CategoryController.addCategory)
+router.post('/:id', authorization, CategoryController.deleteCategory)
 
 
 module.exports = router

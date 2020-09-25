@@ -2,7 +2,9 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'https://kanbanapaaja.herokuapp.com/'
+    baseURL: 'https://localhost:3000'
 });
 
 export default instance
+
+//https://kanbanapaaja.herokuapp.com/

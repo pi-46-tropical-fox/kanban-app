@@ -16,13 +16,12 @@
                 ></cardGroup>
             </div>
         </div>  
-    <add :categories="categories" @addTodo='addTodo'></add>
+    <!-- <add :categories="categories" @addTodo='addTodo'></add> -->
   </div>
 </template>
 
 <script>
 import axios from '../config/axios'
-import add from '../components/add'
 import navbar from '../components/navbar'
 import cardGroup from '../components/cardGroup'
 export default {
@@ -32,30 +31,30 @@ export default {
     components : {
         navbar,
         cardGroup,
-        add
+        // add
     },
     methods : {
         logout () {
             this.$emit('logout')
         },
-        addTodo (payload) {
-            axios({
-                url: '/todos/add',
-                method: "POST",
-                data: payload,
-                headers: { 'access_token': localStorage.getItem('access_token')}
-            })
-            .then (respose => {
-                // console.log(response)
-                this.$bvModal.hide('modal')
-                this.$emit('todo')
+        // addTodo (payload) {
+        //     axios({
+        //         url: '/todos/add',
+        //         method: "POST",
+        //         data: payload,
+        //         headers: { 'access_token': localStorage.getItem('access_token')}
+        //     })
+        //     .then (respose => {
+        //         // console.log(response)
+        //         this.$bvModal.hide('modal')
+        //         this.$emit('todo')
                 
-            })
-            .catch ( err => {
-                console.log(err)
-            })
+        //     })
+        //     .catch ( err => {
+        //         console.log(err)
+        //     })
             
-        },
+        // },
         deleteTask() {
             this.$emit('deleteTask')
         }

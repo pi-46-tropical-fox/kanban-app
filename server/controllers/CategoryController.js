@@ -13,7 +13,7 @@ class CategoryController {
     }
       
     
-    static add (req,res,next) {
+    static addCategory (req,res,next) {
         const { category } = req.body
 
         Category.create({category}) 
@@ -26,7 +26,7 @@ class CategoryController {
         
     }
 
-    static delete (req, res, next) {
+    static deleteCategory (req, res, next) {
         Category.destroy({where: { id: req.params.id}})
             .then( category => {
                 return res.status(201).json({message: `Successfully delete category with id ${req.params.id}`})

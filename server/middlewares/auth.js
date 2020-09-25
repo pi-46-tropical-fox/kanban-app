@@ -17,7 +17,7 @@ function authentication (req, res, next) {
             }
         })
         .catch ( err => {
-            console.log(er)
+            console.log(err)
             return next(err)
         })
 }
