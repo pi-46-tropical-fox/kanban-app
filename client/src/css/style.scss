@@ -1,0 +1,147 @@
+/* Some Sass variables */
+// Layout
+$appbar-height: 50px;
+$navbar-height: 50px;
+$list-width: 310px;
+$gap: 20px;
+$scrollbar-thickness: 17px;
+$list-header-height: 36px;
+$list-footer-height: 39px;
+// Misc
+$list-border-radius: 5px;
+$card-border-radius: 3px;
+// Colors
+$board-bg-color: #696969;
+$appbar-bg-color: #8ba5dd;
+$list-bg-color: #e2e4e6;
+
+body {
+  margin: 0;
+
+  font-family: 'Roboto';
+  font-size: 14px;
+  line-height: 1.3em;
+}
+
+.ui {
+  height: 100vh;
+
+  display: grid;
+  grid-template-rows:  1fr;
+  //grid-template-columns: 100%;
+
+  background-color: $board-bg-color;
+  color: #eee;
+}
+
+.navbar {
+  padding-left: $gap;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.board-container {
+  margin-top: 25px;
+  display: flex;
+  overflow-x: auto;
+  //width: 100%; // This is needed for FF < 54
+  > * {
+    flex: 0 0 auto; // 'rigid' lists
+    margin-left: $gap;
+  }
+  &::after {
+    content: '';
+    flex: 0 0 $gap;
+  }
+}
+
+.board {
+  width: $list-width;
+  height: calc(100% - #{$gap} - #{$scrollbar-thickness});
+
+  > * {
+    background-color: $list-bg-color;
+    color: #333;
+
+    padding: 1px $gap 0px $gap ;
+  }  
+}
+
+.board-header {
+  line-height: $list-header-height;
+  font-size: 20px;
+  font-weight: bold;
+  border-top-left-radius: $list-border-radius;
+  border-top-right-radius: $list-border-radius;
+}
+
+.board-footer {
+  line-height: $list-footer-height;
+  border-bottom-left-radius: $list-border-radius;
+  border-bottom-right-radius: $list-border-radius;
+  color: #888;
+}
+
+
+.cards-container {
+  margin: 0;
+  max-height: calc(100% - #{$list-header-height} - #{$list-footer-height});
+  overflow-y: auto;
+}
+
+.card {
+  background-color: #fff;
+  padding: $gap;
+  margin-top: $gap;
+  border-radius: $card-border-radius;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
