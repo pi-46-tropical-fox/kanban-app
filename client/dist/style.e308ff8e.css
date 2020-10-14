@@ -1,0 +1,567 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: cadetblue;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+  
+}
+.login {
+    display: flex ;
+    flex-direction: column ;
+    background-color: powderblue ;
+    width:500px;
+    height: 520px;
+    padding : 10px ;
+    align-items: center;
+    border: solid 1px ;
+    border-radius: 20px;
+    margin-top: 100px;
+}
+
+.buttonLogin {
+    display : flex;
+    margin : 20px 0 20px 0 ;
+}
+
+.buttonLogin .signin {
+    background-color: rgb(125, 126, 236);
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black ;
+    font-weight: bold;
+    width: 120px;
+    height: 35px;
+    margin-right: 20px;
+    padding-top: 15px;
+    text-align: center;    
+}
+
+
+.buttonLogin .register {
+    background-color: grey;
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    width: 120px;
+    height: 35px;
+    margin-right: 20px;
+    padding-top: 15px;
+    text-align: center;
+    transition: 0.5s; 
+}
+
+.buttonLogin .register:hover {
+    background-color: rgb(125, 126, 236);
+    transition: 0.5s;
+    
+}
+
+.loginForm {
+    background-color: whitesmoke ;
+    width: 400px;
+    text-align: center;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.loginForm .input-group {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.loginForm .input-group input {
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+
+.loginForm .input-group input[type="submit"]{
+    background-color: cadetblue;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40%;
+    transition: 0.5s;
+}
+
+.loginForm .input-group input[type="submit"]:hover{
+    width: 100%;
+    background-color: darkcyan;
+    transition: 0.5s;
+    color: white;
+
+}
+
+.googleLogin p {
+    margin: 10px 0;
+    font-size: 21px;
+}
+
+
+
+.registration {
+    display: flex ;
+    flex-direction: column ;
+    background-color: powderblue;
+    width: 500px;
+    height: 520px;
+    padding : 10px ;
+    align-items: center;
+    border: solid 1px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-top: 100px;
+}
+
+.buttonRegister {
+    display : flex;
+    margin : 20px 0 20px 0 ;
+}
+.buttonRegister .btnsignin {
+    background-color: grey;
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black ;
+    font-weight: bold;
+    width: 120px;
+    height: 35px;
+    margin-right: 20px;
+    padding-top: 15px;
+    text-align: center;
+    transition:0.5s;
+}
+
+.buttonRegister .btnsignin:hover {
+    background-color: rgb(125, 126, 236);
+    transition: 0.5s;
+}
+
+.buttonRegister .btnregister {
+    background-color: rgb(125, 126, 236);
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    width: 120px;
+    height: 35px;
+    margin-right: 20px;
+    padding-top: 15px;
+    text-align: center; 
+}
+
+.registerForm {
+    background-color: whitesmoke ;
+    width: 400px;
+    text-align: center;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.registerForm .input-group {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.registerForm .input-group input {
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+
+.registerForm .input-group input[type="submit"]{
+    background-color: cadetblue;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40%;
+    transition: 0.5s;
+}
+
+.registerForm .input-group input[type="submit"]:hover{
+    width: 100%;
+    background-color: darkcyan;
+    transition: 0.5s;
+    color: white;
+
+}
+
+.add {
+    display: flex ;
+    flex-direction: column ;
+    background-color: powderblue;
+    width: 500px;
+    height: 520px;
+    padding : 10px ;
+    align-items: center;
+    border: solid 1px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-top: 100px;
+}
+
+
+.registerForm {
+    background-color: whitesmoke ;
+    width: 400px;
+    text-align: center;
+    padding: 15px 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.addForm .input-group {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.addForm .input-group input {
+    height: 50px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+
+.addForm .input-group input[type="submit"]{
+    background-color: cadetblue;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40%;
+    transition: 0.5s;
+}
+
+.addForm .input-group input[type="submit"]:hover{
+    width: 100%;
+    background-color: darkcyan;
+    transition: 0.5s;
+    color: white;
+
+}
+
+
+
+
+.mainPage {
+    background-color: whitesmoke;
+    width: 90%;
+    height: 100vh;
+    display: flex ;
+    flex-direction: column;
+}
+
+nav{
+    display:flex;
+    justify-content: center;
+    height: 65px;
+    background-color: lightblue;
+    font-size: 21px;
+    line-height: 35px;
+
+}
+
+.logo {
+    height : 65px;
+    width : 200px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.logInfo {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.logInfo a {
+    text-decoration: none;
+    background-color: grey;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    transition: 0.5s;
+}
+
+.logInfo a:hover {
+    background-color: darkgray;
+    color: whitesmoke;
+}
+
+
+
+
+.main .buttonAdd .addTask {
+   
+   display: flex; 
+   justify-content: center;
+   width: 120px;
+   height: 35px;
+   padding-top: 15px;
+   text-decoration: none;
+   font-size: 21px;
+   background-color: lightgreen;
+   font-weight: bold;
+   border-radius: 10px;
+   margin: 40px;
+   
+
+}
+
+.category {
+    display: flex;
+    justify-content: space-around;
+    margin-top :40px;
+    font-size: 18px;
+}
+
+
+.Back-Log{
+    display: flex ;
+    flex-direction: column;
+    width: 300px ;
+    border: 3px solid rgb(245, 97, 71);
+    border-radius: 8px;
+}
+
+.Back-Log .card-header {
+    text-align: center ;
+    border-bottom: 1px solid black;
+    padding: 15px 0;
+    background-color: rgb(245, 97, 71);;
+}
+
+.Back-Log .card-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 600px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.Back-Log .card-group{
+    width: 85%;
+    border: 1px solid grey;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.Back-Log .card-group-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    
+}
+
+.Back-Log .header .action {
+    display : flex ;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.Back-Log .userInfo{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    font-size:12px;
+}
+
+.Todo{
+    display: flex ;
+    flex-direction: column;
+    width: 300px ;
+    border: 3px solid rgb(229, 245, 87);
+    border-radius: 8px;
+}
+
+.Todo .card-header {
+    text-align: center ;
+    padding: 15px 0;
+    border-bottom: 1px solid black;
+    background-color: rgb(229, 245, 87);;
+}
+
+.Todo .card-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 600px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.Todo .card-group{
+    width: 85%;
+    border: 1px solid grey;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.Todo .card-group-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    
+}
+
+.Todo .header .action {
+    display : flex ;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.Todo .userInfo{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    font-size:12px;
+}
+
+.Doing{
+    display: flex ;
+    flex-direction: column;
+    width: 300px ;
+    border: 3px solid rgb(59, 229, 235);
+    border-radius: 8px;
+}
+
+.Doing .card-header {
+    text-align: center ;
+    padding: 15px 0;
+    border-bottom: 1px solid black;
+    background-color: rgb(59, 229, 235);
+}
+
+.Doing .card-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 600px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.Doing .card-group{
+    width: 85%;
+    border: 1px solid grey;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.Doing .card-group-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    
+}
+
+.Doing .header .action {
+    display : flex ;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.Doing .userInfo{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    font-size:12px;
+}
+
+.Done{
+    display: flex ;
+    flex-direction: column;
+    width: 300px ;
+    border: 3px solid rgb(0, 255, 0);
+    border-radius: 8px;
+}
+
+.Done .card-header {
+    text-align: center ;
+    padding: 15px 0;
+    border-bottom: 1px solid black;
+    background-color: rgb(0, 255, 0);
+}
+
+.Done .card-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 600px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.Done .card-group{
+    width: 85%;
+    border: 1px solid grey;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.Done .card-group-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    
+}
+
+.Done .header .action {
+    display : flex ;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.Done .userInfo{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    font-size:12px;
+}
+
+
+
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
