@@ -43,9 +43,9 @@ methods:{
           data:payload
         })
         .then(response => {
-          this.current = 'dashboard'; 
           localStorage.setItem('access_token', response.data.access_token)
           localStorage.setItem('userEmail', response.data.email)
+          this.current = 'dashboard'; 
           this.fetchTasks()
         })
         .catch(err => {
